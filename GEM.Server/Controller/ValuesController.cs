@@ -9,16 +9,5 @@ namespace GEM.Server.Controller
     public class ValuesController : ControllerBase
     {
         private readonly MyDbContext _db;
-        public ValuesController(MyDbContext db)
-        {
-            _db = db;
-        }
-
-        [HttpGet]
-        public IActionResult Get()
-        {
-            var user = _db.Users.ToList();
-            return Ok();
-        }
     }
 }
