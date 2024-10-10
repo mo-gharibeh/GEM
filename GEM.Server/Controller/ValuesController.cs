@@ -7,5 +7,13 @@ namespace GEM.Server.Controller
     [ApiController]
     public class ValuesController : ControllerBase
     {
+        [HttpGet]
+        public ActionResult Get()
+        {
+            var x = "ssss";
+
+
+            return Ok(x);
+        }
     }
 }
