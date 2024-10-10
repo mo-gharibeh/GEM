@@ -6,12 +6,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './newProject8/Mohammad/home/home.component';
 import { NavbarComponent } from './newProject8/Mohammad/navbar/navbar.component';
+import { GymAndClassComponent } from './newProject8/Hadeel/gym-and-class/gym-and-class.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    NavbarComponent
+    NavbarComponent,
+    GymAndClassComponent
   ],
   imports: [
     BrowserModule, HttpClientModule,
