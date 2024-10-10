@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using GEM.Server.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GEM.Server.Controller
@@ -7,5 +8,17 @@ namespace GEM.Server.Controller
     [ApiController]
     public class ValuesController : ControllerBase
     {
+        private readonly MyDbContext _db;
+        public ValuesController(MyDbContext db)
+        {
+            _db = db;
+        }
+
+        [HttpGet]
+        public IActionResult Get()
+        {
+            var user = _db.Users.ToList();
+            return Ok();
+        }
     }
 }
