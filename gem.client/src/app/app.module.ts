@@ -10,7 +10,6 @@ import { NavbarComponent } from './newProject8/Mohammad/navbar/navbar.component'
 @NgModule({
   declarations: [
     AppComponent,
-    Project8Component,
     HomeComponent,
     NavbarComponent
   ],
