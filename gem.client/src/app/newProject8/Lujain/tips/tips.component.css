@@ -1,0 +1,32 @@
+/* Center the banner text */
+.banner-details {
+  text-align: center; /* Centers the text */
+}
+
+.breadcrums {
+  text-align: center; /* Centers the breadcrumbs */
+}
+
+/* Center the blog post content */
+.blog-post {
+  text-align: center; /* Centers text in the blog post */
+}
+
+.blog-image img {
+  display: block; /* Centers the image */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.author-img {
+  display: inline-block; /* Aligns author image and details */
+}
+
+.details {
+  display: inline-block; /* Aligns author details with image */
+  text-align: left; /* Keeps the text aligned left */
+}
+
+.p-quote {
+  text-align: center; /* Centers the quote */
+}

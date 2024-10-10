@@ -9,6 +9,7 @@ import { NavbarComponent } from './newProject8/Mohammad/navbar/navbar.component'
 import { TipsComponent } from './newProject8/Lujain/tips/TipsComponent';
 import { MealsComponent } from './newProject8/Lujain/meals/meals.component';
 import { SubMealComponent } from './newProject8/Lujain/sub-meal/sub-meal.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,17 @@ import { SubMealComponent } from './newProject8/Lujain/sub-meal/sub-meal.compone
   ],
   imports: [
     BrowserModule, HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    RouterModule.forRoot([
+      {
+        path: '', component: HomeComponent, pathMatch: 'full'
+      },
+      {
+        path: 'Tips', component: TipsComponent
+      }
+
+
+    ])
   ],
   providers: [],
   bootstrap: [AppComponent]
