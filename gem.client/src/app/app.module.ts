@@ -4,16 +4,18 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { Project8Component } from './project8/project8.component';
 import { HomeComponent } from './newProject8/Mohammad/home/home.component';
 import { NavbarComponent } from './newProject8/Mohammad/navbar/navbar.component';
+import { AboutComponent } from './newProject8/yousef/about/about.component';
+import { ContactComponent } from './newProject8/yousef/contact/contact.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    Project8Component,
     HomeComponent,
-    NavbarComponent
+    NavbarComponent,
+    AboutComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule, HttpClientModule,
