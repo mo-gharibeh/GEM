@@ -8,6 +8,7 @@
     <BuildOutputFolder>$(MSBuildProjectDirectory)\dist\gem.client\browser\</BuildOutputFolder>
   </PropertyGroup>
   <ItemGroup>
+    <Folder Include="src\app\newProject8\Lujain\LujainURL\" />
     <Folder Include="src\app\newProject8\Mohammad\" />
     <Folder Include="src\assets\" />
   </ItemGroup>
