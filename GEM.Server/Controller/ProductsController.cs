@@ -18,11 +18,6 @@ namespace GEM.Server.Controller
         }
 
 
-
-
-
-
-
         [HttpGet("GetProducts")]
         public IActionResult products() {
         
