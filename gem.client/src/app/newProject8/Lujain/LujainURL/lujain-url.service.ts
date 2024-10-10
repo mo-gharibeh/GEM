@@ -23,4 +23,8 @@ export class LujainURLService {
   getSubMeal(id: number): Observable<any> {
     return this.http.get<any>(`${this.staticData}/Nutration/SubMeal/${id}`);
   }
+
+  getProduct(): Observable<any> {
+    return this.http.get<any>(`${this.staticData}/Products/GetProducts`);
+  }
 }

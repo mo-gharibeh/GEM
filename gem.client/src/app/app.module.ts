@@ -13,6 +13,7 @@ import { RouterModule } from '@angular/router';
 import { AboutComponent } from './newProject8/yousef/about/about.component';
 import { ContactComponent } from './newProject8/yousef/contact/contact.component';
 import { FooterComponent } from './newProject8/Lujain/footer/footer.component';
+import { ProductComponent } from './newProject8/Lujain/product/product.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { FooterComponent } from './newProject8/Lujain/footer/footer.component';
     TipsComponent,
     MealsComponent,
     SubMealComponent,
-    FooterComponent
+    FooterComponent,
+    ProductComponent
   ],
   imports: [
     BrowserModule, HttpClientModule,
@@ -39,6 +41,10 @@ import { FooterComponent } from './newProject8/Lujain/footer/footer.component';
       },
       {
         path: 'Meals', component: MealsComponent
+      }
+      ,
+      {
+        path: 'Products', component: ProductComponent
       }
 
 
