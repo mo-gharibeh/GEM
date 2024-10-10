@@ -34,6 +34,9 @@ import { ContactComponent } from './newProject8/yousef/contact/contact.component
       },
       {
         path: 'Tips', component: TipsComponent
+      },
+      {
+        path: 'Meals', component: MealsComponent
       }
 
 
