@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35013.160
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GEM.Server", "GEM.Server\GEM.Server.csproj", "{746F44B1-C055-4A4B-80CE-0717C4A6B533}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "gem.client", "gem.client\gem.client.esproj", "{D904C59F-51EB-43D1-9D62-9CEA1574C1A1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{746F44B1-C055-4A4B-80CE-0717C4A6B533}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{746F44B1-C055-4A4B-80CE-0717C4A6B533}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{746F44B1-C055-4A4B-80CE-0717C4A6B533}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{746F44B1-C055-4A4B-80CE-0717C4A6B533}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D904C59F-51EB-43D1-9D62-9CEA1574C1A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D904C59F-51EB-43D1-9D62-9CEA1574C1A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D904C59F-51EB-43D1-9D62-9CEA1574C1A1}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{D904C59F-51EB-43D1-9D62-9CEA1574C1A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D904C59F-51EB-43D1-9D62-9CEA1574C1A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D904C59F-51EB-43D1-9D62-9CEA1574C1A1}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {07B18248-0C1C-452B-BE62-8E8DD59390D9}
+	EndGlobalSection
+EndGlobal
