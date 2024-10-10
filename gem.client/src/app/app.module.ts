@@ -4,10 +4,12 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { Project8Component } from './project8/project8.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    Project8Component
   ],
   imports: [
     BrowserModule, HttpClientModule,
