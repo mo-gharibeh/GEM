@@ -11,6 +11,7 @@
     <Folder Include="src\app\newProject8\Hadeel\HadeelURL\" />
     <Folder Include="src\app\newProject8\Lujain\LujainURL\" />
     <Folder Include="src\app\newProject8\Mohammad\" />
+    <Folder Include="src\app\newProject8\yousef\yousefurl\" />
     <Folder Include="src\assets\" />
   </ItemGroup>
 </Project>
