@@ -1,0 +1,64 @@
+<!-- Banner Style One Start -->
+<section class="banner-style-one">
+  <div class="parallax" style="background-image: url(assets/images/pattren-3.png);"></div>
+  <div class="container">
+    <div class="row">
+      <div class="banner-details">
+        <h2>Tips</h2>
+        <p>Our values have vaulted us to the top of our industry.</p>
+      </div>
+    </div>
+  </div>
+  <div class="breadcrums">
+    <div class="container">
+      <div class="row">
+        <ul>
+          <li>
+            <a href="index.html">
+              <i class="fa-solid fa-house"></i>
+              <p>Home</p>
+            </a>
+          </li>
+          <li class="current">
+            <p>Tips Detail</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="gap blog-style-one blog-detail detail-page">
+  <div class="container">
+    <div class="row justify-content-center">
+      <!-- Centering the row -->
+      <div class="col-lg-8" >
+        <div class="blog-post" >
+          <div class="blog-image">
+            <figure>
+              <img src="assets/images/blog-style-two-1.jpg" alt="Blog Style Two 1">
+            </figure>
+          </div>
+          <div *ngFor="let item of TipsArray">
+            <div class="blog-data">
+              <h2>
+                <a href="javascript:void(0)">{{item.title}}</a>
+              </h2>
+
+            </div>
+            <p>{{item.description}}</p>
+            <ul class="c-circle">
+              <li>
+                <i class="fa-solid fa-circle-dot"></i>{{item.tips}}
+              </li>
+
+            </ul>
+          </div>
+         
+          <p class="p-quote">“We believe that true wellness encompasses the mind, body, and soul...</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Blog Style Three End -->
