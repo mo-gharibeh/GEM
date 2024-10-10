@@ -39,5 +39,8 @@ export class LujainURLService {
   getCategory(): Observable<any> {
     return this.http.get<any>(`${this.staticData}/CategoryController1/Category`);
   }
+
+  
 }
+
 

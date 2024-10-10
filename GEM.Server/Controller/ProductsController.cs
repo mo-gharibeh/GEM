@@ -1,6 +1,7 @@
 ﻿using GEM.Server.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace GEM.Server.Controller
 {
@@ -81,6 +82,7 @@ namespace GEM.Server.Controller
             return Ok(product);
         }
 
+      
 
 
 

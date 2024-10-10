@@ -15,6 +15,8 @@ export class ProductComponent {
   productCategory: any;
   CategoryArry: any;
 
+
+
   constructor(private _ser: LujainURLService, private _router: ActivatedRoute) { }
 
   ngOnInit() {
