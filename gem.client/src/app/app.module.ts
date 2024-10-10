@@ -10,11 +10,16 @@ import { TipsComponent } from './newProject8/Lujain/tips/TipsComponent';
 import { MealsComponent } from './newProject8/Lujain/meals/meals.component';
 import { SubMealComponent } from './newProject8/Lujain/sub-meal/sub-meal.component';
 import { RouterModule } from '@angular/router';
+import { AboutComponent } from './newProject8/yousef/about/about.component';
+import { ContactComponent } from './newProject8/yousef/contact/contact.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
+    NavbarComponent,
+    AboutComponent,
+    ContactComponent
     NavbarComponent,
     TipsComponent,
     MealsComponent,
