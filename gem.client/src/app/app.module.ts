@@ -12,6 +12,7 @@ import { SubMealComponent } from './newProject8/Lujain/sub-meal/sub-meal.compone
 import { RouterModule } from '@angular/router';
 import { AboutComponent } from './newProject8/yousef/about/about.component';
 import { ContactComponent } from './newProject8/yousef/contact/contact.component';
+import { FooterComponent } from './newProject8/Lujain/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { ContactComponent } from './newProject8/yousef/contact/contact.component
     NavbarComponent,
     TipsComponent,
     MealsComponent,
-    SubMealComponent
+    SubMealComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule, HttpClientModule,

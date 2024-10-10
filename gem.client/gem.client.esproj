@@ -14,6 +14,5 @@
     <Folder Include="src\app\newProject8\Mohammad\" />
     <Folder Include="src\app\newProject8\yousef\yousefurl\" />
     <Folder Include="src\app\newProject8\NewFolder\" />
-    <Folder Include="src\assets\" />
   </ItemGroup>
 </Project>
