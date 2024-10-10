@@ -3,6 +3,7 @@
   <div class="parallax" style="background-image: url(assets/images/pattren-3.png);"></div>
   <div class="container">
     <div class="row">
+
       <div class="banner-details">
         <h2>Product</h2>
         <p>our values and vaulted us to the top of our industry.</p>
@@ -32,9 +33,10 @@
 <section class="gap shop-style-one addition">
   <div class="container">
     <div class="row">
+
       <div class="col-lg-12">
         <div class="shop-filter">
-          <p>145 Products</p>
+          <p>{{count}} Products</p>
           <div class="gird-list d-flex-all">
             <a class="d-flex-all list" href="javascript:void(0)">
               <i class="fa-solid fa-list"></i>
@@ -47,32 +49,52 @@
       </div>
     </div>
   </div>
-  <div class="container">
-    <div class="row p-slider align-items-center justify-content-between grid">
-  
-      <div class="col-lg-4" *ngFor="let item of ProductArray">
-        <div class="product">
-          <div class="main-data">
-            <div class="btn-hover">
-              <figure>
-                <img src="{{item.image}}" alt="Product Image 2">
-              </figure>
-              <a href="cart.html" class="theme-btn">Add to Cart <i class="fa-solid fa-bag-shopping"></i></a>
-            </div>
-            <div class="data">
-            
-              <h3><a href="product-detail.html">{{item.productName}}</a></h3>
-              <p>{{item.description}}</p>
-              <div class="price-range">
-                <span>{{item.price}}</span>
-              </div>
+  <div class="container" id="both">
+    <div class="row">
+      <aside class="col-lg-3">
+        <div class="shop-sidebar">
+          <h3>Categories</h3>
+          <div class="filter-tope-group">
+            <a class="category-link" (click)="getProductCategory(null)">
+              All Products
+            </a>
+            <div *ngFor="let item of CategoryArry">
+              <a class="category-link" (click)="getProductCategory(item.categoryId)">
+                {{item.categoryName}}
+              </a>
             </div>
           </div>
-          <a href="javascript:void(0)" class="theme-btn">Add to Cart <i class="fa-solid fa-bag-shopping"></i></a>
+        </div>
+      </aside>
+
+      <div class="col-lg-9">
+        <div class="row p-slider align-items-center justify-content-between grid">
+          <div class="col-lg-4" *ngFor="let item of ProductArray">
+            <div class="product">
+              <div class="main-data">
+                <div class="btn-hover">
+                  <figure>
+                    <img src="{{item.image}}" alt="Product Image 2">
+                  </figure>
+                  <a href="cart.html" class="theme-btn">Add to Cart <i class="fa-solid fa-bag-shopping"></i></a>
+                </div>
+                <div class="data">
+                  <h3><a href="product-detail.html">{{item.productName}}</a></h3>
+                  <p>{{item.description}}</p>
+                  <div class="price-range">
+                    <span>{{item.price}}</span>
+                  </div>
+                </div>
+              </div>
+              <a href="javascript:void(0)" class="theme-btn">Add to Cart <i class="fa-solid fa-bag-shopping"></i></a>
+            </div>
+          </div>
         </div>
       </div>
+
     </div>
   </div>
+
   <div class="container">
     <div class="row">
       <div class="gym-pagination">

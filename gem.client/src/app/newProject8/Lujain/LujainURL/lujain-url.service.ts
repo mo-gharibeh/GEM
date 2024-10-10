@@ -27,4 +27,17 @@ export class LujainURLService {
   getProduct(): Observable<any> {
     return this.http.get<any>(`${this.staticData}/Products/GetProducts`);
   }
+
+  getCount(): Observable<any> {
+    return this.http.get<any>(`${this.staticData}/Products/Count`);
+  }
+
+  getProductByCategory(id: number): Observable<any> {
+    return this.http.get<any>(`${this.staticData}/Products/ProductsbyCategoryId/${id}`);
+  }
+
+  getCategory(): Observable<any> {
+    return this.http.get<any>(`${this.staticData}/CategoryController1/Category`);
+  }
 }
+

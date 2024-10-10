@@ -75,6 +75,13 @@ namespace GEM.Server.Controller
         }
 
 
+        [HttpGet("Count")]
+        public IActionResult Count() {
+            var product = _db.Products.Count();
+            return Ok(product);
+        }
+
+
 
 
     }
