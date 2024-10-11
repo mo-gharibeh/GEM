@@ -5,7 +5,7 @@ import { RouterModule } from "@angular/router";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { ProfileComponent } from "./newProject8/Bassam/profile/profile.component";
-import { CartComponent } from "./newProject8/dima/cart/cart.component";
+
 import { GymComponent } from "./newProject8/Hadeel/gym/gym.component";
 import { BmiCalculatorComponent } from "./newProject8/Lujain/bmi-calculator/bmi-calculator.component";
 import { MealsComponent } from "./newProject8/Lujain/meals/meals.component";
@@ -18,6 +18,7 @@ import { NavbarComponent } from "./newProject8/Mohammad/navbar/navbar.component"
 import { AboutComponent } from "./newProject8/yousef/about/about.component";
 import { ContactComponent } from "./newProject8/yousef/contact/contact.component";
 import { FormsModule } from '@angular/forms';  // <-- Import FormsModule
+import { CartComponent } from "./newProject8/Lujain/cart/cart.component";
 
 
 
@@ -64,6 +65,9 @@ import { FormsModule } from '@angular/forms';  // <-- Import FormsModule
             {
                 path: 'Profile', component: ProfileComponent
             },
+          {
+            path: 'Cart', component: CartComponent
+          },
 
             {
                 path: 'bmi', component: BmiCalculatorComponent
