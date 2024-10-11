@@ -27,8 +27,8 @@ export class ContactComponent {
       form.append(key, data[key])
     }
     this._ser.postContactForm(form).subscribe(() => {
-      alert("Contact sent  successfully")
-      this._router.navigate(['/login']);
+      alert("Coment Sent successfully")
+      /*this._router.navigate(['']);*/
     },
       (error) => {
         alert(error.error)
