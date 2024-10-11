@@ -30,13 +30,13 @@ namespace GEM.Server.Controller
         [HttpPost("Cart/{id}")]
         public IActionResult PostCart(int id, [FromBody] CartDTORequist cart)
         {
-            if (id != cart.CartId)
+            if (id != cart.Cart.UserId)
             {
                 return BadRequest("UserID does not match.");
             }
 
             var existingCartItem = _db.CartItems
-                .FirstOrDefault(c => c.ProductId == cart.ProductId && c.CartId == cart.CartId);
+                .FirstOrDefault(c => c.ProductId == cart.ProductId && c.CartId == cart.Cart.UserId);
 
             if (existingCartItem != null)
             {
@@ -48,7 +48,7 @@ namespace GEM.Server.Controller
               
                 var newCartItem = new CartItem
                 {
-                    CartId = cart.CartId, 
+                    CartId = cart.Cart.UserId, 
                     ProductId = cart.ProductId, 
                     Quantity = cart.Quantity ?? 1, 
                     Price = cart.Price 
