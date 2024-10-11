@@ -30,7 +30,8 @@ namespace GEM.Server.Controller
         {
 
             var existingCartItem = _db.CartItems
-                .FirstOrDefault(c => c.ProductId == cart.ProductId && c.Cart.UserId == userId);
+    .Include(c => c.Cart)  // Ensure the Cart navigation property is loaded
+    .FirstOrDefault(c => c.ProductId == cart.ProductId && c.Cart.UserId == userId);
 
             if (existingCartItem != null)
             {
