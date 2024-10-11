@@ -19,6 +19,7 @@ import { AboutComponent } from "./newProject8/yousef/about/about.component";
 import { ContactComponent } from "./newProject8/yousef/contact/contact.component";
 import { FormsModule } from '@angular/forms';  // <-- Import FormsModule
 import { CartComponent } from "./newProject8/Lujain/cart/cart.component";
+import { LoginComponent } from "./newProject8/Ahmed/login/login.component";
 
 
 
@@ -38,7 +39,8 @@ import { CartComponent } from "./newProject8/Lujain/cart/cart.component";
         ProductComponent,
         ProfileComponent,
         CartComponent,
-        BmiCalculatorComponent,
+    BmiCalculatorComponent,
+    LoginComponent
     ],
     imports: [
         BrowserModule, HttpClientModule,
@@ -71,7 +73,10 @@ import { CartComponent } from "./newProject8/Lujain/cart/cart.component";
 
             {
                 path: 'bmi', component: BmiCalculatorComponent
-            },
+          }, 
+          {
+            path: 'Login', component: LoginComponent
+          }
         ])
     ],
     providers: [],
