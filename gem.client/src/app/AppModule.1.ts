@@ -82,8 +82,8 @@ import { RegisterComponent } from "./newProject8/Ahmed/register/register.compone
       { path: 'Login', component: LoginComponent },
 
       { path: 'About', component: AboutComponent },
-
       { path: 'Contact', component: ContactComponent },
+
 
             {
                 path: 'bmi', component: BmiCalculatorComponent
