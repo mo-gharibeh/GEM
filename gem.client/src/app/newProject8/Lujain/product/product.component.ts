@@ -70,31 +70,35 @@ export class ProductComponent {
     }
   }
 
-  
+
   
   object = {
     cartItem: 0,
     productId: 0,
     userId: 0,
-    quantity: 0,
-    //productName: "",
-    //price: 0,
-    //image:""
+    quantity: 1, 
+    productName: "", // Add productName
+    price: 0,
+    image: "",
+   
+  };
 
-
-
-
-  }
   
-
   addtoCart(productId: any) {
-    debugger;
-    this.object.productId = productId;
+    const product = this.ProductArray.find((item: any) => item.productId === productId);
 
-
-    this._ser.addTocart({ ... this.object });
-    alert("item added sucess")
-
+    if (product) {
+      this.object.productId = product.productId;
+      this.object.productName = product.productName; 
+      this.object.price = product.price;
+      this.object.image = product.image;
+      this.object.quantity = this.object.quantity;               
+      this._ser.addTocart({ ...this.object });
+      alert("Item added successfully");
+    } else {
+      alert("Product not found");
+    }
   }
+
 
 }
