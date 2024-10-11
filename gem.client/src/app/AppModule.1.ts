@@ -21,12 +21,14 @@ import { FormsModule } from '@angular/forms';  // <-- Import FormsModule
 import { CartComponent } from "./newProject8/Lujain/cart/cart.component";
 import { LoginComponent } from "./newProject8/Ahmed/login/login.component";
 import { GymDetailComponent } from "./newProject8/Hadeel/gym-detail/gym-detail.component";
+import { RegisterComponent } from "./newProject8/Ahmed/register/register.component";
 
 
 
 
 @NgModule({
   declarations: [
+
     AppComponent,
     HomeComponent,
     NavbarComponent,
@@ -45,51 +47,57 @@ import { GymDetailComponent } from "./newProject8/Hadeel/gym-detail/gym-detail.c
     BmiCalculatorComponent,
     LoginComponent,
 
+    LoginComponent,
+    RegisterComponent
     ],
 
   imports: [
-    BrowserModule, HttpClientModule,
+
+    BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     FormsModule,
     RouterModule.forRoot([
-      {
-        path: '', component: HomeComponent, pathMatch: 'full'
-      },
-      {
-        path: 'Tips', component: TipsComponent
-      },
-      {
-        path: 'Meals', component: MealsComponent
-      },
-      {
-        path: 'SubMeals/:id', component: SubMealComponent
-      },
 
-      {
-        path: 'Gyms', component: GymComponent
-      },
-      {
-        path: 'GymDetails/:id', component: GymDetailComponent
-      },
+      { path: '', component: HomeComponent, pathMatch: 'full' },
 
-      {
-        path: 'Products', component: ProductComponent
-      },
-      {
-        path: 'Profile', component: ProfileComponent
-      },
-      {
-        path: 'Cart', component: CartComponent
-      },
+      { path: 'Tips', component: TipsComponent },
 
-      {
-        path: 'bmi', component: BmiCalculatorComponent
-      },
-      {
-        path: 'Login', component: LoginComponent
-      }
+      { path: 'Meals', component: MealsComponent },
+
+      { path: 'SubMeals/:id', component: SubMealComponent },
+
+      { path: 'Gyms', component: GymComponent },
+
+      { path: 'GymDetails/:id', component: GymDetailComponent },
+
+      { path: 'Products', component: ProductComponent },
+
+      { path: 'Profile', component: ProfileComponent },
+
+      { path: 'Cart', component: CartComponent },
+
+      { path: 'bmi', component: BmiCalculatorComponent },
+
+      { path: 'Login', component: LoginComponent },
+
+      { path: 'About', component: AboutComponent },
+
+      { path: 'Contact', component: ContactComponent },
+
+            {
+                path: 'bmi', component: BmiCalculatorComponent
+          }, 
+          {
+            path: 'Login', component: LoginComponent
+          },
+          {
+            path: 'Register', component: RegisterComponent
+          }
     ])
-  ],
+        
+    ],
+  
   providers: [],
   bootstrap: [AppComponent]
 })
