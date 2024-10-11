@@ -1,0 +1,25 @@
+<section class="gap history-style-one">
+
+  <div class="container">
+
+    <div class="row">
+
+      <div class="col-lg-4 col-md-6 col-sm-12" *ngFor="let item of GymArray">
+
+        <div class="history-data reveal1 it-reveal-animation" >
+          <figure>
+            <img class="w-100" src="{{item.image}}" alt="Crain Image">
+          </figure>
+          <div class="details">
+            <h3>{{item.name}}</h3>
+            <p>{{item.description}}</p>
+            <!--<a routerLink="/GymDetail/{{item.id}}"><i class="fa-solid fa-arrow-up-long"></i></a>-->
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+</section>
