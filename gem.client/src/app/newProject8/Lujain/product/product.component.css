@@ -1,0 +1,34 @@
+/* Sidebar styling */
+.shop-sidebar {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+}
+
+/* Styling for category links */
+.category-link {
+  display: block; /* Ensures links are vertically stacked */
+  padding: 10px;
+  font-size: 16px;
+  color: #333;
+  text-decoration: none;
+  border-bottom: 1px solid #ddd;
+  transition: background-color 0.3s;
+}
+
+  /* Remove hover effect and add a subtle background color change */
+  .category-link:hover {
+    background-color: #eee; /* Subtle background color change on hover */
+    color: #333; /* Ensure text color remains unchanged */
+  }
+@media (min-width: 992px) {
+  .col-lg-3 {
+    flex: 0 0 auto;
+    width: 19%;
+  }
+}
+
+.category-link {
+  cursor: pointer; /* Change cursor to pointer on hover */
+}
+

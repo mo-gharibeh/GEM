@@ -1,6 +1,7 @@
 ﻿using GEM.Server.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace GEM.Server.Controller
 {
@@ -15,11 +16,6 @@ namespace GEM.Server.Controller
 
 
         }
-
-
-
-
-
 
 
         [HttpGet("GetProducts")]
@@ -74,6 +70,14 @@ namespace GEM.Server.Controller
 
         }
 
+
+        [HttpGet("Count")]
+        public IActionResult Count() {
+            var product = _db.Products.Count();
+            return Ok(product);
+        }
+
+      
 
 
 
