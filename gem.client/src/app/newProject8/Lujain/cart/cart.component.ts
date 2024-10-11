@@ -10,7 +10,7 @@ export class CartComponent {
   Array: any[] = []; 
   shippingCost: number = 5;
   userId: number = 2; // Use the logged-in user's ID, replace with dynamic value later
-
+  cartId: number = 2;
 
   constructor(private _ser: LujainURLService) { }
 
@@ -40,6 +40,8 @@ export class CartComponent {
 
     // Increment the quantity and update it in the database
   increment(cartItemId: any) {
+    console.log("in cartItemId:", cartItemId);  // Debugging
+
     const item = this.Array.find(item => item.productId == cartItemId);
     if (item) {
       this._ser.increaseQuantity(this.userId, cartItemId);
@@ -48,6 +50,8 @@ export class CartComponent {
 
   // Decrement the quantity and update it in the database
   decrement(cartItemId: any) {
+    console.log("Decrementing cartItemId:", cartItemId);  // Debugging
+
     const item = this.Array.find(item => item.productId == cartItemId);
     if (item && item.quantity > 1) {
       this._ser.decreaseQuantity(this.userId, cartItemId);

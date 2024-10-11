@@ -135,7 +135,6 @@ export class LujainURLService {
 
   // Method to increase the quantity and update it in the database
   increaseQuantity(userId: number, cartItemId: number) {
-    debugger;
     const product = this.cartItem.find((x: any) => x.productId == cartItemId);
     if (product) {
       product.quantity += 1;
@@ -156,7 +155,6 @@ export class LujainURLService {
 
   // Method to decrease the quantity and update it in the database
   decreaseQuantity(userId: number, cartItemId: number) {
-    debugger;
     const product = this.cartItem.find((x: any) => x.productId == cartItemId);
     if (product && product.quantity > 1) {
       product.quantity -= 1;
