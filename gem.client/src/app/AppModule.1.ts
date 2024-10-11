@@ -43,8 +43,10 @@ import { GymDetailComponent } from "./newProject8/Hadeel/gym-detail/gym-detail.c
     GymDetailComponent,
     CartComponent,
     BmiCalculatorComponent,
-    LoginComponent
-  ],
+    LoginComponent,
+
+    ],
+
   imports: [
     BrowserModule, HttpClientModule,
     AppRoutingModule,
@@ -67,7 +69,7 @@ import { GymDetailComponent } from "./newProject8/Hadeel/gym-detail/gym-detail.c
         path: 'Gyms', component: GymComponent
       },
       {
-        path: 'GymDetails', component: GymDetailComponent
+        path: 'GymDetails/:id', component: GymDetailComponent
       },
 
       {

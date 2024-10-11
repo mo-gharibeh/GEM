@@ -7,7 +7,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 })
 export class LujainURLService {
 
-  staticData = "https://localhost:5062/api";
+  staticData = "https://localhost:44340/api";
 
   constructor(private http: HttpClient) { }
 
