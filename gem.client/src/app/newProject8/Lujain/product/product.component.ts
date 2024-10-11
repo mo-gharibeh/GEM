@@ -103,20 +103,21 @@ export class ProductComponent {
    
   };
 
-  
   addtoCart(productId: any) {
     const product = this.ProductArray.find((item: any) => item.productId === productId);
 
     if (product) {
       this.object.productId = product.productId;
-      this.object.productName = product.productName; 
+      this.object.productName = product.productName;
       this.object.price = product.price;
-      //this.object.image = product.image;
-      this.object.cartItem = product.cartItemId;
-      this.object.image = product.image;
-      this.object.userId = this.userId; //|| 0;  
 
-     
+      // Set a static cartItemId for testing
+      const staticCartItemId = 2; // Replace this with any static ID you want to use
+      this.object.cartItem = staticCartItemId;
+
+      this.object.image = product.image;
+      this.object.userId = this.userId;
+
       this._ser.addTocart({ ...this.object });
 
       alert("Item added to the cart successfully!");
@@ -124,6 +125,7 @@ export class ProductComponent {
       alert("Product not found");
     }
   }
+
 
   
   syncCartWithDatabase(userId: number) {
