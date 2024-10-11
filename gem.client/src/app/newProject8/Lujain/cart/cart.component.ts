@@ -7,12 +7,13 @@ import { LujainURLService } from '../LujainURL/lujain-url.service';
   styleUrl: './cart.component.css'
 })
 export class CartComponent {
-  Array: any[] = []; // Holds the cart items
-  shippingCost: number = 5; // Fixed shipping cost
+  Array: any[] = []; 
+  shippingCost: number = 5; 
 
   constructor(private _ser: LujainURLService) { }
 
   ngOnInit() {
+    this.loadCartFromLocalStorage();
     this.getCartItems();
   }
 
@@ -23,7 +24,14 @@ export class CartComponent {
     });
   }
 
-  // Calculate total price for individual items
+
+  loadCartFromLocalStorage() {
+    const storedCart = localStorage.getItem('cartItems');
+    if (storedCart) {
+      this.Array = JSON.parse(storedCart);
+      this._ser.cartITemSubject.next(this.Array);
+    }
+  }
   calculateTotalPrice(price: number, quantity: number): number {
     return price * quantity;
   }
@@ -32,6 +40,7 @@ export class CartComponent {
     const item = this.Array.find(item => item.productId === id);
     if (item) {
       this._ser.increaseQuantity(id);
+      
     }
   }
 
@@ -43,20 +52,17 @@ export class CartComponent {
       alert("The quantity cannot be less than 1.");
     }
   }
-  // Delete item from cart
   deleteItem(id: any) {
-    this.Array = this.Array.filter(item => item.productId !== id); // Remove item from local array
-    this._ser.removeItem(id); // Assuming you have this method in your service to update the backend or state
+    this.Array = this.Array.filter(item => item.productId !== id); 
+    this._ser.removeItem(id); 
   }
 
-  // Calculate subtotal for all items in the cart
   calculateSubtotal(): number {
     return this.Array.reduce((acc, item) => {
       return acc + this.calculateTotalPrice(item.price, item.quantity);
     }, 0);
   }
 
-  // Calculate total cost (subtotal + shipping, with condition for free shipping)
   calculateTotal(): number {
     const subtotal = this.calculateSubtotal();
     const shippingCost = subtotal > 100 ? 0 : this.shippingCost;
