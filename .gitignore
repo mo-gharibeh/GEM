@@ -361,3 +361,6 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/GEM.Server/appsettings.json
+/GEM.Server/Models/MyDbContext.cs
+/GEM.Server/appsettings.Development.json

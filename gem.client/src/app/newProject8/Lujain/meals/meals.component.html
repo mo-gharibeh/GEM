@@ -1,0 +1,56 @@
+<section class="banner-style-one">
+  <div class="parallax" style="background-image: url(assets/images/pattren-3.png);"></div>
+  <div class="container">
+    <div class="row">
+      <div class="banner-details">
+        <h2>Our Blog One</h2>
+        <p>our values and vaulted us to the top of our industry.</p>
+      </div>
+    </div>
+  </div>
+  <div class="breadcrums">
+    <div class="container">
+      <div class="row">
+        <ul>
+          <li>
+            <a href="index.html">
+              <i class="fa-solid fa-house"></i>
+              <p>Home</p>
+            </a>
+          </li>
+          <li class="current">
+            <p>Our Blog One</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="gap blog-style-one our-blog-one">
+  <div class="container">
+    <div class="row g-4">
+
+      <div class="col-lg-4" *ngFor="let item of MealArray">
+        <div class="blog-post">
+          <div class="blog-image">
+            <figure>
+              <img src={{item.image}} alt="blog-img-2">
+            </figure>
+            <a routerLink="/SubMeals/{{item.mealPlanId}}">
+              <i class="fa-solid fa-angles-right"></i>
+            </a>
+          </div>
+          <div class="blog-data">
+            <span class="blog-date">{{item.title}}</span>
+            <h2>
+              <a routerLink="/SubMeals/{{item.mealPlanId}}">{{item.description}}</a>
+            </h2>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+

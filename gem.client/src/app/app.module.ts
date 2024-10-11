@@ -4,16 +4,63 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { Project8Component } from './project8/project8.component';
+import { HomeComponent } from './newProject8/Mohammad/home/home.component';
+import { NavbarComponent } from './newProject8/Mohammad/navbar/navbar.component';
+import { TipsComponent } from './newProject8/Lujain/tips/TipsComponent';
+import { MealsComponent } from './newProject8/Lujain/meals/meals.component';
+import { SubMealComponent } from './newProject8/Lujain/sub-meal/sub-meal.component';
+import { RouterModule } from '@angular/router';
+import { AboutComponent } from './newProject8/yousef/about/about.component';
+import { ContactComponent } from './newProject8/yousef/contact/contact.component';
+import { ProductComponent } from './newProject8/Lujain/product/product.component';
+import { FooterComponent } from './newProject8/Mohammad/footer/footer.component';
+import { ProfileComponent } from './newProject8/Bassam/profile/profile.component';
+import { GymComponent } from './newProject8/Hadeel/gym/gym.component';
+import { CartComponent } from './newProject8/dima/cart/cart.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    Project8Component
+    HomeComponent,
+    NavbarComponent,
+    AboutComponent,
+    ContactComponent,
+    NavbarComponent,
+    TipsComponent,
+    MealsComponent,
+    SubMealComponent,
+    FooterComponent,
+    ProductComponent,
+    ProfileComponent,
+    CartComponent,
   ],
   imports: [
     BrowserModule, HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    RouterModule.forRoot([
+      {
+        path: '', component: HomeComponent, pathMatch: 'full'
+      },
+      {
+        path: 'Tips', component: TipsComponent
+      },
+      {
+        path: 'Meals', component: MealsComponent
+      },
+      {
+        path: 'SubMeals/:id', component: SubMealComponent
+      }
+      ,
+      { path: 'Gyms', component: GymComponent },
+      {
+        path: 'Products', component: ProductComponent
+      },
+      {
+        path: 'Profile', component: ProfileComponent
+      }
+
+
+    ])
   ],
   providers: [],
   bootstrap: [AppComponent]
