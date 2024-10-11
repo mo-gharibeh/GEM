@@ -8,12 +8,15 @@
     <BuildOutputFolder>$(MSBuildProjectDirectory)\dist\gem.client\browser\</BuildOutputFolder>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="src\app\newProject8\NewFolder\**" />
+    <TypeScriptConfiguration Remove="src\app\newProject8\NewFolder\**" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="src\app\newProject8\Hadeel\HadeelURL\" />
     <Folder Include="src\app\newProject8\Lujain\LujainURL\" />
     <Folder Include="src\app\newProject8\dima\dimaUrl\" />
     <Folder Include="src\app\newProject8\Mohammad\" />
     <Folder Include="src\app\newProject8\yousef\yousefurl\" />
-    <Folder Include="src\app\newProject8\NewFolder\" />
     <Folder Include="src\assets\" />
   </ItemGroup>
 </Project>
