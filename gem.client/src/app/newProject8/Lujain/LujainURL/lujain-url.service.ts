@@ -40,6 +40,8 @@ export class LujainURLService {
     return this.http.get<any>(`${this.staticData}/CategoryController1/Category`);
   }
 
+
+
   
 }
 

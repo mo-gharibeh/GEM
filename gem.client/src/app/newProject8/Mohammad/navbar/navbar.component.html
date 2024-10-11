@@ -52,44 +52,46 @@
                       </li>
                       <li>
                         <a routerLink="/Products">Shop</a>
-                        <!--<ul class="sub-menu">
-      <li> <a href="product.html">Our Products</a></li>
-      <li><a href="product-detail.html">Product Details</a></li>
-      <li><a href="cart.html">Shop Cart</a></li>
-      <li><a href="checkout.html">Cart Checkout</a></li>
-    </ul>-->
+
                       </li>
-                      <li class="menu-item-has-children">
-                        <a href="JavaScript:void(0)">Pages</a>
-                        <ul class="sub-menu">
-                          <li class="menu-item-has-children">
-                            <a href="javascript:void(0)">Services</a>
-                            <ul class="sub-menu">
-                              <li><a href="services.html">services</a></li>
-                              <li><a href="service-detail.html">Service Detail</a></li>
-                            </ul>
-                          </li>
-                          <li class="menu-item-has-children">
-                            <a href="javascript:void(0)">Classes</a>
-                            <ul class="sub-menu">
-                              <li><a href="our-classes.html">our classes</a></li>
-                              <li><a href="our-classes-2.html">our classes 2</a></li>
-                              <li><a href="class-details.html">class details</a></li>
-                              <li><a href="classes-schedule.html">classes schedule</a></li>
-                            </ul>
-                          </li>
-                          <li class="menu-item-has-children">
-                            <a href="javascript:void(0)">Team</a>
-                            <ul class="sub-menu">
-                              <li><a href="our-team.html">Our Team</a></li>
-                              <li><a href="team-detail.html">Team Detail</a></li>
-                            </ul>
-                          </li>
-                          <li><a href="login.html">Login & Register</a></li>
-                        </ul>
+                      <li>
+                        <a routerLink="/Gyms">Gyms</a>
                       </li>
+                      <li>
+                        <a href="contact.html">Contact</a>
+                      </li>
+                      <!--<li class="menu-item-has-children">
+    <a href="JavaScript:void(0)">Gyms</a>
+    <ul class="sub-menu">
+      <li class="menu-item-has-children">
+        <a href="javascript:void(0)">Services</a>
+        <ul class="sub-menu">
+          <li><a href="services.html">services</a></li>
+          <li><a href="service-detail.html">Service Detail</a></li>
+        </ul>
+      </li>
+      <li class="menu-item-has-children">
+        <a href="javascript:void(0)">Classes</a>
+        <ul class="sub-menu">
+          <li><a href="our-classes.html">our classes</a></li>
+          <li><a href="our-classes-2.html">our classes 2</a></li>
+          <li><a href="class-details.html">class details</a></li>
+          <li><a href="classes-schedule.html">classes schedule</a></li>
+        </ul>
+      </li>
+      <li class="menu-item-has-children">
+        <a href="javascript:void(0)">Team</a>
+        <ul class="sub-menu">
+          <li><a href="our-team.html">Our Team</a></li>
+          <li><a href="team-detail.html">Team Detail</a></li>
+        </ul>
+      </li>
+      <li><a href="login.html">Login</a></li>
+    </ul>
+  </li>-->
+
                       <li class="menu-item-has-children">
-                        <a href="javascript:void(0)">Our Kitchen</a>
+                        <a href="javascript:void(0)">Nutrition</a>
                         <ul class="sub-menu">
 
                           <li><a routerLink="/Tips">Tips</a></li>
@@ -102,20 +104,37 @@
                       <li>
                         <a routerLink="/Profile">Profile</a>
                       </li>
+                      <li>
+                        <a href="cart.html" class="cart-icon">
+                          <i class="fa-solid fa-cart-shopping"></i>
+                        </a>
+                      </li>
                     </ul>
 
+                    <!-- Updated Extras Section -->
                     <div class="extras">
-
                       <a href="javascript:void(0)" id="mobile-menu" class="menu-start">
-                        <svg id="ham-menu" viewBox="0 0 100 100"> <path class="line line1" d="M 20,29.000046 H 80.000231 C 80.000231,29.000046 94.498839,28.817352 94.532987,66.711331 94.543142,77.980673 90.966081,81.670246 85.259173,81.668997 79.552261,81.667751 75.000211,74.999942 75.000211,74.999942 L 25.000021,25.000058" /> <path class="line line2" d="M 20,50 H 80" /> <path class="line line3" d="M 20,70.999954 H 80.000231 C 80.000231,70.999954 94.498839,71.182648 94.532987,33.288669 94.543142,22.019327 90.966081,18.329754 85.259173,18.331003 79.552261,18.332249 75.000211,25.000058 75.000211,25.000058 L 25.000021,74.999942" /> </svg>
+                        <svg id="ham-menu" viewBox="0 0 100 100">
+                          <path class="line line1" d="M 20,29.000046 H 80.000231 C 80.000231,29.000046 94.498839,28.817352 94.532987,66.711331 94.543142,77.980673 90.966081,81.670246 85.259173,81.668997 79.552261,81.667751 75.000211,74.999942 75.000211,74.999942 L 25.000021,25.000058" />
+                          <path class="line line2" d="M 20,50 H 80" />
+                          <path class="line line3" d="M 20,70.999954 H 80.000231 C 80.000231,70.999954 94.498839,71.182648 94.532987,33.288669 94.543142,22.019327 90.966081,18.329754 85.259173,18.331003 79.552261,18.332249 75.000211,25.000058 75.000211,25.000058 L 25.000021,74.999942" />
+                        </svg>
                       </a>
                       <a href="javascript:void(0)" id="desktop-menu" class="menu-start">
-                        <svg id="ham-menue" viewBox="0 0 100 100"> <path class="line line1" d="M 20,29.000046 H 80.000231 C 80.000231,29.000046 94.498839,28.817352 94.532987,66.711331 94.543142,77.980673 90.966081,81.670246 85.259173,81.668997 79.552261,81.667751 75.000211,74.999942 75.000211,74.999942 L 25.000021,25.000058" /> <path class="line line2" d="M 20,50 H 80" /> <path class="line line3" d="M 20,70.999954 H 80.000231 C 80.000231,70.999954 94.498839,71.182648 94.532987,33.288669 94.543142,22.019327 90.966081,18.329754 85.259173,18.331003 79.552261,18.332249 75.000211,25.000058 75.000211,25.000058 L 25.000021,74.999942" /> </svg>
+                        <svg id="ham-menue" viewBox="0 0 100 100">
+                          <path class="line line1" d="M 20,29.000046 H 80.000231 C 80.000231,29.000046 94.498839,28.817352 94.532987,66.711331 94.543142,77.980673 90.966081,81.670246 85.259173,81.668997 79.552261,81.667751 75.000211,74.999942 75.000211,74.999942 L 25.000021,25.000058" />
+                          <path class="line line2" d="M 20,50 H 80" />
+                          <path class="line line3" d="M 20,70.999954 H 80.000231 C 80.000231,70.999954 94.498839,71.182648 94.532987,33.288669 94.543142,22.019327 90.966081,18.329754 85.259173,18.331003 79.552261,18.332249 75.000211,25.000058 75.000211,25.000058 L 25.000021,74.999942" />
+                        </svg>
                       </a>
-                      <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal" class="theme-btn">
+                      <a href="#" class="theme-btn">
                         Appointment
                       </a>
+
+                      <!-- Cart Icon -->
+                   
                     </div>
+
                   </div>
                 </div>
               </div>
@@ -142,12 +161,7 @@
             </li>
             <li>
               <a routerLink="/Products">Shop</a>
-              <!--<ul class="sub-menu">
-      <li><a>Our Products</a></li>
-      <li><a href="product-detail.html">Product Details</a></li>
-      <li><a href="cart.html">Shop Cart</a></li>
-      <li><a href="checkout.html">Cart Checkout</a></li>
-    </ul>-->
+
             </li>
             <li class="menu-item-has-children">
               <a href="JavaScript:void(0)">Pages</a>
@@ -179,7 +193,7 @@
               </ul>
             </li>
             <li class="menu-item-has-children">
-              <a href="javascript:void(0)">Our Kitchen</a>
+              <a href="javascript:void(0)">Nutrition</a>
               <ul class="sub-menu">
                 <li><a routerLink="/Tips">Tips</a></li>
                 <li><a routerLink="/Meals">Meals Recipies</a></li>
@@ -190,6 +204,11 @@
             </li>
             <li>
               <a routerLink="/Profile">Profile</a>
+            </li>
+            <li>
+              <a href="cart.html" class="cart-icon">
+                <i class="fa-solid fa-cart-shopping"></i>
+              </a>
             </li>
           </ul>
           <a href="JavaScript:void(0)" id="res-cross"></a>
@@ -212,6 +231,5 @@
       </div>
     </div>
   </header>
-  <!-- Header Style One End -->
-  <!-- Featured Slider One Start -->
+
 
