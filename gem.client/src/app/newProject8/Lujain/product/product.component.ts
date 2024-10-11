@@ -97,9 +97,9 @@ export class ProductComponent {
     productId: 0,
     userId: this.userId ,//|| 0,
     quantity: 1, 
-    //productName: "", // Add productName
+    productName: "", // Add productName
     price: 0,
-    //image: "",
+    image: "",
    
   };
 
@@ -109,9 +109,9 @@ export class ProductComponent {
 
     if (product) {
       this.object.productId = product.productId;
-      //this.object.productName = product.productName; 
+      this.object.productName = product.productName; 
       this.object.price = product.price;
-      //this.object.image = product.image;
+      this.object.image = product.image;
       this.object.userId = this.userId; //|| 0;  
 
      
