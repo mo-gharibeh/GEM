@@ -27,7 +27,7 @@ namespace GEM.Server.Controller
         [HttpGet("SubMeal/{id}")]
         public IActionResult SubFood(int id)
         {
-            var SubFood = _db.SubMealPlans.Where(a => a.MealPlanId == id).FirstOrDefault();
+            var SubFood = _db.SubMealPlans.Where(a => a.MealPlanId == id).ToList();
             return Ok(SubFood);
         }
 
@@ -38,6 +38,9 @@ namespace GEM.Server.Controller
             var Tips = _db.Tips.ToList();
             return Ok(Tips);
         }
+
+
+        
       
     }
 }
