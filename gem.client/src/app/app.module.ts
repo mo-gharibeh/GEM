@@ -43,6 +43,9 @@ import { ProfileComponent } from './newProject8/Bassam/profile/profile.component
       },
       {
         path: 'Meals', component: MealsComponent
+      },
+      {
+        path: 'SubMeals/:id', component: SubMealComponent
       }
       ,
       {
