@@ -31,6 +31,29 @@
 //import { CartComponent } from './newProject8/dima/cart/cart.component';
 //import { LoginComponent } from './newProject8/Ahmed/login/login.component';
 
+@NgModule({
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    NavbarComponent,
+    AboutComponent,
+    ContactComponent,
+    NavbarComponent,
+    TipsComponent,
+    MealsComponent,
+    SubMealComponent
+  ],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    AppRoutingModule,
+
+    RouterModule.forRoot([
+      { path: '', component: HomeComponent, pathMatch: 'full'},
+      { path: 'Tips', component: TipsComponent },
+      { path: 'About', component: AboutComponent },
+      { path: 'Contact', component: ContactComponent },
+
 ////@NgModule({
 ////  declarations: [
 ////    AppComponent,
