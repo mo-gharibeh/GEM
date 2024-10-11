@@ -93,7 +93,7 @@ export class ProductComponent {
 
   
   object = {
-    //cartItem: 0,
+    cartItem: 0,
     productId: 0,
     userId: this.userId ,//|| 0,
     quantity: 1, 
@@ -111,6 +111,8 @@ export class ProductComponent {
       this.object.productId = product.productId;
       this.object.productName = product.productName; 
       this.object.price = product.price;
+      //this.object.image = product.image;
+      this.object.cartItem = product.cartItemId;
       this.object.image = product.image;
       this.object.userId = this.userId; //|| 0;  
 
