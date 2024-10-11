@@ -20,6 +20,7 @@ import { ContactComponent } from "./newProject8/yousef/contact/contact.component
 import { FormsModule } from '@angular/forms';  // <-- Import FormsModule
 import { CartComponent } from "./newProject8/Lujain/cart/cart.component";
 import { LoginComponent } from "./newProject8/Ahmed/login/login.component";
+import { RegisterComponent } from "./newProject8/Ahmed/register/register.component";
 
 
 
@@ -40,7 +41,8 @@ import { LoginComponent } from "./newProject8/Ahmed/login/login.component";
         ProfileComponent,
         CartComponent,
     BmiCalculatorComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent
     ],
     imports: [
         BrowserModule, HttpClientModule,
@@ -77,6 +79,9 @@ import { LoginComponent } from "./newProject8/Ahmed/login/login.component";
           }, 
           {
             path: 'Login', component: LoginComponent
+          },
+          {
+            path: 'Register', component: RegisterComponent
           }
         ])
     ],
