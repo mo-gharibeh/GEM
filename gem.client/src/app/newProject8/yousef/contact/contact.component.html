@@ -45,23 +45,27 @@
           <p>Have questions or want to chat? Fill out our contact form, and we’ll put you in touch with the right people.</p>
 
 
-          <form class="content-form" id="contact-form" method="post">
-            <div class="row g-0">
-              <input type="text" name="Complete Name" placeholder=" Name" required="">
-            </div>
-            <div class="row g-0">
-              <input type="email" name="Email Address" placeholder="Email " required="">
-            </div>
-            <div class="row g-0">
-              <input type="number" name="Phone No" placeholder="Subject" required="">
-            </div>
-            <div class="row g-0">
-              <textarea placeholder="Message"></textarea>
-            </div>
-            <button type="submit" class="theme-btn">Send Message </button>
-          </form>
+         
+            <form class="content-form" #ContactForm="ngForm" (ngSubmit)="addNewComent(ContactForm.value)">
 
-        </div>
+              <div class="row g-0">
+                <input type="text" name="name" placeholder=" Name" required="" ngModel>
+              </div>
+              <div class="row g-0">
+                <input type="email" name="email" placeholder="Email " required="" ngModel>
+              </div>
+              <div class="row g-0">
+                <input type="number" name="subject " placeholder="Subject" required=""ngModel>
+              </div>
+              <div class="row g-0">
+                <textarea typeof="text" name="messageContent" placeholder="Message" ngModel></textarea>
+              </div>
+              <button type="submit" class="theme-btn">Send Message </button>
+            </form>
+
+
+
+</div>
       </div>
       <div class="col-lg-5">
         <div class="info">
