@@ -7,7 +7,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 })
 export class LujainURLService {
 
-  staticData = "https://localhost:44340/api";
+  staticData = "https://localhost:7031/api";
 
   constructor(private http: HttpClient) { }
 
@@ -41,56 +41,149 @@ export class LujainURLService {
   }
 
 
+  getCartItem(id: number): Observable<any> {
+    return this.http.get<any>(`${this.staticData}/Cart/Cart/${id}`);
+  }
+
+
+  addCartItem(data: any): Observable<any> {
+    return this.http.post<any>(`${this.staticData}/Cart/Cart`, data)
+  }
+  editCartItem(userId: any, cartItemId: any, quantity: number): Observable<any> {
+    return this.http.put<any>(`${this.staticData}/Cart/Cart/${userId}/${cartItemId}`, quantity);
+  }
+
+  deleteCartItem(userId: any, cartItemId: any): Observable<any> {
+    return this.http.delete<any>(`${this.staticData}/Cart/Cart/${userId}/${cartItemId}`);
+  }
+
+
+
+ 
+  addCartItemToDatabase(data: any): Observable<any> {
+    return this.http.post<any>(`${this.staticData}/Cart/Cart/${data.userId}`, data)
+  }
+
+
+
+
 
   cartItem: any = [];
   cartITemSubject: BehaviorSubject<any> = new BehaviorSubject<any>(this.cartItem);
   cartItemObser = this.cartITemSubject.asObservable();
   addTocart(data: any) {
-
-    debugger;
-
-    var record = this.cartItem.find((x: any) => x.productId == data.productId)
+    var record = this.cartItem.find((x: any) => x.productId == data.productId);
     if (record) {
-      alert("the product already exist");
-    }
-    else {
+      alert("The product already exists");
+    } else {
       this.cartItem.push(data);
       this.cartITemSubject.next(this.cartItem);
-    }
+      localStorage.setItem('cartItems', JSON.stringify(this.cartItem));
 
+
+      if (data.userId != 0) {
+        this.addCartItemToDatabase(data).subscribe(
+          (response) => {
+            console.log("Item added to the database:", response);
+          },
+          (error) => {
+            console.error("Failed to add item to the database:", error);
+          }
+        );
+      }
+    }
   }
 
 
 
-  increaseQuantity(id: any) {
+  pushCartToDatabase(userId: any): Observable<any> {
+    return this.http.post<any>(`${this.staticData}/Cart/Cart/${userId}`, {
+      userId,
+      cartItems: this.cartItem
+    });
+  }
 
-    var product = this.cartItem.find((x: any) => x.productId == id)
+
+  // Sync local storage cart to the database after user login
+  syncLocalCartToDatabase(userId: number) {
+    const storedCart = localStorage.getItem('cartItems');
+    
+    if (storedCart) {
+      const cartItems = JSON.parse(storedCart);
+      
+      cartItems.forEach((item: any) => {
+        item.userId = userId;  // Assign the userId to each cart item
+        this.addCartItemToDatabase(item).subscribe(
+          (response) => {
+            console.log("Synced cart item to the database:", response);
+          },
+          (error) => {
+            console.error("Failed to sync cart item to the database:", error);
+          }
+        );
+      });
+      
+      // Clear local storage after syncing
+      localStorage.removeItem('cartItems');
+    }
+  }
 
 
+
+
+
+
+  // Method to increase the quantity and update it in the database
+  increaseQuantity(userId: number, cartItemId: number) {
+    const product = this.cartItem.find((x: any) => x.productId == cartItemId);
     if (product) {
       product.quantity += 1;
       this.cartITemSubject.next(this.cartItem);
+      localStorage.setItem('cartItems', JSON.stringify(this.cartItem));
+
+      // Call the API to update the database
+      this.editCartItem(userId, cartItemId, product.quantity).subscribe(
+        (response) => {
+          console.log("Quantity increased successfully:", response);
+        },
+        (error) => {
+          console.error("Failed to increase quantity:", error);
+        }
+      );
     }
   }
 
-
-
-  decreaseQuantity(id: any) {
-
-    var product = this.cartItem.find((x: any) => x.productId == id)
-
-
-    if (product) {
+  // Method to decrease the quantity and update it in the database
+  decreaseQuantity(userId: number, cartItemId: number) {
+    const product = this.cartItem.find((x: any) => x.productId == cartItemId);
+    if (product && product.quantity > 1) {
       product.quantity -= 1;
       this.cartITemSubject.next(this.cartItem);
+      localStorage.setItem('cartItems', JSON.stringify(this.cartItem));
+
+      // Call the API to update the database
+      this.editCartItem(userId, cartItemId, product.quantity).subscribe(
+        (response) => {
+          console.log("Quantity decreased successfully:", response);
+        },
+        (error) => {
+          console.error("Failed to decrease quantity:", error);
+        }
+      );
+    } else if (product.quantity === 1) {
+      alert("The quantity cannot be less than 1.");
     }
   }
 
+  // API call to update the quantity in the database
+ 
+
   removeItem(id: any) {
-    // Remove item from the local cart
     this.cartItem = this.cartItem.filter((item: any) => item.productId !== id);
-    this.cartITemSubject.next(this.cartItem); // Notify observers
+    this.cartITemSubject.next(this.cartItem);
+    localStorage.setItem('cartItems', JSON.stringify(this.cartItem));
   }
 }
+
 
 
