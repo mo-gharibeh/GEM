@@ -13,6 +13,7 @@ import { RouterModule } from '@angular/router';
 import { AboutComponent } from './newProject8/yousef/about/about.component';
 import { ContactComponent } from './newProject8/yousef/contact/contact.component';
 import { FooterComponent } from './newProject8/Lujain/footer/footer.component';
+import { GymComponent } from './newProject8/Hadeel/gym/gym.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { FooterComponent } from './newProject8/Lujain/footer/footer.component';
     TipsComponent,
     MealsComponent,
     SubMealComponent,
-    FooterComponent
+    FooterComponent,
+    GymComponent
   ],
   imports: [
     BrowserModule, HttpClientModule,
@@ -39,7 +41,8 @@ import { FooterComponent } from './newProject8/Lujain/footer/footer.component';
       },
       {
         path: 'Meals', component: MealsComponent
-      }
+      },
+      { path: 'gym', component: GymComponent },
 
 
     ])
