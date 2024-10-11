@@ -40,7 +40,8 @@ import { LoginComponent } from "./newProject8/Ahmed/login/login.component";
         ProfileComponent,
         CartComponent,
     BmiCalculatorComponent,
-    LoginComponent
+    LoginComponent,
+
     ],
     imports: [
         BrowserModule, HttpClientModule,
