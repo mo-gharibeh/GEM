@@ -16,6 +16,7 @@ import { ProductComponent } from './newProject8/Lujain/product/product.component
 import { FooterComponent } from './newProject8/Mohammad/footer/footer.component';
 import { ProfileComponent } from './newProject8/Bassam/profile/profile.component';
 import { GymComponent } from './newProject8/Hadeel/gym/gym.component';
+import { CartComponent } from './newProject8/dima/cart/cart.component';
 import { GymDetailComponent } from './newProject8/Hadeel/gym-detail/gym-detail.component';
 import { FormsModule } from '@angular/forms';
 
@@ -33,6 +34,7 @@ import { FormsModule } from '@angular/forms';
     FooterComponent,
     ProductComponent,
     ProfileComponent,
+    CartComponent,
     GymDetailComponent,
   ],
   imports: [

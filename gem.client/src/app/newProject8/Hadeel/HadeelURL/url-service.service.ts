@@ -12,7 +12,11 @@ export class UrlServiceService {
   constructor(private http: HttpClient) { }
 
   getGym(): Observable<any> {
-    return this.http.get<any>(`${this.staticData}/Gym/ShowAllGyms`);
+    return this.http.get<any>(`${this.staticData}/ShowAllGyms`);
 
+  }
+
+  getGymDetails(id: any): Observable<any> {
+    return this.http.get<any>(`${this.staticData}/Gym/ShowGymDetails?id=${id}`)
   }
 }

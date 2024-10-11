@@ -25,30 +25,22 @@ namespace GEM.Server.Controller
             return Ok(cart);
         }
 
-
-        [HttpPost("Cart/{id}")]
-        public IActionResult PostCart(int id, [FromBody] CartDTORequist cart)
+        [HttpPost("Cart/{userId}")]
+        public IActionResult PostCart(int userId, [FromBody] CartDTORequist cart)
         {
-            var cartEntity = _db.Carts.Include(c => c.User).FirstOrDefault(c => c.CartId == id);
-
-            if (cartEntity == null || cartEntity.UserId != id)
-            {
-                return BadRequest("Cart does not exist or UserID does not match.");
-            }
 
             var existingCartItem = _db.CartItems
-                .FirstOrDefault(c => c.ProductId == cart.ProductId && c.CartId == cartEntity.CartId);
+                .FirstOrDefault(c => c.ProductId == cart.ProductId && c.Cart.UserId == userId);
 
             if (existingCartItem != null)
             {
-                existingCartItem.Quantity += cart.Quantity ?? 1; 
+                existingCartItem.Quantity += cart.Quantity ?? 1;
                 _db.Entry(existingCartItem).State = EntityState.Modified;
             }
             else
             {
                 var newCartItem = new CartItem
                 {
-                    CartId = cartEntity.CartId, 
                     ProductId = cart.ProductId,
                     Quantity = cart.Quantity ?? 1,
                     Price = cart.Price

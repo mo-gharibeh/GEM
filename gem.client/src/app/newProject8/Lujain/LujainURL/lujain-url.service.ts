@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class LujainURLService {
 
-  staticData = "https://localhost:44340/api";
+  staticData = "https://localhost:5062/api";
 
   constructor(private http: HttpClient) { }
 
@@ -39,6 +39,8 @@ export class LujainURLService {
   getCategory(): Observable<any> {
     return this.http.get<any>(`${this.staticData}/CategoryController1/Category`);
   }
+
+
 
   
 }
