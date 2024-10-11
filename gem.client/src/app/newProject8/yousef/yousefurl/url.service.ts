@@ -7,13 +7,13 @@ import { Observable } from 'rxjs';
 })
 export class UrlService {
 
-  private apiUrl = 'https://localhost:44340/api/ContactController1/PostMessage';
+  private apiUrl = 'https://localhost:44340/api';
 
   constructor(private http: HttpClient) { }
 
-  // Method to post contact form data
+  
   postContactForm(contactFormData: any): Observable<any> {
-    return this.http.post(this.apiUrl, contactFormData);
-
+    return this.http.post(`${this.apiUrl}/ContactController1/PostMessage`, contactFormData);
+    0
   }
 }
