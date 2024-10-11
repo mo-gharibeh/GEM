@@ -22,6 +22,7 @@ import { CartComponent } from "./newProject8/Lujain/cart/cart.component";
 import { LoginComponent } from "./newProject8/Ahmed/login/login.component";
 import { GymDetailComponent } from "./newProject8/Hadeel/gym-detail/gym-detail.component";
 import { RegisterComponent } from "./newProject8/Ahmed/register/register.component";
+import { ClasseComponent } from "./newProject8/Hadeel/classe/classe.component";
 
 
 
