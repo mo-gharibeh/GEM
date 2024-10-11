@@ -49,27 +49,26 @@ namespace GEM.Server.Controller
         // show the top four best selling products list 
 
         // GET: api/Products/TopSelling
-        [HttpGet("TopSelling")]
+        [HttpGet("top-products")]
         public IActionResult GetTopSellingProducts()
         {
-            var topSellingProducts = (from oi in _db.OrderItems
-                                      join p in _db.Products on oi.ProductId equals p.ProductId
-                                      group oi by new { p.ProductId, p.ProductName, p.Image, p.Description, p.Price } into g
-                                      select new TopSellingProductDto
-                                      {
-                                          ProductID = g.Key.ProductId,
-                                          ProductName = g.Key.ProductName,
-                                          Image = g.Key.Image,
-                                          Description = g.Key.Description,
-                                          Price = g.Key.Price,
-                                          TotalQuantitySold = g.Sum(x => x.Quantity)
-                                      })
-                                      .OrderByDescending(x => x.TotalQuantitySold)
-                                      .Take(4)
-                                      .ToList();
+            var topProducts = (from o in _db.OrderItems
+                               join p in _db.Products on o.ProductId equals p.ProductId
+                               group o by new { p.ProductId, p.ProductName, p.Image, p.Description, p.Price } into g
+                               orderby g.Sum(x => x.Quantity) descending
+                               select new TopSellingProductDto
+                               {
+                                   ProductID = g.Key.ProductId,
+                                   ProductName = g.Key.ProductName,
+                                   Image = g.Key.Image,
+                                   Description = g.Key.Description,
+                                   Price = g.Key.Price ?? 0m,
+                                   TotalSold = g.Sum(x => x.Quantity ?? 0)
+                               }).Take(4).ToList();
 
-            return Ok(topSellingProducts);
+            return Ok(topProducts);
         }
+
 
 
 
