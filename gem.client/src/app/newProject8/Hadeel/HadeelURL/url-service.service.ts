@@ -7,12 +7,13 @@ import { Observable } from 'rxjs';
 })
 export class UrlServiceService {
 
-  staticData = "http://localhost:5062/api";
+  staticData = "http://localhost:44340/api";
 
   constructor(private http: HttpClient) { }
 
   getGym(): Observable<any> {
-    return this.http.get<any>(`${this.staticData}/ShowAllGyms`);
+    debugger
+    return this.http.get<any>(`${this.staticData}/Gym/ShowAllGyms`);
 
   }
 

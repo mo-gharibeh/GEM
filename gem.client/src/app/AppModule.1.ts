@@ -60,7 +60,8 @@ import { LoginComponent } from "./newProject8/Ahmed/login/login.component";
                 path: 'SubMeals/:id', component: SubMealComponent
             },
 
-            { path: 'Gyms', component: GymComponent },
+          { path: 'Gyms', component: GymComponent },
+          
             {
                 path: 'Products', component: ProductComponent
             },
