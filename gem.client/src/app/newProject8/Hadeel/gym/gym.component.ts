@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UrlServiceService } from '../HadeelURL/url-service.service';
 
 @Component({
   selector: 'app-gym',
@@ -7,4 +8,18 @@ import { Component } from '@angular/core';
 })
 export class GymComponent {
 
+
+  constructor(private _ser: UrlServiceService) { }
+
+  ngOnInit() {
+    this.getGyms();
+  }
+  GymArray: any;
+
+  getGyms() {
+    this._ser.getGym().subscribe((data) => {
+      this.GymArray = data;
+      console.log(this.GymArray);
+    });
+  }
 }

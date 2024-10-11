@@ -16,6 +16,8 @@ import { ProductComponent } from './newProject8/Lujain/product/product.component
 import { FooterComponent } from './newProject8/Mohammad/footer/footer.component';
 import { ProfileComponent } from './newProject8/Bassam/profile/profile.component';
 import { GymComponent } from './newProject8/Hadeel/gym/gym.component';
+import { GymDetailComponent } from './newProject8/Hadeel/gym-detail/gym-detail.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -31,8 +33,10 @@ import { GymComponent } from './newProject8/Hadeel/gym/gym.component';
     FooterComponent,
     ProductComponent,
     ProfileComponent,
+    GymDetailComponent,
   ],
   imports: [
+    FormsModule,
     BrowserModule, HttpClientModule,
     AppRoutingModule,
     RouterModule.forRoot([
@@ -46,7 +50,12 @@ import { GymComponent } from './newProject8/Hadeel/gym/gym.component';
         path: 'Meals', component: MealsComponent
       }
       ,
-      { path: 'Gyms', component: GymComponent },
+      {
+        path: 'Gyms', component: GymComponent
+      },
+      {
+        path: 'GymDetail/:id', component: GymDetailComponent
+      },
       {
         path: 'Products', component: ProductComponent
       },
