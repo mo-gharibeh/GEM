@@ -16,7 +16,7 @@ import { ProductComponent } from './newProject8/Lujain/product/product.component
 import { FooterComponent } from './newProject8/Mohammad/footer/footer.component';
 import { ProfileComponent } from './newProject8/Bassam/profile/profile.component';
 import { GymComponent } from './newProject8/Hadeel/gym/gym.component';
-import { CartComponent } from './newProject8/dima/cart/cart.component';
+import { CartComponent } from './newProject8/Lujain/cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +32,8 @@ import { CartComponent } from './newProject8/dima/cart/cart.component';
     FooterComponent,
     ProductComponent,
     ProfileComponent,
-    CartComponent,
+    CartComponent
+    
   ],
   imports: [
     BrowserModule, HttpClientModule,
@@ -54,6 +55,9 @@ import { CartComponent } from './newProject8/dima/cart/cart.component';
       },
       {
         path: 'Profile', component: ProfileComponent
+      }
+      , {
+        path: 'Cart', component: CartComponent
       }
 
 
