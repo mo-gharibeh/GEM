@@ -1,12 +1,10 @@
-
-
 <section class="banner-style-one">
   <div class="parallax" style="background-image: url(assets/images/pattren-3.png);"></div>
   <div class="container">
     <div class="row">
       <div class="banner-details">
         <h2>Cart</h2>
-        <p>our values and vaulted us to the top of our industry.</p>
+        <p>Our values have vaulted us to the top of our industry.</p>
       </div>
     </div>
   </div>
@@ -28,8 +26,6 @@
     </div>
   </div>
 </section>
-
-
 
 <section class="gap cart">
   <div class="container">
@@ -58,8 +54,8 @@
             <li *ngFor="let item of Array">
               <div class="c-c">
                 <div class="c-data">
-                  <a class="cr-svg d-flex-all" href="javascript:void(0)">
-                    <img src="assets/images/cross.svg" alt="Cross Svg">
+                  <a class="cr-svg d-flex-all" href="javascript:void(0)" (click)="deleteItem(item.productId)">
+                    <img src="assets/images/cross.svg" alt="Delete Item">
                   </a>
                   <img src="{{item.image}}" alt="Product One">
                   <h2><a href="javascript:void(0)">{{item.productName}}</a></h2>
@@ -71,7 +67,6 @@
                   <button class="quantity-button" (click)="decrement(item.productId)">-</button>
                   <input type="number" [(ngModel)]="item.quantity" min="1" />
                   <button class="quantity-button" (click)="increment(item.productId)">+</button>
-
                 </div>
                 <div class="c-total">
                   <span>Total Price: {{ calculateTotalPrice(item.price, item.quantity) }} JOD</span>
@@ -80,17 +75,10 @@
             </li>
           </ul>
         </div>
-        <div class="update-cart d-flex-all justify-content-between">
-          <form>
-            <input type="text" name="text" placeholder="Coupon Code">
-            <button type="submit" class="theme-btn">Apply</button>
-          </form>
-          <a href="contact.html" class="theme-btn">Update Cart</a>
-        </div>
       </div>
     </div>
-    <div class="row cart-total">
-      <div class="col-lg-6"></div>
+    <br /><br />
+    <div class="row cart-total" id="carty">
       <div class="col-lg-6">
         <div class="cart-total-box">
           <div class="final">
@@ -119,6 +107,9 @@
                 <span>{{ calculateTotal() }} JOD</span> <!-- Displaying total price -->
               </li>
             </ul>
+          </div>
+          <div class="text-center" style="margin-top: 20px;">
+            <a href="payment.html" class="theme-btn">Process to Payment</a> <!-- Button for processing payment -->
           </div>
         </div>
       </div>

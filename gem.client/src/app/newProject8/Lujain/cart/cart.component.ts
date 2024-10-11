@@ -43,6 +43,11 @@ export class CartComponent {
       alert("The quantity cannot be less than 1.");
     }
   }
+  // Delete item from cart
+  deleteItem(id: any) {
+    this.Array = this.Array.filter(item => item.productId !== id); // Remove item from local array
+    this._ser.removeItem(id); // Assuming you have this method in your service to update the backend or state
+  }
 
   // Calculate subtotal for all items in the cart
   calculateSubtotal(): number {
