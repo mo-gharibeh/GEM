@@ -64,11 +64,11 @@ namespace GEM.Server.Controller
 
 
 
-        [HttpPut("Cart/{userId}/{cartItemId}/{action}")]
-        public IActionResult UpdateCartItem(int userId, int cartItemId, string action)
+        [HttpPut("Cart/{userId}/{cartItemId}")]
+        public IActionResult UpdateCartItem(int userId, int cartItemId, [FromBody] int quantityChange)
         {
             var existingCartItem = _db.CartItems
-                .Include(c => c.Cart) 
+                .Include(c => c.Cart)
                 .FirstOrDefault(c => c.CartItemId == cartItemId && c.Cart.UserId == userId);
 
             if (existingCartItem == null)
@@ -76,31 +76,20 @@ namespace GEM.Server.Controller
                 return NotFound("Cart item not found.");
             }
 
-            if (action.ToLower() == "increment")
+            if (existingCartItem.Quantity + quantityChange <= 0)
             {
-                existingCartItem.Quantity++;
-            }
-            else if (action.ToLower() == "decrement")
-            {
-                if (existingCartItem.Quantity > 1)
-                {
-                    existingCartItem.Quantity--;
-                }
-                else
-                {
-                    return BadRequest("Quantity cannot be less than 1.");
-                }
-            }
-            else
-            {
-                return BadRequest("Invalid action. Use 'increment' or 'decrement'.");
+                return BadRequest("Quantity cannot be less than 1.");
             }
 
-            _db.Entry(existingCartItem).State = EntityState.Modified; 
+            existingCartItem.Quantity += quantityChange;
+
+            _db.Entry(existingCartItem).State = EntityState.Modified;
+
             _db.SaveChanges();
 
             return Ok("Cart item updated successfully.");
         }
+
 
 
         [HttpDelete("Cart/{userId}/{cartItemId}")]
