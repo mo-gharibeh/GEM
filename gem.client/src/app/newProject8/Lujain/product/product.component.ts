@@ -23,6 +23,12 @@ export class ProductComponent {
     this.getProductFit();
     this.getProductCount();
     this.getCategories();
+
+
+
+
+
+
     this.paramter = this._router.snapshot.paramMap.get("id");
   }
 
@@ -64,5 +70,31 @@ export class ProductComponent {
     }
   }
 
+  
+  
+  object = {
+    cartItem: 0,
+    productId: 0,
+    userId: 0,
+    quantity: 0,
+    //productName: "",
+    //price: 0,
+    //image:""
+
+
+
+
+  }
+  
+
+  addtoCart(productId: any) {
+    debugger;
+    this.object.productId = productId;
+
+
+    this._ser.addTocart({ ... this.object });
+    alert("item added sucess")
+
+  }
 
 }

@@ -1,0 +1,121 @@
+
+
+<section class="banner-style-one">
+  <div class="parallax" style="background-image: url(assets/images/pattren-3.png);"></div>
+  <div class="container">
+    <div class="row">
+      <div class="banner-details">
+        <h2>Cart</h2>
+        <p>our values and vaulted us to the top of our industry.</p>
+      </div>
+    </div>
+  </div>
+  <div class="breadcrums">
+    <div class="container">
+      <div class="row">
+        <ul>
+          <li>
+            <a href="index.html">
+              <i class="fa-solid fa-house"></i>
+              <p>Home</p>
+            </a>
+          </li>
+          <li class="current">
+            <p>Cart</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<section class="gap cart">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="cart-box">
+          <ul class="cart-table head">
+            <li>
+              <div class="c-c">
+                <div class="c-data">
+                  <span>Products</span>
+                </div>
+                <div class="c-price">
+                  <span>Price</span>
+                </div>
+                <div class="c-quality">
+                  <span>Quality</span>
+                </div>
+                <div class="c-total">
+                  <span>Total</span>
+                </div>
+              </div>
+            </li>
+          </ul>
+          <ul class="cart-table" *ngFor="let item of Array">
+            
+            <li>
+              <div class="c-c">
+                <div class="c-data">
+                  <a class="cr-svg d-flex-all" href="javascript:void(0)">
+                    <img src="assets/images/cross.svg" alt="Cross Svg">
+                  </a>
+                  <img src="{{item.image}}" alt="Product One">
+                  <h2><a href="javascript:void(0)">{{item.productName}}</a></h2>
+                </div>
+                <div class="c-price">
+                  <span class="orgnl">{{item.price}} JOD</span>
+                
+                </div>
+                <div class="c-quality">
+                  <input type="number" name="number" value="1">
+                </div>
+                <div class="c-total">
+                  <span>{{item.productId}}</span>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="update-cart d-flex-all justify-content-between">
+          <form>
+            <input type="text" name="text" placeholder="Coupon Code">
+            <button type="submit" class="theme-btn">Apply</button>
+          </form>
+          <a href="contact.html" class="theme-btn">Update Cart </a>
+        </div>
+      </div>
+    </div>
+    <div class="row cart-total">
+      <div class="col-lg-6"></div>
+      <div class="col-lg-6">
+        <div class="cart-total-box">
+          <div class="final">
+            <h4>Cart Total</h4>
+            <ul>
+              <li>
+                <span>Subtotal:</span>
+                <span>$358.00</span>
+              </li>
+              <li>
+                <span>Shipping:</span>
+                <span>$358.00</span>
+              </li>
+            </ul>
+          </div>
+          <div class="total">
+            <ul>
+              <li>
+                <span>Total:</span>
+                <span>$358.00</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
