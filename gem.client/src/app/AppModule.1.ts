@@ -85,7 +85,6 @@ import { RegisterComponent } from "./newProject8/Ahmed/register/register.compone
 
       { path: 'Contact', component: ContactComponent },
 
-    ])
             {
                 path: 'bmi', component: BmiCalculatorComponent
           }, 
@@ -95,7 +94,8 @@ import { RegisterComponent } from "./newProject8/Ahmed/register/register.compone
           {
             path: 'Register', component: RegisterComponent
           }
-        ])
+    ])
+        
     ],
   
   providers: [],
