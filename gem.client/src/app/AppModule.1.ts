@@ -84,8 +84,8 @@ import { ClasseComponent } from "./newProject8/Hadeel/classe/classe.component";
       { path: 'Login', component: LoginComponent },
 
       { path: 'About', component: AboutComponent },
-
       { path: 'Contact', component: ContactComponent },
+
 
             {
                 path: 'bmi', component: BmiCalculatorComponent
