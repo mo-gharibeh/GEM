@@ -92,16 +92,7 @@ import { GymDetailComponent } from "./newProject8/Hadeel/gym-detail/gym-detail.c
           { path: 'Contact', component: ContactComponent },
         ])
     ],
-    providers: [],
-    bootstrap: [AppComponent]
-      {
-        path: 'bmi', component: BmiCalculatorComponent
-      },
-      {
-        path: 'Login', component: LoginComponent
-      }
-    ])
-  ],
+  
   providers: [],
   bootstrap: [AppComponent]
 })
