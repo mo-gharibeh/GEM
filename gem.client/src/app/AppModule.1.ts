@@ -20,57 +20,67 @@ import { ContactComponent } from "./newProject8/yousef/contact/contact.component
 import { FormsModule } from '@angular/forms';  // <-- Import FormsModule
 import { CartComponent } from "./newProject8/Lujain/cart/cart.component";
 import { LoginComponent } from "./newProject8/Ahmed/login/login.component";
+import { GymDetailComponent } from "./newProject8/Hadeel/gym-detail/gym-detail.component";
 
 
 
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        HomeComponent,
-        NavbarComponent,
-        AboutComponent,
-        ContactComponent,
-        NavbarComponent,
-        TipsComponent,
-        MealsComponent,
-        SubMealComponent,
-        FooterComponent,
-        ProductComponent,
-        ProfileComponent,
-        CartComponent,
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    NavbarComponent,
+    AboutComponent,
+    ContactComponent,
+    NavbarComponent,
+    TipsComponent,
+    MealsComponent,
+    SubMealComponent,
+    FooterComponent,
+    ProductComponent,
+    ProfileComponent,
+    GymComponent,
+    GymDetailComponent,
+    CartComponent,
     BmiCalculatorComponent,
-    LoginComponent
-    ],
-    imports: [
-        BrowserModule, HttpClientModule,
-        AppRoutingModule,
-        FormsModule,
-        RouterModule.forRoot([
-            {
-                path: '', component: HomeComponent, pathMatch: 'full'
-            },
-            {
-                path: 'Tips', component: TipsComponent
-            },
-            {
-                path: 'Meals', component: MealsComponent
-            },
-            {
-                path: 'SubMeals/:id', component: SubMealComponent
-            },
+    LoginComponent,
 
-          { path: 'Gyms', component: GymComponent },
-          
-            {
-                path: 'Products', component: ProductComponent
-            },
-            {
-                path: 'Profile', component: ProfileComponent
-            },
-          {
-            path: 'Cart', component: CartComponent
-          },
+    ],
+
+  imports: [
+    BrowserModule, HttpClientModule,
+    AppRoutingModule,
+    FormsModule,
+    RouterModule.forRoot([
+      {
+        path: '', component: HomeComponent, pathMatch: 'full'
+      },
+      {
+        path: 'Tips', component: TipsComponent
+      },
+      {
+        path: 'Meals', component: MealsComponent
+      },
+      {
+        path: 'SubMeals/:id', component: SubMealComponent
+      },
+
+      {
+        path: 'Gyms', component: GymComponent
+      },
+      {
+        path: 'GymDetails/:id', component: GymDetailComponent
+      },
+
+      {
+        path: 'Products', component: ProductComponent
+      },
+      {
+        path: 'Profile', component: ProfileComponent
+      },
+      {
+        path: 'Cart', component: CartComponent
+      },
 
             {
                 path: 'bmi', component: BmiCalculatorComponent
@@ -84,6 +94,16 @@ import { LoginComponent } from "./newProject8/Ahmed/login/login.component";
     ],
     providers: [],
     bootstrap: [AppComponent]
+      {
+        path: 'bmi', component: BmiCalculatorComponent
+      },
+      {
+        path: 'Login', component: LoginComponent
+      }
+    ])
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
 })
 export class AppModule {
 }
