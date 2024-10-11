@@ -14,10 +14,12 @@ export class GymComponent {
   ngOnInit() {
     this.getGyms();
   }
+
   GymArray: any;
 
   getGyms() {
     this._ser.getGym().subscribe((data) => {
+      debugger
       this.GymArray = data;
       console.log(this.GymArray);
     });

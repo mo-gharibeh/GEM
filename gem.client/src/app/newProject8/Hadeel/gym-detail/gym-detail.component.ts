@@ -19,8 +19,10 @@ export class GymDetailComponent {
   constructor(private _ser: UrlServiceService, private _rout: ActivatedRoute) { }
 
   DetailsArray: any
+
   getDetails(id: any) {
     this._ser.getGymDetails(id).subscribe((data) => {
+      debugger
       this.DetailsArray = data
     })
   }

@@ -2,42 +2,48 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-12">
-        <div class="row align-items-end">
+
+
+
+        <div class="row align-items-end" *ngFor="let item of DetailsArray">
           <div class="col-lg-6">
             <div class="team-data">
-              <h3>Mr. Robin Olivar</h3>
-              <p>Bodybuilding Coach</p>
+              <h3>{{item.name}}</h3>
+              <p>{{item.trainer}}</p>
               <ul class="t-contact">
-                <li>
+                <!--<li>
                   <span>Location:</span>
                   <p>New York, United State</p>
-                </li>
+                </li>-->
                 <li>
-                  <span>Experience:</span>
-                  <p>2 Years in the gym fitness center experience.</p>
+                  <span>Description :</span>
+                  <p>{{item.description}}</p>
                 </li>
               </ul>
               <div class="t-tel">
                 <div class="data">
 
                   <div class="t-sec">
-                    <p>Telephone:</p>
-                    <span><b>Tel:</b><a href="callto:(+380)503184707">  (+380) 50 318 47 07</a></span>
+                    <p>The Monthly Subscription:</p>
+                    <span><b>JOD:</b><a href="">{{item.price}}</a></span>
                   </div>
-                  <div class="gym-time"><h4>Timing:</h4><span>  Mon to Sat : 08 pm to 12 am</span></div>
+                  <!--<div class="gym-time"><h4>Timing:</h4><span>  Mon to Sat : 08 pm to 12 am</span></div>-->
                 </div>
-                <a href="javascript:void(0)" class="theme-btn">Get a Consultation </a>
+                <!--<a href="javascript:void(0)" class="theme-btn">Get a Consultation </a>-->
               </div>
             </div>
           </div>
           <div class="col-lg-6">
             <div class="image reveal1 it-reveal-animation">
               <figure>
-                <img src="assets/images/team-detail-1.jpg" alt="Team Detail Image One">
+                <img src="{{item.image}}" alt="Gym Detail Image One">
               </figure>
             </div>
           </div>
         </div>
+
+
+
       </div>
     </div>
   </div>
