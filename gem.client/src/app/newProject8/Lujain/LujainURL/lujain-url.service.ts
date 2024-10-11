@@ -58,7 +58,6 @@ export class LujainURLService {
       this.cartITemSubject.next(this.cartItem);
     }
 
-
   }
 
 
@@ -85,6 +84,12 @@ export class LujainURLService {
       product.quantity -= 1;
       this.cartITemSubject.next(this.cartItem);
     }
+  }
+
+  removeItem(id: any) {
+    // Remove item from the local cart
+    this.cartItem = this.cartItem.filter((item: any) => item.productId !== id);
+    this.cartITemSubject.next(this.cartItem); // Notify observers
   }
 }
 

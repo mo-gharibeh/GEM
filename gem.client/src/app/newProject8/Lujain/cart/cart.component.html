@@ -1,12 +1,10 @@
-
-
 <section class="banner-style-one">
   <div class="parallax" style="background-image: url(assets/images/pattren-3.png);"></div>
   <div class="container">
     <div class="row">
       <div class="banner-details">
         <h2>Cart</h2>
-        <p>our values and vaulted us to the top of our industry.</p>
+        <p>Our values have vaulted us to the top of our industry.</p>
       </div>
     </div>
   </div>
@@ -29,9 +27,6 @@
   </div>
 </section>
 
-
-
-
 <section class="gap cart">
   <div class="container">
     <div class="row">
@@ -47,7 +42,7 @@
                   <span>Price</span>
                 </div>
                 <div class="c-quality">
-                  <span>Quality</span>
+                  <span>Quantity</span>
                 </div>
                 <div class="c-total">
                   <span>Total</span>
@@ -55,42 +50,35 @@
               </div>
             </li>
           </ul>
-          <ul class="cart-table" *ngFor="let item of Array">
-            
-            <li>
+          <ul class="cart-table">
+            <li *ngFor="let item of Array">
               <div class="c-c">
                 <div class="c-data">
-                  <a class="cr-svg d-flex-all" href="javascript:void(0)">
-                    <img src="assets/images/cross.svg" alt="Cross Svg">
+                  <a class="cr-svg d-flex-all" href="javascript:void(0)" (click)="deleteItem(item.productId)">
+                    <img src="assets/images/cross.svg" alt="Delete Item">
                   </a>
                   <img src="{{item.image}}" alt="Product One">
                   <h2><a href="javascript:void(0)">{{item.productName}}</a></h2>
                 </div>
                 <div class="c-price">
                   <span class="orgnl">{{item.price}} JOD</span>
-                
                 </div>
                 <div class="c-quality">
-                  <input type="number" name="number" value="1">
+                  <button class="quantity-button" (click)="decrement(item.productId)">-</button>
+                  <input type="number" [(ngModel)]="item.quantity" min="1" />
+                  <button class="quantity-button" (click)="increment(item.productId)">+</button>
                 </div>
                 <div class="c-total">
-                  <span>{{item.productId}}</span>
+                  <span>Total Price: {{ calculateTotalPrice(item.price, item.quantity) }} JOD</span>
                 </div>
               </div>
             </li>
           </ul>
         </div>
-        <div class="update-cart d-flex-all justify-content-between">
-          <form>
-            <input type="text" name="text" placeholder="Coupon Code">
-            <button type="submit" class="theme-btn">Apply</button>
-          </form>
-          <a href="contact.html" class="theme-btn">Update Cart </a>
-        </div>
       </div>
     </div>
-    <div class="row cart-total">
-      <div class="col-lg-6"></div>
+    <br /><br />
+    <div class="row cart-total" id="carty">
       <div class="col-lg-6">
         <div class="cart-total-box">
           <div class="final">
@@ -98,21 +86,30 @@
             <ul>
               <li>
                 <span>Subtotal:</span>
-                <span>$358.00</span>
+                <span>{{ calculateSubtotal() }} JOD</span> <!-- Displaying dynamic subtotal -->
               </li>
               <li>
                 <span>Shipping:</span>
-                <span>$358.00</span>
+                <span>{{ calculateSubtotal() > 100 ? 0 : shippingCost }} JOD</span> <!-- Displaying dynamic shipping cost -->
               </li>
             </ul>
+            <p *ngIf="calculateSubtotal() > 100" style="color: green; font-weight: bold;">
+              Congratulations! Your shipping is free because your order exceeds 100 JOD!
+            </p>
+            <p *ngIf="calculateSubtotal() <= 100" style="color: red;">
+              Spend more than 100 JOD to qualify for free shipping!
+            </p>
           </div>
           <div class="total">
             <ul>
               <li>
                 <span>Total:</span>
-                <span>$358.00</span>
+                <span>{{ calculateTotal() }} JOD</span> <!-- Displaying total price -->
               </li>
             </ul>
+          </div>
+          <div class="text-center" style="margin-top: 20px;">
+            <a href="payment.html" class="theme-btn">Process to Payment</a> <!-- Button for processing payment -->
           </div>
         </div>
       </div>
