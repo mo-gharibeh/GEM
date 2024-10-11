@@ -38,6 +38,9 @@ namespace GEM.Server.Controller
             var Tips = _db.Tips.ToList();
             return Ok(Tips);
         }
+
+
+        
       
     }
 }

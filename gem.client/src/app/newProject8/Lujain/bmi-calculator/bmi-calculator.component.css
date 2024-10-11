@@ -1,0 +1,26 @@
+.section-title .section-subtitle {
+  color: #333;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.section-title .section-heading {
+  font-size: 36px;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+.chart-calculate-form input.form-control {
+  border: 1px solid #ddd;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.chart-calculate-form .btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+  padding: 12px;
+  font-size: 16px;
+}

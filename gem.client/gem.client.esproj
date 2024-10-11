@@ -16,7 +16,6 @@
     <Folder Include="src\app\newProject8\Hadeel\HadeelURL\" />
     <Folder Include="src\app\newProject8\Lujain\LujainURL\" />
     <Folder Include="src\app\newProject8\dima\dimaUrl\" />
-    <Folder Include="src\app\newProject8\Lujain\LujainAdmin\" />
     <Folder Include="src\app\newProject8\Mohammad\MohammadURL\" />
     <Folder Include="src\app\newProject8\yousef\yousefurl\" />
     <Folder Include="src\assets\" />
