@@ -22,7 +22,7 @@ namespace GEM.Server.Controller
             return Ok(gym);
         }
 
-        [HttpGet("ShowGymDetails")]
+        [HttpGet("ShowGymDetails/{id}")]
         public IActionResult GymDetails(int id)
         {
             var gymdetails = _db.ClassAndGyms.FirstOrDefault(x => x.Id == id);

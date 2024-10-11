@@ -6,18 +6,18 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class UrlServiceService {
-
+  
   staticData = "http://localhost:44340/api";
 
   constructor(private http: HttpClient) { }
 
   getGym(): Observable<any> {
-    debugger
-    return this.http.get<any>(`${this.staticData}/Gym/ShowAllGyms`);
+    
+    return this.http.get<any>(`https://localhost:44340/api/Gym/ShowAllGyms`);
 
   }
 
   getGymDetails(id: any): Observable<any> {
-    return this.http.get<any>(`${this.staticData}/Gym/ShowGymDetails?id=${id}`)
+    return this.http.get<any>(`${this.staticData}/Gym/ShowGymDetails/${id}`)
   }
 }
