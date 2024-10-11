@@ -26,32 +26,32 @@ namespace GEM.Server.Controller
         }
 
 
-
         [HttpPost("Cart/{id}")]
         public IActionResult PostCart(int id, [FromBody] CartDTORequist cart)
         {
-            if (id != cart.Cart.UserId)
+            var cartEntity = _db.Carts.Include(c => c.User).FirstOrDefault(c => c.CartId == id);
+
+            if (cartEntity == null || cartEntity.UserId != id)
             {
-                return BadRequest("UserID does not match.");
+                return BadRequest("Cart does not exist or UserID does not match.");
             }
 
             var existingCartItem = _db.CartItems
-                .FirstOrDefault(c => c.ProductId == cart.ProductId && c.CartId == cart.Cart.UserId);
+                .FirstOrDefault(c => c.ProductId == cart.ProductId && c.CartId == cartEntity.CartId);
 
             if (existingCartItem != null)
             {
-                existingCartItem.Quantity += cart.Quantity;
+                existingCartItem.Quantity += cart.Quantity ?? 1; 
                 _db.Entry(existingCartItem).State = EntityState.Modified;
             }
             else
             {
-              
                 var newCartItem = new CartItem
                 {
-                    CartId = cart.Cart.UserId, 
-                    ProductId = cart.ProductId, 
-                    Quantity = cart.Quantity ?? 1, 
-                    Price = cart.Price 
+                    CartId = cartEntity.CartId, 
+                    ProductId = cart.ProductId,
+                    Quantity = cart.Quantity ?? 1,
+                    Price = cart.Price
                 };
 
                 _db.CartItems.Add(newCartItem);
@@ -61,6 +61,7 @@ namespace GEM.Server.Controller
 
             return Ok("Item added to cart successfully.");
         }
+
 
 
         [HttpPut("Cart/{userId}/{cartItemId}/{action}")]
