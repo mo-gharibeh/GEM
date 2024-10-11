@@ -77,7 +77,9 @@ import { LoginComponent } from "./newProject8/Ahmed/login/login.component";
           }, 
           {
             path: 'Login', component: LoginComponent
-          }
+          },
+          { path: 'About', component: AboutComponent },
+          { path: 'Contact', component: ContactComponent },
         ])
     ],
     providers: [],
