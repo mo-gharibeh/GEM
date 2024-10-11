@@ -12,6 +12,9 @@ import { SubMealComponent } from './newProject8/Lujain/sub-meal/sub-meal.compone
 import { RouterModule } from '@angular/router';
 import { AboutComponent } from './newProject8/yousef/about/about.component';
 import { ContactComponent } from './newProject8/yousef/contact/contact.component';
+import { ProductComponent } from './newProject8/Lujain/product/product.component';
+import { FooterComponent } from './newProject8/Mohammad/footer/footer.component';
+import { ProfileComponent } from './newProject8/Bassam/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,10 @@ import { ContactComponent } from './newProject8/yousef/contact/contact.component
     NavbarComponent,
     TipsComponent,
     MealsComponent,
-    SubMealComponent
+    SubMealComponent,
+    FooterComponent,
+    ProductComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule, HttpClientModule,
@@ -37,6 +43,13 @@ import { ContactComponent } from './newProject8/yousef/contact/contact.component
       },
       {
         path: 'Meals', component: MealsComponent
+      }
+      ,
+      {
+        path: 'Products', component: ProductComponent
+      },
+      {
+        path: 'Profile', component: ProfileComponent
       }
 
 
