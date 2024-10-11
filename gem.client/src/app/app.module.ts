@@ -19,22 +19,23 @@ import { ContactComponent } from './newProject8/yousef/contact/contact.component
     HomeComponent,
     NavbarComponent,
     AboutComponent,
-    ContactComponent
+    ContactComponent,
     NavbarComponent,
     TipsComponent,
     MealsComponent,
     SubMealComponent
   ],
   imports: [
-    BrowserModule, HttpClientModule,
+    BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
+
     RouterModule.forRoot([
-      {
-        path: '', component: HomeComponent, pathMatch: 'full'
-      },
-      {
-        path: 'Tips', component: TipsComponent
-      }
+      { path: '', component: HomeComponent, pathMatch: 'full'},
+      { path: 'Tips', component: TipsComponent },
+      { path: 'About', component: AboutComponent },
+      { path: 'Contact', component: ContactComponent },
+
 
 
     ])
