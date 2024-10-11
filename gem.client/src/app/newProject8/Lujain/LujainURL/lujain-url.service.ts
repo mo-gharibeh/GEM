@@ -58,7 +58,6 @@ export class LujainURLService {
       this.cartITemSubject.next(this.cartItem);
     }
 
-
   }
 
 
