@@ -28,23 +28,40 @@ namespace GEM.Server.Controller
         [HttpPost("Cart/{userId}")]
         public IActionResult PostCart(int userId, [FromBody] CartDTORequist cart)
         {
+            
+            var userCart = _db.Carts.FirstOrDefault(c => c.UserId == userId);
 
+            if (userCart == null)
+            {
+              
+                userCart = new Cart
+                {
+                    UserId = userId
+                };
+                _db.Carts.Add(userCart);
+                _db.SaveChanges(); 
+            }
+
+            
             var existingCartItem = _db.CartItems
-    .Include(c => c.Cart)  // Ensure the Cart navigation property is loaded
-    .FirstOrDefault(c => c.ProductId == cart.ProductId && c.Cart.UserId == userId);
+                .Include(c => c.Cart)  
+                .FirstOrDefault(c => c.ProductId == cart.ProductId && c.Cart.UserId == userId);
 
             if (existingCartItem != null)
             {
+                
                 existingCartItem.Quantity += cart.Quantity ?? 1;
                 _db.Entry(existingCartItem).State = EntityState.Modified;
             }
             else
             {
+               
                 var newCartItem = new CartItem
                 {
                     ProductId = cart.ProductId,
                     Quantity = cart.Quantity ?? 1,
-                    Price = cart.Price
+                    Price = cart.Price,
+                    CartId = userCart.CartId 
                 };
 
                 _db.CartItems.Add(newCartItem);
@@ -54,7 +71,6 @@ namespace GEM.Server.Controller
 
             return Ok("Item added to cart successfully.");
         }
-
 
 
         [HttpPut("Cart/{userId}/{cartItemId}")]

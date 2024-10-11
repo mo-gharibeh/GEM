@@ -58,6 +58,17 @@ export class LujainURLService {
     return this.http.delete<any>(`${this.staticData}/Cart/Cart/${userId}/${cartItemId}`);
   }
 
+
+
+ 
+  addCartItemToDatabase(data: any): Observable<any> {
+    return this.http.post<any>(`${this.staticData}/Cart/Cart/${data.userId}`, data)
+  }
+
+
+
+
+
   cartItem: any = [];
   cartITemSubject: BehaviorSubject<any> = new BehaviorSubject<any>(this.cartItem);
   cartItemObser = this.cartITemSubject.asObservable();
@@ -69,17 +80,58 @@ export class LujainURLService {
       this.cartItem.push(data);
       this.cartITemSubject.next(this.cartItem);
       localStorage.setItem('cartItems', JSON.stringify(this.cartItem));
+
+
+      if (data.userId != 0) {
+        this.addCartItemToDatabase(data).subscribe(
+          (response) => {
+            console.log("Item added to the database:", response);
+          },
+          (error) => {
+            console.error("Failed to add item to the database:", error);
+          }
+        );
+      }
     }
   }
 
 
 
   pushCartToDatabase(userId: any): Observable<any> {
-    return this.http.post<any>(`${this.staticData}/Cart/Cart`, {
+    return this.http.post<any>(`${this.staticData}/Cart/Cart/${userId}`, {
       userId,
       cartItems: this.cartItem
     });
   }
+
+
+  // Sync local storage cart to the database after user login
+  syncLocalCartToDatabase(userId: number) {
+    const storedCart = localStorage.getItem('cartItems');
+    
+    if (storedCart) {
+      const cartItems = JSON.parse(storedCart);
+      
+      cartItems.forEach((item: any) => {
+        item.userId = userId;  // Assign the userId to each cart item
+        this.addCartItemToDatabase(item).subscribe(
+          (response) => {
+            console.log("Synced cart item to the database:", response);
+          },
+          (error) => {
+            console.error("Failed to sync cart item to the database:", error);
+          }
+        );
+      });
+      
+      // Clear local storage after syncing
+      localStorage.removeItem('cartItems');
+    }
+  }
+
+
+
+
 
 
 
