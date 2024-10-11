@@ -14,6 +14,7 @@ import { AboutComponent } from './newProject8/yousef/about/about.component';
 import { ContactComponent } from './newProject8/yousef/contact/contact.component';
 import { ProductComponent } from './newProject8/Lujain/product/product.component';
 import { FooterComponent } from './newProject8/Mohammad/footer/footer.component';
+import { ProfileComponent } from './newProject8/Bassam/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { FooterComponent } from './newProject8/Mohammad/footer/footer.component'
     SubMealComponent,
     FooterComponent,
     ProductComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule, HttpClientModule,
@@ -45,6 +47,9 @@ import { FooterComponent } from './newProject8/Mohammad/footer/footer.component'
       ,
       {
         path: 'Products', component: ProductComponent
+      },
+      {
+        path: 'Profile', component: ProfileComponent
       }
 
 
