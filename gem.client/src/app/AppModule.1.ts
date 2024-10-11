@@ -21,6 +21,7 @@ import { FormsModule } from '@angular/forms';  // <-- Import FormsModule
 import { CartComponent } from "./newProject8/Lujain/cart/cart.component";
 import { LoginComponent } from "./newProject8/Ahmed/login/login.component";
 import { GymDetailComponent } from "./newProject8/Hadeel/gym-detail/gym-detail.component";
+import { ClasseComponent } from "./newProject8/Hadeel/classe/classe.component";
 
 
 
@@ -41,6 +42,7 @@ import { GymDetailComponent } from "./newProject8/Hadeel/gym-detail/gym-detail.c
     ProfileComponent,
     GymComponent,
     GymDetailComponent,
+    ClasseComponent,
     CartComponent,
     BmiCalculatorComponent,
     LoginComponent,
@@ -71,7 +73,9 @@ import { GymDetailComponent } from "./newProject8/Hadeel/gym-detail/gym-detail.c
       {
         path: 'GymDetails/:id', component: GymDetailComponent
       },
-
+      {
+        path: 'class', component: ClasseComponent
+      },
       {
         path: 'Products', component: ProductComponent
       },

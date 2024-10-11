@@ -24,7 +24,7 @@ namespace GEM.Server.Controller
         }
 
 
-
+        // For USer Subscription
         [HttpPost("AddGymSubscribtion")]
         public IActionResult AddSubscribtion(subscriptionGymDTO subscriptiongym)
         {
@@ -38,6 +38,36 @@ namespace GEM.Server.Controller
                 StartDate = startDate,
                 EndDate = endDate,
                 PaymentMethod = subscriptiongym.PaymentMethod,
+            };
+
+            _db.Enrolleds.Add(subscription);
+            _db.SaveChanges();
+
+            return Ok();
+        }
+
+        // Show The Subscription Page For Admin Side
+        [HttpGet("GetClassSubscribtion")]
+        public IActionResult GetClassSubscribtion()
+        {
+            var subscriptionGym = _db.ClassSubscriptions.ToList();
+            return Ok(subscriptionGym);
+        }
+
+
+        // For USer Subscription
+        [HttpPost("AddClassSubscribtion")]
+        public IActionResult AddClassSubscribtion(subscriptionClassDTO subscriptionclass)
+        {
+            var startDate = DateTime.Now;
+            var endDate = startDate.AddMonths(1);
+
+            var subscription = new Enrolled
+            {
+                UserId = subscriptionclass.UserId,
+                ClassSubId = subscriptionclass.ClassSubId,
+                ClassTimeId = subscriptionclass.ClassTimeId,// This From ClassTime Table
+                PaymentMethod = subscriptionclass.PaymentMethod,
             };
 
             _db.Enrolleds.Add(subscription);
