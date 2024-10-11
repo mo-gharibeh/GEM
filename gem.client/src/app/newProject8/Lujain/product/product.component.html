@@ -76,7 +76,7 @@
                   <figure>
                     <img src="{{item.image}}" alt="Product Image 2">
                   </figure>
-                  <a href="cart.html" class="theme-btn">Add to Cart <i class="fa-solid fa-bag-shopping"></i></a>
+                  <a (click)="addtoCart(item.productId)" class="theme-btn">Add to Cart <i class="fa-solid fa-bag-shopping"></i></a>
                 </div>
                 <div class="data">
                   <h3><a href="product-detail.html">{{item.productName}}</a></h3>
@@ -86,7 +86,7 @@
                   </div>
                 </div>
               </div>
-              <a href="javascript:void(0)" class="theme-btn">Add to Cart <i class="fa-solid fa-bag-shopping"></i></a>
+              <a (click)="addtoCart(item.productId)" href="javascript:void(0)" class="theme-btn">Add to Cart <i class="fa-solid fa-bag-shopping"></i></a>
             </div>
           </div>
         </div>

@@ -9,7 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class SubMealComponent {
   paramter: any;
-  subMeal: any[] = [];
+  subMeal: any;
 
   constructor(private _ser: LujainURLService, private _router: ActivatedRoute) { }
 
