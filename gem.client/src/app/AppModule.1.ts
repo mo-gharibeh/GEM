@@ -23,6 +23,7 @@ import { LoginComponent } from "./newProject8/Ahmed/login/login.component";
 import { GymDetailComponent } from "./newProject8/Hadeel/gym-detail/gym-detail.component";
 import { RegisterComponent } from "./newProject8/Ahmed/register/register.component";
 import { ClasseComponent } from "./newProject8/Hadeel/classe/classe.component";
+import { SubmealDetailsComponent } from "./newProject8/Lujain/submeal-details/submeal-details.component";
 
 
 
@@ -51,7 +52,7 @@ import { ClasseComponent } from "./newProject8/Hadeel/classe/classe.component";
 
     LoginComponent,
     RegisterComponent
-    ],
+  ],
 
   imports: [
 
@@ -84,18 +85,16 @@ import { ClasseComponent } from "./newProject8/Hadeel/classe/classe.component";
       { path: 'Login', component: LoginComponent },
 
       { path: 'About', component: AboutComponent },
+
       { path: 'Contact', component: ContactComponent },
 
+      { path: 'subDetails/:id', component: SubmealDetailsComponent },
 
-            {
-                path: 'bmi', component: BmiCalculatorComponent
-          }, 
-          {
-            path: 'Login', component: LoginComponent
-          },
-          {
-            path: 'Register', component: RegisterComponent
-          }
+      { path: 'bmi', component: BmiCalculatorComponent },
+
+      { path: 'Login', component: LoginComponent },
+
+      { path: 'Register', component: RegisterComponent}
     ])
         
     ],
