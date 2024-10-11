@@ -31,18 +31,20 @@ export class GymDetailComponent {
 
 
   data = {
-    "userId": 0,
-    "classSubId": 0,
+    "userId": 1,
+    "classSubId": 1,
     "paymentMethod": "string"
   }
 
 
   AddUserSubScribtion(id: number) {
-
+    debugger
     // هون لازم اشيك اذا اليوزر داخل و لا لا لحتى اذا كان داخل اسمحله يعمل سبسكرايب اذا لا بعطي الليرت 
     this.data.classSubId = id
     this._ser.addUSerSubScription(this.data).subscribe(() => {
-      alert("Accept Successfully")
+      if (true) {
+        alert("Accept Successfully")
+      }
     })
   }
 }

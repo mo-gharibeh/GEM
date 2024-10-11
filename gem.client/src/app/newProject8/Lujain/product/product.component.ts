@@ -17,6 +17,12 @@ export class ProductComponent {
 
 
 
+  //userId: number | null = null;  
+
+  userId: number = 2;  // Static userId for now, replace later with localStorage
+
+
+
   constructor(private _ser: LujainURLService, private _router: ActivatedRoute) { }
 
   ngOnInit() {
@@ -30,6 +36,20 @@ export class ProductComponent {
 
 
     this.paramter = this._router.snapshot.paramMap.get("id");
+    this.checkUserStatus();
+
+
+    //this.userId = localStorage.getItem('userId') ? parseInt(localStorage.getItem('userId')!, 10) : null;
+
+    //if (this.userId) {
+    //  this.syncCartWithDatabase(this.userId);
+    //}
+  }
+  checkUserStatus() {
+    const storedUserId = localStorage.getItem('userId');
+    if (storedUserId) {
+      this.userId = parseInt(storedUserId, 10);  // Later, replace static value with localStorage
+    }
   }
 
   getProductFit() {
@@ -75,7 +95,7 @@ export class ProductComponent {
   object = {
     cartItem: 0,
     productId: 0,
-    userId: 0,
+    userId: this.userId ,//|| 0,
     quantity: 1, 
     productName: "", // Add productName
     price: 0,
@@ -91,13 +111,30 @@ export class ProductComponent {
       this.object.productId = product.productId;
       this.object.productName = product.productName; 
       this.object.price = product.price;
+      //this.object.image = product.image;
+      this.object.cartItem = product.cartItemId;
       this.object.image = product.image;
-      this.object.quantity = this.object.quantity;               
+      this.object.userId = this.userId; //|| 0;  
+
+     
       this._ser.addTocart({ ...this.object });
-      alert("Item added successfully");
+
+      alert("Item added to the cart successfully!");
     } else {
       alert("Product not found");
     }
+  }
+
+  
+  syncCartWithDatabase(userId: number) {
+    this._ser.pushCartToDatabase(userId).subscribe(
+      (response) => {
+        console.log('Cart synced with database:', response);
+      },
+      (error) => {
+        console.error('Failed to sync cart with database:', error);
+      }
+    );
   }
 
 
