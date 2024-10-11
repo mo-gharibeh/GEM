@@ -43,6 +43,7 @@ import { RegisterComponent } from "./newProject8/Ahmed/register/register.compone
     ProfileComponent,
     GymComponent,
     GymDetailComponent,
+    ClasseComponent,
     CartComponent,
     BmiCalculatorComponent,
     LoginComponent,
