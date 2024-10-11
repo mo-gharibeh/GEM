@@ -363,3 +363,4 @@ MigrationBackup/
 FodyWeavers.xsd
 /GEM.Server/appsettings.json
 /GEM.Server/Models/MyDbContext.cs
+/GEM.Server/appsettings.Development.json
