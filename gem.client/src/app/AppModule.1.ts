@@ -27,6 +27,7 @@ import { GymDetailComponent } from "./newProject8/Hadeel/gym-detail/gym-detail.c
 
 @NgModule({
   declarations: [
+
     AppComponent,
     HomeComponent,
     NavbarComponent,
@@ -48,49 +49,40 @@ import { GymDetailComponent } from "./newProject8/Hadeel/gym-detail/gym-detail.c
     ],
 
   imports: [
-    BrowserModule, HttpClientModule,
+
+    BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     FormsModule,
     RouterModule.forRoot([
-      {
-        path: '', component: HomeComponent, pathMatch: 'full'
-      },
-      {
-        path: 'Tips', component: TipsComponent
-      },
-      {
-        path: 'Meals', component: MealsComponent
-      },
-      {
-        path: 'SubMeals/:id', component: SubMealComponent
-      },
 
-      {
-        path: 'Gyms', component: GymComponent
-      },
-      {
-        path: 'GymDetails/:id', component: GymDetailComponent
-      },
+      { path: '', component: HomeComponent, pathMatch: 'full' },
 
-      {
-        path: 'Products', component: ProductComponent
-      },
-      {
-        path: 'Profile', component: ProfileComponent
-      },
-      {
-        path: 'Cart', component: CartComponent
-      },
+      { path: 'Tips', component: TipsComponent },
 
-            {
-                path: 'bmi', component: BmiCalculatorComponent
-          }, 
-          {
-            path: 'Login', component: LoginComponent
-          },
-          { path: 'About', component: AboutComponent },
-          { path: 'Contact', component: ContactComponent },
-        ])
+      { path: 'Meals', component: MealsComponent },
+
+      { path: 'SubMeals/:id', component: SubMealComponent },
+
+      { path: 'Gyms', component: GymComponent },
+
+      { path: 'GymDetails/:id', component: GymDetailComponent },
+
+      { path: 'Products', component: ProductComponent },
+
+      { path: 'Profile', component: ProfileComponent },
+
+      { path: 'Cart', component: CartComponent },
+
+      { path: 'bmi', component: BmiCalculatorComponent },
+
+      { path: 'Login', component: LoginComponent },
+
+      { path: 'About', component: AboutComponent },
+
+      { path: 'Contact', component: ContactComponent },
+
+    ])
     ],
   
   providers: [],
