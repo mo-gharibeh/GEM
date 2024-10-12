@@ -58,7 +58,7 @@ import { ClassAndGymComponent } from "./AdminSide/class-and-gym/class-and-gym.co
     LoginComponent,
     RegisterComponent,
     ClassAndGymComponent,
-    AdminDashboardComponent
+    AdminDashboardComponent,
     RegisterComponent,
     PaypalComponent
   ],
