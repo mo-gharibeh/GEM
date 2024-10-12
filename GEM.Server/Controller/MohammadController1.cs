@@ -127,9 +127,51 @@ namespace GEM.Server.Controller
             return Ok(new { showTestimonialPrompt = false });
         }
 
+        // get all nutrations
+        [HttpGet("{subMealPlanId}")]
+        public IActionResult GetSubMealPlanWithNutrition(int subMealPlanId)
+        {
+            // Get the SubMealPlan with its associated NutritionFacts
+            var subMealPlan = _db.SubMealPlans
+                .Where(s => s.SubMealPlanId == subMealPlanId)
+                .Select(s => new SubMealPlanDto
+                {
+                    SubMealPlanID = s.SubMealPlanId,
+                    Title = s.Title,
+                    Image = s.Image,
+                    Description = s.Description,
+                    PreparationTime = s.PreparationTime,
+                    MealPlanID = s.MealPlanId,
+                    NutritionFacts = _db.NutritionFacts
+                        .Where(n => n.SubMealPlans == s.SubMealPlanId)
+                        .Select(n => new NutritionFactDto
+                        {
+                            NutritionID = n.NutritionId,
+                            Calories = n.Calories,
+                            TotalFat = n.TotalFat,
+                            SaturatedFat = n.SaturatedFat,
+                            Cholesterol = n.Cholesterol,
+                            Sodium = n.Sodium,
+                            Carbohydrates = n.Carbohydrates,
+                            DietaryFiber = n.DietaryFiber,
+                            Sugars = n.Sugars,
+                            Protein = n.Protein,
+                            VitaminD = n.VitaminD,
+                            Calcium = n.Calcium,
+                            Iron = n.Iron,
+                            Potassium = n.Potassium
+                        }).ToList()
+                })
+                .FirstOrDefault();
 
+            if (subMealPlan == null)
+            {
+                return NotFound(new { message = "SubMealPlan not found." });
+            }
 
-
+            return Ok(subMealPlan);
+        }
 
     }
+    
 }
