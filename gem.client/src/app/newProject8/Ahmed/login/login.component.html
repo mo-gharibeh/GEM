@@ -35,9 +35,9 @@
       <div class="col-lg-6 justify-content-center">
         <div class="box login">
           <h3>LogIn Your Account</h3>
-          <form>
-            <input type="email" name="email" placeholder="Username or email address">
-            <input type="password" name="password" placeholder="Password">
+          <form #registrationForm="ngForm" (ngSubmit)="loginNewUser(registrationForm.value)">
+            <input type="email" name="email" placeholder="Enter Email Address" ngModel>
+            <input type="password" name="password" placeholder="Password" ngModel>
             <div class="remember">
               <div class="first">
                 <input type="checkbox" name="checkbox" id="checkbox">
