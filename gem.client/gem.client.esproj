@@ -12,6 +12,7 @@
     <TypeScriptConfiguration Remove="src\app\newProject8\NewFolder\**" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="src\app\AdminSide\" />
     <Folder Include="src\app\newProject8\Bassam\BassamUrl\" />
     <Folder Include="src\app\newProject8\Hadeel\HadeelURL\" />
     <Folder Include="src\app\newProject8\Lujain\LujainURL\" />
