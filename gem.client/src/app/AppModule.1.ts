@@ -66,8 +66,8 @@ import { UpdateProductsComponent } from "./AdminSide/update-products/update-prod
     ClassAndGymComponent,
     AdminDashboardComponent,
     PaypalComponent,
-    AdminDashboardComponent
-    ClassAndGymComponent,
+    AdminDashboardComponent,
+    
     AdminDashboardComponent,
     RegisterComponent,
     AdminDashboardComponent,
