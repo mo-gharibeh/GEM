@@ -25,7 +25,7 @@ namespace GEM.Server.Controller
         [HttpGet("GetClasseDetails/{id}")]
         public IActionResult GetClasses(int id)
         {
-            var classe =_db.ClassAndGyms.Where(x => x.Id == id).ToList();
+            var classe = _db.ClassAndGyms.Where(x => x.Id == id).ToList();
             return Ok(classe);
         }
 

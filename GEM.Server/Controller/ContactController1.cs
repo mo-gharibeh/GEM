@@ -24,11 +24,12 @@ namespace GEM.Server.Controller
 
         [HttpGet("GetMessage")]
 
-        public IActionResult GetMessage() { 
+        public IActionResult GetMessage()
+        {
 
             var message = _db.ContactUs.ToList();
-        
-        return Ok(message);
+
+            return Ok(message);
         }
 
 
@@ -59,6 +60,8 @@ namespace GEM.Server.Controller
         public async Task<IActionResult> PostMessage([FromForm] ContactUsDto contactUsDto, [FromServices] IEmailService emailService)
         {
             // Save the contact message to the database
+
+
             var contact = new ContactU
             {
                 Name = contactUsDto.Name,
@@ -66,6 +69,8 @@ namespace GEM.Server.Controller
                 MessageContent = contactUsDto.MessageContent,
                 Subject = contactUsDto.Subject,
                 SentDate = DateTime.Now,
+                SentDate = DateTime.Now,
+
             };
 
             _db.ContactUs.Add(contact);
