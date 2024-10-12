@@ -57,6 +57,8 @@ import { NutritionComponent } from "./newProject8/Mohammad/nutrition/nutrition.c
     ClassDetailsComponent,
     LoginComponent,
     RegisterComponent,
+    PaypalComponent,
+    AdminDashboardComponent
     ClassAndGymComponent,
     AdminDashboardComponent,
     RegisterComponent,
@@ -83,6 +85,8 @@ import { NutritionComponent } from "./newProject8/Mohammad/nutrition/nutrition.c
       { path: 'Gyms', component: GymComponent },
 
       { path: 'GymDetails/:id', component: GymDetailComponent },
+      { path: 'classDetails/:id', component: ClassDetailsComponent },
+
 
       { path: 'Class', component: ClasseComponent },
 
