@@ -55,7 +55,8 @@ import { AdminDashboardComponent } from "./AdminSide/admin-dashboard/admin-dashb
     ClassDetailsComponent,
     LoginComponent,
     RegisterComponent,
-    PaypalComponent
+    PaypalComponent,
+    AdminDashboardComponent
   ],
 
   imports: [
@@ -77,6 +78,8 @@ import { AdminDashboardComponent } from "./AdminSide/admin-dashboard/admin-dashb
       { path: 'Gyms', component: GymComponent },
 
       { path: 'GymDetails/:id', component: GymDetailComponent },
+      { path: 'classDetails/:id', component: ClassDetailsComponent },
+
 
       { path: 'Class', component: ClasseComponent },
 
