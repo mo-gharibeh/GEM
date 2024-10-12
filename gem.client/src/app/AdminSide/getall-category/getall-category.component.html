@@ -1,0 +1,42 @@
+<main>
+
+
+
+  <!-- Bootstrap container to center and structure content -->
+  <div class="container mt-4">
+
+    <!-- Optional heading for the section -->
+    <h2 class="text-center mb-4">Our Services</h2>
+    <button class="btn btn-primary btn-sm" [routerLink]="['/AdminDashBoard/AddCategory']">Add new Category</button>
+
+    <!-- Styled Bootstrap table -->
+    <div class="table-responsive mx-auto" style="max-width: 900px;">
+      <table class="table table-light table-hover table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Category Name</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Angular *ngFor directive to iterate over the array -->
+          <tr *ngFor="let item of Array; let i = index">
+            <!-- Display row number dynamically using index -->
+            <th scope="row">{{ item.categoryId }}</th>
+            <td>{{ item.categoryName }}</td>
+            <td>
+              <!-- Bootstrap buttons for Edit and Delete -->
+              <button class="btn btn-outline-primary btn-sm" [routerLink]="['/AdminDashBoard/UpdateCategory', item.categoryId]">
+                Edit
+              </button>
+              <button class="btn btn-outline-danger btn-sm" (click)="deleteCategory(item.categoryId)">
+                Delete
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</main>
