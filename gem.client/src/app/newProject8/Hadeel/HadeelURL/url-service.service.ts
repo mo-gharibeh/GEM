@@ -26,4 +26,11 @@ export class UrlServiceService {
   addUSerSubScription(data: any): Observable<any> {
     return this.http.post<any>(`${this.staticData}/Subscribtion/AddGymSubscribtion`, data)
   }
+
+  getAllClasses(): Observable<any> {
+    return this.http.get<any>(`${this.staticData}/Classe/GetAllClasses`);
+  }
+  getClassById(id: any): Observable<any> {
+    return this.http.get<any>(`${this.staticData}/Classe/GetClasseDetails/${id}`)
+  }
 }
