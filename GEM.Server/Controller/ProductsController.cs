@@ -19,10 +19,11 @@ namespace GEM.Server.Controller
 
 
         [HttpGet("GetProducts")]
-        public IActionResult products() {
-        
-        
-           var products = _db.Products.ToList();
+        public IActionResult products()
+        {
+
+
+            var products = _db.Products.ToList();
             if (products != null)
             {
                 return Ok(products);
@@ -32,7 +33,7 @@ namespace GEM.Server.Controller
         }
 
         [HttpGet("GetProductbyId/{id}")]
-        public IActionResult GetProduct(int id) 
+        public IActionResult GetProduct(int id)
         {
             var product = _db.Products.FirstOrDefault(p => p.ProductId == id);
             if (product != null)
@@ -40,19 +41,20 @@ namespace GEM.Server.Controller
                 return Ok(product);
             }
             return NotFound();
-                
-                
-                
-                
-                
+
+
+
+
+
         }
 
 
         [HttpGet("ProductsbyCategoryId/{id}")]
 
-        public IActionResult productsCat(int id) { 
-        
-        var products=_db.Products.Where(a=>a.CategoryId == id).ToList();
+        public IActionResult productsCat(int id)
+        {
+
+            var products = _db.Products.Where(a => a.CategoryId == id).ToList();
 
             if (id <= 0)
             {
@@ -72,12 +74,11 @@ namespace GEM.Server.Controller
 
 
         [HttpGet("Count")]
-        public IActionResult Count() {
+        public IActionResult Count()
+        {
             var product = _db.Products.Count();
             return Ok(product);
         }
-
-      
 
 
 
