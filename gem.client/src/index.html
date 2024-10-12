@@ -27,6 +27,53 @@
   <!-- Responsive -->
   <link rel="stylesheet" type="text/css" href="assets/css/responsive.css">
 
+<!-- For Admin -->
+      <link href="img/favicon.ico" rel="icon">
+    <!-- Site favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/Admin/vendors/images/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/Admin/vendors/images/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/Admin/vendors/images/favicon-16x16.png" />
+
+    <!-- Mobile Specific Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="assets/Admin/vendors/styles/core.css" />
+    <link rel="stylesheet" type="text/css" href="assets/Admin/vendors/styles/icon-font.min.css" />
+    <link rel="stylesheet" type="text/css" href="assets/Admin/src/plugins/datatables/css/dataTables.bootstrap4.min.css" />
+    <link rel="stylesheet" type="text/css" href="assets/Admin/src/plugins/datatables/css/responsive.bootstrap4.min.css" />
+    <link rel="stylesheet" type="text/css" href="assets/Admin/vendors/styles/style.css" />
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GBZ3SGGX85"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2973766580778258" crossorigin="anonymous"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag("js", new Date());
+        gtag("config", "G-GBZ3SGGX85");
+    </script>
+    <!-- Google Tag Manager -->
+    <script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+            var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s),
+                dl = l != "dataLayer" ? "&l=" + l : "";
+            j.async = true;
+            j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+            f.parentNode.insertBefore(j, f);
+        })(window, document, "script", "dataLayer", "GTM-NXZMQSS");
+    </script>
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
 
 
 
@@ -69,6 +116,103 @@
   <!-- Custom Js -->
 
   <script src="assets/js/custom.js"></script>
+
+
+  <!--For Admin-->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var ctxBooking = document.getElementById('bookingTrend').getContext('2d');
+      new Chart(ctxBooking, {
+        type: 'line',
+        data: {
+          labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+          datasets: [{
+            label: 'Bookings',
+            data: [100, 120, 140, 130, 150, 160, 170, 180, 190, 200, 210, 220],
+            borderColor: 'rgba(0, 123, 255, 1)',
+            backgroundColor: 'rgba(0, 123, 255, 0.2)',
+            borderWidth: 2,
+            fill: true
+          }]
+        },
+        options: {
+          responsive: true,
+          scales: {
+            x: {
+              beginAtZero: true,
+              grid: {
+                display: false
+              }
+            },
+            y: {
+              beginAtZero: true,
+              grid: {
+                display: false
+              }
+            }
+          },
+          plugins: {
+            legend: {
+              display: false
+            }
+          }
+        }
+      });
+
+      var ctxRevenue = document.getElementById('revenueChart').getContext('2d');
+      new Chart(ctxRevenue, {
+        type: 'bar', // Bar chart for revenue
+        data: {
+          labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+          datasets: [{
+            label: 'Revenue',
+            data: [5000, 6000, 7000, 8000, 7500, 9000, 8500, 9500, 9000, 10000, 11000, 12000],
+            backgroundColor: 'rgba(0, 123, 255, 0.5)',
+            borderColor: 'rgba(0, 123, 255, 1)',
+            borderWidth: 1
+          }]
+        },
+        options: {
+          responsive: true,
+          scales: {
+            x: {
+              beginAtZero: true,
+              grid: {
+                display: false
+              }
+            },
+            y: {
+              beginAtZero: true,
+              grid: {
+                display: false
+              }
+            }
+          },
+          plugins: {
+            legend: {
+              display: false
+            }
+          }
+        }
+      });
+    });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+
+  <!-- JavaScript -->
+  <script src="assets/Admin/vendors/scripts/core.js"></script>
+  <script src="assets/Admin/vendors/scripts/script.min.js"></script>
+  <script src="assets/Admin/vendors/scripts/process.js"></script>
+  <script src="assets/Admin/vendors/scripts/layout-settings.js"></script>
+  <script src="assets/Admin/src/plugins/datatables/js/jquery.dataTables.min.js"></script>
+  <script src="assets/Admin/src/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>
+  <script src="assets/Admin/src/plugins/datatables/js/dataTables.responsive.min.js"></script>
+  <script src="assets/Admin/src/plugins/datatables/js/responsive.bootstrap4.min.js"></script>
+  <script src="assets/Admin/vendors/scripts/dashboard.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 
 
   <!--<script src="https://www.paypal.com/sdk/js?client-id=Adtb6XkpqqndM80PndrUC19_b7NqNe4BDiNI5b3beOJWq1bUyoPk4QQABWoxFInvtrj3PPuvcU0X24p8&currency=USD"></script>-->

@@ -86,7 +86,7 @@ namespace GEM.Server.Controller
         public IActionResult addProduct([FromForm] ProductDto addproduct)
         {
 
-            var folder = Path.Combine(Directory.GetCurrentDirectory(), "UploadsImage");
+            var folder = Path.Combine(Directory.GetCurrentDirectory(), "Uploads");
             if (!Directory.Exists(folder))
             {
                 Directory.CreateDirectory(folder);
@@ -123,7 +123,7 @@ namespace GEM.Server.Controller
 
 
 
-            var folder = Path.Combine(Directory.GetCurrentDirectory(), "UploadsImage");
+            var folder = Path.Combine(Directory.GetCurrentDirectory(), "Uploads");
             if (!Directory.Exists(folder))
             {
                 Directory.CreateDirectory(folder);
@@ -162,7 +162,19 @@ namespace GEM.Server.Controller
             return NotFound();
         }
 
+        [HttpGet("getImage/{imageName}")]
+        public IActionResult getImage(string imageName)
+        {
+            var pathImage = Path.Combine(Directory.GetCurrentDirectory(), "Uploads", imageName);
+            if (System.IO.File.Exists(pathImage))
+            {
 
+                return PhysicalFile(pathImage, "image/*");
+
+            }
+            return NotFound();
+
+        }
 
 
     }

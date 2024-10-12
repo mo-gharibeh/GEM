@@ -69,6 +69,65 @@ namespace GEM.Server.Controller
             return Ok(topProducts);
         }
 
+        [HttpPost("SubmitTestimonial")]
+        public IActionResult SubmitTestimonial([FromBody] TestimonialDto testimonialDto)
+        {
+            if (testimonialDto == null || string.IsNullOrWhiteSpace(testimonialDto.Text))
+            {
+                return BadRequest("Invalid testimonial data.");
+            }
+
+            var newTestimonial = new Testimonial
+            {
+                UserId = testimonialDto.UserId,
+                Text = testimonialDto.Text,
+                TestimonialSubmit = true,
+            };
+
+            // Save the testimonial to the database
+            _db.Testimonials.Add(newTestimonial);
+            _db.SaveChanges();
+
+            return Ok("Testimonial submitted successfully.");
+        }
+
+
+        [HttpGet("CheckSubscriptionAndPromptTestimonial/{userId}")]
+        public IActionResult CheckSubscriptionAndPromptTestimonial(int userId)
+        {
+            // الحصول على الاشتراك الخاص بالمستخدم
+            var userSubscription = _db.Enrolleds
+                .Where(e => e.UserId == userId)
+                .OrderByDescending(e => e.EndDate)
+                .FirstOrDefault();
+
+            // التحقق إذا كان الاشتراك موجودًا
+            if (userSubscription != null)
+            {
+                // حساب الأيام المتبقية لانتهاء الاشتراك
+                var daysRemaining = (userSubscription.EndDate - DateTime.Now)?.TotalDays ?? 0;
+
+                // إذا كانت الأيام المتبقية أقل من أو تساوي 7 أيام أو الاشتراك منتهي
+                if (daysRemaining <= 7)
+                {
+                    // التحقق إذا كان المستخدم قد كتب رأيًا من قبل
+                    var hasSubmittedTestimonial = _db.Testimonials
+                        .Any(t => t.UserId == userId && t.TestimonialSubmit == true);
+
+                    // إذا لم يكتب رأيًا من قبل
+                    if (!hasSubmittedTestimonial)
+                    {
+                        // يمكن هنا إظهار نافذة الـ testimonial للمستخدم
+                        return Ok(new { showTestimonialPrompt = true });
+                    }
+                }
+            }
+
+            // إذا لم يكن هناك داعٍ لإظهار نافذة الـ testimonial
+            return Ok(new { showTestimonialPrompt = false });
+        }
+
+
 
 
 
