@@ -28,6 +28,8 @@ import { PaypalComponent } from "./newProject8/Lujain/paypal/paypal.component";
 import { ClassDetailsComponent } from "./newProject8/Hadeel/class-details/class-details.component";
 import { AdminDashboardComponent } from "./AdminSide/admin-dashboard/admin-dashboard.component";
 import { ClassAndGymComponent } from "./AdminSide/class-and-gym/class-and-gym.component";
+import { AddGymComponent } from "./AdminSide/add-gym/add-gym.component";
+import { UpdateGymComponent } from "./AdminSide/update-gym/update-gym.component";
 
 
 
@@ -57,9 +59,10 @@ import { ClassAndGymComponent } from "./AdminSide/class-and-gym/class-and-gym.co
     LoginComponent,
     RegisterComponent,
     ClassAndGymComponent,
-    AdminDashboardComponent
-    RegisterComponent,
-    PaypalComponent
+    AdminDashboardComponent,
+    PaypalComponent,
+    UpdateGymComponent,
+    AddGymComponent
   ],
 
   imports: [
@@ -88,7 +91,10 @@ import { ClassAndGymComponent } from "./AdminSide/class-and-gym/class-and-gym.co
 
       {
         path: 'AdminDashBoard', component: AdminDashboardComponent, children: [
-          { path: "addGym", component: ClassAndGymComponent }
+          { path: "ShowGym", component: ClassAndGymComponent },
+          { path: 'addGym', component: AddGymComponent },
+          { path: 'UpdateGym', component: UpdateGymComponent },
+          
       ] },
 
       { path: 'Products', component: ProductComponent },

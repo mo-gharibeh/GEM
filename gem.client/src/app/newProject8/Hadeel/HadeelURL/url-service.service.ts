@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class UrlServiceService {
-  
+
   staticData = "https://localhost:44340/api";
 
   constructor(private http: HttpClient) { }
@@ -36,5 +36,12 @@ export class UrlServiceService {
 
   AddService(data: any): Observable<any> {
     return this.http.post<any>(`${this.staticData}/Gym/AddGym`, data)
-  } 
+  }
+
+  UpdateService(id: any, data: any): Observable<any> {
+    return this.http.put<any>(`${this.staticData}/Gym/EditGym?id=${id}`, data)
+  }
+  remove(id: any): Observable<any> {
+    return this.http.delete<any>(`${this.staticData}/Gym/DeleteGym?id=${id}`)
+  }
 }

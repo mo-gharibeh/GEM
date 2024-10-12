@@ -46,7 +46,7 @@
             <span class="micon bi bi-file-earmark-text"></span><span class="mtext">User </span>
           </a>
           <ul class="submenu">
-            <li><a routerLink="/AdminDashBoard/addGym">ALL Users</a></li>
+            <li><a routerLink="/AdminDashBoard/ShowGym">Gym And Classes</a></li>
 
           </ul>
         </li>
@@ -112,62 +112,5 @@
 </div>
 
 <div class="mobile-menu-overlay"></div>
-<div class="main-container">
-  <div class="pd-ltr-20">
-    <div class="row">
-      <!-- Total Bookings -->
-      <div class="col-md-6 col-sm-12 mb-4">
-        <div class="card-box widget-style3" style="border: 1px solid #ddd; border-radius: 8px; background: white; padding: 20px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
-          <h4 class="text-muted">Total Bookings</h4>
-          <h2 class="text-primary" style="font-size: 48px;">150</h2>
-          <div class="chart-container" style="margin-top: 20px; position: relative;">
-            <canvas id="bookingTrend"></canvas>
-          </div>
-        </div>
-      </div>
-      <!-- Total Revenue -->
-      <div class="col-md-6 col-sm-12 mb-4">
-        <div class="card-box widget-style3" style="border: 1px solid #ddd; border-radius: 8px; background: white; padding: 20px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
-          <h4 class="text-muted">Total Revenue</h4>
-          <div class="chart-container" style="margin-top: 20px; position: relative;">
-            <canvas id="revenueChart"></canvas>
-          </div>
-        </div>
-      </div>
 
-    </div>
-
-    <div class="stats-container" style="display: flex; justify-content: space-between; flex-wrap: wrap; margin-top: 20px;">
-      <div class="stats-card" style="width: calc(25% - 20px);">
-        <div class="icon">
-          <i class="bi bi-calendar-check"></i>
-        </div>
-        <div class="count">120</div>
-        <div class="label">Total Bookings</div>
-      </div>
-      <div class="stats-card" style="width: calc(25% - 20px);">
-        <div class="icon">
-          <i class="bi bi-people"></i>
-        </div>
-        <div class="count">45</div>
-        <div class="label">Vendors</div>
-      </div>
-      <div class="stats-card" style="width: calc(25% - 20px);">
-        <div class="icon">
-          <i class="bi bi-briefcase"></i>
-        </div>
-        <div class="count">85</div>
-        <div class="label">Services</div>
-      </div>
-      <div class="stats-card" style="width: calc(25% - 20px);">
-        <div class="icon">
-          <i class="bi bi-camera"></i>
-        </div>
-        <div class="count">30</div>
-        <div class="label">Photographers</div>
-      </div>
-    </div>
-
-  </div>
-</div>
 <router-outlet></router-outlet>

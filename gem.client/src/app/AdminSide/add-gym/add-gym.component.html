@@ -1,0 +1,21 @@
+
+<p>Add Gym</p>
+
+<div style="width: 500px; margin: 0 auto;">
+  <form #newServiceForm="ngForm" (ngSubmit)="AddNewService(newServiceForm.value)">
+    <div class="form-group">
+      <label>Service Name:</label>
+      <input type="text" class="form-control" name="ServiceName" ngModel required>
+    </div>
+    <div class="form-group">
+      <label>Service Description:</label>
+      <input type="text" class="form-control" name="ServiceDescription" ngModel required>
+    </div>
+    <div class="form-group">
+      <label>Service Image:</label>
+      <input type="file" class="form-control" ngModel required (change)="changeImage($event)">
+    </div>
+    <br />
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
