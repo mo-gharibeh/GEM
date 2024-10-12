@@ -1,0 +1,54 @@
+body {
+  background: rgb(34, 193, 195); /* Gradient background to match fitness theme */
+  background: linear-gradient(135deg, rgba(34, 193, 195, 1) 0%, rgba(253, 187, 45, 1) 100%);
+}
+
+.form-control:focus {
+  box-shadow: none;
+  border-color: #F4511E; /* Bright orange border */
+}
+
+.profile-button {
+  background: rgb(34, 193, 195);
+  box-shadow: none;
+  border: none;
+}
+
+  .profile-button:hover {
+    background: #22c1c3;
+  }
+
+  .profile-button:focus {
+    background: #22c1c3;
+    box-shadow: none;
+  }
+
+  .profile-button:active {
+    background: #22c1c3;
+    box-shadow: none;
+  }
+
+.labels {
+  font-size: 14px;
+  color: #007bff; /* Fitness-style blue */
+}
+
+.container {
+
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h4 {
+  color: #F4511E; /* Bright orange to match fitness energy */
+  font-weight: bold;
+}
+
+.rounded-circle {
+  border: 3px solid #F4511E; /* Profile image frame */
+}
+
+.text-black-50 {
+  color: #495057 !important;
+}

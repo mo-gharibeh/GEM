@@ -44,33 +44,51 @@ namespace GEM.Server.Controller
 
         // PUT: api/Users/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutUser(int id, User user)
+        [HttpPut("edit-profile/{userId}")]
+        public async Task<IActionResult> UpdateUserProfile(int userId, [FromForm] UserProfileUpdateDto userProfileUpdateDto)
         {
-            if (id != user.UserId)
+            if (userProfileUpdateDto == null)
             {
-                return BadRequest();
+                return BadRequest("User profile data is null.");
             }
 
-            _context.Entry(user).State = EntityState.Modified;
-
-            try
+            var user = await _context.Users.FindAsync(userId);
+            if (user == null)
             {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!UserExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                return NotFound($"User with ID {userId} not found.");
             }
 
-            return NoContent();
+            // Update user properties
+            if (!string.IsNullOrEmpty(userProfileUpdateDto.FirstName))
+            {
+                user.FristName = userProfileUpdateDto.FirstName;
+            }
+            if (!string.IsNullOrEmpty(userProfileUpdateDto.LastName))
+            {
+                user.LastName = userProfileUpdateDto.LastName;
+            }
+            if (!string.IsNullOrEmpty(userProfileUpdateDto.PhoneNumber))
+            {
+                user.PhoneNumber = userProfileUpdateDto.PhoneNumber;
+            }
+            if (!string.IsNullOrEmpty(userProfileUpdateDto.Address))
+            {
+                user.Address = userProfileUpdateDto.Address;
+            }
+            if (!string.IsNullOrEmpty(userProfileUpdateDto.Password))
+            {
+                // Consider hashing the password before saving it
+                user.Password = userProfileUpdateDto.Password;
+            }
+            if (!string.IsNullOrEmpty(userProfileUpdateDto.Image))
+            {
+                user.Image = userProfileUpdateDto.Image;
+            }
+
+            _context.Users.Update(user);
+            await _context.SaveChangesAsync();
+
+            return NoContent(); // 204 No Content
         }
 
         // POST: api/Users

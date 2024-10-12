@@ -24,6 +24,7 @@ import { GymDetailComponent } from "./newProject8/Hadeel/gym-detail/gym-detail.c
 import { RegisterComponent } from "./newProject8/Ahmed/register/register.component";
 import { ClasseComponent } from "./newProject8/Hadeel/classe/classe.component";
 import { SubmealDetailsComponent } from "./newProject8/Lujain/submeal-details/submeal-details.component";
+import { EditProfileComponent } from "./newProject8/Bassam/edit-profile/edit-profile.component";
 
 
 
@@ -49,7 +50,6 @@ import { SubmealDetailsComponent } from "./newProject8/Lujain/submeal-details/su
     CartComponent,
     BmiCalculatorComponent,
     LoginComponent,
-
     LoginComponent,
     RegisterComponent
   ],
@@ -77,6 +77,7 @@ import { SubmealDetailsComponent } from "./newProject8/Lujain/submeal-details/su
       { path: 'Products', component: ProductComponent },
 
       { path: 'Profile', component: ProfileComponent },
+      { path: 'edit-profile/:id', component: EditProfileComponent },
 
       { path: 'Cart', component: CartComponent },
 
