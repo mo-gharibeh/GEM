@@ -41,7 +41,17 @@ namespace GEM.Server.Controller
 
                 _db.Users.Add(data);
                 _db.SaveChanges();
-                return Ok(data);
+
+                var newCart = new Cart
+                {
+                    UserId = data.UserId
+                };
+
+                _db.Carts.Add(newCart);
+
+                _db.SaveChanges();
+                return Ok();
+
             }
 
         }

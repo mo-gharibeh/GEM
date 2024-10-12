@@ -39,12 +39,18 @@ export class GymDetailComponent {
 
   AddUserSubScribtion(id: number) {
     debugger
-    // هون لازم اشيك اذا اليوزر داخل و لا لا لحتى اذا كان داخل اسمحله يعمل سبسكرايب اذا لا بعطي الليرت 
-    this.data.classSubId = id
-    this._ser.addUSerSubScription(this.data).subscribe(() => {
-      if (true) {
-        alert("Accept Successfully")
-      }
-    })
+    // هون لازم اشيك اذا اليوزر داخل و لا لا لحتى اذا كان داخل اسمحله يعمل سبسكرايب اذا لا بعطي الليرت
+
+    //if (userid == null) {
+    //  alert("Please Login To First")
+    //}
+    //else {
+      this.data.classSubId = id
+      this._ser.addUSerSubScription(this.data).subscribe(() => {
+        if (true) {
+          alert("Accept Successfully")
+        }
+      })
+    //}
   }
 }
