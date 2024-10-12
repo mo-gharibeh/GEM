@@ -1,0 +1,112 @@
+<!-- Banner Style One Start -->
+<section class="banner-style-one">
+  <div class="parallax" style="background-image: url(assets/images/pattren-3.png);"></div>
+  <div class="container">
+    <div class="row">
+      <div class="banner-details">
+        <h2>Edit Profile</h2>
+        <p>our values and vaulted us to the top of our industry.</p>
+      </div>
+    </div>
+  </div>
+  <div class="breadcrums">
+    <div class="container">
+      <div class="row">
+        <ul>
+          <li>
+            <a href="index.html">
+              <i class="fa-solid fa-house"></i>
+              <p>Home</p>
+            </a>
+          </li>
+          <li class="current">
+            <p>Profile</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container rounded bg-light mt-5 mb-5">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="profile-img card shadow-sm" style="background-color: #f8f9fa; padding: 20px; border-radius: 10px;">
+        <img src="https://www.thimble.com/wp-content/uploads/2022/05/Personal-Trainer-Salary-Guide-1200x800.jpg" alt="Profile Image" class="img-fluid rounded-circle mb-3" style="width: 100%; height: auto;" />
+        <div class="file btn btn-lg btn-primary mt-2" style="width: 100%; text-align: center; border-radius: 5px; cursor: pointer;">
+          Change Photo
+          <input type="file" name="file" style="display: none;" id="file-input" accept="image/*" />
+        </div>
+      </div>
+    </div>
+    <div class="col-md-5 border-right">
+      <div class="p-3 py-5">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h4 class="text-right">Edit Profile Settings</h4>
+        </div>
+        <div class="row mt-2">
+          <div class="col-md-6">
+            <label class="labels">First Name</label>
+            <input type="text" class="form-control" placeholder="First Name" value="John">
+          </div>
+          <div class="col-md-6">
+            <label class="labels">Last Name</label>
+            <input type="text" class="form-control" placeholder="Last Name" value="Doe">
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-md-12">
+            <label class="labels">Mobile Number</label>
+            <input type="text" class="form-control" placeholder="Enter Phone Number" value="+123456789">
+          </div>
+          <div class="col-md-12">
+            <label class="labels">Address</label>
+            <input type="text" class="form-control" placeholder="Enter Address" value="123 Main Street">
+          </div>
+        </div>
+        <div class="mt-5 text-center">
+          <button class="btn btn-primary profile-button" style="background-color: blue; border: none;" type="button">Save Profile</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="p-3 py-5">
+        <h4 class="mb-3">Change Password</h4>
+        <div class="col-md-12">
+          <label class="labels">Old Password</label>
+          <input type="password" class="form-control" placeholder="Enter Old Password">
+        </div>
+        <br>
+        <div class="col-md-12">
+          <label class="labels">New Password</label>
+          <input type="password" class="form-control" placeholder="Enter New Password">
+        </div>
+        <br>
+        <div class="col-md-12">
+          <label class="labels">Confirm Password</label>
+          <input type="password" class="form-control" placeholder="Confirm New Password">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // JavaScript to trigger the file input when the "Change Photo" button is clicked
+  document.querySelector('.file').addEventListener('click', function () {
+    document.getElementById('file-input').click();
+  });
+</script>
