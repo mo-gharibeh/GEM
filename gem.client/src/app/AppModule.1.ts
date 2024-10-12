@@ -55,7 +55,8 @@ import { AdminDashboardComponent } from "./AdminSide/admin-dashboard/admin-dashb
     ClassDetailsComponent,
     LoginComponent,
     RegisterComponent,
-    PaypalComponent
+    PaypalComponent,
+    AdminDashboardComponent
   ],
 
   imports: [
