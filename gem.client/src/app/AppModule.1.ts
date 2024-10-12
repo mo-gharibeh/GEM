@@ -23,11 +23,12 @@ import { LoginComponent } from "./newProject8/Ahmed/login/login.component";
 import { GymDetailComponent } from "./newProject8/Hadeel/gym-detail/gym-detail.component";
 import { RegisterComponent } from "./newProject8/Ahmed/register/register.component";
 import { ClasseComponent } from "./newProject8/Hadeel/classe/classe.component";
-import { SubmealDetailsComponent } from "./newProject8/Lujain/submeal-details/submeal-details.component";
+import { EditProfileComponent } from "./newProject8/Bassam/edit-profile/edit-profile.component";
 import { PaypalComponent } from "./newProject8/Lujain/paypal/paypal.component";
 import { ClassDetailsComponent } from "./newProject8/Hadeel/class-details/class-details.component";
 import { AdminDashboardComponent } from "./AdminSide/admin-dashboard/admin-dashboard.component";
 import { ClassAndGymComponent } from "./AdminSide/class-and-gym/class-and-gym.component";
+import { NutritionComponent } from "./newProject8/Mohammad/nutrition/nutrition.component";
 import { GetallCategoryComponent } from "./AdminSide/getall-category/getall-category.component";
 import { UpdateCategoryComponent } from "./AdminSide/update-category/update-category.component";
 import { AddCategoryComponent } from "./AdminSide/add-category/add-category.component";
@@ -64,13 +65,20 @@ import { UpdateProductsComponent } from "./AdminSide/update-products/update-prod
     RegisterComponent,
     ClassAndGymComponent,
     AdminDashboardComponent,
+    PaypalComponent,
+    AdminDashboardComponent
+    ClassAndGymComponent,
+    AdminDashboardComponent,
+    RegisterComponent,
+    AdminDashboardComponent,
     GetallCategoryComponent,
     UpdateCategoryComponent,
     AddCategoryComponent,
     GetProductsComponent,
     UpdateProductsComponent,
     AddProductsComponent,
-    PaypalComponent
+    PaypalComponent,
+    NutritionComponent
   ],
 
   imports: [
@@ -92,6 +100,8 @@ import { UpdateProductsComponent } from "./AdminSide/update-products/update-prod
       { path: 'Gyms', component: GymComponent },
 
       { path: 'GymDetails/:id', component: GymDetailComponent },
+      { path: 'classDetails/:id', component: ClassDetailsComponent },
+
 
       { path: 'Class', component: ClasseComponent },
 
@@ -112,6 +122,7 @@ import { UpdateProductsComponent } from "./AdminSide/update-products/update-prod
       { path: 'Products', component: ProductComponent },
 
       { path: 'Profile', component: ProfileComponent },
+      { path: 'edit-profile/:id', component: EditProfileComponent },
 
       { path: 'Cart', component: CartComponent },
 
@@ -123,7 +134,7 @@ import { UpdateProductsComponent } from "./AdminSide/update-products/update-prod
 
       { path: 'Contact', component: ContactComponent },
 
-      { path: 'subDetails/:id', component: SubmealDetailsComponent },
+      { path: 'nutrition/:id', component: NutritionComponent },
 
       { path: 'bmi', component: BmiCalculatorComponent },
 

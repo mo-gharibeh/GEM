@@ -8,21 +8,24 @@ import { ActivatedRoute } from '@angular/router';
   styleUrl: './class-details.component.css'
 })
 export class ClassDetailsComponent {
+  
   parameter: any
   array: any
   ngOnInit() {
+    debugger
     this.parameter = this._rout.snapshot.paramMap.get("id");
     this.getClassById(this.parameter)
   }
   constructor(private _ser: UrlServiceService, private _rout: ActivatedRoute) { }
 
-  Class: any
+  ClassDetails: any
 
   getClassById(id: any) {
+    debugger
     this._ser.getClassById(id).subscribe((data) => {
       debugger
-      this.Class = data
-      console.log(this.Class)
+      this.ClassDetails = data
+      console.log(this.ClassDetails)
     })
   }
 }
