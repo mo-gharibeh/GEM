@@ -16,7 +16,7 @@ namespace GEM.Server.Controller
         }
 
         [HttpGet("ShowAllGyms")]
-        public IActionResult GetAllGyms() 
+        public IActionResult GetAllGyms()
         {
             var gym = _db.ClassAndGyms.Where(x => x.Flag == true).ToList();
             return Ok(gym);

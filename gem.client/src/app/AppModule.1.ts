@@ -25,6 +25,7 @@ import { RegisterComponent } from "./newProject8/Ahmed/register/register.compone
 import { ClasseComponent } from "./newProject8/Hadeel/classe/classe.component";
 import { SubmealDetailsComponent } from "./newProject8/Lujain/submeal-details/submeal-details.component";
 import { ClassDetailsComponent } from "./newProject8/Hadeel/class-details/class-details.component";
+import { AdminDashboardComponent } from "./AdminSide/admin-dashboard/admin-dashboard.component";
 
 
 
@@ -78,6 +79,8 @@ import { ClassDetailsComponent } from "./newProject8/Hadeel/class-details/class-
       { path: 'Class', component: ClasseComponent },
 
       { path: 'ClassDetails/:id', component: ClassDetailsComponent },
+
+      { path: 'AdminDashBoard', component: AdminDashboardComponent },
 
       { path: 'Products', component: ProductComponent },
 
