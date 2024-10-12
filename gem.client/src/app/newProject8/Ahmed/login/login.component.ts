@@ -16,19 +16,22 @@ export class LoginComponent {
 
   }
 
+
   loginNewUser(data: any) {
-    debugger
-    var form = new FormData();
+    const form = new FormData();
     for (let key in data) {
-      form.append(key, data[key])
+      form.append(key, data[key]);
     }
-    this._ser.loginUser(form).subscribe(() => {
-      alert("user logged successfully")
+
+    this._ser.loginUser(form).subscribe((response) => {
+      const userId = response.userId; 
+      localStorage.setItem('userId', userId);
+      alert("User logged in successfully");
       this._router.navigate(['']);
     },
       (error) => {
-        alert(error.error)
-      }
-    )
+        alert(error.error);
+      });
   }
+
 }
