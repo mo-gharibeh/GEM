@@ -19,8 +19,7 @@
     <Folder Include="src\app\newProject8\dima\dimaUrl\" />
     <Folder Include="src\app\newProject8\Mohammad\MohammadURL\" />
     <Folder Include="src\app\newProject8\yousef\yousefurl\" />
-    <Folder Include="src\assets\" />
     <Folder Include="src\app\newProject8\NewFolder\" />
-    <Folder Include="src\assets\" />
+    <Folder Include="src\assets\Admin\" />
   </ItemGroup>
 </Project>

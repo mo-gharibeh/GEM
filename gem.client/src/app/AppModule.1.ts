@@ -26,6 +26,7 @@ import { ClasseComponent } from "./newProject8/Hadeel/classe/classe.component";
 import { SubmealDetailsComponent } from "./newProject8/Lujain/submeal-details/submeal-details.component";
 import { ClassDetailsComponent } from "./newProject8/Hadeel/class-details/class-details.component";
 import { AdminDashboardComponent } from "./AdminSide/admin-dashboard/admin-dashboard.component";
+import { ClassAndGymComponent } from "./AdminSide/class-and-gym/class-and-gym.component";
 
 
 
@@ -53,7 +54,9 @@ import { AdminDashboardComponent } from "./AdminSide/admin-dashboard/admin-dashb
     LoginComponent,
     ClassDetailsComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ClassAndGymComponent,
+    AdminDashboardComponent
   ],
 
   imports: [
@@ -80,7 +83,10 @@ import { AdminDashboardComponent } from "./AdminSide/admin-dashboard/admin-dashb
 
       { path: 'ClassDetails/:id', component: ClassDetailsComponent },
 
-      { path: 'AdminDashBoard', component: AdminDashboardComponent },
+      {
+        path: 'AdminDashBoard', component: AdminDashboardComponent, children: [
+          { path: "addGym", component: ClassAndGymComponent }
+      ] },
 
       { path: 'Products', component: ProductComponent },
 
