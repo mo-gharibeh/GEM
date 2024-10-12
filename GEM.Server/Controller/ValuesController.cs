@@ -12,7 +12,7 @@ namespace GEM.Server.Controller
 
         public ValuesController(MyDbContext db)
         {
-            _db = db;   
+            _db = db;
         }
 
         [HttpGet]

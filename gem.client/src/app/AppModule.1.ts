@@ -24,6 +24,7 @@ import { GymDetailComponent } from "./newProject8/Hadeel/gym-detail/gym-detail.c
 import { RegisterComponent } from "./newProject8/Ahmed/register/register.component";
 import { ClasseComponent } from "./newProject8/Hadeel/classe/classe.component";
 import { SubmealDetailsComponent } from "./newProject8/Lujain/submeal-details/submeal-details.component";
+import { PaypalComponent } from "./newProject8/Lujain/paypal/paypal.component";
 import { ClassDetailsComponent } from "./newProject8/Hadeel/class-details/class-details.component";
 import { AdminDashboardComponent } from "./AdminSide/admin-dashboard/admin-dashboard.component";
 import { ClassAndGymComponent } from "./AdminSide/class-and-gym/class-and-gym.component";
@@ -57,6 +58,8 @@ import { ClassAndGymComponent } from "./AdminSide/class-and-gym/class-and-gym.co
     RegisterComponent,
     ClassAndGymComponent,
     AdminDashboardComponent
+    RegisterComponent,
+    PaypalComponent
   ],
 
   imports: [
@@ -108,7 +111,8 @@ import { ClassAndGymComponent } from "./AdminSide/class-and-gym/class-and-gym.co
 
       { path: 'Login', component: LoginComponent },
 
-      { path: 'Register', component: RegisterComponent}
+      { path: 'Register', component: RegisterComponent },
+      { path: 'paypal', component: PaypalComponent },
     ])
         
     ],
