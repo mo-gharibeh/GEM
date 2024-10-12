@@ -18,11 +18,12 @@ namespace GEM.Server.Controller
 
         [HttpGet("GetMessage")]
 
-        public IActionResult GetMessage() { 
+        public IActionResult GetMessage()
+        {
 
             var message = _db.ContactUs.ToList();
-        
-        return Ok(message);
+
+            return Ok(message);
         }
 
 
@@ -32,7 +33,7 @@ namespace GEM.Server.Controller
         [HttpPost("PostMessage")]
         public IActionResult PostMessage([FromForm] ContactUsDto contactUsDto)
         {
-         
+
 
             var contact = new ContactU
             {
@@ -40,8 +41,8 @@ namespace GEM.Server.Controller
                 Email = contactUsDto.Email,
                 MessageContent = contactUsDto.MessageContent,
                 Subject = contactUsDto.Subject,
-                SentDate = DateTime.Now,  
-                                       
+                SentDate = DateTime.Now,
+
             };
 
             _db.ContactUs.Add(contact);
