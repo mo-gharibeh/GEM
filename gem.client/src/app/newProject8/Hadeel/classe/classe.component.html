@@ -2,20 +2,22 @@
   <div class="prj-post">
     <div class="container">
 
-
-      <div class="row align-items-center">
+      <!--rama-->
+      <div class="row align-items-center" *ngFor="let item of ClassArray">
         <div class="col-lg-6">
           <div class="proj-data">
-            <h3><a href="project-detail.html">Fitness Ball</a></h3>
-            <p>Lorem ipsum dolor sit amet, consec tetur adipi scing elit. Quisque eget  amet, consec tetu augue ante, sed bibend umigula.</p>
+            <h3><a routerLink="/classDetails/{{item.id}}">{{item.name}}</a></h3>
+            <p>
+              {{item.description}}
+            </p>
             <div class="loc-date">
               <div>
                 <span>LOCATION:</span>
                 <span>United State</span>
               </div>
-              <div>
+              <div *ngFor="let time of item.classTimes">
                 <span>TIME:</span>
-                <span>Monday: 8pm - 11pm</span>
+                <span>{{time.startTime}} - {{time.endTime}}</span>
               </div>
             </div>
           </div>
@@ -28,11 +30,8 @@
           </div>
         </div>
       </div>
-
-
     </div>
   </div>
-
   <div class="container">
     <div class="row">
       <div class="gym-pagination">
