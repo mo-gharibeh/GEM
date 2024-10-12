@@ -13,7 +13,7 @@
       <div class="row">
         <ul>
           <li>
-            <a href="index.html">
+            <a >
               <i class="fa-solid fa-house"></i>
               <p>Home</p>
             </a>
@@ -36,14 +36,14 @@
             <figure>
               <img src={{item.image}} alt="blog-img-2">
             </figure>
-            <a href="blog-detail.html">
+            <a routerLink="/subDetails/{{item.subMealPlanId}}">
               <i class="fa-solid fa-angles-right"></i>
             </a>
           </div>
           <div class="blog-data">
             <span class="blog-date">{{item.preparationTime}} minuts</span>
             <h2>
-              <a href="blog-detail.html">{{item.title}}</a>
+              <a >{{item.title}}</a>
             </h2>
 
           </div>
@@ -52,5 +52,7 @@
     </div>
   </div>
 </section>
+
+
 
 

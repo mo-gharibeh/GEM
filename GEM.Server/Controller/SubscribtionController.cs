@@ -33,7 +33,7 @@ namespace GEM.Server.Controller
 
             var subscription = new Enrolled
             {
-                UserId = subscriptiongym.UserId,
+                UserId = 1,
                 ClassSubId = subscriptiongym.ClassSubId,
                 StartDate = startDate,
                 EndDate = endDate,

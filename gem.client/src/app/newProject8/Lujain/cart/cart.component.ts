@@ -8,7 +8,9 @@ import { LujainURLService } from '../LujainURL/lujain-url.service';
 })
 export class CartComponent {
   Array: any[] = []; 
-  shippingCost: number = 5; 
+  shippingCost: number = 5;
+  userId: number = 2; // Use the logged-in user's ID, replace with dynamic value later
+  cartId: number = 2;
 
   constructor(private _ser: LujainURLService) { }
 
@@ -36,18 +38,23 @@ export class CartComponent {
     return price * quantity;
   }
 
-  increment(id: any) {
-    const item = this.Array.find(item => item.productId === id);
+    // Increment the quantity and update it in the database
+  increment(cartItemId: any) {
+    console.log("in cartItemId:", cartItemId);  // Debugging
+
+    const item = this.Array.find(item => item.productId == cartItemId);
     if (item) {
-      this._ser.increaseQuantity(id);
-      
+      this._ser.increaseQuantity(this.userId, cartItemId);
     }
   }
 
-  decrement(id: any) {
-    const item = this.Array.find(item => item.productId === id);
+  // Decrement the quantity and update it in the database
+  decrement(cartItemId: any) {
+    console.log("Decrementing cartItemId:", cartItemId);  // Debugging
+
+    const item = this.Array.find(item => item.productId == cartItemId);
     if (item && item.quantity > 1) {
-      this._ser.decreaseQuantity(id);
+      this._ser.decreaseQuantity(this.userId, cartItemId);
     } else if (item && item.quantity <= 1) {
       alert("The quantity cannot be less than 1.");
     }

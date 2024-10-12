@@ -7,7 +7,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 })
 export class LujainURLService {
 
-  staticData = "https://localhost:44340/api";
+  staticData = "https://localhost:7031/api";
 
   constructor(private http: HttpClient) { }
 
@@ -49,9 +49,8 @@ export class LujainURLService {
   addCartItem(data: any): Observable<any> {
     return this.http.post<any>(`${this.staticData}/Cart/Cart`, data)
   }
-
   editCartItem(userId: any, cartItemId: any, quantity: number): Observable<any> {
-    return this.http.put<any>(`${this.staticData}/Cart/Cart/${userId}/${cartItemId}`, { quantity });
+    return this.http.put<any>(`${this.staticData}/Cart/Cart/${userId}/${cartItemId}`, quantity);
   }
 
   deleteCartItem(userId: any, cartItemId: any): Observable<any> {
@@ -134,29 +133,50 @@ export class LujainURLService {
 
 
 
-
-
-  increaseQuantity(id: any) {
-    const product = this.cartItem.find((x: any) => x.productId == id);
+  // Method to increase the quantity and update it in the database
+  increaseQuantity(userId: number, cartItemId: number) {
+    const product = this.cartItem.find((x: any) => x.productId == cartItemId);
     if (product) {
       product.quantity += 1;
       this.cartITemSubject.next(this.cartItem);
       localStorage.setItem('cartItems', JSON.stringify(this.cartItem));
+
+      // Call the API to update the database
+      this.editCartItem(userId, cartItemId, product.quantity).subscribe(
+        (response) => {
+          console.log("Quantity increased successfully:", response);
+        },
+        (error) => {
+          console.error("Failed to increase quantity:", error);
+        }
+      );
     }
   }
 
-  decreaseQuantity(id: any) {
-    const product = this.cartItem.find((x: any) => x.productId == id);
-    if (product) {
-      if (product.quantity > 1) {
-        product.quantity -= 1;
-        this.cartITemSubject.next(this.cartItem);
-        localStorage.setItem('cartItems', JSON.stringify(this.cartItem));
-      } else {
-        alert("The quantity cannot be less than 1.");
-      }
+  // Method to decrease the quantity and update it in the database
+  decreaseQuantity(userId: number, cartItemId: number) {
+    const product = this.cartItem.find((x: any) => x.productId == cartItemId);
+    if (product && product.quantity > 1) {
+      product.quantity -= 1;
+      this.cartITemSubject.next(this.cartItem);
+      localStorage.setItem('cartItems', JSON.stringify(this.cartItem));
+
+      // Call the API to update the database
+      this.editCartItem(userId, cartItemId, product.quantity).subscribe(
+        (response) => {
+          console.log("Quantity decreased successfully:", response);
+        },
+        (error) => {
+          console.error("Failed to decrease quantity:", error);
+        }
+      );
+    } else if (product.quantity === 1) {
+      alert("The quantity cannot be less than 1.");
     }
   }
+
+  // API call to update the quantity in the database
+ 
 
   removeItem(id: any) {
     this.cartItem = this.cartItem.filter((item: any) => item.productId !== id);
