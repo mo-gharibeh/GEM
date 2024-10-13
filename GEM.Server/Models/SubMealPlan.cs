@@ -19,6 +19,12 @@ public partial class SubMealPlan
 
     public int? MealPlanId { get; set; }
 
+    public string? FirstStepes { get; set; }
+
+    public string? SecondStepes { get; set; }
+
+    public string? FinalStepes { get; set; }
+
     public virtual MealPlan? MealPlan { get; set; }
 
     public virtual ICollection<NutritionFact> NutritionFacts { get; set; } = new List<NutritionFact>();

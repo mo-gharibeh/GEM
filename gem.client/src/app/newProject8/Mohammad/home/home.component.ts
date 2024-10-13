@@ -10,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 export class HomeComponent {
   productArray: any;
   testimonialArray: any;
-  showTestimonialBox: boolean = false; // متغير لعرض النافذة المنبثقة
+  showTestimonialBox: boolean = true; // متغير لعرض النافذة المنبثقة
   testimonialText: string = ''; // Variable to hold the testimonial text
 
 
@@ -19,7 +19,7 @@ export class HomeComponent {
     this.get4Product();
     this.getTestimonials();
 
-    localStorage.setItem('userId', "1")
+    //localStorage.getItem('userId')
 
     const userId = parseInt(localStorage.getItem('userId') ?? '0', 10);
     this.checkSubscriptionAndPromptTestimonial(userId);
@@ -29,7 +29,7 @@ export class HomeComponent {
   constructor(private _ser: UrlService, private _route: ActivatedRoute) {
 
   }
-
+  
   get4Product() {
     this._ser.getTopProduct().subscribe((data) => {
       this.productArray = data;

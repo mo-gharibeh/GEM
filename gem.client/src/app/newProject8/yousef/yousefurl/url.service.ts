@@ -14,6 +14,10 @@ export class UrlService {
   
   postContactForm(contactFormData: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/ContactController1/PostMessage`, contactFormData);
-    0
+    
   }
+
+  
+  
+
 }

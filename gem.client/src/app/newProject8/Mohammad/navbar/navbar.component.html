@@ -40,7 +40,7 @@
                 <div class="nav-bar">
                   <ul>
                     <li>
-                      <a routerLink="">Home</a>
+                      <a href="#">Home</a>
 
                     </li>
 
@@ -125,6 +125,9 @@
                       <a routerLink="/Login">Login & Register</a>
                     </li>
                     <li>
+                      <a routerLink="/Login">Logout</a>
+                    </li>
+                    <li>
                       <a routerLink="/Cart" class="cart-icon">
                         <i class="fa-solid fa-cart-shopping"></i>
                       </a>
@@ -172,7 +175,7 @@
             <a routerLink="">Home</a>
 
           </li>
-         
+
           <li>
             <a routerLink="/Products">Shop</a>
 
@@ -204,6 +207,9 @@
                 </ul>
               </li>
               <li><a routerLink="/Login">Login & Register</a></li>
+              <li>
+                <a routerLink="/Login">Logout</a>
+              </li>
             </ul>
           </li>
           <li class="menu-item-has-children">
@@ -225,9 +231,13 @@
             <a routerLink="/Profile">Profile</a>
           </li>
           <li>
-            <a routerLink="/Login">Login & Register</a>
+            <a routerLink="/Login" *ngIf="email == 'null'">Login & Register</a>
           </li>
           <li>
+            <a (click)="logout()" *ngIf="email != 'null'" >Logout</a>
+          </li>
+          <li>
+           
             <a routerLink="/Cart" class="cart-icon">
               <i class="fa-solid fa-cart-shopping"></i>
             </a>
