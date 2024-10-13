@@ -5,18 +5,19 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class UrlService {
+export class UrlAdminService {
 
   private apiUrl = 'https://localhost:44340/api';
 
   constructor(private http: HttpClient) { }
 
-  
-  postContactForm(contactFormData: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/ContactController1/PostMessage`, contactFormData);
-    
+
+  getComents(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/ContactController1/GetMessage`);
   }
-  
-  
+
+  //getComentsById(id: number): Observable<any> {
+  //  return this.http.get<any>(`${this.apiUrl}/SubService/${id}`);
+  //}
 
 }
