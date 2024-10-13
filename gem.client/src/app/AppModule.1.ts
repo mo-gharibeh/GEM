@@ -35,6 +35,8 @@ import { AddCategoryComponent } from "./AdminSide/add-category/add-category.comp
 import { GetProductsComponent } from "./AdminSide/get-products/get-products.component";
 import { AddProductsComponent } from "./AdminSide/add-products/add-products.component";
 import { UpdateProductsComponent } from "./AdminSide/update-products/update-products.component";
+import { AddGymComponent } from "./AdminSide/add-gym/add-gym.component";
+import { UpdateGymComponent } from "./AdminSide/update-gym/update-gym.component";
 
 
 
@@ -69,7 +71,7 @@ import { UpdateProductsComponent } from "./AdminSide/update-products/update-prod
     AdminDashboardComponent,
     PaypalComponent,
     AddGymComponent,
-    UpdateGymComponent
+    UpdateGymComponent,
     AdminDashboardComponent,
     
     AdminDashboardComponent,
