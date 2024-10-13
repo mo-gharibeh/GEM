@@ -37,6 +37,7 @@ import { AddProductsComponent } from "./AdminSide/add-products/add-products.comp
 import { UpdateProductsComponent } from "./AdminSide/update-products/update-products.component";
 import { AddGymComponent } from "./AdminSide/add-gym/add-gym.component";
 import { UpdateGymComponent } from "./AdminSide/update-gym/update-gym.component";
+import { PaymentComponent } from "./newProject8/Hadeel/payment-cridet-card/payment-cridet-card.component";
 
 
 
@@ -73,7 +74,7 @@ import { UpdateGymComponent } from "./AdminSide/update-gym/update-gym.component"
     AddGymComponent,
     UpdateGymComponent,
     AdminDashboardComponent,
-    
+    PaymentComponent,
     AdminDashboardComponent,
     RegisterComponent,
     AdminDashboardComponent,
@@ -115,13 +116,18 @@ import { UpdateGymComponent } from "./AdminSide/update-gym/update-gym.component"
 
       {
         path: 'AdminDashBoard', component: AdminDashboardComponent, children: [
-          { path: "addGym", component: ClassAndGymComponent }
+          { path: "showGym", component: ClassAndGymComponent },
+          { path: 'addGym', component: AddGymComponent },
+          { path: 'updateGym/:id', component: UpdateGymComponent },
       ] },
+
 
       { path: 'Products', component: ProductComponent },
 
       { path: 'Profile', component: ProfileComponent },
       { path: 'edit-profile/:id', component: EditProfileComponent },
+
+      { path: 'PayHAdeel', component: PaymentComponent },
 
       { path: 'Cart', component: CartComponent },
 

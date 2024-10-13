@@ -1,6 +1,7 @@
 using GEM.Server.Models;
 using GEM.Server.Service;
 using Microsoft.EntityFrameworkCore;
+using GEM.Server.DTOs;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,10 +24,12 @@ builder.Services.AddCors(options =>
     });
 });
 
+builder.Services.AddScoped<PayPalPaymentService>();
+builder.Services.AddScoped<PaymentServiceH>();
 
 
 
-// Configure PayPal settings from appsettings.json
+//Configure PayPal settings from appsettings.json
 builder.Services.AddSingleton(sp =>
 {
     var config = new Dictionary<string, string>
@@ -36,13 +39,21 @@ builder.Services.AddSingleton(sp =>
         { "mode", builder.Configuration["PayPal:Mode"] } // sandbox or live
     };
 
-    return new PayPalConfigManager(config);
+return new PayPalConfigManager(config);
 });
 
-// Register PayPalPaymentService
+//Register PayPalPaymentService
 builder.Services.AddTransient<PayPalPaymentService>();
 
+builder.Services.AddTransient<EmailService>();
 
+
+builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
+
+
+builder.Configuration
+    .SetBasePath(Directory.GetCurrentDirectory())
+    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
 
 
 var app = builder.Build();
@@ -56,6 +67,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+var environment = builder.Environment.EnvironmentName;
 
 app.UseHttpsRedirection();
 
