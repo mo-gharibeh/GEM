@@ -5,6 +5,7 @@ import { RouterModule } from "@angular/router";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { ProfileComponent } from "./newProject8/Bassam/profile/profile.component";
+import { FormsModule } from '@angular/forms';  // <-- Import FormsModule
 
 import { GymComponent } from "./newProject8/Hadeel/gym/gym.component";
 import { BmiCalculatorComponent } from "./newProject8/Lujain/bmi-calculator/bmi-calculator.component";
@@ -17,7 +18,6 @@ import { HomeComponent } from "./newProject8/Mohammad/home/home.component";
 import { NavbarComponent } from "./newProject8/Mohammad/navbar/navbar.component";
 import { AboutComponent } from "./newProject8/yousef/about/about.component";
 import { ContactComponent } from "./newProject8/yousef/contact/contact.component";
-import { FormsModule } from '@angular/forms';  // <-- Import FormsModule
 import { CartComponent } from "./newProject8/Lujain/cart/cart.component";
 import { LoginComponent } from "./newProject8/Ahmed/login/login.component";
 import { GymDetailComponent } from "./newProject8/Hadeel/gym-detail/gym-detail.component";
@@ -63,9 +63,13 @@ import { UpdateProductsComponent } from "./AdminSide/update-products/update-prod
     ClassDetailsComponent,
     LoginComponent,
     RegisterComponent,
+    PaypalComponent,
+    AdminDashboardComponent,
     ClassAndGymComponent,
     AdminDashboardComponent,
     PaypalComponent,
+    AddGymComponent,
+    UpdateGymComponent
     AdminDashboardComponent,
     
     AdminDashboardComponent,
@@ -82,11 +86,11 @@ import { UpdateProductsComponent } from "./AdminSide/update-products/update-prod
   ],
 
   imports: [
-
+    FormsModule,
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    FormsModule,
+    
     RouterModule.forRoot([
 
       { path: '', component: HomeComponent, pathMatch: 'full' },
@@ -109,14 +113,7 @@ import { UpdateProductsComponent } from "./AdminSide/update-products/update-prod
 
       {
         path: 'AdminDashBoard', component: AdminDashboardComponent, children: [
-          { path: "addGym", component: ClassAndGymComponent },
-          { path: "GetCategories", component: GetallCategoryComponent },
-          { path: "UpdateCategory/:id", component: UpdateCategoryComponent },
-          { path: "AddCategory", component: AddCategoryComponent },
-          { path: "GetProducts", component: GetProductsComponent },
-          { path: "UpdateProducts/:id", component: UpdateProductsComponent },
-          { path: "AddProducts", component: AddProductsComponent },
-
+          { path: "addGym", component: ClassAndGymComponent }
       ] },
 
       { path: 'Products', component: ProductComponent },
