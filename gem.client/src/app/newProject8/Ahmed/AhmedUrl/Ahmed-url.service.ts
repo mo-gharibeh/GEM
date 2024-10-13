@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +9,11 @@ export class UrlService {
   
   constructor(private http: HttpClient) { }
   staticData = "https://localhost:44340/api";
+
+
+
+  //email: BehaviorSubject<string> = new BehaviorSubject<string>("")
+  //emailaddress = this.email.asObservable();
 
     addUserRegistration(data: any): Observable <any> {
       return this.http.post<any>(`${this.staticData }/Ahmed/Register`, data)
