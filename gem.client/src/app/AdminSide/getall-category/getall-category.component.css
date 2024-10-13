@@ -1,0 +1,13 @@
+.container {
+  max-width: 80%; /* Control the width of the container */
+}
+
+h2 {
+  color: #f8f9fa; /* Light text color */
+  font-weight: bold;
+}
+
+.table {
+  border-radius: 10px; 
+  overflow: hidden;
+}

@@ -21,9 +21,27 @@ namespace GEM.Server.Controller
         [HttpGet("Cart/{id}")]
         public IActionResult Cart(int id)
         {
-            var cart = _db.CartItems.Where(a => a.Cart.UserId == id);
+            var cart = _db.CartItems
+                .Join(_db.Products,
+                    c => c.ProductId,
+                    p => p.ProductId,
+                    (c, p) => new
+                    {
+                        CartItemId = c.CartItemId,
+                        UserId = c.Cart.UserId,
+                        ProductId = c.ProductId,
+                        Quantity = c.Quantity,
+                        ProductName = p.ProductName,
+                        Image = p.Image,
+                        Description = p.Description,
+                        Price = p.Price
+                    })
+                .Where(cartItem => cartItem.UserId == id)
+                .ToList();
+
             return Ok(cart);
         }
+
 
         [HttpPost("Cart/{userId}")]
         public IActionResult PostCart(int userId, [FromBody] CartDTORequist cart)
@@ -69,12 +87,12 @@ namespace GEM.Server.Controller
 
             _db.SaveChanges();
 
-            return Ok("Item added to cart successfully.");
+            return Ok(new { message = "Item added successfully." });
         }
 
 
         [HttpPut("Cart/{userId}/{cartItemId}")]
-        public IActionResult UpdateCartItem(int userId, int cartItemId, [FromBody] int quantityChange)
+        public IActionResult UpdateCartItem(int userId, int cartItemId, [FromBody] int newQuantity)
         {
             var existingCartItem = _db.CartItems
                 .Include(c => c.Cart)
@@ -85,18 +103,17 @@ namespace GEM.Server.Controller
                 return NotFound("Cart item not found.");
             }
 
-            if (existingCartItem.Quantity + quantityChange <= 0)
+            if (newQuantity <= 0)
             {
                 return BadRequest("Quantity cannot be less than 1.");
             }
 
-            existingCartItem.Quantity += quantityChange;
+            existingCartItem.Quantity = newQuantity;
 
             _db.Entry(existingCartItem).State = EntityState.Modified;
-
             _db.SaveChanges();
 
-            return Ok("Cart item updated successfully.");
+            return Ok(new { message = "Cart item updated successfully." });
         }
 
 
@@ -115,7 +132,7 @@ namespace GEM.Server.Controller
 
             _db.SaveChanges();
 
-            return Ok("Cart item deleted successfully.");
+            return Ok(new { message = "Cart item deleted successfully." });
         }
 
     }
