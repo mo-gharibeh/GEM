@@ -1,0 +1,66 @@
+<main>
+  <div class="container mt-4" style="margin-left:260px;">
+    <h2 class="text-center mb-4">Meal Plan Management</h2>
+
+    <button class="btn btn-success btn-sm mb-3" (click)="openAddMealModal()">Add New Meal</button>
+
+    <table class="table table-light table-hover table-bordered">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Title</th>
+          <th scope="col">Image</th>
+          <th scope="col">Description</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let meal of mealPlans; let i = index">
+          <th scope="row">{{ meal.mealPlanId }}</th>
+          <td>{{ meal.title }}</td>
+          <td>
+            <img [src]="'https://localhost:7031/api/MohammadController1/getImages/' + meal.image"
+                 alt="Meal Image"
+                 width="100"
+                 height="100"
+                 class="rounded">
+          </td>
+          <td>{{ meal.description }}</td>
+          <td>
+            <button class="btn btn-outline-primary btn-sm" (click)="openEditMealModal(meal)">Edit</button>
+            <button class="btn btn-outline-danger btn-sm" (click)="deleteMeal(meal.mealPlanId)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Modal for Adding/Editing Meal -->
+  <div *ngIf="showModal" class="modal fade show" tabindex="-1" style="display: block; background: rgba(0, 0, 0, 0.5);">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">{{ isEditing ? 'Edit Meal' : 'Add Meal' }}</h5>
+          <button type="button" class="close" (click)="closeModal()">×</button>
+        </div>
+        <div class="modal-body">
+          <form (ngSubmit)="submitMealForm()">
+            <div class="form-group">
+              <label for="title">Title</label>
+              <input type="text" class="form-control" [(ngModel)]="currentMeal.title" name="title" required>
+            </div>
+            <div class="form-group">
+              <label for="description">Description</label>
+              <textarea class="form-control" [(ngModel)]="currentMeal.description" name="description" required></textarea>
+            </div>
+            <div class="form-group">
+              <label for="image">Image</label>
+              <input type="file" class="form-control-file" (change)="onFileChange($event)">
+            </div>
+            <button type="submit" class="btn btn-primary">{{ isEditing ? 'Update' : 'Add' }}</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
