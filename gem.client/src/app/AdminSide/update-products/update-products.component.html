@@ -34,7 +34,7 @@
     <!-- Main Image Field -->
     <div class="form-group" style="margin-bottom: 15px;">
       <label for="Image" class="form-label" style="display: block; font-weight: bold; margin-bottom: 5px;">Main Image</label>
-      <input type="file" id="Image"  name="image" (change)="changeImage($event)" class="form-control" required="required" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+      <input type="file" id="Image" ngModel  name="Image" (change)="changeImage($event)" class="form-control" required="required" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
       <span class="text-danger" id="Image-error" style="color: red; font-size: 0.875em;"></span>
     </div>
 
