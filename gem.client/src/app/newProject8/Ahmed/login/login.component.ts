@@ -24,14 +24,26 @@ export class LoginComponent {
     }
 
     this._ser.loginUser(form).subscribe((response) => {
-      const userId = response.userId; 
+      const userId = response.userId;
       localStorage.setItem('userId', userId);
-      alert("User logged in successfully");
-      this._router.navigate(['']);
-    },
-      (error) => {
-        alert(error.error);
-      });
+        alert("User logged in successfully");
+        this._router.navigate(['']);
+      },
+        (error) => {
+          alert(error.error);
+        });
+    //  this._ser['email'].next(response.email);
+    //  if (response.email == 'admin@gmail.com') {
+
+    //    this._router.navigate(['Dashboard'])
+    //  }
+    //  else {
+    //    this._router.navigate(['Services'])
+    //  }
+    //},
+
+    //  (error) => { alert(error.error) }
+    //)
   }
 
 }
