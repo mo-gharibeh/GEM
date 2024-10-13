@@ -1,0 +1,43 @@
+<main>
+  <!-- Bootstrap container to center and structure content -->
+  <div class="container mt-4" style="margin-left:260px">
+    <!-- Optional heading for the section -->
+    <h2 class="text-center mb-4">Our Services</h2>
+
+    <button class="btn btn-primary btn-sm" [routerLink]="['/AdminDashBoard/AddProducts']">Add new Products</button>
+
+    <!-- Styled Bootstrap table -->
+    <table class="table table-light table-hover table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">id</th>
+          <th scope="col">product name</th>
+          <th scope="col">product image</th>
+          <th scope="col">product description</th>
+          <th scope="col">product price</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Angular *ngFor directive to iterate over the array -->
+        <tr *ngFor="let item of Array; let i = index">
+          <!-- Display row number dynamically using index -->
+          <th scope="row">{{item.productId}}</th>
+          <td>{{ item.productName }}</td>
+          <td><img src="https://localhost:44340/api/Products/getImage/{{item.image}}" width="150" height="150" /></td>
+          <td>{{ item.description }}</td>
+          <td>{{ item.price }} JOD</td>
+          <td>
+            <!-- Bootstrap buttons for Edit and Delete -->
+            <button class="btn btn-outline-primary btn-sm" [routerLink]="['/AdminDashBoard/UpdateProducts', item.productId]">
+              Edit
+            </button>
+            <button class="btn btn-outline-danger btn-sm" (click)="deleteProducts(item.productId)">
+              Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</main>
