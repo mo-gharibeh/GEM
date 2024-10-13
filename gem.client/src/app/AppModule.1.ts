@@ -71,16 +71,16 @@ import { SubscriptionsComponent } from "./newProject8/Bassam/subscriptions/subsc
     LoginComponent,
     RegisterComponent,
     PaypalComponent,
-    AdminDashboardComponent,
+    
     ClassAndGymComponent,
-    AdminDashboardComponent,
+    
     PaypalComponent,
 
     AddGymComponent,
     UpdateGymComponent,
-    AdminDashboardComponent,
     
-    AdminDashboardComponent,
+    
+    
     RegisterComponent,
     AdminDashboardComponent,
     GetallCategoryComponent,
@@ -91,10 +91,8 @@ import { SubscriptionsComponent } from "./newProject8/Bassam/subscriptions/subsc
     AddProductsComponent,
     PaypalComponent,
     NutritionComponent,
-    ContactAdminComponent
-    NutritionComponent,
-    NutritionComponent
-    NutritionComponent,
+    ContactAdminComponent,
+    
     RegisterComponent,
     EditProfileComponent
   ],
