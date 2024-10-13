@@ -5,6 +5,7 @@ import { RouterModule } from "@angular/router";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { ProfileComponent } from "./newProject8/Bassam/profile/profile.component";
+import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';  // <-- Import FormsModule
 
 import { GymComponent } from "./newProject8/Hadeel/gym/gym.component";
@@ -35,9 +36,16 @@ import { AddCategoryComponent } from "./AdminSide/add-category/add-category.comp
 import { GetProductsComponent } from "./AdminSide/get-products/get-products.component";
 import { AddProductsComponent } from "./AdminSide/add-products/add-products.component";
 import { UpdateProductsComponent } from "./AdminSide/update-products/update-products.component";
+import { ContactAdminComponent } from "./AdminSide/contact-admin/contact-admin.component";
+import { ReplycontactComponent } from "./AdminSide/replycontact/replycontact.component";
 import { AddGymComponent } from "./AdminSide/add-gym/add-gym.component";
 import { UpdateGymComponent } from "./AdminSide/update-gym/update-gym.component";
 import { PaymentComponent } from "./newProject8/Hadeel/payment-cridet-card/payment-cridet-card.component";
+import { OrdersComponent } from "./newProject8/Bassam/orders/orders.component";
+import { SubscriptionsComponent } from "./newProject8/Bassam/subscriptions/subscriptions.component";
+import { ShowGymComponent } from "./AdminSide/show-gym/show-gym.component";
+import { GetAllClassesComponent } from "./AdminSide/get-all-classes/get-all-classes.component";
+import { AddClassComponent } from "./AdminSide/add-class/add-class.component";
 
 
 
@@ -67,14 +75,15 @@ import { PaymentComponent } from "./newProject8/Hadeel/payment-cridet-card/payme
     LoginComponent,
     RegisterComponent,
     PaypalComponent,
-    AdminDashboardComponent,
+    ShowGymComponent,
     ClassAndGymComponent,
-    AdminDashboardComponent,
+    GetAllClassesComponent,
     PaypalComponent,
+    AddClassComponent,
     AddGymComponent,
     UpdateGymComponent,
     AdminDashboardComponent,
-    PaymentComponent,
+    
     AdminDashboardComponent,
     RegisterComponent,
     AdminDashboardComponent,
@@ -85,11 +94,16 @@ import { PaymentComponent } from "./newProject8/Hadeel/payment-cridet-card/payme
     UpdateProductsComponent,
     AddProductsComponent,
     PaypalComponent,
-    NutritionComponent
+    NutritionComponent,
+    ContactAdminComponent,
+    
+    RegisterComponent,
+    EditProfileComponent
   ],
 
   imports: [
     FormsModule,
+    ReactiveFormsModule ,
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
@@ -113,12 +127,15 @@ import { PaymentComponent } from "./newProject8/Hadeel/payment-cridet-card/payme
       { path: 'Class', component: ClasseComponent },
 
       { path: 'ClassDetails/:id', component: ClassDetailsComponent },
+      
 
       {
         path: 'AdminDashBoard', component: AdminDashboardComponent, children: [
-          { path: "showGym", component: ClassAndGymComponent },
+          { path: 'ClassGym', component: ClassAndGymComponent },
+          { path: "ShowGym", component: ShowGymComponent },
           { path: 'addGym', component: AddGymComponent },
-          { path: 'updateGym/:id', component: UpdateGymComponent },
+          { path: 'ShowClass', component: GetAllClassesComponent },
+          { path: 'addClass', component: AddClassComponent },
       ] },
 
 
@@ -147,6 +164,9 @@ import { PaymentComponent } from "./newProject8/Hadeel/payment-cridet-card/payme
 
       { path: 'Register', component: RegisterComponent },
       { path: 'paypal', component: PaypalComponent },
+      { path: 'Register', component: RegisterComponent },
+      { path: 'orders', component: OrdersComponent },
+      { path: 'subscriptions', component: SubscriptionsComponent }
     ])
         
     ],

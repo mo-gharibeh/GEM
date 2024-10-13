@@ -65,6 +65,7 @@ namespace GEM.Server.Controller
                 Name = gymdto.Name,
                 Description = gymdto.Description,
                 Price = gymdto.Price,
+                Trainer = gymdto.Trainer,
                 Flag = true,
                 Image = gymdto.Image.FileName,
             };
@@ -73,6 +74,8 @@ namespace GEM.Server.Controller
             _db.SaveChanges();
             return Ok();
         }
+
+
 
 
         // For Admin Side To Edit Gym

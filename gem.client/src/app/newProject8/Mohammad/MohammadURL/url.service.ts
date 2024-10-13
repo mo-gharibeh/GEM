@@ -6,10 +6,14 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class UrlService {
+  getComents() {
+      throw new Error('Method not implemented.');
+  }
 
   constructor(private http: HttpClient) { }
 
-  staticData = "https://localhost:44340/api"
+  //staticData = "https://localhost:44340/api"
+  staticData = "https://localhost:7031/api"
 
   getTopProduct(): Observable<any> {
     return this.http.get<any>(`${this.staticData}/MohammadController1/top-products`);

@@ -141,6 +141,10 @@ namespace GEM.Server.Controller
                     Image = s.Image,
                     Description = s.Description,
                     PreparationTime = s.PreparationTime,
+                    Instructions = s.Instructions,
+                    FirstStepes = s.FirstStepes,
+                    SecondStepes = s.SecondStepes,
+                    FinalStepes = s.FinalStepes,
                     MealPlanID = s.MealPlanId,
                     NutritionFacts = _db.NutritionFacts
                         .Where(n => n.SubMealPlans == s.SubMealPlanId)
@@ -170,6 +174,22 @@ namespace GEM.Server.Controller
             }
 
             return Ok(subMealPlan);
+        }
+
+        // For Image
+
+        [HttpGet("getImages/{imageName}")]
+        public IActionResult getImage(string imageName)
+        {
+
+            var pathImage = Path.Combine(Directory.GetCurrentDirectory(), "Uploads", imageName);
+            if (System.IO.File.Exists(pathImage))
+            {
+
+                return PhysicalFile(pathImage, "image/jpeg");
+            }
+            return NotFound();
+
         }
 
     }
