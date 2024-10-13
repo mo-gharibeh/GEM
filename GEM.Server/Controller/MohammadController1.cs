@@ -176,6 +176,22 @@ namespace GEM.Server.Controller
             return Ok(subMealPlan);
         }
 
+        // For Image
+
+        [HttpGet("getImages/{imageName}")]
+        public IActionResult getImage(string imageName)
+        {
+
+            var pathImage = Path.Combine(Directory.GetCurrentDirectory(), "Uploads", imageName);
+            if (System.IO.File.Exists(pathImage))
+            {
+
+                return PhysicalFile(pathImage, "image/jpeg");
+            }
+            return NotFound();
+
+        }
+
     }
     
 }

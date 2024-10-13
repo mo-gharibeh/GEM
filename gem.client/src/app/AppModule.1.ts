@@ -91,7 +91,7 @@ import { SubscriptionsComponent } from "./newProject8/Bassam/subscriptions/subsc
     AddProductsComponent,
     PaypalComponent,
     NutritionComponent,
-    NutritionComponent
+    NutritionComponent,
     RegisterComponent,
     EditProfileComponent
   ],
