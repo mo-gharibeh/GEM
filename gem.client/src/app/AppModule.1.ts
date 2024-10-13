@@ -44,6 +44,7 @@ import { OrdersComponent } from "./newProject8/Bassam/orders/orders.component";
 import { SubscriptionsComponent } from "./newProject8/Bassam/subscriptions/subscriptions.component";
 import { ShowAllOrdersComponent } from "./AdminSide/show-all-orders/show-all-orders.component";
 import { ShowOrderrItemComponent } from "./AdminSide/show-orderr-item/show-orderr-item.component";
+import { GetAllUsersComponent } from "./AdminSide/get-all-users/get-all-users.component";
 
 
 
@@ -99,6 +100,8 @@ import { ShowOrderrItemComponent } from "./AdminSide/show-orderr-item/show-order
     EditProfileComponent,
     ShowAllOrdersComponent,
     ShowOrderrItemComponent
+    EditProfileComponent,
+    GetAllUsersComponent
   ],
 
   imports: [
@@ -143,6 +146,7 @@ import { ShowOrderrItemComponent } from "./AdminSide/show-orderr-item/show-order
           { path: "Contact", component: ContactAdminComponent},
           //{ path: "ReplyContact", component: ReplycontactComponent },
           { path: "ReplyContact/:id", component: ReplycontactComponent },
+          { path : "AllUsers", component: GetAllUsersComponent}
 
 
       ] },
