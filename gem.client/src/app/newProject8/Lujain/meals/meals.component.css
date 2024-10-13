@@ -1,0 +1,88 @@
+/* Modern Styles */
+.modern-banner {
+  text-align: center;
+  color: #fff;
+  background: linear-gradient(135deg, #3a6186, #89253e);
+  padding: 60px 0;
+}
+
+.breadcrumb-list {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+  .breadcrumb-list li {
+    list-style: none;
+    color: #fff;
+  }
+
+    .breadcrumb-list li a {
+      text-decoration: none;
+      color: #fff;
+    }
+
+.our-blog-one .modern-card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+}
+
+  .our-blog-one .modern-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  }
+
+.blog-post .img-fluid {
+  width: 100%;
+  height: auto;
+  border-radius: 8px 8px 0 0;
+  
+}
+.blog-image img {
+  width: 100%; /* جعل الصورة تأخذ عرض البطاقة */
+  height: 300px; /* تحديد الارتفاع الثابت للصورة */
+  object-fit: cover; /* الحفاظ على نسبة الأبعاد مع تعبئة المساحة */
+  border-radius: 8px; /* خيار اختياري لجعل الزوايا مستديرة */
+}
+
+
+.read-more-link {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+  .read-more-link:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+
+.blog-data {
+  padding: 20px;
+}
+
+.blog-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.blog-date {
+  font-size: 14px;
+  color: #999;
+}
+.row {
+  justify-content: center;
+}
+
+

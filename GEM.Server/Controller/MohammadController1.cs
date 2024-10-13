@@ -141,6 +141,10 @@ namespace GEM.Server.Controller
                     Image = s.Image,
                     Description = s.Description,
                     PreparationTime = s.PreparationTime,
+                    Instructions = s.Instructions,
+                    FirstStepes = s.FirstStepes,
+                    SecondStepes = s.SecondStepes,
+                    FinalStepes = s.FinalStepes,
                     MealPlanID = s.MealPlanId,
                     NutritionFacts = _db.NutritionFacts
                         .Where(n => n.SubMealPlans == s.SubMealPlanId)
