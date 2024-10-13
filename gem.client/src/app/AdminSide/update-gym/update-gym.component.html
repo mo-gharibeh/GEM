@@ -1,0 +1,22 @@
+<div style="width: 500px; margin: 0 auto;">
+  <form #updateServiceForm="ngForm" (ngSubmit)="updateServiceAdmin(updateServiceForm.value)">
+    <div class="form-group">
+      <label>Gym Name:</label>
+      <input type="text" class="form-control" name="Name" ngModel required>
+    </div>
+    <div class="form-group">
+      <label>Gym Description:</label>
+      <input type="text" class="form-control" name="Description" ngModel required>
+    </div>
+    <div class="form-group">
+      <label>Gym Price:</label>
+      <input type="text" class="form-control" name="Price" ngModel required>
+    </div>
+    <div class="form-group">
+      <label>Gym Image:</label>
+      <input type="file" class="form-control" ngModel required (change)="changeImage($event)">
+    </div>
+    <br />
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>

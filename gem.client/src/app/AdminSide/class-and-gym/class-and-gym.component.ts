@@ -8,31 +8,27 @@ import { Router } from '@angular/router';
   styleUrl: './class-and-gym.component.css'
 })
 export class ClassAndGymComponent {
-  imageFile: any
-  changeImage(event: any) {
 
-    this.imageFile = event.target.files[0]
 
+  constructor(private _ser: UrlServiceService) { }
+
+  ngOnInit() {
+    this.getGyms();
   }
 
-  constructor(private _ser: UrlServiceService, private _router: Router) { }
+  GymArray: any;
 
-  AddNewService(data: any) {
-    var formdata = new FormData();
+  getGyms() {
+    this._ser.getGym().subscribe((data) => {
+      debugger
+      this.GymArray = data;
+      console.log(this.GymArray);
+    });
+  }
 
-
-    for (let item in data) {
-      formdata.append(item, data[item])
-    }
-
-    formdata.append("ServiceImage", this.imageFile)
-    console.log(formdata)
-
-    this._ser.AddService(formdata).subscribe(() => {
-      alert("Service add successfully!")
-      this._router.navigate(['/services']);
-    }, (error) => {
-      alert(error.error)
-    })
+  remove(id: any) {
+    this._ser.remove(id).subscribe((data) => {
+     
+    });
   }
 }

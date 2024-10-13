@@ -9,10 +9,25 @@ import { Router } from '@angular/router';
 })
 export class AddProductsComponent {
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.fetchCategories();
+
+  }
   constructor(private _ser: DimaUrlServiceService, private _router: Router) {
   }
   //userRegisterArray: any
+
+  categories: any[] = []; 
+  fetchCategories() {
+    this._ser.getCategory().subscribe(
+      (data: any[]) => {
+        this.categories = data; // Assuming `data` is an array of categories
+      },
+      (error) => {
+        alert('Error fetching categories');
+      }
+    );
+  }
 
 
   image: any
@@ -21,6 +36,10 @@ export class AddProductsComponent {
 
     this.image = event.target.files[0]
   }
+
+
+
+
 
   addnewProduct(data: any) {
 

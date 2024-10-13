@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class UrlServiceService {
-  
+
   staticData = "https://localhost:44340/api";
 
   constructor(private http: HttpClient) { }
@@ -33,8 +33,29 @@ export class UrlServiceService {
   getClassById(id: any): Observable<any> {
     return this.http.get<any>(`${this.staticData}/Classe/GetClasseDetails/${id}`)
   }
-
+  removeClass(id: any): Observable<any> {
+    return this.http.delete<any>(`${this.staticData}/Classe/DeleteClass?id=${id}`)
+  }
   AddService(data: any): Observable<any> {
     return this.http.post<any>(`${this.staticData}/Gym/AddGym`, data)
-  } 
+  }
+  getClassTimes(classId: number): Observable<any[]> {
+  
+
+    return this.http.get<any[]>(`${this.staticData}/Classe/${classId}/times`);
+  }
+  // Join class with selected time and user ID
+  joinClass(classId: number, timeId: number, userId: number): Observable<any> {
+
+    return this.http.post(`${this.staticData}/Classe/${classId}/join`, { timeId, userId });
+  }
+  UpdateService(id: any, data: any): Observable<any> {
+    return this.http.put<any>(`${this.staticData}/Gym/EditGym?id=${id}`, data)
+  }
+  remove(id: any): Observable<any> {
+    return this.http.delete<any>(`${this.staticData}/Gym/DeleteGym?id=${id}`)
+  }
 }
+  
+
+ 

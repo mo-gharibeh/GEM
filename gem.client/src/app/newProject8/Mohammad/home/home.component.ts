@@ -19,7 +19,7 @@ export class HomeComponent {
     this.get4Product();
     this.getTestimonials();
 
-    localStorage.setItem('userId', "1")
+    //localStorage.getItem('userId')
 
     const userId = parseInt(localStorage.getItem('userId') ?? '0', 10);
     this.checkSubscriptionAndPromptTestimonial(userId);
