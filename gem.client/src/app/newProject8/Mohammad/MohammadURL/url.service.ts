@@ -12,7 +12,8 @@ export class UrlService {
 
   constructor(private http: HttpClient) { }
 
-  staticData = "https://localhost:44340/api"
+  //staticData = "https://localhost:44340/api"
+  staticData = "https://localhost:7031/api"
 
   getTopProduct(): Observable<any> {
     return this.http.get<any>(`${this.staticData}/MohammadController1/top-products`);

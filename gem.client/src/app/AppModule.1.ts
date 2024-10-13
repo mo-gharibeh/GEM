@@ -5,6 +5,7 @@ import { RouterModule } from "@angular/router";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { ProfileComponent } from "./newProject8/Bassam/profile/profile.component";
+import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';  // <-- Import FormsModule
 
 import { GymComponent } from "./newProject8/Hadeel/gym/gym.component";
@@ -39,6 +40,8 @@ import { ContactAdminComponent } from "./AdminSide/contact-admin/contact-admin.c
 import { ReplycontactComponent } from "./AdminSide/replycontact/replycontact.component";
 import { AddGymComponent } from "./AdminSide/add-gym/add-gym.component";
 import { UpdateGymComponent } from "./AdminSide/update-gym/update-gym.component";
+import { OrdersComponent } from "./newProject8/Bassam/orders/orders.component";
+import { SubscriptionsComponent } from "./newProject8/Bassam/subscriptions/subscriptions.component";
 
 
 
@@ -89,10 +92,15 @@ import { UpdateGymComponent } from "./AdminSide/update-gym/update-gym.component"
     PaypalComponent,
     NutritionComponent,
     ContactAdminComponent
+    NutritionComponent,
+    NutritionComponent
+    RegisterComponent,
+    EditProfileComponent
   ],
 
   imports: [
     FormsModule,
+    ReactiveFormsModule ,
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
@@ -116,6 +124,7 @@ import { UpdateGymComponent } from "./AdminSide/update-gym/update-gym.component"
       { path: 'Class', component: ClasseComponent },
 
       { path: 'ClassDetails/:id', component: ClassDetailsComponent },
+      
 
       {
         path: 'AdminDashBoard', component: AdminDashboardComponent, children: [
@@ -156,6 +165,9 @@ import { UpdateGymComponent } from "./AdminSide/update-gym/update-gym.component"
 
       { path: 'Register', component: RegisterComponent },
       { path: 'paypal', component: PaypalComponent },
+      { path: 'Register', component: RegisterComponent },
+      { path: 'orders', component: OrdersComponent },
+      { path: 'subscriptions', component: SubscriptionsComponent }
     ])
         
     ],

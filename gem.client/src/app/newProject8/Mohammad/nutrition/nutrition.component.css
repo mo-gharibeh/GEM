@@ -1,0 +1,53 @@
+/* Modern styles */
+.modern-banner {
+  text-align: center;
+  color: #fff;
+  background: linear-gradient(135deg, #3a6186, #89253e);
+  padding: 80px 0;
+}
+
+.breadcrumb-list {
+  display: flex;
+  gap: 10px;
+}
+
+.blog-post.modern-card {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 30px;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.img-fluid {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.section-title {
+  font-size: 24px;
+  margin-top: 30px;
+  color: #333;
+}
+
+.preparation-steps p {
+  font-size: 16px;
+  line-height: 1.6;
+  margin: 10px 0;
+}
+
+.modern-nutrition-table {
+  width: 100%;
+  margin-top: 20px;
+  border-collapse: collapse;
+}
+
+  .modern-nutrition-table th,
+  .modern-nutrition-table td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+  }
+
+  .modern-nutrition-table th {
+    background-color: #f5f5f5;
+    text-align: left;
+  }
