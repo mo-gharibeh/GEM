@@ -42,6 +42,9 @@ import { AddGymComponent } from "./AdminSide/add-gym/add-gym.component";
 import { UpdateGymComponent } from "./AdminSide/update-gym/update-gym.component";
 import { OrdersComponent } from "./newProject8/Bassam/orders/orders.component";
 import { SubscriptionsComponent } from "./newProject8/Bassam/subscriptions/subscriptions.component";
+import { ShowAllOrdersComponent } from "./AdminSide/show-all-orders/show-all-orders.component";
+import { ShowOrderrItemComponent } from "./AdminSide/show-orderr-item/show-orderr-item.component";
+import { GetAllUsersComponent } from "./AdminSide/get-all-users/get-all-users.component";
 
 
 
@@ -71,16 +74,16 @@ import { SubscriptionsComponent } from "./newProject8/Bassam/subscriptions/subsc
     LoginComponent,
     RegisterComponent,
     PaypalComponent,
-    AdminDashboardComponent,
+    
     ClassAndGymComponent,
-    AdminDashboardComponent,
+    
     PaypalComponent,
 
     AddGymComponent,
     UpdateGymComponent,
-    AdminDashboardComponent,
     
-    AdminDashboardComponent,
+    
+    
     RegisterComponent,
     AdminDashboardComponent,
     GetallCategoryComponent,
@@ -93,6 +96,14 @@ import { SubscriptionsComponent } from "./newProject8/Bassam/subscriptions/subsc
     NutritionComponent,
     ContactAdminComponent,
     EditProfileComponent
+    ContactAdminComponent,
+    
+    RegisterComponent,
+    EditProfileComponent,
+    ShowAllOrdersComponent,
+    ShowOrderrItemComponent
+    EditProfileComponent,
+    GetAllUsersComponent
   ],
 
   imports: [
@@ -127,6 +138,8 @@ import { SubscriptionsComponent } from "./newProject8/Bassam/subscriptions/subsc
         path: 'AdminDashBoard', component: AdminDashboardComponent, children: [
           { path: "addGym", component: ClassAndGymComponent },
           { path: "GetCategories", component: GetallCategoryComponent },
+          { path: "GetOrders", component: ShowAllOrdersComponent },
+          { path: "GetOrdersItem/:id", component: ShowOrderrItemComponent },
           { path: "UpdateCategory/:id", component: UpdateCategoryComponent },
           { path: "AddCategory", component: AddCategoryComponent },
           { path: "GetProducts", component: GetProductsComponent },
@@ -135,6 +148,7 @@ import { SubscriptionsComponent } from "./newProject8/Bassam/subscriptions/subsc
           { path: "Contact", component: ContactAdminComponent},
           //{ path: "ReplyContact", component: ReplycontactComponent },
           { path: "ReplyContact/:id", component: ReplycontactComponent },
+          { path : "AllUsers", component: GetAllUsersComponent}
 
 
       ] },
