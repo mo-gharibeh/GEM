@@ -1,5 +1,6 @@
 using GEM.Server.Models;
 using GEM.Server.Service;
+using GEM.Server.yousefDTO;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -23,6 +24,7 @@ builder.Services.AddCors(options =>
     });
 });
 
+builder.Services.AddScoped<IEmailService, EmailService>();
 
 
 
