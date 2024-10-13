@@ -29,8 +29,12 @@ import { ClassDetailsComponent } from "./newProject8/Hadeel/class-details/class-
 import { AdminDashboardComponent } from "./AdminSide/admin-dashboard/admin-dashboard.component";
 import { ClassAndGymComponent } from "./AdminSide/class-and-gym/class-and-gym.component";
 import { NutritionComponent } from "./newProject8/Mohammad/nutrition/nutrition.component";
-import { AddGymComponent } from "./AdminSide/add-gym/add-gym.component";
-import { UpdateGymComponent } from "./AdminSide/update-gym/update-gym.component";
+import { GetallCategoryComponent } from "./AdminSide/getall-category/getall-category.component";
+import { UpdateCategoryComponent } from "./AdminSide/update-category/update-category.component";
+import { AddCategoryComponent } from "./AdminSide/add-category/add-category.component";
+import { GetProductsComponent } from "./AdminSide/get-products/get-products.component";
+import { AddProductsComponent } from "./AdminSide/add-products/add-products.component";
+import { UpdateProductsComponent } from "./AdminSide/update-products/update-products.component";
 
 
 
@@ -59,11 +63,26 @@ import { UpdateGymComponent } from "./AdminSide/update-gym/update-gym.component"
     ClassDetailsComponent,
     LoginComponent,
     RegisterComponent,
+    PaypalComponent,
+    AdminDashboardComponent,
     ClassAndGymComponent,
     AdminDashboardComponent,
     PaypalComponent,
     AddGymComponent,
     UpdateGymComponent
+    AdminDashboardComponent,
+    
+    AdminDashboardComponent,
+    RegisterComponent,
+    AdminDashboardComponent,
+    GetallCategoryComponent,
+    UpdateCategoryComponent,
+    AddCategoryComponent,
+    GetProductsComponent,
+    UpdateProductsComponent,
+    AddProductsComponent,
+    PaypalComponent,
+    NutritionComponent
   ],
 
   imports: [
@@ -94,10 +113,7 @@ import { UpdateGymComponent } from "./AdminSide/update-gym/update-gym.component"
 
       {
         path: 'AdminDashBoard', component: AdminDashboardComponent, children: [
-          { path: "ShowGym", component: ClassAndGymComponent },
-          { path: 'addGym', component: AddGymComponent },
-          { path: 'UpdateGym/:id', component: UpdateGymComponent },
-          
+          { path: "addGym", component: ClassAndGymComponent }
       ] },
 
       { path: 'Products', component: ProductComponent },
