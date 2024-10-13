@@ -52,4 +52,17 @@ export class DimaUrlServiceService {
     return this.http.post<any>(`${this.staticData}/Products/addProduct`, data);
 
   }
+
+
+
+
+  getOrder(): Observable<any> {
+    return this.http.get<any>(`${this.staticData}/orderItem/GetOrders`);
+  }
+
+
+
+  GetOrderItem(id: any): Observable<any> {
+    return this.http.get<any>(`${this.staticData}/orderItem/GetorderItemByOrderId/${id}`);
+  }
 }

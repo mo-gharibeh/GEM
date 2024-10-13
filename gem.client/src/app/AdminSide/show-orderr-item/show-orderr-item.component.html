@@ -1,0 +1,13 @@
+<div class="card-container">
+  <div *ngFor="let item of suborderData" class="card custom-card">
+    <div class="card-header">
+      Order Details
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">Order ItemId: {{item.orderItemId}}</li>
+      <li class="list-group-item">Product Name: {{item.productName}}</li>
+      <li class="list-group-item">Quantity: {{item.quantity}}</li>
+      <li class="list-group-item">Total Amount: {{item.totalAmount}} JOD</li>
+    </ul>
+  </div>
+</div>
