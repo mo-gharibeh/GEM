@@ -95,13 +95,12 @@ import { GetAllUsersComponent } from "./AdminSide/get-all-users/get-all-users.co
     PaypalComponent,
     NutritionComponent,
     ContactAdminComponent,
-    EditProfileComponent
-    ContactAdminComponent,
+    
     
     RegisterComponent,
     EditProfileComponent,
     ShowAllOrdersComponent,
-    ShowOrderrItemComponent
+    ShowOrderrItemComponent,
     EditProfileComponent,
     GetAllUsersComponent
   ],
