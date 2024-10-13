@@ -1,0 +1,24 @@
+<form #addcategory="ngForm" (ngSubmit)="addCategory(addcategory.value)" style="max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px; background-color: #f9f9f9;">
+  <!-- CSRF Token (if needed) -->
+
+
+  <h2 style="text-align: center; margin-bottom: 20px;">Add category</h2>
+
+  <div class="form-container">
+    <!-- Title Field -->
+    <div class="form-group" style="margin-bottom: 15px;">
+      <label for="Title" class="form-label" style="display: block; font-weight: bold; margin-bottom: 5px;">Service Name</label>
+      <input type="text" id="Title" name="categoryName" ngModel class="form-control" required="required" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+      <span class="text-danger" id="Title-error" style="color: red; font-size: 0.875em;"></span>
+    </div>
+
+
+    <!-- Blog Content Field -->
+   
+
+    <!-- Submit Button -->
+    <div class="form-group" style="text-align: center;">
+      <button type="submit" class="btn btn-primary" style="padding: 10px 20px; background-color: #007bff; border: none; border-radius: 5px; color: white; font-size: 1em; cursor: pointer;">Submit</button>
+    </div>
+  </div>
+</form>
