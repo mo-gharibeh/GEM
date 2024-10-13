@@ -1,0 +1,118 @@
+<!-- Banner Style One Start -->
+<section class="banner-style-one">
+  <div class="parallax" style="background-image: url(assets/images/pattren-3.png);"></div>
+  <div class="container">
+    <div class="row">
+      <div class="banner-details">
+        <h2>{{ nutritionArray.title || 'Blog Detail' }}</h2>
+        <p>{{ nutritionArray.description || 'Our values and vaulted us to the top of our industry.' }}</p>
+      </div>
+    </div>
+  </div>
+  <div class="breadcrums">
+    <div class="container">
+      <div class="row">
+        <ul>
+          <li>
+            <a href="index.html">
+              <i class="fa-solid fa-house"></i>
+              <p>Home</p>
+            </a>
+          </li>
+          <li class="current">
+            <p>{{ nutritionArray.Title || 'Blog Detail' }}</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Banner Style One End -->
+<!-- Blog Style Three Start -->
+<section class="gap blog-style-one blog-detail detail-page">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8">
+        <div class="blog-post">
+          <div class="blog-image">
+            <figure>
+              <img [src]="nutritionArray?.image || 'assets/images/blog-style-two-1.jpg'" alt="{{ nutritionArray.title }}">
+            </figure>
+          </div>
+          <div class="blog-data">
+            <span class="blog-date">{{ nutritionArray.PreparationTime ? nutritionArray.PreparationTime + ' mins' : 'January 9, 2024' }}</span>
+            <h2>
+              <a href="javascript:void(0)">{{ nutritionArray.title || 'HOW A GOOD PERSONAL TRAINER CAN CHANGE THE WAY OF YOUR LIFE' }}</a>
+            </h2>
+          </div>
+          <p>{{ nutritionArray.description || 'Our mission is to create a nurturing and empowering environment where individuals of all ages, abilities, and fitness aspirations can thrive...' }}</p>
+
+          <h3>Nutrition Facts</h3>
+          <table class="table table-bordered nutrition-table" >
+            <thead>
+              <tr>
+                <th>Nutrient</th>
+                <th>Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Calories</td>
+                <td>{{ nutritionArray.nutritionFacts[0]?.calories }} kcal</td>
+              </tr>
+              <tr>
+                <td>Total Fat</td>
+                <td>{{ nutritionArray.nutritionFacts[0]?.totalFat }} g</td>
+              </tr>
+              <tr>
+                <td>Saturated Fat</td>
+                <td>{{ nutritionArray.nutritionFacts[0]?.saturatedFat }} g</td>
+              </tr>
+              <tr>
+                <td>Cholesterol</td>
+                <td>{{ nutritionArray.nutritionFacts[0]?.cholesterol }} mg</td>
+              </tr>
+              <tr>
+                <td>Sodium</td>
+                <td>{{ nutritionArray.nutritionFacts[0]?.sodium }} mg</td>
+              </tr>
+              <tr>
+                <td>Carbohydrates</td>
+                <td>{{ nutritionArray.nutritionFacts[0]?.carbohydrates }} g</td>
+              </tr>
+              <tr>
+                <td>Dietary Fiber</td>
+                <td>{{ nutritionArray.nutritionFacts[0]?.dietaryFiber }} g</td>
+              </tr>
+              <tr>
+                <td>Sugars</td>
+                <td>{{ nutritionArray.nutritionFacts[0]?.sugars }} g</td>
+              </tr>
+              <tr>
+                <td>Protein</td>
+                <td>{{ nutritionArray.nutritionFacts[0]?.protein }} g</td>
+              </tr>
+              <tr>
+                <td>Vitamin D</td>
+                <td>{{ nutritionArray.nutritionFacts[0]?.vitaminD }} µg</td>
+              </tr>
+              <tr>
+                <td>Calcium</td>
+                <td>{{ nutritionArray.nutritionFacts[0]?.calcium }} mg</td>
+              </tr>
+              <tr>
+                <td>Iron</td>
+                <td>{{ nutritionArray.nutritionFacts[0]?.iron }} mg</td>
+              </tr>
+              <tr>
+                <td>Potassium</td>
+                <td>{{ nutritionArray.nutritionFacts[0]?.potassium }} mg</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Blog Style Three End -->

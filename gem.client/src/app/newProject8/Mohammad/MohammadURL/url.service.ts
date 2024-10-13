@@ -28,4 +28,8 @@ export class UrlService {
     return this.http.post(`${this.staticData}/MohammadController1/SubmitTestimonial`, testimonial);
   }
 
+  getSubMealNutrition(id: number): Observable<any> {
+    return this.http.get<any>(`${this.staticData}/MohammadController1/${id}`);
+  }
+
 }
