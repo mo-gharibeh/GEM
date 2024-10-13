@@ -42,6 +42,7 @@ import { AddGymComponent } from "./AdminSide/add-gym/add-gym.component";
 import { UpdateGymComponent } from "./AdminSide/update-gym/update-gym.component";
 import { OrdersComponent } from "./newProject8/Bassam/orders/orders.component";
 import { SubscriptionsComponent } from "./newProject8/Bassam/subscriptions/subscriptions.component";
+import { GetAllUsersComponent } from "./AdminSide/get-all-users/get-all-users.component";
 
 
 
@@ -94,7 +95,8 @@ import { SubscriptionsComponent } from "./newProject8/Bassam/subscriptions/subsc
     ContactAdminComponent,
     
     RegisterComponent,
-    EditProfileComponent
+    EditProfileComponent,
+    GetAllUsersComponent
   ],
 
   imports: [
@@ -137,6 +139,7 @@ import { SubscriptionsComponent } from "./newProject8/Bassam/subscriptions/subsc
           { path: "Contact", component: ContactAdminComponent},
           //{ path: "ReplyContact", component: ReplycontactComponent },
           { path: "ReplyContact/:id", component: ReplycontactComponent },
+          { path : "AllUsers", component: GetAllUsersComponent}
 
 
       ] },

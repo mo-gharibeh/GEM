@@ -1,0 +1,36 @@
+<main>
+
+
+
+  <!-- Bootstrap container to center and structure content -->
+  <div class="container mt-4">
+
+    <!-- Optional heading for the section -->
+    <h2 class="text-center mb-4">All Users</h2>
+
+    <!-- Styled Bootstrap table -->
+    <div class="table-responsive mx-auto" style="max-width: 900px;">
+      <table class="table table-light table-hover table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Phone Number</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of Array; let i = index">
+            <th scope="row">{{ item.userId }}</th>
+            <td>{{ item.fristName }}</td> 
+            <td>{{ item.lastName }}</td>
+            <td>{{ item.email }}</td>
+            <td>{{ item.phoneNumber }}</td>
+          </tr>
+        </tbody>
+
+      </table>
+    </div>
+  </div>
+</main>
