@@ -15,7 +15,7 @@ namespace GEM.Server.Controller
         private readonly MyDbContext _db;
         //private readonly IEmailService _emailService;
 
-        public ContactController1(MyDbContext db /*, IEmailService emailService*/)
+        public ContactController1(MyDbContext db/*, IEmailService emailService*/)
         {
             _db = db;
             //_emailService = emailService;
@@ -34,6 +34,28 @@ namespace GEM.Server.Controller
 
 
         ///////////////////////////////////////////////////////////////////////
+
+        [HttpGet("GetMessage/{id}")]
+        public IActionResult GetMessage(int id)
+        {
+            var message = _db.ContactUs.FirstOrDefault(m => m.ContcatId == id);
+
+            if (message == null)
+            {
+                return NotFound(new { Message = "Message not found" });
+            }
+
+            var messageDto = new ContactU
+            {
+                Email = message.Email,
+                Subject = message.Subject
+            };
+
+            return Ok(message);
+        }
+
+
+        ///
 
 
         [HttpPost("PostMessage")]
@@ -56,20 +78,18 @@ namespace GEM.Server.Controller
 
             return Ok(new { Message = "Contact message sent successfully!" });
         }
-        //[HttpPost("PostMessage")]
-        //public async Task<IActionResult> PostMessage([FromForm] ContactUsDto contactUsDto, [FromServices] IEmailService emailService)
+
+
+        /// ////////////////////////////////////////////////////
+
+
+        //[HttpPost("PostMessageToEmail")]
+        //public async Task<IActionResult> PostMessageToEmail([FromForm] ContactUsDto contactUsDto, [FromServices] IEmailService emailService)
         //{
-        //    // Save the contact message to the database
-
-
         //    var contact = new ContactU
         //    {
-        //        Name = contactUsDto.Name,
-        //        Email = contactUsDto.Email,
         //        MessageContent = contactUsDto.MessageContent,
         //        Subject = contactUsDto.Subject,
-        //        SentDate = DateTime.Now,
-
         //    };
 
         //    _db.ContactUs.Add(contact);
@@ -80,10 +100,15 @@ namespace GEM.Server.Controller
 
         //    try
         //    {
-        //        // Use the EmailService to send the email
+        //        // Send email to admin
         //        await emailService.SendEmailAsync("admin@example.com", subject, messageBody);
 
-        //        return Ok(new { Message = "Contact message sent successfully and email delivered!" });
+        //        // Send email to the user
+        //        var userEmailSubject = "Thank you for contacting us!";
+        //        var userEmailBody = $"Dear {contactUsDto.Name},<br><br>Thank you for reaching out. We have received your message:<br><br>{contactUsDto.MessageContent}<br><br>We will get back to you shortly.";
+        //        await emailService.SendEmailAsync(contactUsDto.Email, userEmailSubject, userEmailBody);
+
+        //        return Ok(new { Message = "Contact message sent successfully and emails delivered!" });
         //    }
         //    catch (Exception ex)
         //    {

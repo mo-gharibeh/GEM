@@ -87,7 +87,8 @@ import { UpdateGymComponent } from "./AdminSide/update-gym/update-gym.component"
     UpdateProductsComponent,
     AddProductsComponent,
     PaypalComponent,
-    NutritionComponent
+    NutritionComponent,
+    ContactAdminComponent
   ],
 
   imports: [
@@ -126,7 +127,9 @@ import { UpdateGymComponent } from "./AdminSide/update-gym/update-gym.component"
           { path: "UpdateProducts/:id", component: UpdateProductsComponent },
           { path: "AddProducts", component: AddProductsComponent },
           { path: "Contact", component: ContactAdminComponent},
-          { path: "ReplyContact", component: ReplycontactComponent },
+          //{ path: "ReplyContact", component: ReplycontactComponent },
+          { path: "ReplyContact/:id", component: ReplycontactComponent },
+
 
       ] },
 

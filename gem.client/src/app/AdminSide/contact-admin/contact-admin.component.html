@@ -1,6 +1,4 @@
-
-
-<div class="mobile-menu-overlay"></div>>
+<div class="mobile-menu-overlay"></div>
 
 <div class="main-container">
   <div class="pd-ltr-20">
@@ -16,14 +14,13 @@
           <th>Name</th>
           <th>Email</th>
           <th>Subject</th>
-          <th>MessageContent</th>
-          <th>Reply Message</th>
+          <th>Message Content</th>
+          <th>Sent Date</th>
+          <th>Reply</th>
         </tr>
       </thead>
 
-
       <tbody>
-      
         <tr *ngFor="let item of ComentsArray">
           <td>{{item.name}}</td>
           <td>{{item.email}}</td>
@@ -31,11 +28,10 @@
           <td>{{item.messageContent}}</td>
           <td>{{item.sentDate}}</td>
 
-          <td>
-            <a routerLink="/AdminDashboardComponent/ReplyContact">Reply</a>
-          </td>
+          <td> <a routerLink="/AdminDashBoard/ReplyContact/{{item.contcatId}}">Reply</a> </td>
+        </tr>
+      </tbody>
 
-       </tbody>
     </table>
   </div>
 </div>

@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { UrlService } from '../../newProject8/Mohammad/MohammadURL/url.service';
 import { UrlAdminService } from '../yousefUrlAdmin/url-admin.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Snapshot } from 'jest-editor-support';
 
 @Component({
   selector: 'app-contact-admin',
@@ -10,6 +12,7 @@ import { UrlAdminService } from '../yousefUrlAdmin/url-admin.service';
 export class ContactAdminComponent {
 
 
+param : any
   ngOnInit() {
     this.getComents();
   }
@@ -21,9 +24,12 @@ export class ContactAdminComponent {
   ComentsArray: any
   getComents() {
     this._ser2.getComents().subscribe((data) => {
+        
       this.ComentsArray = data;
       console.log("Services", this.ComentsArray)
     })
   }
+
+
 
 }
