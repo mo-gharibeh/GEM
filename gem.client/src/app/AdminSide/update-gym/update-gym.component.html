@@ -1,15 +1,19 @@
 <div style="width: 500px; margin: 0 auto;">
   <form #updateServiceForm="ngForm" (ngSubmit)="updateServiceAdmin(updateServiceForm.value)">
     <div class="form-group">
-      <label>Service Name:</label>
-      <input type="text" class="form-control" name="ServiceName" ngModel required>
+      <label>Gym Name:</label>
+      <input type="text" class="form-control" name="Name" ngModel required>
     </div>
     <div class="form-group">
-      <label>Service Description:</label>
-      <input type="text" class="form-control" name="ServiceDescription" ngModel required>
+      <label>Gym Description:</label>
+      <input type="text" class="form-control" name="Description" ngModel required>
     </div>
     <div class="form-group">
-      <label>Service Image:</label>
+      <label>Gym Price:</label>
+      <input type="text" class="form-control" name="Price" ngModel required>
+    </div>
+    <div class="form-group">
+      <label>Gym Image:</label>
       <input type="file" class="form-control" ngModel required (change)="changeImage($event)">
     </div>
     <br />
