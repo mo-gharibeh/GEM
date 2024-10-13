@@ -29,6 +29,12 @@ import { ClassDetailsComponent } from "./newProject8/Hadeel/class-details/class-
 import { AdminDashboardComponent } from "./AdminSide/admin-dashboard/admin-dashboard.component";
 import { ClassAndGymComponent } from "./AdminSide/class-and-gym/class-and-gym.component";
 import { NutritionComponent } from "./newProject8/Mohammad/nutrition/nutrition.component";
+import { GetallCategoryComponent } from "./AdminSide/getall-category/getall-category.component";
+import { UpdateCategoryComponent } from "./AdminSide/update-category/update-category.component";
+import { AddCategoryComponent } from "./AdminSide/add-category/add-category.component";
+import { GetProductsComponent } from "./AdminSide/get-products/get-products.component";
+import { AddProductsComponent } from "./AdminSide/add-products/add-products.component";
+import { UpdateProductsComponent } from "./AdminSide/update-products/update-products.component";
 
 
 
@@ -61,7 +67,18 @@ import { NutritionComponent } from "./newProject8/Mohammad/nutrition/nutrition.c
     AdminDashboardComponent,
     ClassAndGymComponent,
     AdminDashboardComponent,
+    PaypalComponent,
+    AdminDashboardComponent,
+    
+    AdminDashboardComponent,
     RegisterComponent,
+    AdminDashboardComponent,
+    GetallCategoryComponent,
+    UpdateCategoryComponent,
+    AddCategoryComponent,
+    GetProductsComponent,
+    UpdateProductsComponent,
+    AddProductsComponent,
     PaypalComponent,
     NutritionComponent
   ],
@@ -94,7 +111,14 @@ import { NutritionComponent } from "./newProject8/Mohammad/nutrition/nutrition.c
 
       {
         path: 'AdminDashBoard', component: AdminDashboardComponent, children: [
-          { path: "addGym", component: ClassAndGymComponent }
+          { path: "addGym", component: ClassAndGymComponent },
+          { path: "GetCategories", component: GetallCategoryComponent },
+          { path: "UpdateCategory/:id", component: UpdateCategoryComponent },
+          { path: "AddCategory", component: AddCategoryComponent },
+          { path: "GetProducts", component: GetProductsComponent },
+          { path: "UpdateProducts/:id", component: UpdateProductsComponent },
+          { path: "AddProducts", component: AddProductsComponent },
+
       ] },
 
       { path: 'Products', component: ProductComponent },
