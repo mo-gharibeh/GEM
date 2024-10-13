@@ -42,6 +42,9 @@ import { AddGymComponent } from "./AdminSide/add-gym/add-gym.component";
 import { UpdateGymComponent } from "./AdminSide/update-gym/update-gym.component";
 import { OrdersComponent } from "./newProject8/Bassam/orders/orders.component";
 import { SubscriptionsComponent } from "./newProject8/Bassam/subscriptions/subscriptions.component";
+import { MealManagementComponent } from "./AdminSide/meal-management/meal-management.component";
+import { SubMealManagementComponent } from "./AdminSide/sub-meal-management/sub-meal-management.component";
+import { TestimonialManagrmrntComponent } from "./AdminSide/testimonial-managrmrnt/testimonial-managrmrnt.component";
 
 
 
@@ -91,12 +94,15 @@ import { SubscriptionsComponent } from "./newProject8/Bassam/subscriptions/subsc
     AddProductsComponent,
     PaypalComponent,
     NutritionComponent,
-    ContactAdminComponent
+    ContactAdminComponent,
     NutritionComponent,
-    NutritionComponent
+    NutritionComponent,
     NutritionComponent,
     RegisterComponent,
-    EditProfileComponent
+    EditProfileComponent,
+    MealManagementComponent,
+    SubMealManagementComponent,
+    TestimonialManagrmrntComponent,
   ],
 
   imports: [
@@ -109,6 +115,7 @@ import { SubscriptionsComponent } from "./newProject8/Bassam/subscriptions/subsc
     RouterModule.forRoot([
 
       { path: '', component: HomeComponent, pathMatch: 'full' },
+      { path: 'home', component: HomeComponent },
 
       { path: 'Tips', component: TipsComponent },
 
@@ -139,6 +146,9 @@ import { SubscriptionsComponent } from "./newProject8/Bassam/subscriptions/subsc
           { path: "Contact", component: ContactAdminComponent},
           //{ path: "ReplyContact", component: ReplycontactComponent },
           { path: "ReplyContact/:id", component: ReplycontactComponent },
+          { path: "mealManagement", component: MealManagementComponent },
+          { path: "subMealManagement", component: SubMealManagementComponent },
+          { path: "testiManagement", component: TestimonialManagrmrntComponent },
 
 
       ] },

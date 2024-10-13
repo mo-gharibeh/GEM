@@ -46,13 +46,13 @@
 
                     <li>
                       <a routerLink="/About">About</a>
-                    <!--<li class="menu-item-has-children">
-    <a href="javascript:void(0)">About</a>
-    <ul class="sub-menu">
-      <li><a href="about.html">About</a></li>
-      <li><a href="features-and-benefits.html">features & benefits</a></li>
-    </ul>
-  </li>-->
+                      <!--<li class="menu-item-has-children">
+      <a href="javascript:void(0)">About</a>
+      <ul class="sub-menu">
+        <li><a href="about.html">About</a></li>
+        <li><a href="features-and-benefits.html">features & benefits</a></li>
+      </ul>
+    </li>-->
                     <li>
                       <a routerLink="/About">About</a>
 
@@ -122,10 +122,10 @@
                       <a routerLink="/Profile">Profile</a>
                     </li>
                     <li>
-                      <a routerLink="/Login">Login & Register</a>
+                      <a routerLink="/Login" *ngIf="email == ''">Login & Register</a>
                     </li>
                     <li>
-                      <a routerLink="/Login">Logout</a>
+                      <a (click)="logout()" *ngIf="email != ''">Logout</a>
                     </li>
                     <li>
                       <a routerLink="/Cart" class="cart-icon">
@@ -206,9 +206,11 @@
                   <li><a href="team-detail.html">Team Detail</a></li>
                 </ul>
               </li>
-              <li><a routerLink="/Login">Login & Register</a></li>
               <li>
-                <a routerLink="/Login">Logout</a>
+                <a routerLink="/Login" *ngIf="email == ''">Login & Register</a>
+              </li>
+              <li>
+                <a (click)="logout()" *ngIf="email != ''">Logout</a>
               </li>
             </ul>
           </li>
@@ -231,10 +233,10 @@
             <a routerLink="/Profile">Profile</a>
           </li>
           <li>
-            <a routerLink="/Login" *ngIf="email == 'null'">Login & Register</a>
+            <a routerLink="/Login" *ngIf="email == ''">Login & Register</a>
           </li>
           <li>
-            <a (click)="logout()" *ngIf="email != 'null'" >Logout</a>
+            <a (click)="logout()" *ngIf="email != ''" >Logout</a>
           </li>
           <li>
            
