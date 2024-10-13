@@ -54,9 +54,11 @@
             <li *ngFor="let item of Array">
               <div class="c-c">
                 <div class="c-data">
-                  <a class="cr-svg d-flex-all" href="javascript:void(0)" (click)="deleteItem(item.productId)">
+                  <a class="cr-svg d-flex-all" href="javascript:void(0)" (click)="userId === 0 ? deleteProduct(item.productId) : deleteItem(item.cartItemId)">
                     <img src="assets/images/cross.svg" alt="Delete Item">
                   </a>
+
+
                   <img src="{{item.image}}" alt="Product One">
                   <h2><a href="javascript:void(0)">{{item.productName}}</a></h2>
                 </div>
@@ -64,10 +66,11 @@
                   <span class="orgnl">{{item.price}} JOD</span>
                 </div>
                 <div class="c-quality">
-                  <button class="quantity-button" (click)="decrement(item.productId)">-</button>
+                  <button class="quantity-button" (click)="userId === 0 ? decrementByProductId(item.productId) : decrement(item.cartItemId)">-</button>
                   <input type="number" [(ngModel)]="item.quantity" min="1" />
-                  <button class="quantity-button" (click)="increment(item.productId)">+</button>
+                  <button class="quantity-button" (click)="userId === 0 ? incrementByProductId(item.productId) : increment(item.cartItemId)">+</button>
                 </div>
+
                 <div class="c-total">
                   <span>Total Price: {{ calculateTotalPrice(item.price, item.quantity) }} JOD</span>
                 </div>

@@ -15,13 +15,7 @@ export class ProductComponent {
   productCategory: any;
   CategoryArry: any;
 
-
-
-  //userId: number | null = null;  
-
-  userId: number = 2;  // Static userId for now, replace later with localStorage
-
-
+  userId: number = 0;
 
   constructor(private _ser: LujainURLService, private _router: ActivatedRoute) { }
 
@@ -30,25 +24,14 @@ export class ProductComponent {
     this.getProductCount();
     this.getCategories();
 
-
-
-
-
-
     this.paramter = this._router.snapshot.paramMap.get("id");
     this.checkUserStatus();
-
-
-    //this.userId = localStorage.getItem('userId') ? parseInt(localStorage.getItem('userId')!, 10) : null;
-
-    //if (this.userId) {
-    //  this.syncCartWithDatabase(this.userId);
-    //}
   }
+
   checkUserStatus() {
     const storedUserId = localStorage.getItem('userId');
     if (storedUserId) {
-      this.userId = parseInt(storedUserId, 10);  // Later, replace static value with localStorage
+      this.userId = parseInt(storedUserId, 10);
     }
   }
 
@@ -57,7 +40,6 @@ export class ProductComponent {
       this.ProductArray = data;
       console.log("Fetched services data:", this.ProductArray);
     });
-
   }
 
   getCategories() {
@@ -65,10 +47,7 @@ export class ProductComponent {
       this.CategoryArry = data;
       console.log("Fetched services data:", this.CategoryArry);
     });
-
   }
-
-
 
   getProductCount() {
     this._ser.getCount().subscribe((data) => {
@@ -76,68 +55,81 @@ export class ProductComponent {
       console.log("Fetched services data:", this.count);
     });
   }
-  getProductCategory(id: any) {
 
+  getProductCategory(id: any) {
     if (id === null) {
-      // Fetch all products when "All Products" is clicked
-      this.getProductFit(); // Fetch all products
+      this.getProductFit();
     } else {
-      // Fetch products for the selected category
       this._ser.getProductByCategory(id).subscribe((data: any) => {
-        this.ProductArray = data; // Update the products array with filtered products
+        this.ProductArray = data;
         console.log("Fetched Products data:", this.ProductArray);
       });
     }
   }
 
-
-  
   object = {
-    cartItem: 0,
+    //cartItem: 0,
     productId: 0,
-    userId: this.userId ,//|| 0,
-    quantity: 1, 
-    productName: "", // Add productName
+    userId: this.userId,
+    quantity: 1,
+    productName: "",
     price: 0,
     image: "",
-   
   };
-
   addtoCart(productId: any) {
     const product = this.ProductArray.find((item: any) => item.productId === productId);
 
     if (product) {
-      this.object.productId = product.productId;
-      this.object.productName = product.productName;
-      this.object.price = product.price;
+      if (this.userId) {
+        // Check if the user is logged in
+        const existingCartItem = this._ser.cartItem.find((item: any) => item.productId === product.productId);
 
-      // Set a static cartItemId for testing
-      const staticCartItemId = 2; // Replace this with any static ID you want to use
-      this.object.cartItem = staticCartItemId;
+        if (existingCartItem) {
+          // If it exists, increment the quantity
+          existingCartItem.quantity += 1;
+          this._ser.cartITemSubject.next(this._ser.cartItem); // Notify subscribers about the change
+          alert("Quantity updated in the cart!");
+        } else {
+          // If it doesn't exist, create a new cart item
+          this.object.productId = product.productId;
+          this.object.productName = product.productName;
+          this.object.price = product.price;
+          this.object.image = product.image;
+          this.object.userId = this.userId || 0;
+          this.object.quantity = 1; // Set initial quantity to 1
 
-      this.object.image = product.image;
-      this.object.userId = this.userId;
+          this._ser.addTocart({ ...this.object }); // Add the new item to the cart
+          alert("Item added to the cart successfully!");
+        }
+      } else {
+        const storedCart = localStorage.getItem('cartItems');
+        let cartItems = storedCart ? JSON.parse(storedCart) : [];
 
-      this._ser.addTocart({ ...this.object });
+        const existingLocalCartItem = cartItems.find((item: any) => item.productId === product.productId);
 
-      alert("Item added to the cart successfully!");
+        if (existingLocalCartItem) {
+          // If it exists, increment the quantity
+          existingLocalCartItem.quantity += 1;
+          alert("Quantity updated");
+        } else {
+
+          const newLocalCartItem = {
+            productId: product.productId,
+            productName: product.productName,
+            price: product.price,
+            image: product.image,
+            quantity: 1
+          };
+
+          cartItems.push(newLocalCartItem);
+          alert("Item added successfully!");
+        }
+
+        localStorage.setItem('cartItems', JSON.stringify(cartItems));
+      }
     } else {
       alert("Product not found");
     }
   }
-
-
-  
-  syncCartWithDatabase(userId: number) {
-    this._ser.pushCartToDatabase(userId).subscribe(
-      (response) => {
-        console.log('Cart synced with database:', response);
-      },
-      (error) => {
-        console.error('Failed to sync cart with database:', error);
-      }
-    );
-  }
-
-
 }
+

@@ -253,102 +253,47 @@
         <div class="col-lg-6 col-md-8">
           <div class="data">
             <span>Meet Experts Trainers</span>
-            <h2>Expert Coaches</h2>
-          </div>
-        </div>
-        <div class="col-lg-6 col-md-4">
-          <div class="team-slider-nav">
-
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="container">
-    <div class="row reveal1 it-reveal-animation">
-      <div class="col-lg-12">
-        <div class="team-slider owl-carousel">
-          <div class="team-data item">
-            <div class="team-info">
-              <h3>Gorden Qlark</h3>
-              <p>CROSSFIT COACH</p>
-              <div class="team-social-media">
-                <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-                <a href="#"><i class="flaticon-twitter"></i></a>
-                <a href="#"><i class="flaticon-instagram"></i></a>
-              </div>
-              <svg width="261" height="235" viewBox="0 0 261 235" xmlns="http://www.w3.org/2000/svg">
-                <path d="M261 0L190.483 144.088H128.135L162.104 102.062L188.333 45.885H89.8666L70.0873 87.4818H117.815L0 235L49.0181 125.219H0L61.9176 0H261Z"></path>
-              </svg>
-            </div>
-            <div class="team-image">
-              <figure>
-                <img src="" alt="team-3">
-              </figure>
-            </div>
-          </div>
-          <div class="team-data item">
-            <div class="team-info">
-              <h3>Moniqa Linda</h3>
-              <p>FITNESS COACH</p>
-              <div class="team-social-media">
-                <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-                <a href="#"><i class="flaticon-twitter"></i></a>
-                <a href="#"><i class="flaticon-instagram"></i></a>
-              </div>
-              <svg width="261" height="235" viewBox="0 0 261 235" xmlns="http://www.w3.org/2000/svg">
-                <path d="M261 0L190.483 144.088H128.135L162.104 102.062L188.333 45.885H89.8666L70.0873 87.4818H117.815L0 235L49.0181 125.219H0L61.9176 0H261Z"></path>
-              </svg>
-            </div>
-            <div class="team-image">
-              <figure>
-                <img src="assets/images/team-2.png" alt="team-3">
-              </figure>
-            </div>
-          </div>
-          <div class="team-data item">
-            <div class="team-info">
-              <h3>Robert Jessi</h3>
-              <p>BODYBUILDING COACH</p>
-              <div class="team-social-media">
-                <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-                <a href="#"><i class="flaticon-twitter"></i></a>
-                <a href="#"><i class="flaticon-instagram"></i></a>
-              </div>
-              <svg width="261" height="235" viewBox="0 0 261 235" xmlns="http://www.w3.org/2000/svg">
-                <path d="M261 0L190.483 144.088H128.135L162.104 102.062L188.333 45.885H89.8666L70.0873 87.4818H117.815L0 235L49.0181 125.219H0L61.9176 0H261Z"></path>
-              </svg>
-            </div>
-            <div class="team-image">
-              <figure>
-                <img src="assets/images/team-3.png" alt="team-3">
-              </figure>
-            </div>
-          </div>
-          <div class="team-data item">
-            <div class="team-info">
-              <h3>Willimes Haniq</h3>
-              <p>YOGA COACH</p>
-              <div class="team-social-media">
-                <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-                <a href="#"><i class="flaticon-twitter"></i></a>
-                <a href="#"><i class="flaticon-instagram"></i></a>
-              </div>
-              <svg width="261" height="235" viewBox="0 0 261 235" xmlns="http://www.w3.org/2000/svg">
-                <path d="M261 0L190.483 144.088H128.135L162.104 102.062L188.333 45.885H89.8666L70.0873 87.4818H117.815L0 235L49.0181 125.219H0L61.9176 0H261Z"></path>
-              </svg>
-            </div>
-            <div class="team-image">
-              <figure>
-                <img src="assets/images/team-4.png" alt="team-3">
-              </figure>
-            </div>
+            <h2>Top Product Selling</h2>
           </div>
         </div>
       </div>
     </div>
   </div>
 </section>
+
+<!--card-->
+
+<section class="gap shop-style-one addition">
+  <div class="container">
+    <div class="row p-slider align-items-center justify-content-between grid">
+      <div class="col-lg-3" *ngFor="let item of productArray">
+        <div class="product">
+          <div class="main-data">
+            <div class="btn-hover">
+              <figure>
+                <img src="{{item.image}}" alt="Product Image 1">
+              </figure>
+              <a href="cart.html" class="theme-btn">Add to Cart <i class="fa-solid fa-bag-shopping"></i></a>
+            </div>
+            <div class="data">
+              <div class="ratings">
+                <i class="fa-solid fa-star"></i>
+                <span>5.0</span>
+              </div>
+              <h3><a href="product-detail.html">{{item.productName}}</a></h3>
+              <div class="price-range">
+                <span>${{item.price}}</span>
+              </div>
+            </div>
+          </div>
+          <a href="javascript:void(0)" class="theme-btn">Add to Cart <i class="fa-solid fa-bag-shopping"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--card-->
 <!-- Team Style One End -->
 <!-- Core Features Start -->
 <section class="core-features">
@@ -461,7 +406,7 @@
     <source src="https://sb.vox1.net/video/poligons.mp4" type="video/mp4">
   </video>
   <div class="jumbotron">
-    <h1>FITZONE</h1>
+    <h1>FitZone</h1>
   </div>
   <div class="reno-data">
     <h2>Be Strong, Be Fit and Be Healthy With Us</h2>
@@ -480,8 +425,9 @@
           <h3>Client’s Reviews</h3>
         </div>
         <div class="client-review-slider owl-carousel">
-          <div class="slider-data"> <!-- *ngFor--> 
-            <p><!--{{item.text}}-->Comprehensive services, state-of-the-art equipment, and a supportive environment ensuring members achieve their fitness objectives comfortably and effectively.</p>
+          <div class="slider-data" *ngFor="let item of testimonialArray">
+            <!-- *ngFor-->
+            <p>{{item.text}}</p>
             <div class="bio d-flex-all justify-content-start w-100">
               <div class="icon d-flex-all">
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="26" height="26" viewBox="0 0 26 26"> <defs> <clipPath id="clip-Inverted"> <rect width="26" height="26" /> </clipPath> </defs> <g id="Inverted_" data-name="Inverted commas flaky" clip-path="url(#clip-Inverted)"> <path id="Path_3444" data-name="Path 3" d="M.032,24.036V14.478l-.032,0V8.991C.4.4,9.086,0,9.086,0V5.961c-3.535,0-3.555,3.03-3.555,3.03v4.045h5.5v11ZM0,8.991Z" transform="translate(14 0.964)" /> <path id="Path_weee4" data-name="Path 4" d="M.032,24.036V14.478l-.032,0V8.991C.4.4,9.086,0,9.086,0V5.961c-3.535,0-3.555,3.03-3.555,3.03v4.045h5.5v11ZM0,8.991Z" transform="translate(0.969 0.964)" /> </g> </svg>
@@ -536,7 +482,7 @@
 </section>
 <!-- Client Review Style One End -->
 <!-- Blog Style One Start -->
-<section class="gap no-top blog-style-one">
+<!--<section class="gap no-top blog-style-one">
   <div class="heading">
     <figure>
       <img src="assets/images/heading-icon.png" alt="heading-icon">
@@ -635,4 +581,16 @@
       <a href="our-blog-1.html" class="theme-btn">View All Posts</a>
     </div>
   </div>
-</section>
+</section>-->
+
+
+<div class="modal" *ngIf="showTestimonialBox">
+  <div class="modal-content">
+    <span class="close-button" (click)="closeModal()">&times;</span>
+    <h2>Share Your Feedback</h2>
+    <textarea [(ngModel)]="testimonialText" placeholder="Write your testimonial here..." rows="5"></textarea>
+    <button (click)="submitTestimonial()" class="submit-button">Submit</button>
+  </div>
+</div>
+
+

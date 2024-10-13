@@ -1,7 +1,9 @@
 ﻿using GEM.Server.DTOs;
 using GEM.Server.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace GEM.Server.Controller
 {
@@ -25,12 +27,75 @@ namespace GEM.Server.Controller
         [HttpGet("GetClasseDetails/{id}")]
         public IActionResult GetClasses(int id)
         {
-            var classe =_db.ClassAndGyms.Where(x => x.Id == id).ToList();
+            var classe = _db.ClassAndGyms.Where(x => x.Id == id && x.Flag == false).FirstOrDefault();
             return Ok(classe);
+        }
+        // New API: Fetch times for a specific class by class ID
+        [HttpGet("{classId}/times")]
+        public IActionResult GetClassTimes(int classId)
+        {
+            // Fetch class and its associated times
+            var classTimes =  _db.ClassTimes
+                                           .Where(ct => ct.ClassId == classId)
+                                           .Select(ct => new
+                                           {
+                                               ct.Id,
+                                               ct.StartTime,
+                                               ct.EndTime
+                                           })
+                                           .ToList();
+
+            // Check if any times are found
+            if (classTimes == null )
+            {
+                return NotFound(new { message = "No times found for this class." });
+            }
+
+            return Ok(classTimes);
         }
 
 
+        // POST: api/class/{classId}/join
+        [HttpPost("{classId}/join")]
+        [Authorize] // Ensures that only logged-in users can join
+        public IActionResult JoinClass(int classId, [FromBody] JoinClassRequest request)
+        {
+            // 1. Check if the user is logged in
+            var userId = User.Claims.FirstOrDefault(c => c.Type == "UserID")?.Value;
+            if (userId == null)
+            {
+                return Unauthorized(new { message = "User not logged in." });
+            }
 
+            // 2. Validate the selected class time
+            var classTime = _db.ClassTimes.Find(request.ClassTimeId);
+            if (classTime == null || classTime.ClassId != classId)
+            {
+                return BadRequest(new { message = "Invalid class time selection." });
+            }
+
+            // 3. Ensure payment is successful (simplified payment check)
+            if (!request.PaymentSuccessful)
+            {
+                return BadRequest(new { message = "Payment not successful." });
+            }
+
+            // 4. Add the enrollment to the Enrolled table
+            var enrollment = new Enrolled
+            {
+                UserId = int.Parse(userId), // Logged-in user's ID
+                ClassSubId = request.ClassSubId,
+                ClassTimeId = request.ClassTimeId,
+                StartDate = classTime.StartTime ?? DateTime.Now, // Using class time start as enrollment start
+                EndDate = classTime.EndTime ?? DateTime.Now.AddMonths(1), // Dummy end date, adjust as needed
+                PaymentMethod = request.PaymentMethod
+            };
+
+            _db.Enrolleds.Add(enrollment);
+            _db.SaveChanges();
+
+            return Ok(new { message = "Successfully joined the class." });
+        }
 
 
         // For Admin Side To Add Gym

@@ -1,0 +1,128 @@
+<!-- Modern Banner Style One Start -->
+<section class="banner-style-one modern-banner">
+  <div class="parallax" style="background-image: url(https://betterme.world/articles/wp-content/uploads/2022/02/shutterstock_1034287174.jpg);"></div>
+  <div class="container">
+    <div class="row">
+      <div class="banner-details text-center">
+        <h2>{{ nutritionArray.title || 'Blog Detail' }}</h2>
+        <p>{{ nutritionArray.description || 'Our values and vaulted us to the top of our industry.' }}</p>
+      </div>
+    </div>
+  </div>
+  <div class="breadcrums">
+    <div class="container">
+      <div class="row">
+        <ul class="breadcrumb-list">
+          <li>
+            <a href="index.html">
+              <i class="fa-solid fa-house"></i>
+              <p>Home</p>
+            </a>
+          </li>
+          <li class="current">
+            <p>{{ nutritionArray.title || 'Blog Detail' }}</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Modern Banner Style One End -->
+<!-- Modern Blog Style Three Start -->
+<section class="gap blog-style-one blog-detail detail-page">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 mx-auto">
+        <div class="blog-post modern-card">
+          <div class="blog-image">
+            <figure>
+              <img [src]="nutritionArray?.image || 'assets/images/blog-style-two-1.jpg'"
+                   alt="{{ nutritionArray.title }}" class="img-fluid rounded">
+            </figure>
+          </div>
+          <div class="blog-data">
+            <span class="blog-date">{{ nutritionArray.PreparationTime ? nutritionArray.PreparationTime + ' mins' : 'January 9, 2024' }}</span>
+            <h2 class="blog-title">
+              <a href="javascript:void(0)">{{ nutritionArray.title || 'HOW A GOOD PERSONAL TRAINER CAN CHANGE THE WAY OF YOUR LIFE' }}</a>
+            </h2>
+          </div>
+          <p class="blog-description">{{ nutritionArray.description || 'Our mission is to create a nurturing and empowering environment...' }}</p>
+
+          <h3 class="section-title">How To Prepare</h3>
+          <div class="preparation-steps">
+            <p>{{ nutritionArray.instructions }}</p>
+            <p>{{ nutritionArray.firstStepes }}</p>
+            <p>{{ nutritionArray.secondStepes }}</p>
+            <p>{{ nutritionArray.finalStepes }}</p>
+          </div>
+
+          <h3 class="section-title">Nutrition Facts</h3>
+          <table class="table table-bordered modern-nutrition-table">
+            <thead>
+              <tr>
+                <th>Nutrient</th>
+                <th>Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Calories</td>
+                <td>{{ nutritionArray.nutritionFacts[0]?.calories }} kcal</td>
+              </tr>
+              <tr>
+                <td>Total Fat</td>
+                <td>{{ nutritionArray.nutritionFacts[0]?.totalFat }} g</td>
+              </tr>
+              <tr>
+                <td>Saturated Fat</td>
+                <td>{{ nutritionArray.nutritionFacts[0]?.saturatedFat }} g</td>
+              </tr>
+              <tr>
+                <td>Cholesterol</td>
+                <td>{{ nutritionArray.nutritionFacts[0]?.cholesterol }} mg</td>
+              </tr>
+              <tr>
+                <td>Sodium</td>
+                <td>{{ nutritionArray.nutritionFacts[0]?.sodium }} mg</td>
+              </tr>
+              <tr>
+                <td>Carbohydrates</td>
+                <td>{{ nutritionArray.nutritionFacts[0]?.carbohydrates }} g</td>
+              </tr>
+              <tr>
+                <td>Dietary Fiber</td>
+                <td>{{ nutritionArray.nutritionFacts[0]?.dietaryFiber }} g</td>
+              </tr>
+              <tr>
+                <td>Sugars</td>
+                <td>{{ nutritionArray.nutritionFacts[0]?.sugars }} g</td>
+              </tr>
+              <tr>
+                <td>Protein</td>
+                <td>{{ nutritionArray.nutritionFacts[0]?.protein }} g</td>
+              </tr>
+              <tr>
+                <td>Vitamin D</td>
+                <td>{{ nutritionArray.nutritionFacts[0]?.vitaminD }} µg</td>
+              </tr>
+              <tr>
+                <td>Calcium</td>
+                <td>{{ nutritionArray.nutritionFacts[0]?.calcium }} mg</td>
+              </tr>
+              <tr>
+                <td>Iron</td>
+                <td>{{ nutritionArray.nutritionFacts[0]?.iron }} mg</td>
+              </tr>
+              <tr>
+                <td>Potassium</td>
+                <td>{{ nutritionArray.nutritionFacts[0]?.potassium }} mg</td>
+              </tr>
+              <!-- Repeat the rows for each nutrient here -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Modern Blog Style Three End -->

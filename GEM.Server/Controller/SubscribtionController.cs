@@ -17,7 +17,7 @@ namespace GEM.Server.Controller
 
         // Show The Subscription Page For Admin Side
         [HttpGet("GetAllSubscribtion")]
-        public IActionResult GetSubscribtion() 
+        public IActionResult GetSubscribtion()
         {
             var subscriptionGym = _db.ClassSubscriptions.ToList();
             return Ok(subscriptionGym);
@@ -29,7 +29,7 @@ namespace GEM.Server.Controller
         public IActionResult AddSubscribtion(subscriptionGymDTO subscriptiongym)
         {
             var startDate = DateTime.Now;
-            var  endDate = startDate.AddMonths(1);
+            var endDate = startDate.AddMonths(1);
 
             var subscription = new Enrolled
             {

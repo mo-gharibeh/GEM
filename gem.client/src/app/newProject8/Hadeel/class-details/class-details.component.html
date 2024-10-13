@@ -1,0 +1,80 @@
+<!-- Banner Style One Start -->
+<section class="banner-style-one">
+  <div class="parallax" style="background-image: url(assets/images/pattren-3.png);"></div>
+  <div class="container">
+    <div class="row">
+      <div class="banner-details">
+        <h2>class details</h2>
+        <p>our values and vaulted us to the top of our industry.</p>
+      </div>
+    </div>
+  </div>
+  <div class="breadcrums">
+    <div class="container">
+      <div class="row">
+        <ul>
+          <li>
+            <a href="index.html">
+              <i class="fa-solid fa-house"></i>
+              <p>Home</p>
+            </a>
+          </li>
+          <li class="current">
+            <p>class details</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Banner Style One End -->
+
+<section class="gap detail-page">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="pr-dat">
+          <div class="heading-style-2">
+            <h2>{{ClassDetails.name}}</h2>
+          </div>
+          <p>{{ClassDetails.description}}</p>
+
+          <!-- Class Timing Selection -->
+          <h3>Class Timing</h3>
+          <ul>
+            <!-- Display available times for this class -->
+            <li *ngFor="let time of classTimes">
+              <label>
+                <input type="radio" name="selectedTime" [(ngModel)]="selectedTime" [value]="time.id">
+                {{ formatDate(time.startTime) }} - {{ formatDate(time.endTime) }}
+              </label>
+            </li>
+          </ul>
+
+          <!-- Join Button -->
+          <div class="subscription-section">
+            <p><strong>Price:</strong> {{ClassDetails.price}} JOD</p>
+            <button class="theme-btn" (click)="joinClass()">Join Now</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Instructor Section -->
+<section class="gap no-top team-style-one">
+  <div class="container">
+    <div class="heading">
+      <h2>Class INSTRUCTOR</h2>
+    </div>
+    <div class="team-data">
+      <h3>{{ClassDetails.trainer}}</h3>
+      <p>CROSSFIT COACH</p>
+    </div>
+    <div class="t-tel">
+      <p>The class subscription:</p>
+      <span><b>JOD:</b>{{ClassDetails.price}}</span>
+    </div>
+  </div>
+</section>

@@ -33,18 +33,25 @@ export class GymDetailComponent {
   data = {
     "userId": 1,
     "classSubId": 1,
-    "paymentMethod": "string"
+    "paymentMethod": "Paypal"
   }
 
 
   AddUserSubScribtion(id: number) {
     debugger
-    // هون لازم اشيك اذا اليوزر داخل و لا لا لحتى اذا كان داخل اسمحله يعمل سبسكرايب اذا لا بعطي الليرت 
-    this.data.classSubId = id
-    this._ser.addUSerSubScription(this.data).subscribe(() => {
-      if (true) {
-        alert("Accept Successfully")
-      }
-    })
+    // هون لازم اشيك اذا اليوزر داخل و لا لا لحتى اذا كان داخل اسمحله يعمل سبسكرايب اذا لا بعطي الليرت
+    const userid = localStorage.getItem('userId');
+
+    if (userid == null) {
+      alert("Please Login To First")
+    }
+    else {
+      this.data.classSubId = id
+      this._ser.addUSerSubScription(this.data).subscribe(() => {
+        if (true) {
+          alert("Accept Successfully")
+        }
+      })
+    }
   }
 }
