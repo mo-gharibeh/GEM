@@ -87,7 +87,7 @@ import { UpdateGymComponent } from "./AdminSide/update-gym/update-gym.component"
     UpdateProductsComponent,
     AddProductsComponent,
     PaypalComponent,
-    NutritionComponent
+    NutritionComponent,
   ],
 
   imports: [
@@ -115,6 +115,7 @@ import { UpdateGymComponent } from "./AdminSide/update-gym/update-gym.component"
       { path: 'Class', component: ClasseComponent },
 
       { path: 'ClassDetails/:id', component: ClassDetailsComponent },
+      
 
       {
         path: 'AdminDashBoard', component: AdminDashboardComponent, children: [
