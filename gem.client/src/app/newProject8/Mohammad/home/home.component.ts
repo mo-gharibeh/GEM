@@ -10,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 export class HomeComponent {
   productArray: any;
   testimonialArray: any;
-  showTestimonialBox: boolean = true; // متغير لعرض النافذة المنبثقة
+  showTestimonialBox: boolean = false; // متغير لعرض النافذة المنبثقة
   testimonialText: string = ''; // Variable to hold the testimonial text
 
 
