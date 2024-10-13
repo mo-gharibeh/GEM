@@ -91,6 +91,9 @@ import { SubscriptionsComponent } from "./newProject8/Bassam/subscriptions/subsc
     AddProductsComponent,
     PaypalComponent,
     NutritionComponent,
+    ContactAdminComponent
+    NutritionComponent,
+    NutritionComponent
     NutritionComponent,
     RegisterComponent,
     EditProfileComponent
@@ -134,7 +137,9 @@ import { SubscriptionsComponent } from "./newProject8/Bassam/subscriptions/subsc
           { path: "UpdateProducts/:id", component: UpdateProductsComponent },
           { path: "AddProducts", component: AddProductsComponent },
           { path: "Contact", component: ContactAdminComponent},
-          { path: "ReplyContact", component: ReplycontactComponent },
+          //{ path: "ReplyContact", component: ReplycontactComponent },
+          { path: "ReplyContact/:id", component: ReplycontactComponent },
+
 
       ] },
 

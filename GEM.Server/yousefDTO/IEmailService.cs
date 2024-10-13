@@ -1,7 +1,16 @@
-﻿namespace GEM.Server.yousefDTO
+﻿
+namespace GEM.Server.yousefDTO
 {
     //public interface IEmailService
     //{
-    //    Task SendEmailAsync(string to, string subject, string body);  // Mark it as async with Task
+
+    //    public void ConfigureServices(IServiceCollection services)
+    //    {
+    //        services.AddScoped<IEmailService, EmailService>();
+    //        services.AddControllers();
+    //        // other services
+    //    }
+
+    //    Task SendEmailAsync(string? email, string userEmailSubject, string userEmailBody);
     //}
 }

@@ -8,20 +8,19 @@
       <form id="admin-reply">
         <div class="form-group">
           <label for="email">Email</label>
-          <input type="email" id="email" name="email" placeholder="Recipient's Email" required class="form-data">
+          <input type="email" id="email" name="email" placeholder="Recipient's Email" required class="form-data" value="{{email}}" disabled>
         </div>
 
         <div class="form-group">
           <label for="subject">Subject</label>
-          <input type="text" id="Subject" name="subject" placeholder="Subject" required class="form-data">
+          <input type="text" id="Subject" name="subject" placeholder="Subject" required class="form-data" value="{{subject}}" disabled>
         </div>
 
         <div class="form-group">
           <label for="message">Message</label>
           <textarea id="message" name="message" placeholder="Your reply" rows="5" required class="form-data"></textarea>
         </div>
-
-        <input type="submit"  value="Send Reply">
++        <input type="submit"  value="Send Reply">
       </form>
 
 
