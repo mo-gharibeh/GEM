@@ -11,11 +11,11 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class ProfileComponent implements OnInit {
   user: any = {}; // Initialize user data
   userId: number | undefined; // Variable to hold user ID
+  imageUrl: string | undefined; // Variable to hold the image URL
 
   constructor(private _ser: BassamUrlService, private _router: Router) { }
 
   ngOnInit(): void {
-    // Example: Fetch user with a valid ID, could be obtained from route params in a real scenario
     this.userId = 1; // Set the user ID; ideally, this should be dynamic (e.g., from route params)
     this.loadUserData(this.userId);
   }
@@ -23,14 +23,33 @@ export class ProfileComponent implements OnInit {
   loadUserData(userId: number): void {
     this._ser.getUser(userId).subscribe(
       (data) => {
+        debugger;
         this.user = data; // Store the received user data
+        if (this.user.image) {
+          // Construct the URL for the image
+/*          this.getImage(this.user.image);*/
+        }
       },
       (error: HttpErrorResponse) => {
         console.error('Error fetching user data', error);
-        // Optionally, navigate to an error page or display a user-friendly message
       }
     );
   }
+
+
+  //getImage(image: string): void {
+  //  this._ser.getImage(image).subscribe(
+  //    (blob) => {
+  //      debugger;
+  //      // Create a local URL for the image blob
+  //      const objectUrl = URL.createObjectURL(blob);
+  //      this.imageUrl = objectUrl; // Set the image URL
+  //    },
+  //    (error: HttpErrorResponse) => {
+  //      console.error('Error fetching image', error);
+  //    }
+  //  );
+  //}
 
   // Method to navigate to edit profile page
   editProfile(): void {
@@ -39,5 +58,8 @@ export class ProfileComponent implements OnInit {
     } else {
       console.error('User ID is undefined, cannot navigate to edit profile');
     }
+  }
+  Orders(): void {
+    this._router.navigate(['/orders']); // Navigate to OrdersComponent
   }
 }

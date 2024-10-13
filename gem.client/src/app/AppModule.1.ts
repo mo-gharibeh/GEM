@@ -5,7 +5,7 @@ import { RouterModule } from "@angular/router";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { ProfileComponent } from "./newProject8/Bassam/profile/profile.component";
-
+import { ReactiveFormsModule } from '@angular/forms';
 import { GymComponent } from "./newProject8/Hadeel/gym/gym.component";
 import { BmiCalculatorComponent } from "./newProject8/Lujain/bmi-calculator/bmi-calculator.component";
 import { MealsComponent } from "./newProject8/Lujain/meals/meals.component";
@@ -25,6 +25,8 @@ import { RegisterComponent } from "./newProject8/Ahmed/register/register.compone
 import { ClasseComponent } from "./newProject8/Hadeel/classe/classe.component";
 import { SubmealDetailsComponent } from "./newProject8/Lujain/submeal-details/submeal-details.component";
 import { EditProfileComponent } from "./newProject8/Bassam/edit-profile/edit-profile.component";
+import { OrdersComponent } from "./newProject8/Bassam/orders/orders.component";
+import { SubscriptionsComponent } from "./newProject8/Bassam/subscriptions/subscriptions.component";
 
 
 
@@ -51,11 +53,12 @@ import { EditProfileComponent } from "./newProject8/Bassam/edit-profile/edit-pro
     BmiCalculatorComponent,
     LoginComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    EditProfileComponent
   ],
 
   imports: [
-
+    ReactiveFormsModule ,
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
@@ -95,7 +98,9 @@ import { EditProfileComponent } from "./newProject8/Bassam/edit-profile/edit-pro
 
       { path: 'Login', component: LoginComponent },
 
-      { path: 'Register', component: RegisterComponent}
+      { path: 'Register', component: RegisterComponent },
+      { path: 'orders', component: OrdersComponent },
+      { path: 'subscriptions', component: SubscriptionsComponent }
     ])
         
     ],
