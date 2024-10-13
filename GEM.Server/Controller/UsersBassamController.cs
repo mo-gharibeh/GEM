@@ -41,6 +41,19 @@ namespace GEM.Server.Controller
 
             return user;
         }
+        [HttpGet("getImages/{image}")]
+        public IActionResult getImage(string image)
+        {
+            var pathImage = Path.Combine(Directory.GetCurrentDirectory(), "Uploads", image);
+
+            if (System.IO.File.Exists(pathImage))
+            {
+                return PhysicalFile(pathImage, "image/*");
+            }
+
+            return NotFound();
+        }
+
 
         // PUT: api/Users/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
@@ -80,9 +93,29 @@ namespace GEM.Server.Controller
                 // Consider hashing the password before saving it
                 user.Password = userProfileUpdateDto.Password;
             }
-            if (!string.IsNullOrEmpty(userProfileUpdateDto.Image))
+            if (userProfileUpdateDto.Image != null && userProfileUpdateDto.Image.Length > 0)
             {
-                user.Image = userProfileUpdateDto.Image;
+
+
+                var folder = Path.Combine(Directory.GetCurrentDirectory(), "Uploads");
+
+                if (!Directory.Exists(folder))
+                {
+
+                    Directory.CreateDirectory(folder);
+                }
+
+
+
+                // Assuming you want to save the image file, you can implement the save logic here
+                var filePath = Path.Combine(folder, userProfileUpdateDto.Image.FileName); // Define your upload path
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await userProfileUpdateDto.Image.CopyToAsync(stream); // Save the file to the server
+                }
+
+                // Set the user image path or filename as needed
+                user.Image = userProfileUpdateDto.Image.FileName; // Or set the path if needed
             }
 
             _context.Users.Update(user);
