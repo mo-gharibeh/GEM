@@ -47,8 +47,6 @@ export class UrlServiceService {
 
     return this.http.post(`${this.staticData}/Classe/${classId}/join`, { timeId, userId });
   }
-  }
-
   UpdateService(id: any, data: any): Observable<any> {
     return this.http.put<any>(`${this.staticData}/Gym/EditGym?id=${id}`, data)
   }
@@ -56,3 +54,6 @@ export class UrlServiceService {
     return this.http.delete<any>(`${this.staticData}/Gym/DeleteGym?id=${id}`)
   }
 }
+  
+
+ 
