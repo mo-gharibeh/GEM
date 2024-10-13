@@ -18,4 +18,10 @@ public partial class Enrolled
     public DateTime? EndDate { get; set; }
 
     public string? PaymentMethod { get; set; }
+
+    public virtual ClassSubscription? ClassSub { get; set; }
+
+    public virtual ClassTime? ClassTime { get; set; }
+
+    public virtual User? User { get; set; }
 }

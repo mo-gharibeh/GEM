@@ -45,6 +45,9 @@ import { SubscriptionsComponent } from "./newProject8/Bassam/subscriptions/subsc
 import { MealManagementComponent } from "./AdminSide/meal-management/meal-management.component";
 import { SubMealManagementComponent } from "./AdminSide/sub-meal-management/sub-meal-management.component";
 import { TestimonialManagrmrntComponent } from "./AdminSide/testimonial-managrmrnt/testimonial-managrmrnt.component";
+import { ShowAllOrdersComponent } from "./AdminSide/show-all-orders/show-all-orders.component";
+import { ShowOrderrItemComponent } from "./AdminSide/show-orderr-item/show-orderr-item.component";
+import { GetAllUsersComponent } from "./AdminSide/get-all-users/get-all-users.component";
 
 
 
@@ -74,16 +77,16 @@ import { TestimonialManagrmrntComponent } from "./AdminSide/testimonial-managrmr
     LoginComponent,
     RegisterComponent,
     PaypalComponent,
-    AdminDashboardComponent,
+    
     ClassAndGymComponent,
-    AdminDashboardComponent,
+    
     PaypalComponent,
 
     AddGymComponent,
     UpdateGymComponent,
-    AdminDashboardComponent,
     
-    AdminDashboardComponent,
+    
+    
     RegisterComponent,
     AdminDashboardComponent,
     GetallCategoryComponent,
@@ -98,11 +101,19 @@ import { TestimonialManagrmrntComponent } from "./AdminSide/testimonial-managrmr
     NutritionComponent,
     NutritionComponent,
     NutritionComponent,
+    ContactAdminComponent,
+    
+    
     RegisterComponent,
     EditProfileComponent,
     MealManagementComponent,
     SubMealManagementComponent,
     TestimonialManagrmrntComponent,
+    EditProfileComponent,
+    ShowAllOrdersComponent,
+    ShowOrderrItemComponent,
+    EditProfileComponent,
+    GetAllUsersComponent
   ],
 
   imports: [
@@ -138,6 +149,8 @@ import { TestimonialManagrmrntComponent } from "./AdminSide/testimonial-managrmr
         path: 'AdminDashBoard', component: AdminDashboardComponent, children: [
           { path: "addGym", component: ClassAndGymComponent },
           { path: "GetCategories", component: GetallCategoryComponent },
+          { path: "GetOrders", component: ShowAllOrdersComponent },
+          { path: "GetOrdersItem/:id", component: ShowOrderrItemComponent },
           { path: "UpdateCategory/:id", component: UpdateCategoryComponent },
           { path: "AddCategory", component: AddCategoryComponent },
           { path: "GetProducts", component: GetProductsComponent },
@@ -149,6 +162,7 @@ import { TestimonialManagrmrntComponent } from "./AdminSide/testimonial-managrmr
           { path: "mealManagement", component: MealManagementComponent },
           { path: "subMealManagement", component: SubMealManagementComponent },
           { path: "testiManagement", component: TestimonialManagrmrntComponent },
+          { path : "AllUsers", component: GetAllUsersComponent}
 
 
       ] },

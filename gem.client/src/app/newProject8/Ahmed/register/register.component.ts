@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UrlService } from '../AhmedUrl/Ahmed-url.service';
+import { AhmedUrlService } from '../AhmedUrl/Ahmed-url.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -13,7 +13,7 @@ export class RegisterComponent {
 
   }
 
-  constructor(private _ser: UrlService, private _router: Router) {
+  constructor(private _ser: AhmedUrlService, private _router: Router) {
 
   }
 

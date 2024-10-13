@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UrlService } from '../AhmedUrl/Ahmed-url.service';
+import { AhmedUrlService } from '../AhmedUrl/Ahmed-url.service';
 import { Router } from '@angular/router';
 import { MurlService } from '../../../murl.service';
 
@@ -16,7 +16,7 @@ export class LoginComponent {
     this._serm['email'].next('');
   }
 
-  constructor(private _ser: UrlService, private _serm: MurlService, private _router: Router) {
+  constructor(private _ser: AhmedUrlService, private _serm: MurlService, private _router: Router) {
 
   }
 
