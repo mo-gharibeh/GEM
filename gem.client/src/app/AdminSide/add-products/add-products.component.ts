@@ -29,10 +29,10 @@ export class AddProductsComponent {
       form.append(key, data[key])
 
     }
-    form.append("ServiceImage", this.image)
+    form.append("Image", this.image)
     this._ser.AddProduct(form).subscribe(() => {
       alert(" the Product add sucessfully")
-      //this._router.navigate(['/Login'])
+      this._router.navigate(['AdminDashBoard/GetProducts'])
       //this.userRegisterArray = data
     },
 

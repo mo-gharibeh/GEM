@@ -23,6 +23,7 @@ export class UpdateProductsComponent {
   // Capture the selected file from the file input
   changeImage(event: any) {
     if (event.target.files && event.target.files.length > 0) {
+      debugger
       this.imageFile = event.target.files[0]; // Get the selected file
       console.log('Selected image:', this.imageFile); // Log the image to ensure it's captured
     }
@@ -35,10 +36,11 @@ export class UpdateProductsComponent {
     for (let key in data) {
       form.append(key, data[key]);
     }
-
+    debugger
     // Append the image file if it has been selected
     if (this.imageFile) {
-      form.append('ProductsImage', this.imageFile); // Key should match the backend expectation
+      debugger
+      form.append('Image', this.imageFile); // Key should match the backend expectation
     } else {
       console.error('No image file selected');
     }
@@ -46,7 +48,7 @@ export class UpdateProductsComponent {
     this._ser.updateProduct(this.param, form).subscribe(
       response => {
         alert('Product updated successfully');
-        this._router.navigate(['AdminDashBoard/GetCategories']);
+        this._router.navigate(['AdminDashBoard/GetProducts']);
       },
       error => {
         console.error('Error updating product:', error);
