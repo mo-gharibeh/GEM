@@ -69,7 +69,6 @@ namespace GEM.Server.Controller
                 MessageContent = contactUsDto.MessageContent,
                 Subject = contactUsDto.Subject,
                 SentDate = DateTime.Now,
-                SentDate = DateTime.Now,
 
             };
 
