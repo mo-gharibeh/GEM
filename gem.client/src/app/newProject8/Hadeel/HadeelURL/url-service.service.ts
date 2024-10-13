@@ -33,7 +33,9 @@ export class UrlServiceService {
   getClassById(id: any): Observable<any> {
     return this.http.get<any>(`${this.staticData}/Classe/GetClasseDetails/${id}`)
   }
-
+  removeClass(id: any): Observable<any> {
+    return this.http.delete<any>(`${this.staticData}/Classe/DeleteClass?id=${id}`)
+  }
   AddService(data: any): Observable<any> {
     return this.http.post<any>(`${this.staticData}/Gym/AddGym`, data)
   }
