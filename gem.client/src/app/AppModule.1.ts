@@ -58,7 +58,7 @@ import { NutritionComponent } from "./newProject8/Mohammad/nutrition/nutrition.c
     LoginComponent,
     RegisterComponent,
     PaypalComponent,
-    AdminDashboardComponent
+    AdminDashboardComponent,
     ClassAndGymComponent,
     AdminDashboardComponent,
     RegisterComponent,
