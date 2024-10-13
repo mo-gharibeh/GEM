@@ -8,8 +8,6 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class LujainURLService {
 
   staticData = "https://localhost:44340/api";
-  //staticData = "https://localhost:7031/api"
-
 
   constructor(private http: HttpClient) { }
 
@@ -43,9 +41,10 @@ export class LujainURLService {
   }
 
 
-  getCartItem(id: number): Observable<any> {
-    return this.http.get<any>(`${this.staticData}/Cart/Cart/${id}`);
+  getCartItem(userId: number): Observable<any> {
+    return this.http.get<any>(`${this.staticData}/Cart/Cart/${userId}`);
   }
+
 
 
   addCartItem(data: any): Observable<any> {
@@ -54,14 +53,14 @@ export class LujainURLService {
   editCartItem(userId: any, cartItemId: any, quantity: number): Observable<any> {
     return this.http.put<any>(`${this.staticData}/Cart/Cart/${userId}/${cartItemId}`, quantity);
   }
-
   deleteCartItem(userId: any, cartItemId: any): Observable<any> {
     return this.http.delete<any>(`${this.staticData}/Cart/Cart/${userId}/${cartItemId}`);
   }
 
 
 
- 
+
+
   addCartItemToDatabase(data: any): Observable<any> {
     return this.http.post<any>(`${this.staticData}/Cart/Cart/${data.userId}`, data)
   }
@@ -82,7 +81,6 @@ export class LujainURLService {
       this.cartITemSubject.next(this.cartItem);
       localStorage.setItem('cartItems', JSON.stringify(this.cartItem));
 
-
       if (data.userId != 0) {
         this.addCartItemToDatabase(data).subscribe(
           (response) => {
@@ -98,6 +96,7 @@ export class LujainURLService {
 
 
 
+
   pushCartToDatabase(userId: any): Observable<any> {
     return this.http.post<any>(`${this.staticData}/Cart/Cart/${userId}`, {
       userId,
@@ -105,28 +104,47 @@ export class LujainURLService {
     });
   }
 
-
-  // Sync local storage cart to the database after user login
   syncLocalCartToDatabase(userId: number) {
     const storedCart = localStorage.getItem('cartItems');
-    
+
     if (storedCart) {
       const cartItems = JSON.parse(storedCart);
-      
-      cartItems.forEach((item: any) => {
-        item.userId = userId;  // Assign the userId to each cart item
-        this.addCartItemToDatabase(item).subscribe(
-          (response) => {
-            console.log("Synced cart item to the database:", response);
-          },
-          (error) => {
-            console.error("Failed to sync cart item to the database:", error);
+      const syncPromises = cartItems.map((localItem: any) => {
+        return this.getCartItem(userId).toPromise().then((dbItems) => {
+          const existingDbItem = dbItems.find((dbItem: any) => dbItem.productId === localItem.productId);
+
+          if (existingDbItem) {
+            // If it exists, update the quantity
+            const updatedQuantity = existingDbItem.quantity + localItem.quantity; // Combine quantities
+            return this.editCartItem(userId, existingDbItem.cartItemId, updatedQuantity).toPromise().then(
+              (response) => {
+                console.log("Updated existing item in database:", response);
+              },
+              (error) => {
+                console.error("Failed to update item in database:", error);
+              }
+            );
+          } else {
+            // If it doesn't exist, add a new item to the database
+            localItem.userId = userId; // Ensure userId is set
+            return this.addCartItemToDatabase(localItem).toPromise().then(
+              (response) => {
+                console.log("Added new item to database:", response);
+              },
+              (error) => {
+                console.error("Failed to add item to database:", error);
+              }
+            );
           }
-        );
+        });
       });
-      
-      // Clear local storage after syncing
-      localStorage.removeItem('cartItems');
+
+      // After syncing all items, remove local storage only if all items were successfully synced
+      Promise.all(syncPromises).then(() => {
+        localStorage.removeItem('cartItems');
+      }).catch(() => {
+        console.error("Error syncing cart items.");
+      });
     }
   }
 
@@ -135,57 +153,61 @@ export class LujainURLService {
 
 
 
-  // Method to increase the quantity and update it in the database
-  increaseQuantity(userId: number, cartItemId: number) {
-    const product = this.cartItem.find((x: any) => x.productId == cartItemId);
-    if (product) {
-      product.quantity += 1;
-      this.cartITemSubject.next(this.cartItem);
-      localStorage.setItem('cartItems', JSON.stringify(this.cartItem));
 
-      // Call the API to update the database
-      this.editCartItem(userId, cartItemId, product.quantity).subscribe(
-        (response) => {
-          console.log("Quantity increased successfully:", response);
-        },
-        (error) => {
-          console.error("Failed to increase quantity:", error);
-        }
-      );
-    }
-  }
 
-  // Method to decrease the quantity and update it in the database
-  decreaseQuantity(userId: number, cartItemId: number) {
-    const product = this.cartItem.find((x: any) => x.productId == cartItemId);
-    if (product && product.quantity > 1) {
-      product.quantity -= 1;
-      this.cartITemSubject.next(this.cartItem);
-      localStorage.setItem('cartItems', JSON.stringify(this.cartItem));
+  //// Method to increase the quantity and update it in the database
+  //increaseQuantity(userId: number, cartItemId: number) {
+  //  const product = this.cartItem.find((x: any) => x.productId == cartItemId);
+  //  if (product) {
+  //    product.quantity += 1;
+  //    this.cartITemSubject.next(this.cartItem);
+  //    localStorage.setItem('cartItems', JSON.stringify(this.cartItem));
 
-      // Call the API to update the database
-      this.editCartItem(userId, cartItemId, product.quantity).subscribe(
-        (response) => {
-          console.log("Quantity decreased successfully:", response);
-        },
-        (error) => {
-          console.error("Failed to decrease quantity:", error);
-        }
-      );
-    } else if (product.quantity === 1) {
-      alert("The quantity cannot be less than 1.");
-    }
-  }
+  //    // Call the API to update the database
+  //    this.editCartItem(userId, cartItemId, product.quantity).subscribe(
+  //      (response) => {
+  //        console.log("Quantity increased successfully:", response);
+  //      },
+  //      (error) => {
+  //        console.error("Failed to increase quantity:", error);
+  //      }
+  //    );
+  //  }
+  //}
+
+  //// Method to decrease the quantity and update it in the database
+  //decreaseQuantity(userId: number, cartItemId: number) {
+  //  const product = this.cartItem.find((x: any) => x.productId == cartItemId);
+  //  if (product && product.quantity > 1) {
+  //    product.quantity -= 1;
+  //    this.cartITemSubject.next(this.cartItem);
+  //    localStorage.setItem('cartItems', JSON.stringify(this.cartItem));
+
+  //    // Call the API to update the database
+  //    this.editCartItem(userId, cartItemId, product.quantity).subscribe(
+  //      (response) => {
+  //        console.log("Quantity decreased successfully:", response);
+  //      },
+  //      (error) => {
+  //        console.error("Failed to decrease quantity:", error);
+  //      }
+  //    );
+  //  } else if (product.quantity === 1) {
+  //    alert("The quantity cannot be less than 1.");
+  //  }
+  //}
 
   // API call to update the quantity in the database
- 
 
-  removeItem(id: any) {
-    this.cartItem = this.cartItem.filter((item: any) => item.productId !== id);
+
+  removeItem(cartItemId: any) {
+    this.cartItem = this.cartItem.filter((item: any) => item.cartItemId !== cartItemId);
     this.cartITemSubject.next(this.cartItem);
     localStorage.setItem('cartItems', JSON.stringify(this.cartItem));
   }
+
 }
+
 
 
 
