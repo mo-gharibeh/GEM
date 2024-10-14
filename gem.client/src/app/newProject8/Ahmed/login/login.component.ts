@@ -28,7 +28,7 @@ export class LoginComponent {
     }
 
     this._ser.loginUser(form).subscribe((response) => {
-
+      localStorage.setItem('userId', response.userId);
       this._serm['email'].next(data.email);
       
       if (data.email == "admin@gmail.com") {

@@ -8,8 +8,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class AhmedUrlService {
 
   constructor(private http: HttpClient) { }
-  staticData = "https://localhost:44340/api";
-  //staticData = "https://localhost:7031/api";
+  //staticData = "https://localhost:44340/api";
+  staticData = "https://localhost:7031/api";
 
 
 
