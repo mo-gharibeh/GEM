@@ -1,9 +1,9 @@
-<!-- Banner Style One Start -->
-<section class="banner-style-one">
-  <div class="parallax" style="background-image: url(assets/images/pattren-3.png);"></div>
+<!-- Modern Banner Style One Start -->
+<section class="banner-style-one modern-banner">
+  <div class="parallax" style="background-image: url(https://betterme.world/articles/wp-content/uploads/2022/02/shutterstock_1034287174.jpg);"></div>
   <div class="container">
     <div class="row">
-      <div class="banner-details">
+      <div class="banner-details text-center">
         <h2>{{ nutritionArray.title || 'Blog Detail' }}</h2>
         <p>{{ nutritionArray.description || 'Our values and vaulted us to the top of our industry.' }}</p>
       </div>
@@ -12,7 +12,7 @@
   <div class="breadcrums">
     <div class="container">
       <div class="row">
-        <ul>
+        <ul class="breadcrumb-list">
           <li>
             <a href="index.html">
               <i class="fa-solid fa-house"></i>
@@ -20,35 +20,44 @@
             </a>
           </li>
           <li class="current">
-            <p>{{ nutritionArray.Title || 'Blog Detail' }}</p>
+            <p>{{ nutritionArray.title || 'Blog Detail' }}</p>
           </li>
         </ul>
       </div>
     </div>
   </div>
 </section>
-<!-- Banner Style One End -->
-<!-- Blog Style Three Start -->
+<!-- Modern Banner Style One End -->
+<!-- Modern Blog Style Three Start -->
 <section class="gap blog-style-one blog-detail detail-page">
   <div class="container">
     <div class="row">
-      <div class="col-lg-8">
-        <div class="blog-post">
+      <div class="col-lg-8 mx-auto">
+        <div class="blog-post modern-card">
           <div class="blog-image">
             <figure>
-              <img [src]="nutritionArray?.image || 'assets/images/blog-style-two-1.jpg'" alt="{{ nutritionArray.title }}">
+              <img [src]="nutritionArray?.image || 'assets/images/blog-style-two-1.jpg'"
+                   alt="{{ nutritionArray.title }}" class="img-fluid rounded">
             </figure>
           </div>
           <div class="blog-data">
             <span class="blog-date">{{ nutritionArray.PreparationTime ? nutritionArray.PreparationTime + ' mins' : 'January 9, 2024' }}</span>
-            <h2>
+            <h2 class="blog-title">
               <a href="javascript:void(0)">{{ nutritionArray.title || 'HOW A GOOD PERSONAL TRAINER CAN CHANGE THE WAY OF YOUR LIFE' }}</a>
             </h2>
           </div>
-          <p>{{ nutritionArray.description || 'Our mission is to create a nurturing and empowering environment where individuals of all ages, abilities, and fitness aspirations can thrive...' }}</p>
+          <p class="blog-description">{{ nutritionArray.description || 'Our mission is to create a nurturing and empowering environment...' }}</p>
 
-          <h3>Nutrition Facts</h3>
-          <table class="table table-bordered nutrition-table" >
+          <h3 class="section-title">How To Prepare</h3>
+          <div class="preparation-steps">
+            <p>{{ nutritionArray.instructions }}</p>
+            <p>{{ nutritionArray.firstStepes }}</p>
+            <p>{{ nutritionArray.secondStepes }}</p>
+            <p>{{ nutritionArray.finalStepes }}</p>
+          </div>
+
+          <h3 class="section-title">Nutrition Facts</h3>
+          <table class="table table-bordered modern-nutrition-table">
             <thead>
               <tr>
                 <th>Nutrient</th>
@@ -108,6 +117,7 @@
                 <td>Potassium</td>
                 <td>{{ nutritionArray.nutritionFacts[0]?.potassium }} mg</td>
               </tr>
+              <!-- Repeat the rows for each nutrient here -->
             </tbody>
           </table>
         </div>
@@ -115,4 +125,4 @@
     </div>
   </div>
 </section>
-<!-- Blog Style Three End -->
+<!-- Modern Blog Style Three End -->

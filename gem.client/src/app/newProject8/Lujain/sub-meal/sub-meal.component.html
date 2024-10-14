@@ -1,58 +1,56 @@
-<section class="banner-style-one">
-  <div class="parallax" style="background-image: url(assets/images/pattren-3.png);"></div>
+<!-- Modern Banner Style One Start -->
+<section class="banner-style-one modern-banner">
+  <div class="parallax" style="background-image: url(https://www.drjcatering.com/wp-content/uploads/2024/02/Healthy-Meal-Prep-Ideas-for-Lunch.webp);"></div>
   <div class="container">
     <div class="row">
-      <div class="banner-details">
-        <h2>Our Blog One</h2>
-        <p>our values and vaulted us to the top of our industry.</p>
+      <div class="banner-details text-center">
+        <h2>Our Healthy Meals</h2>
+        <p>Our values and vaulted us to the top of our industry.</p>
       </div>
     </div>
   </div>
   <div class="breadcrums">
     <div class="container">
       <div class="row">
-        <ul>
+        <ul class="breadcrumb-list">
           <li>
-            <a >
+            <a href="index.html">
               <i class="fa-solid fa-house"></i>
               <p>Home</p>
             </a>
           </li>
           <li class="current">
-            <p>Our Blog One</p>
+            <p>Meals</p>
           </li>
         </ul>
       </div>
     </div>
   </div>
 </section>
+<!-- Modern Banner Style One End -->
+<!-- Modern Blog Style One Start -->
 <section class="gap blog-style-one our-blog-one">
   <div class="container">
     <div class="row g-4">
-
       <div class="col-lg-4" *ngFor="let item of subMeal">
-        <div class="blog-post">
+        <div class="blog-post modern-card">
           <div class="blog-image">
             <figure>
-              <img src={{item.image}} alt="blog-img-2">
+              <img [src]="item.image || 'assets/images/default-blog-image.jpg'" alt="Blog Image" class="img-fluid rounded">
             </figure>
-            <a routerLink="/nutrition/{{item.subMealPlanId}}">
+            <a routerLink="/nutrition/{{item.subMealPlanId}}" class="read-more-link">
               <i class="fa-solid fa-angles-right"></i>
             </a>
           </div>
           <div class="blog-data">
-            <span class="blog-date">{{item.preparationTime}} minuts</span>
-            <h2>
-              <a >{{item.title}}</a>
+            <span class="blog-date">{{ item.preparationTime }} minutes</span>
+            <h2 class="blog-title">
+              <a>{{ item.title }}</a>
             </h2>
-
           </div>
         </div>
       </div>
     </div>
   </div>
 </section>
-
-
-
-
+<!-- Modern Blog Style One End -->

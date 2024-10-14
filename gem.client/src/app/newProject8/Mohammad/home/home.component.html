@@ -271,7 +271,7 @@
           <div class="main-data">
             <div class="btn-hover">
               <figure>
-                <img src="{{item.image}}" alt="Product Image 1">
+                <img src="https://localhost:7031/api/MohammadController1/getImages/{{item.image}}" alt="Product Image 1">
               </figure>
               <a href="cart.html" class="theme-btn">Add to Cart <i class="fa-solid fa-bag-shopping"></i></a>
             </div>
@@ -371,9 +371,9 @@
             <figure>
               <img src="assets/images/core-feature.jpg" alt="Core Feature Img">
             </figure>
-            <a class="video-play-btn" data-fancybox="" href="https://www.youtube.com/watch?v=uemObN8_dcw">
+            <!--<a class="video-play-btn" data-fancybox="" href="https://www.youtube.com/watch?v=uemObN8_dcw">
               <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="35" height="56" viewBox="0 0 35 56"> <defs> <clipPath id="clip-video_arrow"> <rect width="35" height="56" /> </clipPath> </defs> <g id="video_arrow" data-name="video arrow" clip-path="url(#clip-video_arrow)"> <path id="Shape_1" data-name="Shape 1" d="M1362,5000.8,1327,4972V5027Z" transform="translate(-1326.998 -4971.996)" fill="rgba(0,0,0,0)" /> <path id="Shape_1_-_Outline" data-name="Shape 1 - Outline" d="M1333,5015.017l19.29-14.437L1333,4984.7v30.313M1327,5027V4972l35,28.807Z" transform="translate(-1326.998 -4971.996)" /> </g> </svg>
-            </a>
+            </a>-->
           </div>
         </div>
       </div>
@@ -402,9 +402,9 @@
 <!-- Client Style One End -->
 <!-- Renovation Start -->
 <section class="gap renovation">
-  <video poster="../../../../sb.vox1.net/video/poligonBG.jpg" playsinline autoplay muted loop>
+  <!--<video poster="../../../../sb.vox1.net/video/poligonBG.jpg" playsinline autoplay muted loop>
     <source src="https://sb.vox1.net/video/poligons.mp4" type="video/mp4">
-  </video>
+  </video>-->
   <div class="jumbotron">
     <h1>FitZone</h1>
   </div>
@@ -431,6 +431,9 @@
             <div class="bio d-flex-all justify-content-start w-100">
               <div class="icon d-flex-all">
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="26" height="26" viewBox="0 0 26 26"> <defs> <clipPath id="clip-Inverted"> <rect width="26" height="26" /> </clipPath> </defs> <g id="Inverted_" data-name="Inverted commas flaky" clip-path="url(#clip-Inverted)"> <path id="Path_3444" data-name="Path 3" d="M.032,24.036V14.478l-.032,0V8.991C.4.4,9.086,0,9.086,0V5.961c-3.535,0-3.555,3.03-3.555,3.03v4.045h5.5v11ZM0,8.991Z" transform="translate(14 0.964)" /> <path id="Path_weee4" data-name="Path 4" d="M.032,24.036V14.478l-.032,0V8.991C.4.4,9.086,0,9.086,0V5.961c-3.535,0-3.555,3.03-3.555,3.03v4.045h5.5v11ZM0,8.991Z" transform="translate(0.969 0.964)" /> </g> </svg>
+              </div>
+              <div class="details w-100">
+                <h3>{{item.userName}}</h3>
               </div>
             </div>
           </div>

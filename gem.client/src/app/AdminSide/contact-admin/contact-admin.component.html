@@ -1,0 +1,41 @@
+<br />
+<br />
+<br />
+<br />
+
+<div class="mobile-menu-overlay"></div>
+<div class="main-container">
+  <div class="pd-ltr-20">
+    <h1>Reply to Message</h1>
+    <br />
+    <!--<br /><br />
+  <a class="btn btn-info" routerLink="/AdminDashboardComponent/ReplyContact">Reply TO Message</a>
+  <br /><br />-->
+
+    <table class="table" id="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Subject</th>
+          <th>Message Content</th>
+          <th>Sent Date</th>
+          <th>Reply</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let item of ComentsArray">
+          <td>{{item.name}}</td>
+          <td>{{item.email}}</td>
+          <td>{{item.subject}}</td>
+          <td>{{item.messageContent}}</td>
+          <td>{{item.sentDate}}</td>
+
+          <td> <a routerLink="/AdminDashBoard/ReplyContact/{{item.contcatId}}">Reply</a> </td>
+        </tr>
+      </tbody>
+
+    </table>
+  </div>
+</div>

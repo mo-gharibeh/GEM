@@ -13,6 +13,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="src\app\AdminSide\GetAllCategory\" />
+    <Folder Include="src\app\AdminSide\yousefUrlAdmin\" />
+    <Folder Include="src\app\Admin\" />
     <Folder Include="src\app\newProject8\Bassam\BassamUrl\" />
     <Folder Include="src\app\newProject8\Hadeel\HadeelURL\" />
     <Folder Include="src\app\newProject8\Lujain\LujainURL\" />

@@ -1,4 +1,5 @@
-﻿using GEM.Server.DTOs.MohammadDTOs;
+﻿using GEM.Server.DTOs;
+using GEM.Server.DTOs.MohammadDTOs;
 using GEM.Server.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -17,10 +18,37 @@ namespace GEM.Server.Controller
         }
 
         // get all testimonials when status is Visible 
-        [HttpGet("Testimonials")]
-        public IActionResult Testimonials()
+        [HttpGet("VisibleTestimonials")]
+        public IActionResult VisibleTestimonials()
         {
-            var testimonials = _db.Testimonials.Where(t => t.Status == "Visible").ToList();
+            var testimonials = _db.Testimonials.Where(t => t.Status == "Visible")
+                .Select(t => new
+                {
+                    t.Testimonialid,
+                    t.UserId,
+                    UserName = t.User.FristName, // Assuming User entity has a FullName property
+                    t.Status,
+                    t.Text,
+                    t.CreatedAt
+                }).ToList();
+
+            return Ok(testimonials);
+        }
+        [HttpGet("AllTestimonials")]
+        public IActionResult AllTestimonials()
+        {
+            var testimonials = _db.Testimonials
+                .Select(t => new
+                {
+                    t.Testimonialid,
+                    t.UserId,
+                    UserName = t.User.FristName, // Assuming User entity has a FullName property
+                    t.Status,
+                    t.Text,
+                    t.CreatedAt
+                })
+                .ToList();
+
             return Ok(testimonials);
         }
 
@@ -45,6 +73,30 @@ namespace GEM.Server.Controller
             return Ok(testimonialFromDb);
 
         }
+
+        // DELETE: api/Testimonials/Delete/{id}
+        [HttpDelete("Delete/{id}")]
+        public IActionResult Delete(int id)
+        {
+            var testimonialFromDb = _db.Testimonials.Find(id);
+            if (testimonialFromDb == null)
+            {
+                return NotFound();
+            }
+
+            _db.Testimonials.Remove(testimonialFromDb);
+            _db.SaveChanges();
+            return NoContent(); // Return a 204 No Content response to indicate successful deletion
+        }
+
+
+
+
+
+
+
+
+
 
         // show the top four best selling products list 
 
@@ -141,6 +193,10 @@ namespace GEM.Server.Controller
                     Image = s.Image,
                     Description = s.Description,
                     PreparationTime = s.PreparationTime,
+                    Instructions = s.Instructions,
+                    FirstStepes = s.FirstStepes,
+                    SecondStepes = s.SecondStepes,
+                    FinalStepes = s.FinalStepes,
                     MealPlanID = s.MealPlanId,
                     NutritionFacts = _db.NutritionFacts
                         .Where(n => n.SubMealPlans == s.SubMealPlanId)
@@ -172,6 +228,233 @@ namespace GEM.Server.Controller
             return Ok(subMealPlan);
         }
 
+        // For Image
+
+        [HttpGet("getImages/{imageName}")]
+        public IActionResult getImage(string imageName)
+        {
+
+            var pathImage = Path.Combine(Directory.GetCurrentDirectory(), "Uploads", imageName);
+            if (System.IO.File.Exists(pathImage))
+            {
+
+                return PhysicalFile(pathImage, "image/jpeg");
+            }
+            return NotFound();
+
+        }
+        ///MEEEEEAAAALLL
+        // Add new Meal
+        [HttpPost("addMeal")]
+        public IActionResult addMealPlan([FromForm] MealPlanDto addMeal)
+        {
+
+            var folder = Path.Combine(Directory.GetCurrentDirectory(), "Uploads");
+            if (!Directory.Exists(folder))
+            {
+                Directory.CreateDirectory(folder);
+            }
+            var fileImage = Path.Combine(folder, addMeal.Image.FileName);
+            using (var stream = new FileStream(fileImage, FileMode.Create))
+            {
+                addMeal.Image.CopyToAsync(stream);
+
+            }
+
+            var newMeal = new MealPlan
+            {
+                MealPlanId = addMeal.MealPlanId,
+                Title = addMeal.Title,
+                Image = addMeal.Image.FileName,
+                Description = addMeal.Description,
+
+            };
+
+            _db.MealPlans.Add(newMeal);
+            _db.SaveChanges();
+            return Ok(newMeal);
+        }
+
+        [HttpPut("editMeal/{id}")]
+        public IActionResult EditMealPlan(int id, [FromForm] MealPlanDto editMeal)
+        {
+            var existingMeal = _db.MealPlans.Find(id);
+            if (existingMeal == null)
+            {
+                return NotFound("Meal not found.");
+            }
+
+            var folder = Path.Combine(Directory.GetCurrentDirectory(), "Uploads");
+            if (!Directory.Exists(folder))
+            {
+                Directory.CreateDirectory(folder);
+            }
+
+            // Check if a new image file was uploaded
+            if (editMeal.Image != null)
+            {
+                var fileImage = Path.Combine(folder, editMeal.Image.FileName);
+                using (var stream = new FileStream(fileImage, FileMode.Create))
+                {
+                    editMeal.Image.CopyToAsync(stream);
+                }
+                existingMeal.Image = editMeal.Image.FileName; // Update image
+            }
+
+            // Update other fields
+            existingMeal.Title = editMeal.Title;
+            existingMeal.Description = editMeal.Description;
+
+            _db.SaveChanges();
+            return Ok(existingMeal);
+        }
+
+
+        [HttpDelete("deleteMeal/{id}")]
+        public IActionResult DeleteMealPlan(int id)
+        {
+            var existingMeal = _db.MealPlans.Find(id);
+            if (existingMeal == null)
+            {
+                return NotFound("Meal not found.");
+            }
+
+            // Delete the image file if it exists
+            //var folder = Path.Combine(Directory.GetCurrentDirectory(), "Uploads");
+            //var fileImage = Path.Combine(folder, existingMeal.Image);
+            //if (System.IO.File.Exists(fileImage))
+            //{
+            //    System.IO.File.Delete(fileImage);
+            //}
+
+            _db.MealPlans.Remove(existingMeal);
+            _db.SaveChanges();
+            return Ok("Meal deleted successfully.");
+        }
+
+        ///subMeal 
+
+
+        [HttpGet("getAllSubMeals")]
+        public IActionResult GetAllSubMeals()
+        {
+            var subMeals = _db.SubMealPlans.ToList();
+            return Ok(subMeals);
+        }
+
+
+        [HttpGet("getSubMeal/{id}")]
+        public IActionResult GetSubMeal(int id)
+        {
+            var subMeal = _db.SubMealPlans.FirstOrDefault(s => s.SubMealPlanId == id);
+            if (subMeal == null)
+            {
+                return NotFound("Sub-Meal not found.");
+            }
+            return Ok(subMeal);
+        }
+
+
+        // Add new SubMeal
+        [HttpPost("addSubMeal")]
+        public IActionResult addSubMeal([FromForm] addSubMealDto addSubMeal)
+        {
+
+            var folder = Path.Combine(Directory.GetCurrentDirectory(), "Uploads");
+            if (!Directory.Exists(folder))
+            {
+                Directory.CreateDirectory(folder);
+            }
+            var fileImage = Path.Combine(folder, addSubMeal.Image.FileName);
+            using (var stream = new FileStream(fileImage, FileMode.Create))
+            {
+                addSubMeal.Image.CopyToAsync(stream);
+
+            }
+
+            var newSubMeal = new SubMealPlan
+            {
+                Title = addSubMeal.Title,
+                Image = addSubMeal.Image.FileName,
+                Description = addSubMeal.Description,
+                PreparationTime = addSubMeal.PreparationTime,
+                Instructions = addSubMeal.Instructions,
+                FirstStepes = addSubMeal.FirstStepes,
+                SecondStepes = addSubMeal.SecondStepes,
+                FinalStepes = addSubMeal.FinalStepes,
+                MealPlanId = addSubMeal.MealPlanId,
+            };
+
+            _db.SubMealPlans.Add(newSubMeal);
+            _db.SaveChanges();
+            return Ok(newSubMeal);
+        }
+
+        [HttpPut("editSubMeal/{id}")]
+        public IActionResult EditSubMeal(int id, [FromForm] addSubMealDto editSubMeal)
+        {
+            var existingSubMeal = _db.SubMealPlans.Find(id);
+            if (existingSubMeal == null)
+            {
+                return NotFound("SubMeal not found.");
+            }
+
+            var folder = Path.Combine(Directory.GetCurrentDirectory(), "Uploads");
+            if (!Directory.Exists(folder))
+            {
+                Directory.CreateDirectory(folder);
+            }
+
+            // Check if a new image file was uploaded
+            if (editSubMeal.Image != null)
+            {
+                var fileImage = Path.Combine(folder, editSubMeal.Image.FileName);
+                using (var stream = new FileStream(fileImage, FileMode.Create))
+                {
+                    editSubMeal.Image.CopyToAsync(stream);
+                }
+                existingSubMeal.Image = editSubMeal.Image.FileName; // Update image
+            }
+
+            // Update other fields
+            existingSubMeal.Title = editSubMeal.Title;
+            existingSubMeal.Description = editSubMeal.Description;
+            existingSubMeal.PreparationTime = editSubMeal.PreparationTime;
+            existingSubMeal.Instructions = editSubMeal.Instructions;
+            existingSubMeal.FirstStepes = editSubMeal.FirstStepes;
+            existingSubMeal.SecondStepes = editSubMeal.SecondStepes;
+            existingSubMeal.FinalStepes = editSubMeal.FinalStepes;
+            existingSubMeal.MealPlanId = editSubMeal.MealPlanId;
+
+            _db.SaveChanges();
+            return Ok(existingSubMeal);
+        }
+
+
+        [HttpDelete("deleteSubMeal/{id}")]
+        public IActionResult DeleteSubMeal(int id)
+        {
+            var existingSubMeal = _db.SubMealPlans.Find(id);
+            if (existingSubMeal == null)
+            {
+                return NotFound("SubMeal not found.");
+            }
+
+            // Delete the image file if it exists
+            //var folder = Path.Combine(Directory.GetCurrentDirectory(), "Uploads");
+            //var fileImage = Path.Combine(folder, existingSubMeal.Image);
+            //if (System.IO.File.Exists(fileImage))
+            //{
+            //    System.IO.File.Delete(fileImage);
+            //}
+
+            _db.SubMealPlans.Remove(existingSubMeal);
+            _db.SaveChanges();
+            return Ok("SubMeal deleted successfully.");
+        }
+
+
+
     }
-    
+
 }

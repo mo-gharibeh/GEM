@@ -15,7 +15,7 @@ namespace GEM.Server.Controller
         private readonly MyDbContext _db;
         private readonly IEmailService _emailService;
 
-        public ContactController1(MyDbContext db)
+        public ContactController1(MyDbContext db, IEmailService emailService)
         {
             _db = db;
             //_emailService = emailService;
@@ -34,6 +34,28 @@ namespace GEM.Server.Controller
 
 
         ///////////////////////////////////////////////////////////////////////
+
+        [HttpGet("GetMessage/{id}")]
+        public IActionResult GetMessage(int id)
+        {
+            var message = _db.ContactUs.FirstOrDefault(m => m.ContcatId == id);
+
+            if (message == null)
+            {
+                return NotFound(new { Message = "Message not found" });
+            }
+
+            var messageDto = new ContactU
+            {
+                Email = message.Email,
+                Subject = message.Subject
+            };
+
+            return Ok(message);
+        }
+
+
+        ///
 
 
         [HttpPost("PostMessage")]
@@ -56,42 +78,45 @@ namespace GEM.Server.Controller
 
             return Ok(new { Message = "Contact message sent successfully!" });
         }
-        //[HttpPost("PostMessage")]
-        //public async Task<IActionResult> PostMessage([FromForm] ContactUsDto contactUsDto, [FromServices] IEmailService emailService)
-        //{
-        //    // Save the contact message to the database
 
 
-        //    var contact = new ContactU
-        //    {
-        //        Name = contactUsDto.Name,
-        //        Email = contactUsDto.Email,
-        //        MessageContent = contactUsDto.MessageContent,
-        //        Subject = contactUsDto.Subject,
-        //        SentDate = DateTime.Now,
+        /// ////////////////////////////////////////////////////
 
-        //    };
+        [HttpPost("PostMessageToEmail")]
+        public async Task<IActionResult>  PostMessageToEmail([FromForm] ContactUsDto contactUsDto)
+        {
+            var contact = new ContactU
+            {
+                MessageContent = contactUsDto.MessageContent,
+                Subject = contactUsDto.Subject,
+            };
 
-        //    _db.ContactUs.Add(contact);
-        //    _db.SaveChanges();
+            _db.ContactUs.Add(contact);
+            await _db.SaveChangesAsync();
 
-        //    var subject = contactUsDto.Subject;
-        //    var messageBody = $"You have received a new message from {contactUsDto.Name} ({contactUsDto.Email}):<br><br>{contactUsDto.MessageContent}";
+            var subject = contactUsDto.Subject;
+            var messageBody = $"You have received a new message from {contactUsDto.Name} ({contactUsDto.Email}):<br><br>{contactUsDto.MessageContent}";
 
-        //    try
-        //    {
-        //        // Use the EmailService to send the email
-        //        await emailService.SendEmailAsync("admin@example.com", subject, messageBody);
+            try
+            {
+                // Send email to admin
+                await _emailService.SendEmailAsync("admin@example.com", subject, messageBody);
 
-        //        return Ok(new { Message = "Contact message sent successfully and email delivered!" });
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return StatusCode(500, new { Message = $"Message saved, but failed to send email: {ex.Message}" });
-        //    }
-        //}
+                // Send email to the user
+                var userEmailSubject = "Thank you for contacting us!";
+                var userEmailBody = $"Dear {contactUsDto.Name},<br><br>Thank you for reaching out. We have received your message:<br><br>{contactUsDto.MessageContent}<br><br>We will get back to you shortly.";
+                await _emailService.SendEmailAsync(contactUsDto.Email, userEmailSubject, userEmailBody);
 
-
-
+                return Ok(new { Message = "Contact message sent successfully and emails delivered!" });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { Message = $"Message saved, but failed to send email: {ex.Message}" });
+            }
+        }
     }
+
+
+
 }
+

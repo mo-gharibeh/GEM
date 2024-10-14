@@ -1,115 +1,92 @@
-
-<div class="header">
-  <div class="header-left">
-    <div class="menu-icon bi bi-list"></div>
-    <div class="search-toggle-icon bi bi-search" data-toggle="header_search"></div>
-  </div>
-  <div class="header-right">
-    <div class="dashboard-setting user-notification">
-      <div class="dropdown">
-        <a class="dropdown-toggle no-arrow" href="javascript:;" data-toggle="right-sidebar" style="color: white;">
+<div class="container-fluid">
+  <div class="row flex-nowrap">
+    <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
+      <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+        <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+          <span class="fs-5 d-none d-sm-inline">Menu</span>
         </a>
+        <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+
+          <li>
+            <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+              <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline">Dashboard</span>
+            </a>
+          </li>
+          <li>
+            <a routerLink="/AdminDashBoard/ClassGym" class="nav-link px-0 align-middle">
+              <!-- Gym And Classes -->
+              <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Gym And Classes</span>
+            </a>
+          </li>
+
+          <li>
+            <a routerLink="/AdminDashBoard/GetCategories" class="nav-link px-0 align-middle">
+              <!-- ALL Categories -->
+              <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">ALL Categories</span>
+            </a>
+          </li>
+
+          <li>
+            <a routerLink="/AdminDashBoard/GetProducts" class="nav-link px-0 align-middle">
+              <!-- AllProducts -->
+              <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">All Products</span>
+            </a>
+          </li>
+          <li>
+            <a routerLink="/AdminDashBoard/GetOrders" class="nav-link px-0 align-middle">
+              <!-- AllProducts -->
+              <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">All Orders</span>
+            </a>
+          </li>
+
+          <li>
+            <a routerLink="/AdminDashBoard/Contact" class="nav-link px-0 align-middle">
+              <!--ALL Contact-->
+              <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">ALL Contact</span>
+            </a>
+          </li>
+
+          <li>
+            <a routerLink="/AdminDashBoard/ReplyContact" class="nav-link px-0 align-middle">
+              <!--Reply Contact-->
+              <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Reply Contact</span>
+            </a>
+          </li>
+
+          <li>
+            <a routerLink="/AdminDashBoard/mealManagement" class="nav-link px-0 align-middle">
+              <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Meal Management</span>
+            </a>
+          </li>
+
+          <li>
+            <a routerLink="/AdminDashBoard/subMealManagement" class="nav-link px-0 align-middle">
+              <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">SubMeal Management</span>
+            </a>
+          </li>
+
+          <li>
+            <a routerLink="/AdminDashBoard/testiManagement" class="nav-link px-0 align-middle">
+              <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Testimonial Managrmrnt</span>
+            </a>
+          </li>
+
+
+
+          <li>
+            <a routerLink="/Login" class="nav-link px-0 align-middle">
+              <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Logout</span>
+            </a>
+          </li>
+        </ul>
+        <hr>
+
       </div>
     </div>
-    <div class="user-info-dropdown">
-      <div class="dropdown">
-        <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-          <span class="user-name" style="color: white;">User name</span>
-        </a>
-        <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-          <a class="dropdown-item"><i class="dw dw-logout"></i> Log Out</a>
-        </div>
-      </div>
+    <div class="col py-3">
+
+      <router-outlet></router-outlet>
+
     </div>
   </div>
 </div>
-
-<div class="left-side-bar">
-  <div class="sidenav-header align-items-center" style=" text-align: center;">
-    <a class="navbar-brand" href="javascript:void(0)">
-      <div style="text-align: center; ;">
-        <img style="width: 100px;" src="vendors/images/logo1.png" alt="description of image" class="me-3">
-      </div>
-
-    </a>
-  </div>
-  <div class="menu-block customscroll">
-    <div class="sidebar-menu">
-      <ul id="accordion-menu">
-        <li class="dropdown">
-          <a href="index1.html" class="dropdown-toggle  no-arrow">
-            <span class="micon bi bi-house"></span><span class="mtext">Home</span>
-          </a>
-        </li>
-        <li class="dropdown">
-          <a href="javascript:;" class="dropdown-toggle">
-            <span class="micon bi bi-file-earmark-text"></span><span class="mtext">User </span>
-          </a>
-          <ul class="submenu">
-            <li><a routerLink="/AdminDashBoard/ShowGym">Gym And Classes</a></li>
-
-          </ul>
-        </li>
-        <li class="dropdown">
-          <a href="javascript:;" class="dropdown-toggle">
-            <span class="micon bi bi-file-earmark-text"></span><span class="mtext">Vendors </span>
-          </a>
-          <ul class="submenu">
-            <li><a routerLink="/AdminDashBoard/GetCategories">ALL Categories</a></li>
-            <li>
-              <a routerLink="/AdminDashBoard/GetProducts">AllProducts</a>
-            </li>
-            <li>
-              <a href="Vendor/addServicetype.html">Add Service details</a>
-            </li>
-          </ul>
-        </li>
-
-        <li class="dropdown">
-          <a href="javascript:;" class="dropdown-toggle">
-            <span class="micon bi bi-file-earmark-text"></span><span class="mtext">
-              Services
-            </span>
-          </a>
-          <ul class="submenu">
-            <li><a href="Services/allServices.html">All Services</a></li>
-            <li><a href="Services/addServices.html">Add Service</a></li>
-
-          </ul>
-
-        </li>
-
-        <li class="dropdown">
-          <a href="javascript:;" class="dropdown-toggle">
-            <span class="micon bi bi-file-earmark-text"></span><span class="mtext">Bookings </span>
-          </a>
-          <ul class="submenu">
-            <li><a href="Bookings/AllBooking.html">ALL bookings</a></li>
-            <!-- <li><a href="Order/GetOrder.html">Search By Email</a></li> -->
-          </ul>
-        </li>
-        <li class="dropdown">
-          <a href="javascript:;" class="dropdown-toggle">
-            <span class="micon bi bi-file-earmark-text"></span><span class="mtext">Testimonial  </span>
-          </a>
-          <ul class="submenu">
-            <li><a href="Testimonial/Testimonial.html">ALL Testimonial </a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
-          <a href="javascript:;" class="dropdown-toggle">
-            <span class="micon bi bi-file-earmark-text"></span><span class="mtext">Contact </span>
-          </a>
-          <ul class="submenu">
-            <li><a href="Contact/Contact Us.html">ALL Contact</a></li>
-            <li><a href="Contact/ReplyAdmin.html">Reply Contact</a></li>
-          </ul>
-        </li>
-
-      </ul>
-    </div>
-  </div>
-</div>
-
-<div class="mobile-menu-overlay"></div>
-<router-outlet></router-outlet>

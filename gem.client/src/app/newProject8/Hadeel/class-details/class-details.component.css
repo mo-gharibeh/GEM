@@ -1,0 +1,194 @@
+/* General Styles */
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+}
+
+section {
+  padding: 60px 0;
+}
+
+h2, h3 {
+  font-weight: 700;
+  color: #2a2a2a;
+}
+
+/* Banner Style */
+.banner-style-one {
+  position: relative;
+  background-color: #0056b3;
+  color: white;
+  text-align: center;
+  padding: 100px 0;
+}
+
+  .banner-style-one .parallax {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    opacity: 0.7;
+  }
+
+  .banner-style-one .banner-details h2 {
+    font-size: 48px;
+    font-weight: 800;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+  }
+
+  .banner-style-one .banner-details p {
+    font-size: 18px;
+    font-weight: 400;
+  }
+
+.breadcrums ul {
+  display: flex;
+  justify-content: center;
+  padding: 0;
+  list-style: none;
+}
+
+  .breadcrums ul li {
+    margin: 0 10px;
+  }
+
+    .breadcrums ul li a {
+      text-decoration: none;
+      color: white;
+      font-weight: 500;
+    }
+
+    .breadcrums ul li.current p {
+      color: #ddd;
+    }
+
+/* Class Details */
+.pr-dat {
+  background-color: #fff;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.heading-style-2 h2 {
+  font-size: 36px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.pr-dat p {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 30px;
+  line-height: 1.6;
+}
+
+/* Class Timing */
+.pr-dat ul {
+  list-style: none;
+  padding: 0;
+}
+
+  .pr-dat ul li {
+    margin-bottom: 15px;
+    font-size: 16px;
+  }
+
+    .pr-dat ul li label {
+      cursor: pointer;
+    }
+
+    .pr-dat ul li input[type="radio"] {
+      margin-right: 10px;
+    }
+
+/* Join Button */
+.subscription-section {
+  margin-top: 30px;
+}
+
+  .subscription-section p {
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  .subscription-section .theme-btn {
+    background-color: #ff6b6b;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 50px;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 1px;
+    transition: 0.3s;
+    border: none;
+    cursor: pointer;
+  }
+
+    .subscription-section .theme-btn:hover {
+      background-color: #e63946;
+    }
+
+/* Instructor Section */
+.team-style-one {
+  background-color: #fafafa;
+  padding: 50px 0;
+  text-align: center;
+}
+
+  .team-style-one .heading h2 {
+    font-size: 32px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+
+  .team-style-one .team-data h3 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #ff6b6b;
+    margin-bottom: 10px;
+  }
+
+  .team-style-one .team-data p {
+    font-size: 16px;
+    color: #555;
+  }
+
+.t-tel {
+  margin-top: 20px;
+  font-size: 18px;
+  color: #333;
+}
+
+  .t-tel span {
+    font-size: 22px;
+    font-weight: 700;
+    color: #ff6b6b;
+  }
+
+/* Media Queries */
+@media only screen and (max-width: 768px) {
+  .banner-style-one {
+    padding: 80px 0;
+  }
+
+    .banner-style-one .banner-details h2 {
+      font-size: 32px;
+    }
+
+  .pr-dat {
+    padding: 20px;
+  }
+
+  .heading-style-2 h2 {
+    font-size: 28px;
+  }
+
+  .subscription-section .theme-btn {
+    padding: 10px 20px;
+  }
+}
