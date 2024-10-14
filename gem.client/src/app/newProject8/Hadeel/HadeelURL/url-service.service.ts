@@ -50,14 +50,9 @@ export class UrlServiceService {
     return this.http.get<any[]>(`${this.staticData}/Classe/${classId}/times`);
   }
 
-  // New method to create class enrollment
-  createClassEnrollment(userId: number, classId: number, classTimeId: number, totalAmount: number): Observable<any> {
-    return this.http.post<any>(`${this.staticData}/Payment/CreateClassEnrollment/${userId}/${classId}/${classTimeId}`, totalAmount);
-  }
   UpdateGym(id: any, data: any): Observable<any> {
-
-
-
+    return this.http.put<any>(`${this.staticData}/Gym/EditGym?id=${id}`, data)
+  }
 
 
   UpdateService(id: any, data: any): Observable<any> {
@@ -123,13 +118,3 @@ export class UrlServiceService {
     return this.http.post<any>(`${this.staticData}/Payment/ExecutePayPalPayment`, paymentExecution);
   }
 }
-  // Execute PayPal payment for class enrollment
-  executePayPalPayment(executionInfo: any): Observable<any> {
-    return this.http.post<any>(
-      `${this.staticData}/Payment/ExecutePayPalPayment`,
-      executionInfo
-    );
-  }
-
-}
- 
