@@ -89,6 +89,7 @@ namespace GEM.Server.Controller
             {
                 MessageContent = contactUsDto.MessageContent,
                 Subject = contactUsDto.Subject,
+                Email = contactUsDto.Email,
             };
 
             _db.ContactUs.Add(contact);

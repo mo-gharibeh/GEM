@@ -19,6 +19,9 @@ export class UrlAdminService {
     return this.http.get<any>(`${this.apiUrl}/ContactController1/GetMessage/${id}`);
   }
 
+  postContactForm(contactFormData: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/ContactController1/PostMessageToEmail`, contactFormData);
 
+  }
 
 }

@@ -117,7 +117,8 @@ import { AddClassComponent } from "./AdminSide/add-class/add-class.component";
     ShowAllOrdersComponent,
     ShowOrderrItemComponent,
     EditProfileComponent,
-    GetAllUsersComponent
+    GetAllUsersComponent,
+    ReplycontactComponent
   ],
 
   imports: [
