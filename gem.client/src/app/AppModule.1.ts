@@ -147,6 +147,8 @@ import { AddClassComponent } from "./AdminSide/add-class/add-class.component";
       { path: 'Class', component: ClasseComponent },
 
       { path: 'ClassDetails/:id', component: ClassDetailsComponent },
+      { path: 'Products', component: ProductComponent },
+
 
 
       {
@@ -168,7 +170,6 @@ import { AddClassComponent } from "./AdminSide/add-class/add-class.component";
 
 
 
-          { path: 'Products', component: ProductComponent },
 
           { path: 'Profile', component: ProfileComponent },
           { path: 'edit-profile/:id', component: EditProfileComponent },

@@ -13,8 +13,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-//builder.Services.AddDbContext<MyDbContext>(options =>
-//    options.UseSqlServer(builder.Configuration.GetConnectionString("YourConnectionString")));
+builder.Services.AddDbContext<MyDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("YourConnectionString")));
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("Development", options =>
