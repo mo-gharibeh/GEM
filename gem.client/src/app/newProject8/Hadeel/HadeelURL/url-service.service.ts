@@ -49,15 +49,11 @@ export class UrlServiceService {
 
     return this.http.get<any[]>(`${this.staticData}/Classe/${classId}/times`);
   }
-  // Join class with selected time and user ID
-  joinClass(classId: number, timeId: number, userId: number, totalAmount: number): Observable<any> {
-    return this.http.post<any>(`${this.staticData}/Payment/CreateClassEnrollment/${userId}/${classId}/${timeId}`, totalAmount);
-  }
 
-  // New method to create class enrollment
-  createClassEnrollment(userId: number, classId: number, classTimeId: number, totalAmount: number): Observable<any> {
-    return this.http.post<any>(`${this.staticData}/Payment/CreateClassEnrollment/${userId}/${classId}/${classTimeId}`, totalAmount);
-  }
+
+
+
+
 
   UpdateService(id: any, data: any): Observable<any> {
     return this.http.put<any>(`${this.staticData}/Gym/EditGym?id=${id}`, data)
@@ -66,35 +62,48 @@ export class UrlServiceService {
     return this.http.delete<any>(`${this.staticData}/Gym/DeleteGym?id=${id}`)
   }
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  ////paypal///////////////////////////////////////////////////
+  ////paypal//////////////////////////////////////////
+
+
+  /////////
   // Create PayPal payment and get approval URL
-  payForClass(classId: number, classTimeId: number): Observable<string> {
-    debugger
-    const userId = Number(localStorage.getItem('userId'));  // Get the user ID from local storage
-    const paymentInfo = {
-      returnUrl: `${window.location.origin}/payment-success`,  // Success URL after payment
-      cancelUrl: `${window.location.origin}/payment-cancel`    // Cancel URL if the payment fails
-    };
-    debugger
-    return this.http.post<string>(`${this.staticData}/Payment/CheckoutWithPayPal/${userId}/${classId}/${classTimeId}`, paymentInfo);
-  }
 
-  // Execute PayPal payment after approval
-  executePayPalPayment(paymentId: string, payerId: string, classId: number, classTimeId: number): Observable<any> {
-    debugger
-    const userId = Number(localStorage.getItem('userId'));  // Get the user ID from local storage
-    debugger
-    const paymentExecution = {
-      paymentId,
-      payerId,
-      userId,
-      classId,
-      classTimeId
-    };
-    debugger
-    return this.http.post<any>(`${this.staticData}/Payment/ExecutePayPalPayment`, paymentExecution);
-  }
-}
   
+  // Join class with selected time and user ID
+  joinClass(classId: number, timeId: number, userId: number, totalAmount: number): Observable<any> {
+    return this.http.post<any>(`${this.staticData}/Payment/CreateClassEnrollment/${userId}/${classId}/${timeId}`, totalAmount);
+  }
 
+  // In your service
+  createClassEnrollment(userId: number, classId: number, classTimeId: number, totalAmount: number): Observable<any> {
+    return this.http.post<any>(
+      `${this.staticData}/Payment/CreateClassEnrollment/${userId}/${classId}/${classTimeId}`,
+      totalAmount // Ensure this is a number, not a string
+    );
+  }
+
+
+  // Checkout with PayPal for class enrollment
+  payForClass(userId: number, classId: number, classTimeId: number, totalAmount: number, returnUrl: string, cancelUrl: string): Observable<any> {
+    const paymentInfo = {
+      returnUrl: returnUrl,
+      cancelUrl: cancelUrl,
+      totalAmount: totalAmount // Include totalAmount in the request body
+    };
+
+    return this.http.post<any>(
+      `${this.staticData}/Payment/CheckoutWithPayPal/${userId}/${classId}/${classTimeId}`,
+      paymentInfo
+    );
+  }
+
+  // Execute PayPal payment for class enrollment
+  executePayPalPayment(executionInfo: any): Observable<any> {
+    return this.http.post<any>(
+      `${this.staticData}/Payment/ExecutePayPalPayment`,
+      executionInfo
+    );
+  }
+
+}
  

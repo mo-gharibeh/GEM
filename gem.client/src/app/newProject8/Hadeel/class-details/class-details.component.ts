@@ -79,25 +79,21 @@ export class ClassDetailsComponent implements OnInit {
       return;
     }
 
-    // Call your method to save the enrollment
     this._ser.createClassEnrollment(this.userId, this.classId, this.classTimeId, this.totalAmount).subscribe(
       response => {
-        alert('You have successfully enrolled in the class!');
 
-        // Redirect to payment process
-        this.redirectToPayment(this.classId, this.classTimeId, this.totalAmount);
+        // Store the total amount in local storage
+        localStorage.setItem('totalAmount', this.totalAmount.toString());
+
+        // Redirect to the payment page with parameters
+        this.router.navigate(['/payment'], {
+          queryParams: { classId: this.classId, classTimeId: this.classTimeId }
+        });
       },
       error => {
         console.error('Error enrolling in class', error);
         alert('Error enrolling in class. Please try again.');
       }
     );
-  }
-
-  // Redirect to payment
-  redirectToPayment(classId: number, classTimeId: number, amount: number) {
-    this.router.navigate(['/payment'], {
-      queryParams: { classId, classTimeId, amount }
-    });
   }
 }

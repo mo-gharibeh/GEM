@@ -51,6 +51,7 @@ import { GetAllUsersComponent } from "./AdminSide/get-all-users/get-all-users.co
 import { ShowGymComponent } from "./AdminSide/show-gym/show-gym.component";
 import { GetAllClassesComponent } from "./AdminSide/get-all-classes/get-all-classes.component";
 import { AddClassComponent } from "./AdminSide/add-class/add-class.component";
+import { PaymentComponent } from "./newProject8/Hadeel/payment/payment.component";
 
 
 
@@ -79,7 +80,6 @@ import { AddClassComponent } from "./AdminSide/add-class/add-class.component";
     ClassDetailsComponent,
     LoginComponent,
     RegisterComponent,
-    PaypalComponent,
     ShowGymComponent,
     ClassAndGymComponent,
     GetAllClassesComponent,
@@ -97,7 +97,7 @@ import { AddClassComponent } from "./AdminSide/add-class/add-class.component";
     GetProductsComponent,
     UpdateProductsComponent,
     AddProductsComponent,
-    PaypalComponent,
+
     NutritionComponent,
     ContactAdminComponent,
     NutritionComponent,
@@ -141,7 +141,8 @@ import { AddClassComponent } from "./AdminSide/add-class/add-class.component";
 
       { path: 'GymDetails/:id', component: GymDetailComponent },
       { path: 'classDetails/:id', component: ClassDetailsComponent },
-      { path: 'payment', component: PaypalComponent }
+      { path: 'payment', component: PaymentComponent }
+      
       ,
       { path: 'Class', component: ClasseComponent },
 
