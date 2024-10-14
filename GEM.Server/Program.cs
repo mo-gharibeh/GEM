@@ -1,5 +1,6 @@
 using GEM.Server.Models;
 using GEM.Server.Service;
+using GEM.Server.yousefDTO;
 using Microsoft.EntityFrameworkCore;
 using GEM.Server.DTOs;
 
@@ -24,6 +25,7 @@ builder.Services.AddCors(options =>
     });
 });
 
+builder.Services.AddScoped<IEmailService, EmailService>();
 builder.Services.AddScoped<PayPalPaymentService>();
 builder.Services.AddScoped<PaymentServiceH>();
 

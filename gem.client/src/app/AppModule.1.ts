@@ -43,6 +43,9 @@ import { UpdateGymComponent } from "./AdminSide/update-gym/update-gym.component"
 import { PaymentComponent } from "./newProject8/Hadeel/payment-cridet-card/payment-cridet-card.component";
 import { OrdersComponent } from "./newProject8/Bassam/orders/orders.component";
 import { SubscriptionsComponent } from "./newProject8/Bassam/subscriptions/subscriptions.component";
+import { MealManagementComponent } from "./AdminSide/meal-management/meal-management.component";
+import { SubMealManagementComponent } from "./AdminSide/sub-meal-management/sub-meal-management.component";
+import { TestimonialManagrmrntComponent } from "./AdminSide/testimonial-managrmrnt/testimonial-managrmrnt.component";
 import { ShowAllOrdersComponent } from "./AdminSide/show-all-orders/show-all-orders.component";
 import { ShowOrderrItemComponent } from "./AdminSide/show-orderr-item/show-orderr-item.component";
 import { GetAllUsersComponent } from "./AdminSide/get-all-users/get-all-users.component";
@@ -99,9 +102,17 @@ import { AddClassComponent } from "./AdminSide/add-class/add-class.component";
     PaypalComponent,
     NutritionComponent,
     ContactAdminComponent,
+    NutritionComponent,
+    NutritionComponent,
+    NutritionComponent,
+    ContactAdminComponent,
 
 
     RegisterComponent,
+    EditProfileComponent,
+    MealManagementComponent,
+    SubMealManagementComponent,
+    TestimonialManagrmrntComponent,
     EditProfileComponent,
     ShowAllOrdersComponent,
     ShowOrderrItemComponent,
@@ -119,6 +130,7 @@ import { AddClassComponent } from "./AdminSide/add-class/add-class.component";
     RouterModule.forRoot([
 
       { path: '', component: HomeComponent, pathMatch: 'full' },
+      { path: 'home', component: HomeComponent },
 
       { path: 'Tips', component: TipsComponent },
 
@@ -149,6 +161,10 @@ import { AddClassComponent } from "./AdminSide/add-class/add-class.component";
           { path: "Contact", component: ContactAdminComponent },
           //{ path: "ReplyContact", component: ReplycontactComponent },
           { path: "ReplyContact/:id", component: ReplycontactComponent },
+          { path: "mealManagement", component: MealManagementComponent },
+          { path: "subMealManagement", component: SubMealManagementComponent },
+          { path: "testiManagement", component: TestimonialManagrmrntComponent },
+          { path : "AllUsers", component: GetAllUsersComponent}
 
 
 
