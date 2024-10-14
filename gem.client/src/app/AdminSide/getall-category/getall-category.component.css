@@ -11,3 +11,7 @@ h2 {
   border-radius: 10px;
   overflow: hidden;
 }
+button.btn.btn-success.btn-sm {
+  margin: 31px;
+  font-size: 24px;
+}
