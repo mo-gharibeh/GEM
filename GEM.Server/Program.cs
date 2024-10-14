@@ -23,9 +23,9 @@ builder.Services.AddCors(options =>
         options.AllowAnyMethod();
         options.AllowAnyOrigin();
     });
-});
+}); 
 
-builder.Services.AddScoped<IEmailService, EmailService>();
+builder.Services.AddScoped<IEmailService, GEM.Server.yousefDTO.EmailService>();
 builder.Services.AddScoped<PayPalPaymentService>();
 builder.Services.AddScoped<PaymentServiceH>();
 
@@ -47,7 +47,7 @@ return new PayPalConfigManager(config);
 //Register PayPalPaymentService
 builder.Services.AddTransient<PayPalPaymentService>();
 
-builder.Services.AddTransient<EmailService>();
+builder.Services.AddTransient<GEM.Server.yousefDTO.EmailService>();
 
 
 builder.Services.AddSingleton<IConfiguration>(builder.Configuration);

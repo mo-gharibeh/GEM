@@ -164,7 +164,7 @@ import { AddClassComponent } from "./AdminSide/add-class/add-class.component";
           { path: "mealManagement", component: MealManagementComponent },
           { path: "subMealManagement", component: SubMealManagementComponent },
           { path: "testiManagement", component: TestimonialManagrmrntComponent },
-          { path : "AllUsers", component: GetAllUsersComponent}
+          { path : "AllUsers", component: GetAllUsersComponent} ,
 
 
 
