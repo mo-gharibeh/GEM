@@ -18,7 +18,7 @@ namespace GEM.Server.Controller
         public ContactController1(MyDbContext db, IEmailService emailService)
         {
             _db = db;
-            //_emailService = emailService;
+            _emailService = emailService;
         }
 
 
@@ -83,7 +83,7 @@ namespace GEM.Server.Controller
         /// ////////////////////////////////////////////////////
 
         [HttpPost("PostMessageToEmail")]
-        public async Task<IActionResult>  PostMessageToEmail([FromForm] ContactUsDto contactUsDto)
+        public async Task<IActionResult> PostMessageToEmail([FromForm] ContactUsDto contactUsDto)
         {
             var contact = new ContactU
             {
