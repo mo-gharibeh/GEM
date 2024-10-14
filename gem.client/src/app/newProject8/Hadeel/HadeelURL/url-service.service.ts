@@ -13,7 +13,7 @@ export class UrlServiceService {
 
   getGym(): Observable<any> {
 
-    return this.http.get<any>(`${this.staticData}/Gym/GetAllGyms`);
+    return this.http.get<any>(`${this.staticData}/Gym/ShowAllGyms`);
 
   }
 
@@ -24,6 +24,7 @@ export class UrlServiceService {
 
 
   addUSerSubScription(data: any): Observable<any> {
+    debugger
     return this.http.post<any>(`${this.staticData}/Subscribtion/AddGymSubscribtion`, data)
   }
 

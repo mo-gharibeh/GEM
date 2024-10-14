@@ -152,33 +152,37 @@ namespace GEM.Server.Controller
         }
 
 
-        // For Admin Side To Edit Gym
         [HttpPut("EditClass")]
         public IActionResult editClass(int id, [FromForm] ClasseDTO classedto)
         {
-            var classe = _db.ClassAndGyms.FirstOrDefault(x => x.Id == id);
-            var folder = Path.Combine(Directory.GetCurrentDirectory(), "Uploads");
+            var classe = _db.ClassAndGyms.Where(x => x.Id == id).FirstOrDefault();
 
-            if (!Directory.Exists(folder))
+            if (classedto.Image != null)
             {
+                var folder = Path.Combine(Directory.GetCurrentDirectory(), "Uploads");
 
-                Directory.CreateDirectory(folder);
+                if (!Directory.Exists(folder))
+                {
+
+                    Directory.CreateDirectory(folder);
+                }
+
+                var fileImage = Path.Combine(folder, classedto.Image.FileName);
+
+                using (var stream = new FileStream(fileImage, FileMode.Create))
+                {
+
+                    classedto.Image.CopyToAsync(stream);
+
+                }
+                classe.Image = classedto.Image.FileName;
+
             }
 
-            var fileImage = Path.Combine(folder, classedto.Image.FileName);
-
-            using (var stream = new FileStream(fileImage, FileMode.Create))
-            {
-
-                classedto.Image.CopyToAsync(stream);
-
-            }
-
-            classe.Name = classedto.Name;
-            classe.Description = classedto.Description;
-            classe.Image = classedto.Image.FileName;
-            classe.Price = classedto.Price;
-            classe.Trainer = classedto.Trainer;
+            classe.Name = classedto.Name ?? classe.Name;
+            classe.Description = classedto.Description ?? classe.Description;
+            classe.Price = classedto.Price ?? classe.Price;
+            classe.Trainer = classedto.Trainer ?? classe.Trainer;
 
             _db.ClassAndGyms.Update(classe);
             _db.SaveChanges();
