@@ -15,10 +15,10 @@ namespace GEM.Server.Controller
         private readonly MyDbContext _db;
         private readonly IEmailService _emailService;
 
-        public ContactController1(MyDbContext db , IEmailService emailService)
+        public ContactController1(MyDbContext db)
         {
             _db = db;
-            _emailService = emailService;
+            //_emailService = emailService;
         }
 
 
@@ -36,30 +36,9 @@ namespace GEM.Server.Controller
         ///////////////////////////////////////////////////////////////////////
 
 
-        //[HttpPost("PostMessage")]
-        //public IActionResult PostMessage([FromForm] ContactUsDto contactUsDto)
-        //{
-
-
-        //    var contact = new ContactU
-        //    {
-        //        Name = contactUsDto.Name,
-        //        Email = contactUsDto.Email,
-        //        MessageContent = contactUsDto.MessageContent,
-        //        Subject = contactUsDto.Subject,
-        //        SentDate = DateTime.Now,  
-
-        //    };
-
-        //    _db.ContactUs.Add(contact);
-        //    _db.SaveChanges();
-
-        //    return Ok(new { Message = "Contact message sent successfully!" });
-        //}
         [HttpPost("PostMessage")]
-        public async Task<IActionResult> PostMessage([FromForm] ContactUsDto contactUsDto, [FromServices] IEmailService emailService)
+        public IActionResult PostMessage([FromForm] ContactUsDto contactUsDto)
         {
-            // Save the contact message to the database
 
 
             var contact = new ContactU
@@ -75,21 +54,42 @@ namespace GEM.Server.Controller
             _db.ContactUs.Add(contact);
             _db.SaveChanges();
 
-            var subject = contactUsDto.Subject;
-            var messageBody = $"You have received a new message from {contactUsDto.Name} ({contactUsDto.Email}):<br><br>{contactUsDto.MessageContent}";
-
-            try
-            {
-                // Use the EmailService to send the email
-                await emailService.SendEmailAsync("admin@example.com", subject, messageBody);
-
-                return Ok(new { Message = "Contact message sent successfully and email delivered!" });
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, new { Message = $"Message saved, but failed to send email: {ex.Message}" });
-            }
+            return Ok(new { Message = "Contact message sent successfully!" });
         }
+        //[HttpPost("PostMessage")]
+        //public async Task<IActionResult> PostMessage([FromForm] ContactUsDto contactUsDto, [FromServices] IEmailService emailService)
+        //{
+        //    // Save the contact message to the database
+
+
+        //    var contact = new ContactU
+        //    {
+        //        Name = contactUsDto.Name,
+        //        Email = contactUsDto.Email,
+        //        MessageContent = contactUsDto.MessageContent,
+        //        Subject = contactUsDto.Subject,
+        //        SentDate = DateTime.Now,
+
+        //    };
+
+        //    _db.ContactUs.Add(contact);
+        //    _db.SaveChanges();
+
+        //    var subject = contactUsDto.Subject;
+        //    var messageBody = $"You have received a new message from {contactUsDto.Name} ({contactUsDto.Email}):<br><br>{contactUsDto.MessageContent}";
+
+        //    try
+        //    {
+        //        // Use the EmailService to send the email
+        //        await emailService.SendEmailAsync("admin@example.com", subject, messageBody);
+
+        //        return Ok(new { Message = "Contact message sent successfully and email delivered!" });
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return StatusCode(500, new { Message = $"Message saved, but failed to send email: {ex.Message}" });
+        //    }
+        //}
 
 
 

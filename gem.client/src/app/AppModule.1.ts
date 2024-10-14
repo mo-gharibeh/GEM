@@ -24,7 +24,7 @@ import { GymDetailComponent } from "./newProject8/Hadeel/gym-detail/gym-detail.c
 import { RegisterComponent } from "./newProject8/Ahmed/register/register.component";
 import { ClasseComponent } from "./newProject8/Hadeel/classe/classe.component";
 import { EditProfileComponent } from "./newProject8/Bassam/edit-profile/edit-profile.component";
-import { PaypalComponent } from "./newProject8/Lujain/paypal/paypal.component";
+import { PaypalComponent } from './newProject8/Lujain/paypal/PaypalComponent';
 import { ClassDetailsComponent } from "./newProject8/Hadeel/class-details/class-details.component";
 import { AdminDashboardComponent } from "./AdminSide/admin-dashboard/admin-dashboard.component";
 import { ClassAndGymComponent } from "./AdminSide/class-and-gym/class-and-gym.component";

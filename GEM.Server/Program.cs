@@ -25,19 +25,18 @@ builder.Services.AddCors(options =>
 
 
 
-
-// Configure PayPal settings from appsettings.json
 builder.Services.AddSingleton(sp =>
 {
     var config = new Dictionary<string, string>
     {
         { "clientId", builder.Configuration["PayPal:ClientId"] },
         { "clientSecret", builder.Configuration["PayPal:ClientSecret"] },
-        { "mode", builder.Configuration["PayPal:Mode"] } // sandbox or live
+        { "mode", builder.Configuration["PayPal:Mode"] } // "sandbox" or "live"
     };
 
     return new PayPalConfigManager(config);
 });
+
 
 // Register PayPalPaymentService
 builder.Services.AddTransient<PayPalPaymentService>();
@@ -46,6 +45,9 @@ builder.Services.AddTransient<PayPalPaymentService>();
 
 
 var app = builder.Build();
+
+// Use CORS right after building the app
+app.UseCors("Development");
 
 app.UseDefaultFiles();
 app.UseStaticFiles();
@@ -58,12 +60,10 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
 app.MapControllers();
-app.UseCors("Development");
-
 app.MapFallbackToFile("/index.html");
+
+
 
 app.Run();

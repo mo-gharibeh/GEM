@@ -11,12 +11,12 @@
 
         public string GetClientId()
         {
-            return "AZTrBuVKXvnOUkBtbatQHinyCrU5YJw0UMdkL5TP99rNb1uIV-yla77-9RU6ghbGem7Tc_tyGrVyE19Y";
+            return "AfMsQi5UnaC5JCH55LaSR5mqiXgCxiCQl9i5fH1tLLzMjMY_CAcCq_bW0Jng3unAhxZRemIi8ckcHDVT";
         }
 
         public string GetClientSecret()
         {
-            return "EE7434nHv6ssYrjCjhbo8sApNIuqW1gjeUH2aYbgme09hopFGuoZtPNTD7-a9_SVhq5H7n-vpfMC8lq0";
+            return "EEgjU7uBGthAolDzlcePVEqGExr_HtgJCgq1rBjQ19iROSneU0QVAyXq7DCvuhhWtKHXhL-QNOMeZJxk";
         }
 
         public string GetMode()

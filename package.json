@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@types/paypal__paypal-js": "^1.0.2",
     "jquery": "^3.7.1"
   }
 }
