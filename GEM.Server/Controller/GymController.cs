@@ -77,37 +77,46 @@ namespace GEM.Server.Controller
 
 
 
-
-        // For Admin Side To Edit Gym
         [HttpPut("EditGym")]
-        public IActionResult editGym(int id, [FromForm] GymDTO gymDTO)
+        public IActionResult EditGym(int id, [FromForm] GymDTO gymDTO)
         {
-            var gym = _db.ClassAndGyms.FirstOrDefault(x => x.Id == id);
-            var folder = Path.Combine(Directory.GetCurrentDirectory(), "Uploads");
+            // Check if the gym with the provided id exists
+            var gym = _db.ClassAndGyms.Where(x => x.Id == id).FirstOrDefault();
 
-            if (!Directory.Exists(folder))
+            if (gym == null)
             {
-
-                Directory.CreateDirectory(folder);
+                return NotFound(new { message = "Gym not found" });
             }
 
-            var fileImage = Path.Combine(folder, gymDTO.Image.FileName);
-
-            using (var stream = new FileStream(fileImage, FileMode.Create))
+            // Handle the case when gymDTO.Image is null
+            if (gymDTO.Image != null)
             {
+                var folder = Path.Combine(Directory.GetCurrentDirectory(), "Uploads");
+                if (!Directory.Exists(folder))
+                {
+                    Directory.CreateDirectory(folder);
+                }
 
-                gymDTO.Image.CopyToAsync(stream);
+                var fileImage = Path.Combine(folder, gymDTO.Image.FileName);
+                using (var stream = new FileStream(fileImage, FileMode.Create))
+                {
+                    gymDTO.Image.CopyTo(stream);
+                }
 
+                // Only update the image if a new image is provided
+                gym.Image = gymDTO.Image.FileName;
             }
 
-            gym.Name = gymDTO.Name;
-            gym.Description = gymDTO.Description;
-            gym.Image = gymDTO.Image.FileName;
-            gym.Price = gymDTO.Price;
+            // Update the rest of the gym details
+            gym.Name = gymDTO.Name ?? gym.Name;
+            gym.Description = gymDTO.Description ?? gym.Description;
+            gym.Price = gymDTO.Price ?? gym.Price;
 
+            // Save changes to the database
             _db.ClassAndGyms.Update(gym);
             _db.SaveChanges();
-            return Ok();
+
+            return Ok(new { message = "Gym updated successfully" });
         }
 
 
