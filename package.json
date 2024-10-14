@@ -1,5 +1,8 @@
 {
   "dependencies": {
+    "@angular/common": "^18.2.8",
+    "@stripe/stripe-js": "^4.8.0",
+    "@types/paypal__paypal-js": "^1.0.2",
     "jquery": "^3.7.1"
   }
 }

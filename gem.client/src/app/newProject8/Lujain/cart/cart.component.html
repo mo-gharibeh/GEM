@@ -112,7 +112,7 @@
             </ul>
           </div>
           <div class="text-center" style="margin-top: 20px;">
-            <a href="payment.html" class="theme-btn">Process to Payment</a> <!-- Button for processing payment -->
+            <a [routerLink]="['/paypal']" [queryParams]="{total: calculateTotal()}" class="theme-btn">Process to Payment</a>
           </div>
         </div>
       </div>

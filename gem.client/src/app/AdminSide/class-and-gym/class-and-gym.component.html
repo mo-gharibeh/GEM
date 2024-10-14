@@ -28,41 +28,57 @@
 </section>
 <!-- Banner Style One End -->
 
-<a  routerLink="/AdminDashBoard/addGym/" class="btn btn-info">Info</a>
-
-<!-- Gym List Table -->
-<section class="gap blog-style-one team-detail detail-page">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-12">
-        <div class="row">
-          <div class="col-lg-4" *ngFor="let gym of GymArray">
-            <div class="card">
-              <div class="card-body">
-                <h3>{{ gym.name }}</h3>
-                <p><strong>Trainer:</strong> {{ gym.trainer }}</p>
-                <ul class="t-contact">
-                  <li>
-                    <span>Description :</span>
-                    <p>{{ gym.description }}</p>
-                  </li>
-                </ul>
-                <div class="t-tel">
-                  <p>The Monthly Subscription:</p>
-                  <span><b>JOD:</b> {{ gym.price }}</span>
-                </div>
-                <div class="d-flex justify-content-between">
-                  <a (click)="remove(gym.id)" class="btn btn-danger">Remove</a>
-                  <a routerLink="/AdminDashBoard/UpdateGym/{{ gym.id }}" class="btn btn-primary">Edit</a>
-                </div>
-              </div>
-            </div>
+<!--<section class="gap what-we-build">
+  <div class="heading-style-2">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="data">
+            <span>Gyms</span>
+            <a routerLink="/AdminDashBoard/ShowGym">Gym Operation</a>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="data">
+            <span>Classes</span>
+            <a routerLink="/AdminDashBoard/ShowGym">Gym Operation</a>
           </div>
         </div>
       </div>
     </div>
   </div>
+</section>-->
+
+
+<section class="gap project-style-one addition">
+  <div class="container">
+    <div class="row project-slider">
+      <div class="col-lg-6">
+        <div class="project-post reveal1 it-reveal-animation">
+          <figure>
+            <img src="assets/images/service-nav-img-5H.jpg" alt="project-img-1">
+          </figure>
+          <div class="project-data">
+            <h3>
+              <a routerLink="/AdminDashBoard/ShowGym">Gym Operation</a>
+            </h3>
+            <a routerLink="/AdminDashBoard/ShowGym">Gym Operation</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="project-post reveal1 it-reveal-animation">
+          <figure>
+            <img src="assets/images/building-2H.png" alt="project-img-1">
+          </figure>
+          <div class="project-data">
+            <h3>
+              <a routerLink="/AdminDashBoard/ShowClass">Class Operation</a>
+            </h3>
+            <a routerLink="/AdminDashBoard/ShowClass">Class Operation</a>
+          </div>
+        </div>
+      </div>
+</div>
+</div>
 </section>
-
-
-

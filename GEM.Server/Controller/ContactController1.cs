@@ -83,12 +83,13 @@ namespace GEM.Server.Controller
         /// ////////////////////////////////////////////////////
 
         [HttpPost("PostMessageToEmail")]
-        public async Task<IActionResult>  PostMessageToEmail([FromForm] ContactUsDto contactUsDto)
+        public async Task<IActionResult> PostMessageToEmail([FromForm] ContactUsDto contactUsDto)
         {
             var contact = new ContactU
             {
                 MessageContent = contactUsDto.MessageContent,
                 Subject = contactUsDto.Subject,
+                Email = contactUsDto.Email,
             };
 
             _db.ContactUs.Add(contact);

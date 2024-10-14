@@ -22,6 +22,7 @@ namespace GEM.Server.yousefDTO
                 await client.SendAsync(emailMessage); // Pass the MimeMessage object here
                 await client.DisconnectAsync(true);
             }
+
         }
     }
 

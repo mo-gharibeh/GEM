@@ -25,7 +25,7 @@ import { GymDetailComponent } from "./newProject8/Hadeel/gym-detail/gym-detail.c
 import { RegisterComponent } from "./newProject8/Ahmed/register/register.component";
 import { ClasseComponent } from "./newProject8/Hadeel/classe/classe.component";
 import { EditProfileComponent } from "./newProject8/Bassam/edit-profile/edit-profile.component";
-import { PaypalComponent } from "./newProject8/Lujain/paypal/paypal.component";
+import { PaypalComponent } from './newProject8/Lujain/paypal/PaypalComponent';
 import { ClassDetailsComponent } from "./newProject8/Hadeel/class-details/class-details.component";
 import { AdminDashboardComponent } from "./AdminSide/admin-dashboard/admin-dashboard.component";
 import { ClassAndGymComponent } from "./AdminSide/class-and-gym/class-and-gym.component";
@@ -40,6 +40,7 @@ import { ContactAdminComponent } from "./AdminSide/contact-admin/contact-admin.c
 import { ReplycontactComponent } from "./AdminSide/replycontact/replycontact.component";
 import { AddGymComponent } from "./AdminSide/add-gym/add-gym.component";
 import { UpdateGymComponent } from "./AdminSide/update-gym/update-gym.component";
+import { PaymentComponent } from "./newProject8/Hadeel/payment-cridet-card/payment-cridet-card.component";
 import { OrdersComponent } from "./newProject8/Bassam/orders/orders.component";
 import { SubscriptionsComponent } from "./newProject8/Bassam/subscriptions/subscriptions.component";
 import { MealManagementComponent } from "./AdminSide/meal-management/meal-management.component";
@@ -48,6 +49,9 @@ import { TestimonialManagrmrntComponent } from "./AdminSide/testimonial-managrmr
 import { ShowAllOrdersComponent } from "./AdminSide/show-all-orders/show-all-orders.component";
 import { ShowOrderrItemComponent } from "./AdminSide/show-orderr-item/show-orderr-item.component";
 import { GetAllUsersComponent } from "./AdminSide/get-all-users/get-all-users.component";
+import { ShowGymComponent } from "./AdminSide/show-gym/show-gym.component";
+import { GetAllClassesComponent } from "./AdminSide/get-all-classes/get-all-classes.component";
+import { AddClassComponent } from "./AdminSide/add-class/add-class.component";
 
 
 
@@ -77,16 +81,16 @@ import { GetAllUsersComponent } from "./AdminSide/get-all-users/get-all-users.co
     LoginComponent,
     RegisterComponent,
     PaypalComponent,
-    
+    ShowGymComponent,
     ClassAndGymComponent,
-    
+    GetAllClassesComponent,
     PaypalComponent,
-
+    AddClassComponent,
     AddGymComponent,
     UpdateGymComponent,
-    
-    
-    
+    AdminDashboardComponent,
+    PaymentComponent,
+    AdminDashboardComponent,
     RegisterComponent,
     AdminDashboardComponent,
     GetallCategoryComponent,
@@ -102,8 +106,8 @@ import { GetAllUsersComponent } from "./AdminSide/get-all-users/get-all-users.co
     NutritionComponent,
     NutritionComponent,
     ContactAdminComponent,
-    
-    
+
+
     RegisterComponent,
     EditProfileComponent,
     MealManagementComponent,
@@ -113,16 +117,17 @@ import { GetAllUsersComponent } from "./AdminSide/get-all-users/get-all-users.co
     ShowAllOrdersComponent,
     ShowOrderrItemComponent,
     EditProfileComponent,
-    GetAllUsersComponent
+    GetAllUsersComponent,
+    ReplycontactComponent
   ],
 
   imports: [
     FormsModule,
-    ReactiveFormsModule ,
+    ReactiveFormsModule,
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    
+
     RouterModule.forRoot([
 
       { path: '', component: HomeComponent, pathMatch: 'full' },
@@ -143,34 +148,14 @@ import { GetAllUsersComponent } from "./AdminSide/get-all-users/get-all-users.co
       { path: 'Class', component: ClasseComponent },
 
       { path: 'ClassDetails/:id', component: ClassDetailsComponent },
-      
-
-      {
-        path: 'AdminDashBoard', component: AdminDashboardComponent, children: [
-          { path: "addGym", component: ClassAndGymComponent },
-          { path: "GetCategories", component: GetallCategoryComponent },
-          { path: "GetOrders", component: ShowAllOrdersComponent },
-          { path: "GetOrdersItem/:id", component: ShowOrderrItemComponent },
-          { path: "UpdateCategory/:id", component: UpdateCategoryComponent },
-          { path: "AddCategory", component: AddCategoryComponent },
-          { path: "GetProducts", component: GetProductsComponent },
-          { path: "UpdateProducts/:id", component: UpdateProductsComponent },
-          { path: "AddProducts", component: AddProductsComponent },
-          { path: "Contact", component: ContactAdminComponent},
-          //{ path: "ReplyContact", component: ReplycontactComponent },
-          { path: "ReplyContact/:id", component: ReplycontactComponent },
-          { path: "mealManagement", component: MealManagementComponent },
-          { path: "subMealManagement", component: SubMealManagementComponent },
-          { path: "testiManagement", component: TestimonialManagrmrntComponent },
-          { path : "AllUsers", component: GetAllUsersComponent}
-
-
-      ] },
-
       { path: 'Products', component: ProductComponent },
+
+
 
       { path: 'Profile', component: ProfileComponent },
       { path: 'edit-profile/:id', component: EditProfileComponent },
+
+      { path: 'PayHAdeel', component: PaymentComponent },
 
       { path: 'Cart', component: CartComponent },
 
@@ -192,11 +177,33 @@ import { GetAllUsersComponent } from "./AdminSide/get-all-users/get-all-users.co
       { path: 'paypal', component: PaypalComponent },
       { path: 'Register', component: RegisterComponent },
       { path: 'orders', component: OrdersComponent },
-      { path: 'subscriptions', component: SubscriptionsComponent }
-    ])
-        
-    ],
-  
+      { path: 'subscriptions', component: SubscriptionsComponent },
+      {
+        path: 'AdminDashBoard', component: AdminDashboardComponent, children: [
+          { path: "addGym", component: ClassAndGymComponent },
+          { path: "GetCategories", component: GetallCategoryComponent },
+          { path: "UpdateCategory/:id", component: UpdateCategoryComponent },
+          { path: "GetOrders", component: ShowAllOrdersComponent },
+          { path: "GetOrdersItem/:id", component: ShowOrderrItemComponent },
+          { path: "AddCategory", component: AddCategoryComponent },
+          { path: "GetProducts", component: GetProductsComponent },
+          { path: "UpdateProducts/:id", component: UpdateProductsComponent },
+          { path: "AddProducts", component: AddProductsComponent },
+          { path: "Contact", component: ContactAdminComponent },
+          //{ path: "ReplyContact", component: ReplycontactComponent },
+          { path: "ReplyContact/:id", component: ReplycontactComponent },
+          { path: "mealManagement", component: MealManagementComponent },
+          { path: "subMealManagement", component: SubMealManagementComponent },
+          { path: "testiManagement", component: TestimonialManagrmrntComponent },
+          { path : "AllUsers", component: GetAllUsersComponent}
+       
+
+        ]
+      }
+       ])
+
+  ],
+
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -5,13 +5,13 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using PayPal.Api;
+
 namespace GEM.Server.Controller
 {
     [Route("api/[controller]")]
     [ApiController]
     public class OrderController : ControllerBase
     {
-
         private readonly MyDbContext _db;
         private readonly PayPalPaymentService _payPalPaymentService;
 
@@ -21,18 +21,42 @@ namespace GEM.Server.Controller
             _payPalPaymentService = payPalPaymentService;
         }
 
-
-
-
-
-
         // Create a new order (exposed as an API endpoint)
         [HttpPost("CreateOrder/{userId}")]
-        public IActionResult CreateOrder(int userId, decimal totalAmount)
+        public IActionResult CreateOrder(int userId)
         {
             try
             {
-                var order = CreateNewOrder(userId, totalAmount); // Reusing the private method
+                // Get the user's cart
+                var cart = _db.Carts.FirstOrDefault(c => c.UserId == userId);
+                if (cart == null)
+                {
+                    return BadRequest("No cart found for the user.");
+                }
+
+                // Get the cart items
+                var cartItems = _db.CartItems.Where(ci => ci.CartId == cart.CartId).ToList();
+                if (!cartItems.Any())
+                {
+                    return BadRequest("No items in the cart to checkout.");
+                }
+
+                decimal totalAmount = 0;
+                foreach (var item in cartItems)
+                {
+                    var product = _db.Products.FirstOrDefault(p => p.ProductId == item.ProductId);
+                    if (product != null && item.Quantity.HasValue && product.Price.HasValue)
+                    {
+                        totalAmount += item.Quantity.Value * product.Price.Value; // Calculate total amount
+                    }
+                }
+
+                // Create a new order with the calculated total amount
+                var order = CreateNewOrder(userId, totalAmount);
+
+                // Clear the cart after the order is successfully created
+                ClearCart(cart.CartId);
+
                 return Ok(new { message = "Order created successfully.", orderId = order.OrderId });
             }
             catch (Exception ex)
@@ -41,15 +65,28 @@ namespace GEM.Server.Controller
             }
         }
 
+        // Checkout with PayPal
         [HttpPost("CheckoutWithPayPal/{userId}")]
         public IActionResult CheckoutWithPayPal(int userId, [FromBody] PaymentDTO paymentInfo)
         {
+            // Validate Payment Info
+            if (string.IsNullOrEmpty(paymentInfo.ReturnUrl) || string.IsNullOrEmpty(paymentInfo.CancelUrl))
+            {
+                return BadRequest("Return URL and Cancel URL must be provided.");
+            }
+
             // Get the user's cart
             var cart = _db.Carts.FirstOrDefault(c => c.UserId == userId);
-            if (cart == null) return BadRequest("No cart found for the user.");
+            if (cart == null)
+            {
+                return BadRequest("No cart found for the user.");
+            }
 
             var cartItems = _db.CartItems.Where(ci => ci.CartId == cart.CartId).ToList();
-            if (!cartItems.Any()) return BadRequest("No items in the cart to checkout.");
+            if (!cartItems.Any())
+            {
+                return BadRequest("No items in the cart to checkout.");
+            }
 
             decimal totalAmount = 0;
             foreach (var item in cartItems)
@@ -60,34 +97,65 @@ namespace GEM.Server.Controller
                 totalAmount += item.Quantity.Value * product.Price.Value;
             }
 
-            var returnUrl = paymentInfo.ReturnUrl;
-            var cancelUrl = paymentInfo.CancelUrl;
-            var createdPayment = _payPalPaymentService.CreatePayment(totalAmount, returnUrl, cancelUrl);
+            // Now initiate PayPal payment
+            var createdPayment = _payPalPaymentService.CreatePayment(totalAmount, paymentInfo.ReturnUrl, paymentInfo.CancelUrl);
 
             var approvalUrl = createdPayment.links.FirstOrDefault(l => l.rel == "approval_url")?.href;
             if (approvalUrl == null) return BadRequest("Failed to generate PayPal payment.");
-            return Ok(new { approvalUrl });
+
+            // At this point, return the approval URL along with the total amount
+            return Ok(new { approvalUrl, totalAmount });
         }
 
-        [HttpPost("ExecutePayPalPayment")]
-        public IActionResult ExecutePayPalPayment([FromBody] PayPalExecutionDTO executionInfo)
+        // Execute PayPal payment
+        [HttpPost("ExecutePayPalPayment/{userId}")]
+        public IActionResult ExecutePayPalPayment(int userId, [FromBody] PayPalExecutionDTO executionInfo)
         {
-            try
+            // Validate inputs
+            if (executionInfo == null || string.IsNullOrEmpty(executionInfo.PaymentId) || string.IsNullOrEmpty(executionInfo.PayerId))
             {
-                var executedPayment = _payPalPaymentService.ExecutePayment(executionInfo.PaymentId, executionInfo.PayerId);
-
-                if (executedPayment.state.ToLower() != "approved") return BadRequest("Payment not approved.");
-
-                var totalAmount = decimal.Parse(executedPayment.transactions.First().amount.total);
-                var newOrder = CreateNewOrder(executionInfo.UserId, totalAmount);
-                AddPaymentRecord(newOrder.OrderId, totalAmount, "PayPal");
-
-                return Ok(new { message = "Payment successful.", orderId = newOrder.OrderId });
+                return BadRequest("Invalid payment execution information.");
             }
-            catch (Exception ex)
+
+            // Log execution info for debugging
+            Console.WriteLine($"PaymentId: {executionInfo.PaymentId}, PayerId: {executionInfo.PayerId}");
+
+            // Execute the payment
+            var executedPayment = _payPalPaymentService.ExecutePayment(executionInfo.PaymentId, executionInfo.PayerId);
+
+            // Log the executed payment for debugging
+            if (executedPayment == null)
             {
-                return BadRequest($"Error executing PayPal payment: {ex.Message}");
+                // Log the error response from PayPal
+                Console.WriteLine("Payment execution failed. Check PayPal API response.");
+                return BadRequest("Payment not approved or failed to execute.");
             }
+
+            Console.WriteLine($"Executed Payment State: {executedPayment.state}");
+
+            // Check if the payment was approved
+            if (executedPayment.state.ToLower() != "approved")
+            {
+                return BadRequest("Payment not approved or failed to execute.");
+            }
+
+            // Create the order in the database
+            var totalAmount = decimal.Parse(executedPayment.transactions.First().amount.total);
+            var newOrder = CreateNewOrder(userId, totalAmount);
+            AddPaymentRecord(newOrder.OrderId, totalAmount, "PayPal");
+
+            // Clear the cart after successful payment execution
+            ClearCart(_db.Carts.FirstOrDefault(c => c.UserId == userId).CartId);
+
+            return Ok(new { message = "Payment successful.", orderId = newOrder.OrderId });
+        }
+
+        // Clear the cart
+        private void ClearCart(int cartId)
+        {
+            var cartItems = _db.CartItems.Where(ci => ci.CartId == cartId).ToList();
+            _db.CartItems.RemoveRange(cartItems);
+            _db.SaveChanges();
         }
 
         // Reusable private method for creating an order
@@ -128,12 +196,10 @@ namespace GEM.Server.Controller
 
             _db.SaveChanges();
 
-            _db.CartItems.RemoveRange(cartItems);
-            _db.SaveChanges();
-
             return newOrder;
         }
 
+        // Add payment record for the order
         private void AddPaymentRecord(int orderId, decimal amount, string paymentMethod)
         {
             var payment = new Models.Payment
@@ -149,18 +215,5 @@ namespace GEM.Server.Controller
             _db.Payments.Add(payment);
             _db.SaveChanges();
         }
-
-
-
-
-
     }
 }
-
-
-
-
-
-
-
-

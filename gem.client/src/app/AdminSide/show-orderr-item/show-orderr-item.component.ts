@@ -33,17 +33,17 @@ export class ShowOrderrItemComponent {
     this._ser.getProduct().subscribe((data) => {
       this.products = data;
       console.log("this.products", this.products);
-      this.mapProductNames();  
+      this.mapProductNames();
     });
   }
 
-  
+
   mapProductNames() {
     if (this.suborderData.length && this.products.length) {
       this.suborderData.forEach((item: any) => {
         const product = this.products.find(p => p.productId === item.productId);
         if (product) {
-          item.productName = product.productName;  
+          item.productName = product.productName;
         }
       });
     }
