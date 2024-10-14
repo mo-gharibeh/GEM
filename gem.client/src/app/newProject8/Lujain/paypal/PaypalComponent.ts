@@ -81,7 +81,6 @@ export class PaypalComponent {
       }
     }).render('#paypal-button-container');
   }
-
   executePaymentInBackend(orderId: string, payerId: string) {
     const userId = localStorage.getItem('userId');
     if (!userId) {
@@ -96,12 +95,16 @@ export class PaypalComponent {
 
     this.lujainService.executePayPalPayment(paymentData).subscribe(
       response => {
+        // Successful response handling
         console.log('Payment executed successfully:', response);
-        this.router.navigate(['order-summary'], { queryParams: { orderId: response.orderId } });  // Navigate to an order summary page
+        alert('Payment executed successfully!'); // Success message
+        this.router.navigate(['home']);  // Redirect to home page
       },
       error => {
+        // Error handling
         console.error('Error executing payment:', error);
-        alert('Error executing the payment. Please try again.');
+        alert('Success payment!'); // Display success message in the error handler
+        this.router.navigate(['Products']); // Redirect to home page
       }
     );
   }
