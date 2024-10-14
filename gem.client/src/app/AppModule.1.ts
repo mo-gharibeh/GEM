@@ -156,6 +156,8 @@ import { AddClassComponent } from "./AdminSide/add-class/add-class.component";
           { path: "addGym", component: ClassAndGymComponent },
           { path: "GetCategories", component: GetallCategoryComponent },
           { path: "UpdateCategory/:id", component: UpdateCategoryComponent },
+          { path: "GetOrders", component: ShowAllOrdersComponent },
+          { path: "GetOrdersItem/:id", component: ShowOrderrItemComponent },
           { path: "AddCategory", component: AddCategoryComponent },
           { path: "GetProducts", component: GetProductsComponent },
           { path: "UpdateProducts/:id", component: UpdateProductsComponent },
