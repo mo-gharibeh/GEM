@@ -30,25 +30,22 @@
     <div class="row">
       <div class="col-md-4">
         <div class="profile-img">
-          <img src="https://localhost:44340/api/UsersBassam/getImages/{{user.image}}" alt="Profile Image" />
+          <img src="https://localhost:7031/api/UsersBassam/getImages/{{user.image}}" alt="Profile Image" />
         </div>
       </div>
       <div class="col-md-6">
         <div class="profile-head">
-
-
           <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item">
-              <a class="nav-link active" id="home-tab" data-toggle="tab"  role="tab" aria-controls="home" aria-selected="true">About</a>
+              <a class="nav-link active" id="home-tab" data-toggle="tab" role="tab" aria-controls="home" aria-selected="true">About</a>
             </li>
             <li class="nav-item">
-
-              <a class="nav-link" id="profile-tab" routerLink="/orders" role="tab" aria-controls="profile" aria-selected="false">Orders</a>
+              <a class="nav-link" id="profile-tab" (click)="Orders()" role="tab" aria-controls="profile" aria-selected="false">Orders</a>
             </li>
-<li class="nav-item">
-              <a class="nav-link" id="profile-tab" routerLink="/subscriptions" role="tab" aria-controls="profile" aria-selected="false">subscriptions</a>
+            <li class="nav-item">
+              <a class="nav-link" id="profile-tab" routerLink="/subscription-gym" role="tab" aria-controls="profile" aria-selected="false">Subscriptions</a>
             </li>
-              </ul>
+          </ul>
         </div>
       </div>
       <div class="col-md-2">
@@ -57,20 +54,7 @@
     </div>
 
     <div class="row">
-      <div class="col-md-4">
-        <div class="profile-work">
-          <p>MY FITNESS LINKS</p>
-          <a href="#">Training Videos</a><br />
-          <a href="#">Diet Plans</a><br />
-          <a href="#">Progress Photos</a>
-          <p>SKILLS</p>
-          <a href="#">Strength Training</a><br />
-          <a href="#">Cardio Workouts</a><br />
-          <a href="#">Nutrition Expert</a><br />
-          <a href="#">Weight Loss</a><br />
-        </div>
-      </div>
-      <div class="col-md-8">
+      <div class="col-md-8 offset-md-4">
         <div class="tab-content profile-tab" id="myTabContent">
           <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
             <div class="row">

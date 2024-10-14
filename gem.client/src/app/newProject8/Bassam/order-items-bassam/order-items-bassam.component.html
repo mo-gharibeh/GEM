@@ -4,7 +4,7 @@
   <div class="container">
     <div class="row">
       <div class="banner-details text-center">
-        <h2>Orders</h2>
+        <h2>Order Details</h2>
         <p>Our values have vaulted us to the top of our industry.</p>
       </div>
     </div>
@@ -27,62 +27,50 @@
 
 
 
+
+
+
+
+
+
+
 <body class="hm-gradient">
-
   <main>
-
-    <!--MDB Tables-->
+    <!-- Bootstrap container for the table -->
     <div class="container mt-4">
-
+      <!-- Card containing the table -->
       <div class="card mb-4">
         <div class="card-body">
-          <!-- Grid row -->
+          <!-- Grid row for the title -->
           <div class="row">
-            <!-- Grid column -->
+            <!-- Centered column for the title -->
             <div class="col-md-12">
-              <h2 class="pt-3 pb-4 text-center font-bold font-up deep-purple-text">My orders</h2>
+              <h2 class="pt-3 pb-4 text-center font-bold font-up deep-purple-text">Order Details</h2>
             </div>
-            <!-- Grid column -->
           </div>
-          <!-- Grid row -->
-          <!-- Table -->
-          <table class="table table-striped">
+
+          <!-- Bootstrap striped table -->
+          <table class="table table-striped table-hover table-bordered">
             <!-- Table head -->
             <thead>
               <tr>
-                <th>Total Amount</th>
-                <th>Shipping Status</th>
-                <th>Order Date</th>
-                <th>Actions</th>
+                <th scope="col">Product Name</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Total Amount</th>
               </tr>
             </thead>
-            <!-- Table head -->
             <!-- Table body -->
             <tbody>
-              <tr *ngFor="let order of orders">
-                <td>{{ order.totalAmount }}</td>
-                <td>{{ order.shippngStatus }}</td>
-                <td>{{ order.orderDate }}</td>
-                <td>
-                  <!-- Pass the order's ID to the function -->
-                  <button *ngIf="order.orderId" class="btn btn-info btn-sm" (click)="viewOrderItems(order.orderId)">
-                    View
-                  </button>
-                </td>
+              <tr *ngFor="let item of orderItems">
+                <!-- Order ID -->
+                <td>{{ item.productName }}</td>   <!-- Product ID -->
+                <td>{{ item.quantity }}</td>    <!-- Quantity -->
+                <td>{{ item.totalAmount }}</td> <!-- Total Amount -->
               </tr>
             </tbody>
-
-            <!-- Table body -->
           </table>
-
         </div>
       </div>
-
-      <hr class="my-4">
-
     </div>
-    <!--MDB Tables-->
-
   </main>
-
 </body>

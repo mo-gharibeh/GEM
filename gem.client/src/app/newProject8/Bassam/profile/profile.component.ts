@@ -16,18 +16,28 @@ export class ProfileComponent implements OnInit {
   constructor(private _ser: BassamUrlService, private _router: Router) { }
 
   ngOnInit(): void {
-    this.userId = 1; // Set the user ID; ideally, this should be dynamic (e.g., from route params)
-    this.loadUserData(this.userId);
+
+    // Retrieve the user ID from local storage and parse it to a number
+    const storedUserId = localStorage.getItem('userId'); // Ensure you have stored it as a string
+    this.userId = storedUserId ? +storedUserId : undefined; // Convert string to number
+
+    if (this.userId) {
+      this.loadUserData(this.userId);
+    } else {
+      console.error('User ID not found in local storage.');
+      // Optionally, redirect the user or show a message
+      this._router.navigate(['/login']); // Navigate to login or another appropriate page
+    }
   }
 
   loadUserData(userId: number): void {
     this._ser.getUser(userId).subscribe(
       (data) => {
-        debugger;
+        console.log(data);
         this.user = data; // Store the received user data
         if (this.user.image) {
           // Construct the URL for the image
-/*          this.getImage(this.user.image);*/
+          // this.getImage(this.user.image); // Uncomment if needed
         }
       },
       (error: HttpErrorResponse) => {
@@ -35,21 +45,6 @@ export class ProfileComponent implements OnInit {
       }
     );
   }
-
-
-  //getImage(image: string): void {
-  //  this._ser.getImage(image).subscribe(
-  //    (blob) => {
-  //      debugger;
-  //      // Create a local URL for the image blob
-  //      const objectUrl = URL.createObjectURL(blob);
-  //      this.imageUrl = objectUrl; // Set the image URL
-  //    },
-  //    (error: HttpErrorResponse) => {
-  //      console.error('Error fetching image', error);
-  //    }
-  //  );
-  //}
 
   // Method to navigate to edit profile page
   editProfile(): void {
@@ -59,7 +54,13 @@ export class ProfileComponent implements OnInit {
       console.error('User ID is undefined, cannot navigate to edit profile');
     }
   }
+
   Orders(): void {
-    this._router.navigate(['/orders']); // Navigate to OrdersComponent
+    if (this.userId !== undefined) {
+      console.log(this.userId);
+      this._router.navigate(['/orders', this.userId]); // Navigate to OrdersComponent
+    } else {
+      console.error('User ID is undefined, cannot navigate to Orders');
+    }
   }
 }

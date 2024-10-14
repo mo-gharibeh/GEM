@@ -53,6 +53,8 @@ import { GetAllClassesComponent } from "./AdminSide/get-all-classes/get-all-clas
 import { AddClassComponent } from "./AdminSide/add-class/add-class.component";
 import { UpdateClassComponent } from "./AdminSide/update-class/update-class.component";
 import { PaymentComponent } from "./newProject8/Hadeel/payment/payment.component";
+import { OrderItemsBassamComponent } from "./newProject8/Bassam/order-items-bassam/order-items-bassam.component";
+import { SubscriptionGymComponent } from "./newProject8/Bassam/subscription-gym/subscription-gym.component";
 
 
 
@@ -106,7 +108,8 @@ import { PaymentComponent } from "./newProject8/Hadeel/payment/payment.component
     NutritionComponent,
     ContactAdminComponent,
     UpdateClassComponent,
-
+    OrderItemsBassamComponent,
+    SubscriptionGymComponent,
     RegisterComponent,
     EditProfileComponent,
     MealManagementComponent,
@@ -117,7 +120,8 @@ import { PaymentComponent } from "./newProject8/Hadeel/payment/payment.component
     ShowOrderrItemComponent,
     EditProfileComponent,
     GetAllUsersComponent,
-    ReplycontactComponent
+    ReplycontactComponent,
+    OrdersComponent
   ],
 
   imports: [
@@ -171,7 +175,10 @@ import { PaymentComponent } from "./newProject8/Hadeel/payment/payment.component
       { path: 'bmi', component: BmiCalculatorComponent },
 
       { path: 'Login', component: LoginComponent },
-
+      { path: 'subscriptions', component: SubscriptionsComponent },
+      { path: 'order-items-bassam/:orderId', component: OrderItemsBassamComponent }, 
+      { path: 'subscription-gym', component: SubscriptionGymComponent },
+      { path: 'orders/:userId', component: OrdersComponent },
       { path: 'Register', component: RegisterComponent },
       { path: 'paypal', component: PaypalComponent },
       { path: 'Register', component: RegisterComponent },

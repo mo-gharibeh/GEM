@@ -1,0 +1,48 @@
+/* Control the width of the container */
+.container {
+  max-width: 80%;
+  margin: auto; /* Center the container */
+}
+
+/* Styling for the heading */
+h2 {
+  color: #000000; /* Darker text color for contrast */
+  font-weight: bold;
+  margin-bottom: 20px; /* Add more space below the heading */
+  font-size: 1.75rem;
+}
+
+/* Table Styling */
+.table {
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1); /* Add slight shadow for depth */
+  background-color: #ffffff; /* Light background for better readability */
+}
+
+  /* Table Header */
+  .table thead th {
+    background-color: #f8f9fa; /* Subtle background color for the header */
+    color: #343a40; /* Darker text for header cells */
+    text-align: center;
+    padding: 15px; /* Add padding to header cells */
+    font-size: 1.1rem;
+  }
+
+  /* Table Rows */
+  .table tbody tr {
+    text-align: center; /* Center the text in all cells */
+  }
+
+  /* Table Cells */
+  .table tbody td {
+    padding: 12px; /* Increase padding for readability */
+    font-size: 1rem;
+    color: #212529; /* Darker text for table body */
+    border-color: #dee2e6; /* Define border color for the table */
+  }
+
+  /* Hover Effect */
+  .table tbody tr:hover {
+    background-color: #f1f3f5; /* Subtle background color on hover */
+  }

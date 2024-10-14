@@ -167,5 +167,96 @@ namespace GEM.Server.Controller
         {
             return _context.Users.Any(e => e.UserId == id);
         }
+
+
+
+
+        [HttpGet("getOrder")]
+        public IActionResult getOrders(int userId)
+        {
+
+
+            var order = _context.Orders.Where(x => x.UserId == userId).ToList();
+
+
+            return Ok(order);
+
+
+        }
+
+
+
+
+        [HttpGet("GetorderItemByOrderId/{Id}")]
+        public IActionResult GetOrderItems(int Id)
+        {
+            var orderItems = _context.OrderItems.Join(_context.Products,
+                order => order.ProductId,
+                products => products.ProductId,
+                (order, products) => new
+                {
+                    id = order.OrderId,
+                    OrderItemId = order.OrderItemId,
+                    Quantity = order.Quantity,
+                    TotalAmount = order.TotalAmount,
+                    ProductName = products.ProductName,
+                    Image = products.Image,
+                })
+                .Where(oi => oi.id == Id)
+                .ToList();
+
+
+            if (orderItems == null || !orderItems.Any())
+            {
+                return NotFound($"No order items found for OrderId {Id}");
+            }
+
+            return Ok(orderItems);
+        }
+        [HttpGet("getUserSubscriptions/{userId}")]
+        public IActionResult GetUserSubscriptions(int userId)
+        {
+            // Validate the user ID
+            if (userId <= 0) return BadRequest("Invalid user ID");
+
+            // Fetch the enrolled details for the given user
+            var enrolledDetails = _context.Enrolleds
+                .Include(e => e.ClassSub)                 // Include ClassSubscription details
+                .ThenInclude(cs => cs.Class)              // Include ClassAndGym details through ClassSubscription
+                .Where(e => e.UserId == userId)           // Filter by the user ID
+                .Select(e => new
+                {
+                    ClassName = e.ClassSub.Class.Name,    // Class/Gym Name
+                    Trainer = e.ClassSub.Class.Trainer,   // Trainer Name
+                    StartDate = e.StartDate,              // Subscription start date
+                    EndDate = e.EndDate,                  // Subscription end date
+                    PaymentMethod = e.PaymentMethod,      // Payment Method
+                })
+                .ToList();
+
+            // Check if no subscriptions were found
+            if (!enrolledDetails.Any())
+                return NotFound("No subscriptions found for this user.");
+
+            return Ok(enrolledDetails); // Return the result
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }
