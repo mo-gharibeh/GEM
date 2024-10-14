@@ -18,6 +18,7 @@ export class ShowGymComponent {
   GymArray: any;
 
   getGyms() {
+    debugger
     this._ser.getGym().subscribe((data) => {
       debugger
       this.GymArray = data;

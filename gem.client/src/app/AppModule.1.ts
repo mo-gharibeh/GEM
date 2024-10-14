@@ -51,6 +51,7 @@ import { GetAllUsersComponent } from "./AdminSide/get-all-users/get-all-users.co
 import { ShowGymComponent } from "./AdminSide/show-gym/show-gym.component";
 import { GetAllClassesComponent } from "./AdminSide/get-all-classes/get-all-classes.component";
 import { AddClassComponent } from "./AdminSide/add-class/add-class.component";
+import { UpdateClassComponent } from "./AdminSide/update-class/update-class.component";
 
 
 
@@ -104,7 +105,7 @@ import { AddClassComponent } from "./AdminSide/add-class/add-class.component";
     NutritionComponent,
     NutritionComponent,
     ContactAdminComponent,
-
+    UpdateClassComponent,
 
     RegisterComponent,
     EditProfileComponent,
@@ -187,6 +188,7 @@ import { AddClassComponent } from "./AdminSide/add-class/add-class.component";
           { path: "UpdateProducts/:id", component: UpdateProductsComponent },
           { path: "AddProducts", component: AddProductsComponent },
           { path: "Contact", component: ContactAdminComponent },
+          { path: "UpdateClass/:id", component: UpdateClassComponent },
           //{ path: "ReplyContact", component: ReplycontactComponent },
           { path: "ReplyContact/:id", component: ReplycontactComponent },
           { path: "mealManagement", component: MealManagementComponent },

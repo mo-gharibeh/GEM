@@ -13,7 +13,7 @@ export class UrlServiceService {
 
   getGym(): Observable<any> {
 
-    return this.http.get<any>(`${this.staticData}/Gym/ShowAllGyms`);
+    return this.http.get<any>(`${this.staticData}/Gym/GetAllGyms`);
 
   }
 
@@ -45,7 +45,7 @@ export class UrlServiceService {
   }
 
   getClassTimes(classId: number): Observable<any[]> {
-  
+
 
     return this.http.get<any[]>(`${this.staticData}/Classe/${classId}/times`);
   }
@@ -58,13 +58,17 @@ export class UrlServiceService {
   createClassEnrollment(userId: number, classId: number, classTimeId: number, totalAmount: number): Observable<any> {
     return this.http.post<any>(`${this.staticData}/Payment/CreateClassEnrollment/${userId}/${classId}/${classTimeId}`, totalAmount);
   }
-
-  UpdateService(id: any, data: any): Observable<any> {
+  UpdateGym(id: any, data: any): Observable<any> {
     return this.http.put<any>(`${this.staticData}/Gym/EditGym?id=${id}`, data)
   }
+  UpdateClass(id: any, data: any): Observable<any> {
+    return this.http.put<any>(`${this.staticData}/Classe/EditClass?id=${id}`, data)
+  }
+
   remove(id: any): Observable<any> {
     return this.http.delete<any>(`${this.staticData}/Gym/DeleteGym?id=${id}`)
   }
+
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   ////paypal///////////////////////////////////////////////////
   // Create PayPal payment and get approval URL
@@ -95,6 +99,3 @@ export class UrlServiceService {
     return this.http.post<any>(`${this.staticData}/Payment/ExecutePayPalPayment`, paymentExecution);
   }
 }
-  
-
- 

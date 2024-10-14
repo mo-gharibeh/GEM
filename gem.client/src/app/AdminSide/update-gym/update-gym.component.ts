@@ -6,39 +6,61 @@ import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-update-gym',
   templateUrl: './update-gym.component.html',
-  styleUrl: './update-gym.component.css'
+  styleUrls: ['./update-gym.component.css'] // Corrected from styleUrl to styleUrls
 })
 export class UpdateGymComponent {
-
-  imageFile: any
-  changeImage(event: any) {
-
-    this.imageFile = event.target.files[0]
-
-  }
-
+  imageFile: any;
+  editGymId: any = null; // Initialize the editGymId property
   ServiceId: any;
+  GymArray: any;
+  parameter: any
+  array: any
+  constructor(private _ser: UrlServiceService, private _route: ActivatedRoute, private _router: Router) { }
+
   ngOnInit() {
     this.ServiceId = this._route.snapshot.paramMap.get("id");
+    this.parameter = this._route.snapshot.paramMap.get("id");
+    this.getDetails(this.parameter);
   }
 
-  constructor(private servicesURLService: UrlServiceService, private _route: ActivatedRoute, private _router: Router) { }
+  changeImage(event: any) {
+    this.imageFile = event.target.files[0];
+  }
 
 
+  DetailsArray: any
 
-  updateServiceAdmin(data: any) {
-    var formdata = new FormData();
+  getDetails(id: any) {
+    debugger
+    this._ser.getGymDetails(id).subscribe((data) => {
+      debugger
+      this.DetailsArray = data
+      console.log(this.DetailsArray)
+    })
+  }
 
+
+  updateGymAdmin(data: any) {
+
+    debugger
+    const formdata = new FormData();
 
     for (let item in data) {
-      formdata.append(item, data[item])
+      formdata.append(item, data[item]);
     }
 
-    formdata.append("ServiceImage", this.imageFile)
-
-    this.servicesURLService.UpdateService(this.ServiceId, formdata).subscribe((data) => {
-      alert("Service Updated Successfully !")
-      this._router.navigate(["/dashboard"])
+    formdata.append("Image", this.imageFile);
+    console.log(formdata)
+    this._ser.UpdateGym(this.ServiceId, formdata).subscribe((data) => {
+      debugger
+      alert("Gym Updated Successfully !");
+      this._router.navigate(["/AdminDashBoard/ShowGym"]);
     });
+  }
+
+
+  // Cancel edit operation
+  cancelEdit() {
+    this.editGymId = null; // Close edit card
   }
 }
