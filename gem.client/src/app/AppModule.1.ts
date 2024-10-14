@@ -99,7 +99,7 @@ import { GetAllUsersComponent } from "./AdminSide/get-all-users/get-all-users.co
     RegisterComponent,
     EditProfileComponent,
     ShowAllOrdersComponent,
-    ShowOrderrItemComponent
+    ShowOrderrItemComponent,
     EditProfileComponent,
     GetAllUsersComponent
   ],
