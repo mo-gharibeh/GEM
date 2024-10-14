@@ -85,6 +85,8 @@ export class PaypalComponent {
     const userId = localStorage.getItem('userId');
     if (!userId) {
       alert('User ID not found. Please log in again.');
+      this.router.navigate(['login']); // Redirect to the login page
+
       return;
     }
 
