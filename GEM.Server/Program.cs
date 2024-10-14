@@ -27,7 +27,8 @@ builder.Services.AddCors(options =>
                .AllowAnyOrigin();
     });
 });
-
+builder.Services.AddTransient<EmailServiceH>();
+builder.Services.AddHostedService<EmailReminderService>();
 // Register email service and payment service
 builder.Services.AddScoped<IEmailService, GEM.Server.yousefDTO.EmailService>();
 builder.Services.AddScoped<PaymentServiceH>();
