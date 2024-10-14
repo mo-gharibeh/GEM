@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { loadStripe } from '@stripe/stripe-js';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -59,4 +58,8 @@ export class PaymentComponent implements OnInit {
         }
       );
   }
+}
+
+function loadStripe(arg0: string): any {
+    throw new Error('Function not implemented.');
 }

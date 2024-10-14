@@ -14,4 +14,6 @@ public partial class ClassTime
     public DateTime? EndTime { get; set; }
 
     public virtual ClassAndGym? Class { get; set; }
+
+    public virtual ICollection<Enrolled> Enrolleds { get; set; } = new List<Enrolled>();
 }

@@ -7,8 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class DimaUrlServiceService {
   constructor(private http: HttpClient) { }
-  staticData = "https://localhost:7031/api";
-  //staticData = "https://localhost:/api";
+  staticData = "https://localhost:44340/api";
 
   getCategory(): Observable<any> {
     return this.http.get<any>(`${this.staticData}/CategoryController1/Category`);
