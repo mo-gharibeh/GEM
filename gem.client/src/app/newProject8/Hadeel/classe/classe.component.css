@@ -1,0 +1,180 @@
+/* General Styles */
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f7f7f7;
+  color: #333;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+}
+
+h3, p, span {
+  margin: 0;
+  padding: 0;
+}
+
+/* Project Completed Section */
+.project-completed {
+  padding: 100px 0;
+  background-color: #fff;
+}
+
+  .project-completed .prj-post {
+    margin-bottom: 50px;
+  }
+
+/* Card Layout */
+.row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 50px;
+}
+
+/* Project Data */
+.proj-data {
+  background-color: #f9f9f9;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+  .proj-data:hover {
+    transform: translateY(-10px);
+    box-shadow: 0px 15px 40px rgba(0, 0, 0, 0.15);
+  }
+
+  .proj-data h3 a {
+    font-size: 28px;
+    color: #222;
+    text-decoration: none;
+    font-weight: 700;
+    transition: color 0.3s;
+  }
+
+    .proj-data h3 a:hover {
+      color: #ff5722;
+    }
+
+  .proj-data p {
+    margin-top: 15px;
+    font-size: 16px;
+    color: #555;
+  }
+
+  .proj-data .loc-date {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+    .proj-data .loc-date div {
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+      color: #777;
+    }
+
+    .proj-data .loc-date span:first-child {
+      font-weight: 600;
+      color: #ff5722;
+      margin-right: 8px;
+    }
+
+/* Image Styling */
+.data {
+  text-align: center;
+}
+
+  .data figure {
+    width: 100%;
+    height: 300px;
+    margin: 0;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  .data img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease-in-out;
+  }
+
+  .data:hover img {
+    transform: scale(1.1);
+  }
+
+/* Pagination */
+.gym-pagination {
+  margin-top: 40px;
+  text-align: center;
+}
+
+  .gym-pagination .pagination {
+    display: inline-block;
+    padding: 0;
+    list-style: none;
+  }
+
+  .gym-pagination .page-link {
+    font-size: 16px;
+    padding: 12px 18px;
+    margin: 0 8px;
+    border-radius: 8px;
+    background-color: #f0f0f0;
+    color: #555;
+    transition: background-color 0.3s, color 0.3s;
+  }
+
+    .gym-pagination .page-link:hover {
+      background-color: #ff5722;
+      color: #fff;
+    }
+
+  .gym-pagination .page-item .fa-arrow-left-long,
+  .gym-pagination .page-item .fa-arrow-right-long {
+    margin-right: 5px;
+    margin-left: 5px;
+  }
+
+/* Reveal Animation */
+.reveal1 {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: reveal1 0.6s forwards;
+}
+
+@keyframes reveal1 {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .proj-data {
+    padding: 20px;
+  }
+
+    .proj-data h3 a {
+      font-size: 24px;
+    }
+
+    .proj-data p {
+      font-size: 14px;
+    }
+
+  .data figure {
+    height: 250px;
+  }
+}

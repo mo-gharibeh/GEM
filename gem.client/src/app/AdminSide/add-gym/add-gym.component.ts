@@ -8,9 +8,10 @@ import { Router } from '@angular/router';
   styleUrl: './add-gym.component.css'
 })
 export class AddGymComponent {
+  
   imageFile: any
   changeImage(event: any) {
-
+    debugger
     this.imageFile = event.target.files[0]
 
   }
@@ -18,6 +19,7 @@ export class AddGymComponent {
   constructor(private _ser: UrlServiceService, private _router: Router) { }
 
   AddNewService(data: any) {
+    debugger
     var formdata = new FormData();
 
 
@@ -25,12 +27,12 @@ export class AddGymComponent {
       formdata.append(item, data[item])
     }
 
-    formdata.append("ServiceImage", this.imageFile)
+    formdata.append("Image", this.imageFile)
     console.log(formdata)
 
     this._ser.AddService(formdata).subscribe(() => {
-      alert("Service add successfully!")
-      this._router.navigate(['/services']);
+      alert("Gym add successfully!")
+      this._router.navigate(['/AdminDashBoard/ShowGym']);
     }, (error) => {
       alert(error.error)
     })

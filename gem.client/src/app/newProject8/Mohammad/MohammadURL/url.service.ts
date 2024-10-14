@@ -19,8 +19,19 @@ export class UrlService {
     return this.http.get<any>(`${this.staticData}/MohammadController1/top-products`);
   }
 
+  getVisibleTestimonials(): Observable<any> {
+    return this.http.get<any>(`${this.staticData}/MohammadController1/VisibleTestimonials`)
+  }
+
   getAllTestimonials(): Observable<any> {
-    return this.http.get<any>(`${this.staticData}/MohammadController1/Testimonials`)
+    return this.http.get<any>(`${this.staticData}/MohammadController1/AllTestimonials`)
+  }
+  changeStatus(id: number): Observable<any> {
+    return this.http.put(`${this.staticData}/MohammadController1/ChangeStatus/${id}`, {});
+  }
+
+  deleteTestimonial(id: number): Observable<any> {
+    return this.http.delete(`${this.staticData}/MohammadController1/Delete/${id}`);
   }
 
   // Method to check if the user should be prompted for a testimonial
@@ -36,4 +47,41 @@ export class UrlService {
     return this.http.get<any>(`${this.staticData}/MohammadController1/${id}`);
   }
 
+  AddMeal(data: any): Observable<any> {
+    return this.http.post<any>(`${this.staticData}/CategoryController1/addCategory`, data);
+
+  }
+
+  getMeals(): Observable<any> {
+    return this.http.get<any>(`${this.staticData}/Nutration/Meal`);
+  }
+
+  addMeal(data: FormData): Observable<any> {
+    return this.http.post<any>(`${this.staticData}/MohammadController1/addMeal`, data);
+  }
+
+  updateMeal(id: number, data: FormData): Observable<any> {
+    return this.http.put<any>(`${this.staticData}/MohammadController1/editMeal/${id}`, data);
+  }
+
+  deleteMeal(id: number): Observable<any> {
+    return this.http.delete<any>(`${this.staticData}/MohammadController1/deleteMeal/${id}`);
+  }
+
+  //subMeal
+  getSubMeals(): Observable<any> {
+    return this.http.get<any>(`${this.staticData}/MohammadController1/getAllSubMeals`);
+  }
+
+  addSubMeal(data: FormData): Observable<any> {
+    return this.http.post<any>(`${this.staticData}/MohammadController1/addSubMeal`, data);
+  }
+
+  updateSubMeal(id: number, data: FormData): Observable<any> {
+    return this.http.put<any>(`${this.staticData}/MohammadController1/editSubMeal/${id}`, data);
+  }
+
+  deleteSubMeal(id: number): Observable<any> {
+    return this.http.delete<any>(`${this.staticData}/MohammadController1/deleteSubMeal/${id}`);
+  }
 }

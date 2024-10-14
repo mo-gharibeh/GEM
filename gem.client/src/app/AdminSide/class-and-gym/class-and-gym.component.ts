@@ -10,25 +10,4 @@ import { Router } from '@angular/router';
 export class ClassAndGymComponent {
 
 
-  constructor(private _ser: UrlServiceService) { }
-
-  ngOnInit() {
-    this.getGyms();
-  }
-
-  GymArray: any;
-
-  getGyms() {
-    this._ser.getGym().subscribe((data) => {
-      debugger
-      this.GymArray = data;
-      console.log(this.GymArray);
-    });
-  }
-
-  remove(id: any) {
-    this._ser.remove(id).subscribe((data) => {
-     
-    });
-  }
 }

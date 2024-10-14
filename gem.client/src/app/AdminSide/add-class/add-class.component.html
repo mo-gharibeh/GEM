@@ -1,0 +1,48 @@
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<p>Add Class</p>
+<form #newServiceForm="ngForm" (ngSubmit)="AddNewService(newServiceForm.value)">
+  <div class="form-group">
+    <label>Gym Name:</label>
+    <input type="text" class="form-control" name="Name" ngModel required>
+  </div>
+  <div class="form-group">
+    <label>Trainer Name:</label>
+    <input type="text" class="form-control" name="Trainer" ngModel required>
+  </div>
+  <div class="form-group">
+    <label>Gym Description:</label>
+    <input type="text" class="form-control" name="Description" ngModel required>
+  </div>
+  <div class="form-group">
+    <label>Gym Price:</label>
+    <input type="text" class="form-control" name="Price" ngModel required>
+  </div>
+
+  <!-- Class Start Time -->
+  <div class="form-group">
+    <label>Start Time:</label>
+    <input type="datetime-local" class="form-control" name="dTO.StartTime" ngModel required>
+  </div>
+
+  <!-- Class End Time -->
+  <div class="form-group">
+    <label>End Time:</label>
+    <input type="datetime-local" class="form-control" name="dTO.EndTime" ngModel required>
+  </div>
+
+  <div class="form-group">
+    <label>Gym Image:</label>
+    <input type="file" class="form-control" (change)="changeImage($event)" required>
+  </div>
+
+  <br />
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
