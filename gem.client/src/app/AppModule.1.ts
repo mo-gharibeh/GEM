@@ -151,6 +151,32 @@ import { AddClassComponent } from "./AdminSide/add-class/add-class.component";
 
 
 
+      { path: 'Profile', component: ProfileComponent },
+      { path: 'edit-profile/:id', component: EditProfileComponent },
+
+      { path: 'PayHAdeel', component: PaymentComponent },
+
+      { path: 'Cart', component: CartComponent },
+
+      { path: 'bmi', component: BmiCalculatorComponent },
+
+      { path: 'Login', component: LoginComponent },
+
+      { path: 'About', component: AboutComponent },
+
+      { path: 'Contact', component: ContactComponent },
+
+      { path: 'nutrition/:id', component: NutritionComponent },
+
+      { path: 'bmi', component: BmiCalculatorComponent },
+
+      { path: 'Login', component: LoginComponent },
+
+      { path: 'Register', component: RegisterComponent },
+      { path: 'paypal', component: PaypalComponent },
+      { path: 'Register', component: RegisterComponent },
+      { path: 'orders', component: OrdersComponent },
+      { path: 'subscriptions', component: SubscriptionsComponent },
       {
         path: 'AdminDashBoard', component: AdminDashboardComponent, children: [
           { path: "addGym", component: ClassAndGymComponent },
@@ -168,37 +194,8 @@ import { AddClassComponent } from "./AdminSide/add-class/add-class.component";
           { path: "mealManagement", component: MealManagementComponent },
           { path: "subMealManagement", component: SubMealManagementComponent },
           { path: "testiManagement", component: TestimonialManagrmrntComponent },
-          { path : "AllUsers", component: GetAllUsersComponent} ,
-
-
-
-
-          { path: 'Profile', component: ProfileComponent },
-          { path: 'edit-profile/:id', component: EditProfileComponent },
-
-          { path: 'PayHAdeel', component: PaymentComponent },
-
-          { path: 'Cart', component: CartComponent },
-
-          { path: 'bmi', component: BmiCalculatorComponent },
-
-          { path: 'Login', component: LoginComponent },
-
-          { path: 'About', component: AboutComponent },
-
-          { path: 'Contact', component: ContactComponent },
-
-          { path: 'nutrition/:id', component: NutritionComponent },
-
-          { path: 'bmi', component: BmiCalculatorComponent },
-
-          { path: 'Login', component: LoginComponent },
-
-          { path: 'Register', component: RegisterComponent },
-          { path: 'paypal', component: PaypalComponent },
-          { path: 'Register', component: RegisterComponent },
-          { path: 'orders', component: OrdersComponent },
-          { path: 'subscriptions', component: SubscriptionsComponent }
+          { path : "AllUsers", component: GetAllUsersComponent}
+       
 
         ]
       }
