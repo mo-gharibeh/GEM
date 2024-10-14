@@ -1,36 +1,3 @@
-<!-- Banner Style One Start -->
-<section class="banner-style-one">
-  <div class="parallax" style="background-image: url(assets/images/pattren-3.png);"></div>
-  <div class="container">
-    <div class="row">
-      <div class="banner-details">
-        <h2>Gym Details</h2>
-      </div>
-    </div>
-  </div>
-  <div class="breadcrums">
-    <div class="container">
-      <div class="row">
-        <ul>
-          <li>
-            <a routerLink="/home">
-              <i class="fa-solid fa-house"></i>
-              <p>Home</p>
-            </a>
-          </li>
-          <li class="current">
-            <p>Gym</p>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- Banner Style One End -->
-
-<a routerLink="/AdminDashBoard/addGym/" class="btn btn-info">Info</a>
-
-<!-- Gym List Table -->
 <section class="gap blog-style-one team-detail detail-page">
   <div class="container">
     <div class="row">
@@ -51,6 +18,18 @@
                   <p>Price:</p>
                   <span><b>JOD:</b> {{ class.price }}</span>
                 </div>
+
+                <!-- Add the ClassTimes section here -->
+                <div *ngIf="class.classTimes && class.classTimes.length > 0">
+                  <p><strong>Class Schedule:</strong></p>
+                  <ul>
+                    <li *ngFor="let time of class.classTimes">
+                      <p><strong>Start Time:</strong> {{ time.startTime | date: 'yyyy-MM-dd, h:mm a' }}</p>
+                      <p><strong>End Time:</strong> {{ time.endTime | date: 'yyyy-MM-dd, h:mm a' }}</p>
+                    </li>
+                  </ul>
+                </div>
+
                 <div class="d-flex justify-content-between">
                   <a (click)="remove(class.id)" class="btn btn-danger">Remove</a>
                   <a routerLink="/AdminDashBoard/UpdateGym/{{ class.id }}" class="btn btn-primary">Edit</a>
@@ -63,6 +42,3 @@
     </div>
   </div>
 </section>
-
-
-

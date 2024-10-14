@@ -2,6 +2,9 @@
 using GEM.Server.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Stripe;
+
 
 namespace GEM.Server.Controller
 {
@@ -10,9 +13,15 @@ namespace GEM.Server.Controller
     public class GymController : ControllerBase
     {
         private readonly MyDbContext _db;
-        public GymController(MyDbContext db)
+        private readonly EmailService _emailServiceH;
+        private readonly IConfiguration _configuration; // Add this line
+        private readonly PaymentServiceH _paymentService;
+        public GymController(MyDbContext db, EmailService emailServiceH, IConfiguration configuration, PaymentServiceH paymentService)
         {
             _db = db;
+            _emailServiceH = emailServiceH;
+            _configuration = configuration;
+            _paymentService = paymentService;
         }
 
         [HttpGet("ShowAllGyms")]
@@ -56,6 +65,7 @@ namespace GEM.Server.Controller
                 Name = gymdto.Name,
                 Description = gymdto.Description,
                 Price = gymdto.Price,
+                Trainer = gymdto.Trainer,
                 Flag = true,
                 Image = gymdto.Image.FileName,
             };
@@ -64,6 +74,8 @@ namespace GEM.Server.Controller
             _db.SaveChanges();
             return Ok();
         }
+
+
 
 
         // For Admin Side To Edit Gym
@@ -115,5 +127,273 @@ namespace GEM.Server.Controller
             _db.SaveChanges();
             return Ok();
         }
+
+
+
+        //  For Email
+
+        //[HttpPost("send-reminder-emails")]
+        //public async Task<IActionResult> SendReminderEmailsAsync()
+        //{
+        //    var currentDate = DateTime.Now;
+        //    var reminderDate = currentDate.AddDays(5).Date;
+
+        //    var subscriptions = await _db.Enrolleds
+        //        .Where(sub => sub.EndDate.HasValue && sub.EndDate.Value.Date == reminderDate)
+        //        .Include(sub => sub.User)
+        //        .ToListAsync();
+
+        //    if (!subscriptions.Any())
+        //    {
+        //        return Ok("No subscriptions ending in 5 days.");
+        //    }
+
+        //    foreach (var subscription in subscriptions)
+        //    {
+        //        if (subscription.User != null && !string.IsNullOrWhiteSpace(subscription.User.Email))
+        //        {
+        //            string subject = "Subscription Reminder";
+        //            string body = $"<p>Your subscription for Class Service ID {subscription.Id} will end in 5 days.</p>";
+
+        //            await _emailServiceH.SendEmailRAsync(subscription.User.Email, subject, body);
+        //        }
+        //    }
+
+        //    return Ok("Reminder emails sent successfully.");
+        //}
+
+
+
+        /// For PayMent
+        /// 
+
+
+        [HttpPost]
+        [Route("checkoutForSubscription")]
+        public async Task<IActionResult> CheckoutForSubscription([FromBody] PaymentHadeelDto paymentRequest)
+        {
+            if (paymentRequest == null)
+            {
+                return BadRequest("Invalid request.");
+            }
+
+            try
+            {
+                // Initialize Stripe with the secret key
+                StripeConfiguration.ApiKey = _configuration["Stripe:SecretKey"];
+
+                // Create a payment intent
+                var options = new PaymentIntentCreateOptions
+                {
+                    Amount = (long)(paymentRequest.Amount * 100), // Amount in cents
+                    Currency = "usd", // Change this to your desired currency
+                    PaymentMethod = paymentRequest.PaymentToken, // Token received from Stripe.js
+                    Confirm = true,
+                };
+                var service = new PaymentIntentService();
+                PaymentIntent intent = service.Create(options);
+
+                // Prepare the payment information for saving to the database
+                var paymentHadeel = new PaymentHadeel
+                {
+                    UserId = paymentRequest.UserId,
+                    ClassSubId = paymentRequest.ClassSubId,
+                    ClassTimeId = paymentRequest.ClassTimeId,
+                    PaymentToken = paymentRequest.PaymentToken,
+                    Amount = paymentRequest.Amount,
+                    FirstName = paymentRequest.FirstName,
+                    LastName = paymentRequest.LastName,
+                    CompanyName = paymentRequest.CompanyName,
+                    Address = paymentRequest.Address,
+                    Email = paymentRequest.Email,
+                    Phone = paymentRequest.Phone
+                };
+
+                await _db.PaymentHadeels.AddAsync(paymentHadeel);
+                await _db.SaveChangesAsync();  // Save changes to the database
+
+                return Ok("Payment processed successfully.");
+            }
+            catch (StripeException stripeEx)
+            {
+                // Handle Stripe-specific exceptions
+                return BadRequest($"Payment error: {stripeEx.Message}");
+            }
+            catch (Exception ex)
+            {
+                // Log the error and return a failure response
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
+        }
+
+        //[HttpPost("checkoutForSubscription")]
+        //public async Task<IActionResult> CreatePayment([FromBody] PaymentRequestHDTO paymentRequest)
+        //{
+        //    var existingEnrollment = await _db.Enrolleds
+        //        .Where(u => u.UserId == paymentRequest.UserId && u.ClassSubId == paymentRequest.ClassSubId)
+        //        .FirstOrDefaultAsync();
+
+        //    if (existingEnrollment != null)
+        //    {
+        //        return BadRequest("You are already subscribed to this class.");
+        //    }
+
+        //    var options = new ChargeCreateOptions
+        //    {
+        //        Amount = (long)(paymentRequest.Amount * 100),
+        //        Currency = "usd",
+        //        Description = "Class Subscription Payment",
+        //        Source = paymentRequest.PaymentToken,
+        //    };
+
+        //    var service = new ChargeService();
+        //    try
+        //    {
+        //        Charge charge = service.Create(options);
+
+        //        if (charge.Status == "succeeded")
+        //        {
+        //            var newEnrollment = new Enrolled
+        //            {
+        //                UserId = paymentRequest.UserId,
+        //                ClassSubId = paymentRequest.ClassSubId,
+        //                ClassTimeId = paymentRequest.ClassTimeId,
+        //                StartDate = DateTime.Now,
+        //                EndDate = DateTime.Now.AddMonths(1),
+        //                PaymentMethod = "Stripe"
+        //            };
+
+        //            _db.Enrolleds.Add(newEnrollment);
+        //            await _db.SaveChangesAsync();
+
+        //            return Ok(new { Message = "Payment and enrollment successful." });
+        //        }
+        //        else
+        //        {
+        //            return BadRequest("Payment failed.");
+        //        }
+        //    }
+        //    catch (StripeException ex)
+        //    {
+        //        return BadRequest($"Payment error: {ex.Message}");
+        //    }
+        //}
+
+        //[HttpGet("GetAllEnrollments")]
+        //public async Task<IActionResult> GetAllEnrollments()
+        //{
+        //    var enrollments = await _db.Enrolleds
+        //        .Include(e => e.User)
+        //        .Include(e => e.ClassSub)
+        //        .ToListAsync();
+
+        //    return Ok(enrollments);
+        //}
+
+        //[HttpGet("GetEnrollmentDetails/{id}")]
+        //public async Task<IActionResult> GetEnrollmentDetails(int id)
+        //{
+        //    var enrollment = await _db.Enrolleds
+        //        .Include(e => e.User)
+        //        .Include(e => e.ClassSub)
+        //        .FirstOrDefaultAsync(e => e.Id == id);
+
+        //    if (enrollment == null)
+        //    {
+        //        return NotFound("Enrollment not found.");
+        //    }
+
+        //    return Ok(enrollment);
+        //}
+
+        //[HttpPut("EditEnrollment/{id}")]
+        //public async Task<IActionResult> EditEnrollment(int id, [FromBody] Enrolled updatedEnrollment)
+        //{
+        //    var enrollment = await _db.Enrolleds.FindAsync(id);
+
+        //    if (enrollment == null)
+        //    {
+        //        return NotFound("Enrollment not found.");
+        //    }
+
+        //    enrollment.ClassSubId = updatedEnrollment.ClassSubId;
+        //    enrollment.ClassTimeId = updatedEnrollment.ClassTimeId;
+        //    enrollment.EndDate = updatedEnrollment.EndDate;
+        //    enrollment.PaymentMethod = updatedEnrollment.PaymentMethod;
+
+        //    _db.Enrolleds.Update(enrollment);
+        //    await _db.SaveChangesAsync();
+
+        //    return Ok("Enrollment updated successfully.");
+        //}
+
+        //[HttpDelete("DeleteEnrollment/{id}")]
+        //public async Task<IActionResult> DeleteEnrollment(int id)
+        //{
+        //    var enrollment = await _db.Enrolleds.FindAsync(id);
+
+        //    if (enrollment == null)
+        //    {
+        //        return NotFound("Enrollment not found.");
+        //    }
+
+        //    _db.Enrolleds.Remove(enrollment);
+        //    await _db.SaveChangesAsync();
+
+        //    return Ok("Enrollment deleted successfully.");
+        //}
+
+
+        //[HttpPost("checkout")]
+        //public IActionResult CreatePayment([FromBody] PayRDTO payRDTO)
+        //{
+        //    if (string.IsNullOrEmpty(_redirectUrl))
+        //        throw new Exception("The redirect link for the paypal should be set correctly on the sitting app.");
+
+
+        //    var totalPrice = _db.ClassServices.Where(x => x.Id == payRDTO.idSubs).FirstOrDefault().PricePerMonth ?? 0;
+
+        //    var payment = payPalService.CreatePayment(_redirectUrl ?? " ", totalPrice, null, payRDTO.userID, payRDTO.idSubs);
+        //    var approvalUrl = payment.links.FirstOrDefault(l => l.rel.Equals("approval_url", StringComparison.OrdinalIgnoreCase))?.href;
+
+        //    return Ok(new { approvalUrl });
+        //}
+
+        //[HttpGet("success")]
+        //public IActionResult ExecutePayment(string paymentId, string PayerID, string token, int userID, long subsId)
+        //{
+
+
+
+        //    var subscription = new ClassSubscription()
+        //    {
+        //        ClassServiceId = subsId,
+        //        StartDate = DateTime.Now,
+        //        EndDate = DateTime.Now.AddMonths(1),
+        //        UserId = userID,
+        //        //PaymentId = paymentId
+        //    };
+
+        //    _db.ClassSubscriptions.Add(subscription);
+        //    _db.SaveChanges();
+
+
+
+
+        //    var executedPayment = payPalService.ExecutePayment(paymentId, PayerID, userID, subsId);
+        //    const string script = "<script>window.close();</script>";
+        //    return Content(script, "text/html");
+
+
+
+        //}
+
+
+        //[HttpGet("cancel")]
+        //public IActionResult CancelPayment()
+        //{
+        //    return BadRequest("Payment canceled.");
+        //}
+
     }
 }
