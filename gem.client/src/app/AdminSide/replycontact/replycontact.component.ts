@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UrlAdminService } from '../yousefUrlAdmin/url-admin.service';
 
 @Component({
@@ -9,16 +9,16 @@ import { UrlAdminService } from '../yousefUrlAdmin/url-admin.service';
 })
 export class ReplycontactComponent {
 
-  param : any
+  param: any
   ngOnInit() {
     this.param = this._router.snapshot.paramMap.get("id")
     console.log("iddddd", this.param)
     this.getComentsById()
-}
+  }
   specificData: any
   subject: any
-  email : any
-  constructor(private _router: ActivatedRoute , private _ser : UrlAdminService) { }
+  email: any
+  constructor(private _router: ActivatedRoute, private _ser: UrlAdminService) { }
   getComentsById() {
 
     this._ser.getComentsById(this.param).subscribe((data) => {
@@ -28,6 +28,40 @@ export class ReplycontactComponent {
       this.email = this.specificData.email
       console.log("sss", this.subject)
     })
+  }
+
+  replayData = {
+
+    Name: '',
+
+    Email: '',
+
+    Subject: '',
+
+    MessageContent: ''
+  }
+
+
+  addNewComent(data: any) {
+    debugger
+    data.Name = ''
+    data.Email = this.email
+    data.Subject = this.subject
+    
+    var form = new FormData();
+
+    for (let key in data) {
+      form.append(key, data[key])
+    }
+    this._ser.postContactForm(form).subscribe(() => {
+      debugger
+      alert("Coment Sent successfully")
+      /*this._router.navigate(['']);*/
+    },
+      (error) => {
+        alert(error.error)
+      }
+    )
   }
 
 }
