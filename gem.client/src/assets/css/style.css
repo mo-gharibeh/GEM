@@ -1466,13 +1466,13 @@ span.counter {
     color: var(--theme-color);
     text-transform: uppercase;
 }
-.featured-slider-one .f-slider-one-data span,
+/*.featured-slider-one .f-slider-one-data span,
 .featured-slider-one .f-slider-one-data h1,
 .featured-slider-one .f-slider-one-data p,
 .featured-slider-one .f-slider-one-data a {
     opacity: 0;
     visibility: hidden;
-}
+}*/
 .featured-slider-one .owl-item.active .f-slider-one-data span,
 .featured-slider-one .owl-item.active .f-slider-one-data h1,
 .featured-slider-one .owl-item.active .f-slider-one-data p,

@@ -20,6 +20,8 @@ builder.Services.AddDbContext<MyDbContext>(options =>
 builder.Services.AddScoped<EmailHadeelController>();
 
 // Configure CORS
+builder.Services.AddScoped<EmailHadeelController>();
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("Development", builder =>

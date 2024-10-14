@@ -1,5 +1,4 @@
 ﻿
-
         using GEM.Server.DTOs;
 using GEM.Server.Models;
 using Microsoft.AspNetCore.Http;
@@ -57,4 +56,3 @@ namespace GEM.Server.Controller
 
         }
     }
-
