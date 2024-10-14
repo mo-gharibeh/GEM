@@ -34,12 +34,12 @@ export class LoginComponent {
       if (data.email == "admin@gmail.com") {
         this._router.navigate(['/AdminDashBoard']);
         alert("Welcome Admin");
-
-      } else {
-        this._router.navigate(['/home']);
-        alert("User logged in successfully");
-
       }
+      //} else {
+      //  this._router.navigate(['/home']);
+      //  alert("User logged in successfully");
+
+      //}
       //const userId = response.userId;
       //localStorage.setItem('userId', userId);
       },
@@ -58,6 +58,12 @@ export class LoginComponent {
 
     //  (error) => { alert(error.error) }
     //)
+    if (localStorage.getItem("cartItems")) {
+      this._router.navigate(['/Cart'])
+    }
+    else {
+      this._router.navigate(['/Gyms'])
+    }
   }
 
 }
