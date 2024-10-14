@@ -13,7 +13,7 @@ export class UrlServiceService {
 
   getGym(): Observable<any> {
 
-    return this.http.get<any>(`${this.staticData}/Gym/ShowAllGyms`);
+    return this.http.get<any>(`${this.staticData}/Gym/GetAllGyms`);
 
   }
 
@@ -45,11 +45,16 @@ export class UrlServiceService {
   }
 
   getClassTimes(classId: number): Observable<any[]> {
-  
+
 
     return this.http.get<any[]>(`${this.staticData}/Classe/${classId}/times`);
   }
 
+  // New method to create class enrollment
+  createClassEnrollment(userId: number, classId: number, classTimeId: number, totalAmount: number): Observable<any> {
+    return this.http.post<any>(`${this.staticData}/Payment/CreateClassEnrollment/${userId}/${classId}/${classTimeId}`, totalAmount);
+  }
+  UpdateGym(id: any, data: any): Observable<any> {
 
 
 
@@ -58,9 +63,14 @@ export class UrlServiceService {
   UpdateService(id: any, data: any): Observable<any> {
     return this.http.put<any>(`${this.staticData}/Gym/EditGym?id=${id}`, data)
   }
+  UpdateClass(id: any, data: any): Observable<any> {
+    return this.http.put<any>(`${this.staticData}/Classe/EditClass?id=${id}`, data)
+  }
+
   remove(id: any): Observable<any> {
     return this.http.delete<any>(`${this.staticData}/Gym/DeleteGym?id=${id}`)
   }
+
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   ////paypal//////////////////////////////////////////
 
@@ -97,6 +107,22 @@ export class UrlServiceService {
     );
   }
 
+  // Execute PayPal payment after approval
+  executePayPalPayment(paymentId: string, payerId: string, classId: number, classTimeId: number): Observable<any> {
+    debugger
+    const userId = Number(localStorage.getItem('userId'));  // Get the user ID from local storage
+    debugger
+    const paymentExecution = {
+      paymentId,
+      payerId,
+      userId,
+      classId,
+      classTimeId
+    };
+    debugger
+    return this.http.post<any>(`${this.staticData}/Payment/ExecutePayPalPayment`, paymentExecution);
+  }
+}
   // Execute PayPal payment for class enrollment
   executePayPalPayment(executionInfo: any): Observable<any> {
     return this.http.post<any>(

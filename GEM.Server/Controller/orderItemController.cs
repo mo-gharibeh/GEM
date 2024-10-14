@@ -18,14 +18,14 @@ namespace GEM.Server.Controller
         }
 
 
-        
+
         [HttpGet("GetOrders")]
         public IActionResult GetAllOrders()
         {
 
             var orders = _db.Orders.ToList();
 
-            
+
             return Ok(orders);
         }
 
@@ -37,7 +37,7 @@ namespace GEM.Server.Controller
                 .Where(oi => oi.OrderId == Id)
                 .ToList();
 
-            
+
             if (orderItems == null || !orderItems.Any())
             {
                 return NotFound($"No order items found for OrderId {Id}");

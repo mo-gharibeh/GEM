@@ -12,7 +12,7 @@ export class LoginComponent {
 
   email: any;
   ngOnInit() {
-    
+
     this._serm['email'].next('');
   }
 
@@ -30,22 +30,22 @@ export class LoginComponent {
     this._ser.loginUser(form).subscribe((response) => {
       localStorage.setItem('userId', response.userId);
       this._serm['email'].next(data.email);
-      
+
       if (data.email == "admin@gmail.com") {
         this._router.navigate(['/AdminDashBoard']);
         alert("Welcome Admin");
-
-      } else {
-        this._router.navigate(['/home']);
-        alert("User logged in successfully");
-
       }
+      //} else {
+      //  this._router.navigate(['/home']);
+      //  alert("User logged in successfully");
+
+      //}
       //const userId = response.userId;
       //localStorage.setItem('userId', userId);
-      },
-        (error) => {
-          alert(error.error);
-        });
+    },
+      (error) => {
+        alert(error.error);
+      });
     //  this._ser['email'].next(response.email);
     //  if (response.email == 'admin@gmail.com') {
 
@@ -58,6 +58,12 @@ export class LoginComponent {
 
     //  (error) => { alert(error.error) }
     //)
+    if (localStorage.getItem("cartItems")) {
+      this._router.navigate(['/Cart'])
+    }
+    else {
+      this._router.navigate(['/Gyms'])
+    }
   }
 
 }
