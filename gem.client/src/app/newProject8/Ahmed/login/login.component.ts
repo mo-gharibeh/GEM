@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { UrlService } from '../AhmedUrl/Ahmed-url.service';
+import { AhmedUrlService } from '../AhmedUrl/Ahmed-url.service';
 import { Router } from '@angular/router';
+import { MurlService } from '../../../murl.service';
 
 @Component({
   selector: 'app-login',
@@ -8,11 +9,14 @@ import { Router } from '@angular/router';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  ngOnInit() {
 
+  email: any;
+  ngOnInit() {
+    
+    this._serm['email'].next('');
   }
 
-  constructor(private _ser: UrlService, private _router: Router) {
+  constructor(private _ser: AhmedUrlService, private _serm: MurlService, private _router: Router) {
 
   }
 
@@ -24,10 +28,20 @@ export class LoginComponent {
     }
 
     this._ser.loginUser(form).subscribe((response) => {
-      const userId = response.userId;
-      localStorage.setItem('userId', userId);
+
+      this._serm['email'].next(data.email);
+      
+      if (data.email == "admin@gmail.com") {
+        this._router.navigate(['/AdminDashBoard']);
+        alert("Welcome Admin");
+
+      } else {
+        this._router.navigate(['/home']);
         alert("User logged in successfully");
-        this._router.navigate(['']);
+
+      }
+      //const userId = response.userId;
+      //localStorage.setItem('userId', userId);
       },
         (error) => {
           alert(error.error);

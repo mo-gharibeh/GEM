@@ -1,0 +1,35 @@
+<main>
+  <div class="container mt-4" style="margin-left: 260px">
+    <h2 class="text-center mb-4">Manage Testimonials</h2>
+
+    <table class="table table-light table-hover table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">User ID</th>
+          <th scope="col">Status</th>
+          <th scope="col">Text</th>
+          <th scope="col">Created At</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let testimonial of testimonials">
+          <th scope="row">{{ testimonial.testimonialid }}</th>
+          <td>{{ testimonial.userName }}</td>
+          <td>{{ testimonial.status }}</td>
+          <td>{{ testimonial.text }}</td>
+          <td>{{ testimonial.createdAt | date: 'short' }}</td>
+          <td>
+            <button class="btn btn-outline-warning btn-sm" (click)="changeStatus(testimonial.testimonialid)">
+              {{ testimonial.status === 'Visible' ? 'Hide' : 'Show' }}
+            </button>
+            <button class="btn btn-outline-danger btn-sm" (click)="deleteTestimonial(testimonial.testimonialid)">
+              Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</main>

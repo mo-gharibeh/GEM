@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { UrlService } from './Ahmed-url.service';
+import { AhmedUrlService } from './Ahmed-url.service';
 
 describe('UrlService', () => {
-  let service: UrlService;
+  let service: AhmedUrlService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(UrlService);
+    service = TestBed.inject(AhmedUrlService);
   });
 
   it('should be created', () => {

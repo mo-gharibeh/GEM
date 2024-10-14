@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class DimaUrlServiceService {
   constructor(private http: HttpClient) { }
-  staticData = "https://localhost:44340/api";
+  staticData = "https://localhost:7031/api";
 
   getCategory(): Observable<any> {
     return this.http.get<any>(`${this.staticData}/CategoryController1/Category`);
@@ -51,5 +51,18 @@ export class DimaUrlServiceService {
   AddProduct(data: any): Observable<any> {
     return this.http.post<any>(`${this.staticData}/Products/addProduct`, data);
 
+  }
+
+
+
+
+  getOrder(): Observable<any> {
+    return this.http.get<any>(`${this.staticData}/orderItem/GetOrders`);
+  }
+
+
+
+  GetOrderItem(id: any): Observable<any> {
+    return this.http.get<any>(`${this.staticData}/orderItem/GetorderItemByOrderId/${id}`);
   }
 }

@@ -29,7 +29,7 @@ export class HomeComponent {
   constructor(private _ser: UrlService, private _route: ActivatedRoute) {
 
   }
-
+  
   get4Product() {
     this._ser.getTopProduct().subscribe((data) => {
       this.productArray = data;
@@ -38,7 +38,7 @@ export class HomeComponent {
   }
 
   getTestimonials() {
-    this._ser.getAllTestimonials().subscribe((data) => {
+    this._ser.getVisibleTestimonials().subscribe((data) => {
       this.testimonialArray = data;
       console.log(this.testimonialArray);
     })

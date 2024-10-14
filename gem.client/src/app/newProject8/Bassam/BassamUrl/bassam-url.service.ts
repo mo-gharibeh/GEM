@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class BassamUrlService {
-  private baseUrl = 'https://localhost:44340/api';
+  private baseUrl = 'https://localhost:44340/api'; // Ensure this matches your backend API URL
 
   constructor(private http: HttpClient) { }
 
@@ -14,7 +14,10 @@ export class BassamUrlService {
     return this.http.get<any>(`${this.baseUrl}/UsersBassam/${id}`);
   }
 
-  updateUserProfile(userId: number, userProfileUpdateDto: any): Observable<any> {
-    return this.http.put<any>(`${this.baseUrl}/Users/edit-profile/${userId}`, userProfileUpdateDto);
+  updateUserProfile(userId: number, formData: FormData): Observable<any> {
+    return this.http.put<any>(`${this.baseUrl}/UsersBassam/edit-profile/${userId}`, formData);
   }
+  //getImage(image: string): Observable<Blob> {
+  //  return this.http.get(`${this.baseUrl}/getImages/${image}`, { responseType: 'blob' });
+  //}
 }

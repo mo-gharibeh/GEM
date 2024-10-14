@@ -13,11 +13,12 @@ export class UrlAdminService {
 
 
   getComents(): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/ContactController1/GetMessage`);
+    return this.http.get(`${this.apiUrl}/ContactController1/GetMessage`);
+  }
+  getComentsById(id: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/ContactController1/GetMessage/${id}`);
   }
 
-  //getComentsById(id: number): Observable<any> {
-  //  return this.http.get<any>(`${this.apiUrl}/SubService/${id}`);
-  //}
+
 
 }

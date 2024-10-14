@@ -3,86 +3,71 @@
   <div class="parallax" style="background-image: url(assets/images/pattren-3.png);"></div>
   <div class="container">
     <div class="row">
-      <div class="banner-details">
+      <div class="banner-details text-center">
         <h2>Profile</h2>
-        <p>our values and vaulted us to the top of our industry.</p>
+        <p>Our values have vaulted us to the top of our industry.</p>
       </div>
     </div>
   </div>
   <div class="breadcrums">
     <div class="container">
       <div class="row">
-        <ul>
+        <ul class="breadcrumb-list">
           <li>
             <a href="index.html">
-              <i class="fa-solid fa-house"></i>
-              <p>Home</p>
+              <i class="fa-solid fa-house"></i> Home
             </a>
           </li>
-          <li class="current">
-            <p>Profile</p>
-          </li>
+          <li class="current">Profile</li>
         </ul>
       </div>
     </div>
   </div>
 </section>
 
-
-
-
-
-
-
-
-
-
-
-
 <div class="container emp-profile">
   <form method="post">
     <div class="row">
       <div class="col-md-4">
         <div class="profile-img">
-          <img [src]="user.Image ? user.image : 'https://www.thimble.com/wp-content/uploads/2022/05/Personal-Trainer-Salary-Guide-1200x800.jpg'" alt="Profile Image" />
-          <div class="file btn btn-lg btn-primary">
-            Change Photo
-            <input type="file" name="file" />
-          </div>
+          <img src="https://localhost:44340/api/UsersBassam/getImages/{{user.image}}" alt="Profile Image" />
         </div>
       </div>
       <div class="col-md-6">
         <div class="profile-head">
-          <h5>{{ user.fristName }} {{ user.lastName }}</h5>
-          <h6>{{ user.email }}</h6>
-          <p class="proile-rating">MEMBER RANKING : <span>Elite</span></p>
+
+
           <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item">
-              <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
+              <a class="nav-link active" id="home-tab" data-toggle="tab"  role="tab" aria-controls="home" aria-selected="true">About</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Workout Plan</a>
+
+              <a class="nav-link" id="profile-tab" routerLink="/orders" role="tab" aria-controls="profile" aria-selected="false">Orders</a>
             </li>
-          </ul>
+<li class="nav-item">
+              <a class="nav-link" id="profile-tab" routerLink="/subscriptions" role="tab" aria-controls="profile" aria-selected="false">subscriptions</a>
+            </li>
+              </ul>
         </div>
       </div>
       <div class="col-md-2">
-        <button class="profile-edit-btn btn btn-primary" [routerLink]="['/edit-profile', userId]">Edit Profile</button>
+        <button class="profile-edit-btn btn btn-primary" (click)="editProfile()">Edit Profile</button>
       </div>
-
     </div>
+
     <div class="row">
       <div class="col-md-4">
         <div class="profile-work">
           <p>MY FITNESS LINKS</p>
-          <a href="">Training Videos</a><br />
-          <a href="">Diet Plans</a><br />
-          <a href="">Progress Photos</a>
+          <a href="#">Training Videos</a><br />
+          <a href="#">Diet Plans</a><br />
+          <a href="#">Progress Photos</a>
           <p>SKILLS</p>
-          <a href="">Strength Training</a><br />
-          <a href="">Cardio Workouts</a><br />
-          <a href="">Nutrition Expert</a><br />
-          <a href="">Weight Loss</a><br />
+          <a href="#">Strength Training</a><br />
+          <a href="#">Cardio Workouts</a><br />
+          <a href="#">Nutrition Expert</a><br />
+          <a href="#">Weight Loss</a><br />
         </div>
       </div>
       <div class="col-md-8">
@@ -93,7 +78,7 @@
                 <label>Name</label>
               </div>
               <div class="col-md-6">
-                <p>{{ user.fristName }} {{ user.lastName }}</p>
+                <p>{{ user.firstName }} {{ user.lastName }}</p>
               </div>
             </div>
             <div class="row">
