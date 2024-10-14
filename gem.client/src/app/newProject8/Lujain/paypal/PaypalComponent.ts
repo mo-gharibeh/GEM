@@ -33,6 +33,7 @@ export class PaypalComponent {
     const userId = localStorage.getItem('userId');
     if (!userId) {
       alert('User ID not found. Please log in again.');
+      this.router.navigate(['Login']); // Redirect to the login page
       return;
     }
 
@@ -81,12 +82,12 @@ export class PaypalComponent {
       }
     }).render('#paypal-button-container');
   }
+
   executePaymentInBackend(orderId: string, payerId: string) {
     const userId = localStorage.getItem('userId');
     if (!userId) {
       alert('User ID not found. Please log in again.');
-      this.router.navigate(['login']); // Redirect to the login page
-
+      this.router.navigate(['Login']); // Redirect to the login page
       return;
     }
 
@@ -111,4 +112,8 @@ export class PaypalComponent {
     );
   }
 
+  calculateTotal(): number {
+    // Your logic to calculate the total amount
+    return 100; // Example total amount
+  }
 }
