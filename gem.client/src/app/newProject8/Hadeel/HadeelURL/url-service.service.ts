@@ -39,6 +39,11 @@ export class UrlServiceService {
   AddService(data: any): Observable<any> {
     return this.http.post<any>(`${this.staticData}/Gym/AddGym`, data)
   }
+
+  AddClassService(data: any): Observable<any> {
+    return this.http.post<any>(`${this.staticData}/Classe/Addclass`, data)
+  }
+
   getClassTimes(classId: number): Observable<any[]> {
   
 

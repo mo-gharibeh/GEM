@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { UrlServiceService } from '../../newProject8/Hadeel/HadeelURL/url-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-get-all-classes',
@@ -7,7 +8,7 @@ import { UrlServiceService } from '../../newProject8/Hadeel/HadeelURL/url-servic
   styleUrl: './get-all-classes.component.css'
 })
 export class GetAllClassesComponent {
-  constructor(private _ser: UrlServiceService) { }
+  constructor(private _ser: UrlServiceService, private _router: Router) { }
 
   ngOnInit() {
     this.getAllClasses();
@@ -36,7 +37,8 @@ export class GetAllClassesComponent {
   }
   remove(id: any) {
     this._ser.removeClass(id).subscribe((data) => {
-
+      alert("Class Removed successfully!")
+      this._router.navigate(['/AdminDashBoard/ShowClass']);
     });
   }
 }

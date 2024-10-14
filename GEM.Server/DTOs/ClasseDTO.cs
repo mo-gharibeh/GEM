@@ -12,7 +12,7 @@
 
         public string? Trainer { get; set; }
 
-       public ClassTimeDTO dTO { get; set; }
+       public ClassTimeDTO? dTO { get; set; }
     }
 
     public class ClassTimeDTO

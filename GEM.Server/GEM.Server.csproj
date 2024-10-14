@@ -34,6 +34,8 @@
     <PackageReference Include="MimeKit" Version="4.8.0" />
     <PackageReference Include="PayPal" Version="1.9.1" />
     <PackageReference Include="PayPal" Version="1.9.1" />
+    <PackageReference Include="PayPalCheckoutSdk" Version="1.0.4" />
+    <PackageReference Include="Stripe.net" Version="46.2.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 

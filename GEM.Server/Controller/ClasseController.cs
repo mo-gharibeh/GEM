@@ -35,7 +35,7 @@ namespace GEM.Server.Controller
         public IActionResult GetClassTimes(int classId)
         {
             // Fetch class and its associated times
-            var classTimes =  _db.ClassTimes
+            var classTimes = _db.ClassTimes
                                            .Where(ct => ct.ClassId == classId)
                                            .Select(ct => new
                                            {
@@ -46,7 +46,7 @@ namespace GEM.Server.Controller
                                            .ToList();
 
             // Check if any times are found
-            if (classTimes == null )
+            if (classTimes == null)
             {
                 return NotFound(new { message = "No times found for this class." });
             }

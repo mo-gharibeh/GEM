@@ -1,5 +1,7 @@
 {
   "dependencies": {
+    "@angular/common": "^18.2.8",
+    "@stripe/stripe-js": "^4.8.0",
     "jquery": "^3.7.1"
   }
 }
