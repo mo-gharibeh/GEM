@@ -30,11 +30,17 @@ namespace GEM.Server.Controller
         {
             var startDate = DateTime.Now;
             var endDate = startDate.AddMonths(1);
+             var classSubscription = new ClassSubscription
+            {
+                ClassId = subscriptiongym.ClassSubId,
+            };
 
+            _db.ClassSubscriptions.Add(classSubscription);
+            _db.SaveChanges();
             var subscription = new Enrolled
             {
-                UserId = 1,
-                ClassSubId = subscriptiongym.ClassSubId,
+                UserId = subscriptiongym.UserId,
+                ClassSubId = classSubscription.Id,
                 StartDate = startDate,
                 EndDate = endDate,
                 PaymentMethod = subscriptiongym.PaymentMethod,

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { UrlServiceService } from '../HadeelURL/url-service.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-gym-detail',
@@ -11,13 +11,14 @@ export class GymDetailComponent {
 
   parameter: any
   array: any
+  totalAmount:any
 
   ngOnInit() {
     this.parameter = this._rout.snapshot.paramMap.get("id");
     this.getDetails(this.parameter)
   }
 
-  constructor(private _ser: UrlServiceService, private _rout: ActivatedRoute) { }
+  constructor(private _ser: UrlServiceService, private _rout: ActivatedRoute, private router: Router) { }
 
   DetailsArray: any
 
@@ -25,6 +26,8 @@ export class GymDetailComponent {
     this._ser.getGymDetails(id).subscribe((data) => {
       debugger
       this.DetailsArray = data
+      this.totalAmount = this.DetailsArray.price;
+
       console.log(this.DetailsArray)
     })
   }
@@ -38,6 +41,7 @@ export class GymDetailComponent {
 
 
   AddUserSubScribtion(id: number) {
+    
     debugger
     // هون لازم اشيك اذا اليوزر داخل و لا لا لحتى اذا كان داخل اسمحله يعمل سبسكرايب اذا لا بعطي الليرت
     const userid = localStorage.getItem('userId');
@@ -48,8 +52,11 @@ export class GymDetailComponent {
     else {
       this.data.classSubId = id
       this._ser.addUSerSubScription(this.data).subscribe(() => {
+        localStorage.setItem('totalAmount', this.totalAmount.toString());
+
         if (true) {
-          alert("Accept Successfully")
+          this.router.navigate(['/payment'], {
+          });
         }
       })
     }
