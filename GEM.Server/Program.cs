@@ -17,6 +17,7 @@ builder.Services.AddSwaggerGen();
 // Configure database context with SQL Server
 builder.Services.AddDbContext<MyDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("YourConnectionString")));
+builder.Services.AddScoped<EmailHadeelController>();
 
 // Configure CORS
 builder.Services.AddScoped<EmailHadeelController>();

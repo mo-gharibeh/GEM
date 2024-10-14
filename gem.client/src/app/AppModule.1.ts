@@ -186,7 +186,7 @@ import { SubscriptionGymComponent } from "./newProject8/Bassam/subscription-gym/
       { path: 'subscriptions', component: SubscriptionsComponent },
       {
         path: 'AdminDashBoard', component: AdminDashboardComponent, children: [
-          { path: "addGym", component: ClassAndGymComponent },
+          { path: "addGym", component: AddGymComponent },
           { path: "GetCategories", component: GetallCategoryComponent },
           { path: "UpdateCategory/:id", component: UpdateCategoryComponent },
           { path: "GetOrders", component: ShowAllOrdersComponent },
@@ -196,13 +196,21 @@ import { SubscriptionGymComponent } from "./newProject8/Bassam/subscription-gym/
           { path: "UpdateProducts/:id", component: UpdateProductsComponent },
           { path: "AddProducts", component: AddProductsComponent },
           { path: "Contact", component: ContactAdminComponent },
+          { path: 'UpdateGym/:id', component: UpdateGymComponent },
+
           { path: "UpdateClass/:id", component: UpdateClassComponent },
           //{ path: "ReplyContact", component: ReplycontactComponent },
           { path: "ReplyContact/:id", component: ReplycontactComponent },
           { path: "mealManagement", component: MealManagementComponent },
           { path: "subMealManagement", component: SubMealManagementComponent },
           { path: "testiManagement", component: TestimonialManagrmrntComponent },
-          { path : "AllUsers", component: GetAllUsersComponent}
+          { path: "AllUsers", component: GetAllUsersComponent },
+          {
+            path: "ClassGym", component: ClassAndGymComponent
+          },
+          { path: 'ShowClass', component: GetAllClassesComponent },
+          { path: "ShowGym", component: ShowGymComponent },
+          
        
 
         ]
