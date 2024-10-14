@@ -50,10 +50,15 @@ export class UrlServiceService {
     return this.http.get<any[]>(`${this.staticData}/Classe/${classId}/times`);
   }
   // Join class with selected time and user ID
-  joinClass(classId: number, timeId: number, userId: number): Observable<any> {
-
-    return this.http.post(`${this.staticData}/Classe/${classId}/join`, { timeId, userId });
+  joinClass(classId: number, timeId: number, userId: number, totalAmount: number): Observable<any> {
+    return this.http.post<any>(`${this.staticData}/Payment/CreateClassEnrollment/${userId}/${classId}/${timeId}`, totalAmount);
   }
+
+  // New method to create class enrollment
+  createClassEnrollment(userId: number, classId: number, classTimeId: number, totalAmount: number): Observable<any> {
+    return this.http.post<any>(`${this.staticData}/Payment/CreateClassEnrollment/${userId}/${classId}/${classTimeId}`, totalAmount);
+  }
+
   UpdateService(id: any, data: any): Observable<any> {
     return this.http.put<any>(`${this.staticData}/Gym/EditGym?id=${id}`, data)
   }

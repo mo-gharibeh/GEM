@@ -2,9 +2,9 @@
 {
     public class PaymentDTO
     {
-        public string PaymentMethod { get; set; } // e.g., PayPal
-        public string ReturnUrl { get; set; }     // PayPal success redirect URL
-        public string CancelUrl { get; set; }     // PayPal cancel redirect URL
+        public string? PaymentMethod { get; set; } // e.g., PayPal
+        public string? ReturnUrl { get; set; }     // PayPal success redirect URL
+        public string? CancelUrl { get; set; }     // PayPal cancel redirect URL
         public decimal TotalAmount { get; set; }  // Amount to be charged
 
     }

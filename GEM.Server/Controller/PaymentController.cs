@@ -18,13 +18,22 @@ namespace GEM.Server.Controller
             _db = db;
             _payPalPaymentService = payPalPaymentService;
         }
-
-        // New endpoint: Create an enrollment for a class
         [HttpPost("CreateClassEnrollment/{userId}/{classId}/{classTimeId}")]
-        public IActionResult CreateClassEnrollment(int userId, int classId, int classTimeId, decimal totalAmount)
+        public IActionResult CreateClassEnrollment(int userId, int classId, int classTimeId, [FromBody] decimal totalAmount)
         {
             try
             {
+                // Check if the class exists
+                var classDetails = _db.ClassAndGyms.FirstOrDefault(c => c.Id == classId);
+                if (classDetails == null)
+                    return BadRequest("Class not found.");
+
+                // You may also want to check if the class time exists
+                var classTime = _db.ClassTimes.FirstOrDefault(ct => ct.Id == classTimeId && ct.ClassId == classId);
+                if (classTime == null)
+                    return BadRequest("Class time not found.");
+
+                // Create the enrollment
                 var enrollment = CreateNewClassEnrollment(userId, classId, classTimeId, totalAmount);
                 return Ok(new { message = "Class enrollment created successfully.", enrollmentId = enrollment.Id });
             }
@@ -33,6 +42,7 @@ namespace GEM.Server.Controller
                 return BadRequest($"Error creating class enrollment: {ex.Message}");
             }
         }
+
 
         // PayPal checkout for joining a class
         [HttpPost("CheckoutWithPayPal/{userId}/{classId}/{classTimeId}")]
@@ -53,6 +63,10 @@ namespace GEM.Server.Controller
 
             var approvalUrl = createdPayment.links.FirstOrDefault(l => l.rel == "approval_url")?.href;
             if (approvalUrl == null) return BadRequest("Failed to generate PayPal payment.");
+
+            // Store totalAmount in the session or pass it to the next endpoint
+            HttpContext.Items["TotalAmount"] = totalAmount;
+
             return Ok(new { approvalUrl });
         }
 
@@ -66,7 +80,13 @@ namespace GEM.Server.Controller
 
                 if (executedPayment.state.ToLower() != "approved") return BadRequest("Payment not approved.");
 
-                var totalAmount = decimal.Parse(executedPayment.transactions.First().amount.total);
+                // Retrieve the total amount from the session
+                if (!HttpContext.Items.ContainsKey("TotalAmount"))
+                {
+                    return BadRequest("Total amount not found.");
+                }
+                var totalAmount = (decimal)HttpContext.Items["TotalAmount"];
+
                 var enrollment = CreateNewClassEnrollment(executionInfo.UserId, executionInfo.ClassId, executionInfo.ClassTimeId, totalAmount);
                 AddPaymentRecord(enrollment.Id, totalAmount, "PayPal");
 
@@ -78,10 +98,9 @@ namespace GEM.Server.Controller
             }
         }
 
-        // Private method to create a new class enrollment (replaces Order creation)
+        // Private method to create a new class enrollment
         private Enrolled CreateNewClassEnrollment(int userId, int classId, int classTimeId, decimal totalAmount)
         {
-            // First, find or create a ClassSubscription record for the user
             var classSubscription = _db.ClassSubscriptions.FirstOrDefault(cs => cs.ClassId == classId);
 
             // If no existing subscription is found, create one
@@ -89,39 +108,36 @@ namespace GEM.Server.Controller
             {
                 classSubscription = new ClassSubscription
                 {
-                    ClassId = classId,            // Link to the class
-                    FinalPrice = totalAmount      // Store the final price paid
+                    ClassId = classId,
+                    FinalPrice = totalAmount
                 };
 
-                // Add the new ClassSubscription to the database
                 _db.ClassSubscriptions.Add(classSubscription);
-                _db.SaveChanges();  // Save to get the new subscription ID
+                _db.SaveChanges();
             }
 
-            // Create the enrollment record for the user
             var enrollment = new Enrolled
             {
                 UserId = userId,
-                ClassSubId = classSubscription.Id,  // Use the subscription ID
+                ClassSubId = classSubscription.Id,
                 ClassTimeId = classTimeId,
-                StartDate = DateTime.UtcNow,        // Start date is the current date
-                EndDate = DateTime.UtcNow.AddMonths(1),  // Example end date (1 month later)
+                StartDate = DateTime.UtcNow,
+                EndDate = DateTime.UtcNow.AddMonths(1),
                 PaymentMethod = "PayPal"
             };
 
-            // Add the new enrollment record to the database
             _db.Enrolleds.Add(enrollment);
-            _db.SaveChanges();  // Save the enrollment record
+            _db.SaveChanges();
 
             return enrollment;
         }
 
-        // Private method to add a payment record for the enrollment
+        // Private method to add a payment record
         private void AddPaymentRecord(int enrollmentId, decimal amount, string paymentMethod)
         {
             var payment = new Models.PaymentRama
             {
-                EnrollmentId = enrollmentId, // Changed to EnrollmentId instead of OrderId
+                EnrollmentId = enrollmentId,
                 Amount = amount,
                 PaymentMethod = paymentMethod,
                 PaymentDate = DateTime.UtcNow,
@@ -135,4 +151,3 @@ namespace GEM.Server.Controller
 
     }
 }
-

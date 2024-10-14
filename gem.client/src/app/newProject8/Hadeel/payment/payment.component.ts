@@ -9,13 +9,14 @@ import { DatePipe } from '@angular/common';
   styleUrls: ['./class-details.component.css'],
   providers: [DatePipe] // Provide the DatePipe
 })
-export class ClassDetailsComponent implements OnInit {
+export class PaymentComponent implements OnInit {
   classId: number = 0;
-  classTimeId: number = 0; // Store selected class time
-  totalAmount: number = 50; // Assuming this is a fixed amount for now
-  userId: number = 0; // User ID from local storage
-  classTimes: any[] = []; // Store class times
-  ClassDetails: any; // Store class details
+  classTimeId: number = 0;
+  totalAmount: number = 50; // Set default amount if needed
+  selectedTime: number | 0 = 0;
+  userId: number = 0;
+  classTimes: any[] = [];
+  ClassDetails: any;
 
   constructor(
     private _ser: UrlServiceService,
@@ -64,9 +65,10 @@ export class ClassDetailsComponent implements OnInit {
   // Handle class time selection
   onClassTimeChange(event: Event): void {
     const selectElement = event.target as HTMLSelectElement;
-    this.classTimeId = +selectElement.value; // Set classTimeId to the selected value
+    this.classTimeId = +selectElement.value;
   }
 
+  // Join class and save enrollment
   joinClass() {
     if (!this.classTimeId) {
       alert('Please select a time before joining.');
@@ -79,25 +81,19 @@ export class ClassDetailsComponent implements OnInit {
       return;
     }
 
-    // Call your method to save the enrollment
-    this._ser.createClassEnrollment(this.userId, this.classId, this.classTimeId, this.totalAmount).subscribe(
+    // Call the service method to save enrollment
+    this._ser.joinClass(this.classId, this.classTimeId, this.userId, this.totalAmount).subscribe(
       response => {
+        // Handle successful enrollment
+        console.log('Enrollment created successfully', response);
         alert('You have successfully enrolled in the class!');
-
-        // Redirect to payment process
-        this.redirectToPayment(this.classId, this.classTimeId, this.totalAmount);
+        // Optionally, navigate to another page or update the UI
       },
       error => {
-        console.error('Error enrolling in class', error);
+        // Handle error
+        console.error('Error creating enrollment', error);
         alert('Error enrolling in class. Please try again.');
       }
     );
-  }
-
-  // Redirect to payment
-  redirectToPayment(classId: number, classTimeId: number, amount: number) {
-    this.router.navigate(['/payment'], {
-      queryParams: { classId, classTimeId, amount }
-    });
   }
 }
