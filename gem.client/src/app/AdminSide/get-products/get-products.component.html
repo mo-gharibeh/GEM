@@ -4,7 +4,7 @@
     <!-- Optional heading for the section -->
     <h2 class="text-center mb-4">All Products</h2>
 
-    <button class="btn btn-primary btn-sm" [routerLink]="['/AdminDashBoard/AddProducts']">Add new Products</button>
+    <button class="btn btn-success btn-sm" [routerLink]="['/AdminDashBoard/AddProducts']">Add new Products</button>
 
     <!-- Styled Bootstrap table -->
     <table class="table table-light table-hover table-bordered">
@@ -25,7 +25,7 @@
           <th scope="row">{{item.productId}}</th>
           <td>{{ item.productName }}</td>
           <!--<td><img src="https://localhost:44340/api/Products/getImage/{{item.image}}" width="150" height="150" /></td>-->
-          <td><img src="https://localhost:7031/api/MohammadController1/getImages/{{item.image}}" width="150" height="150" /></td>
+          <td><img src="{{item.image}}"  /></td>
           <td>{{ item.description }}</td>
           <td>{{ item.price }} JOD</td>
           <td>
