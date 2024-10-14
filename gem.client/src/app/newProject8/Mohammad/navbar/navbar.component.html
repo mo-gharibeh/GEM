@@ -122,7 +122,7 @@
                       <a routerLink="/Profile">Profile</a>
                     </li>
                     <li>
-                      <a routerLink="/Login" *ngIf="userId != null">Login & Register</a>
+                      <a routerLink="/Login" *ngIf="userId != null">Login</a>
                     </li>
                     <li>
                       <a (click)="logout()" *ngIf="userId == null">Logout</a>
@@ -207,7 +207,7 @@
                 </ul>
               </li>
               <li>
-                <a routerLink="/Login" *ngIf="email == ''">Login & Register</a>
+                <a routerLink="/Login" *ngIf="email == ''">Login</a>
               </li>
               <li>
                 <a (click)="logout()" *ngIf="email != ''">Logout</a>
@@ -233,7 +233,7 @@
             <a routerLink="/Profile">Profile</a>
           </li>
           <li>
-            <a routerLink="/Login" *ngIf="email == ''">Login & Register</a>
+            <a routerLink="/Login" *ngIf="email == ''">Login</a>
           </li>
           <li>
             <a (click)="logout()" *ngIf="email != ''" >Logout</a>
