@@ -40,6 +40,8 @@ export class ClassDetailsComponent implements OnInit {
   getClassById(id: any) {
     this._ser.getClassById(id).subscribe((data) => {
       this.ClassDetails = data;
+      this.totalAmount = this.ClassDetails.price;
+
     });
   }
 

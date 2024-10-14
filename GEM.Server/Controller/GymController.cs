@@ -13,13 +13,11 @@ namespace GEM.Server.Controller
     public class GymController : ControllerBase
     {
         private readonly MyDbContext _db;
-        private readonly EmailService _emailServiceH;
         private readonly IConfiguration _configuration; // Add this line
         private readonly PaymentServiceH _paymentService;
-        public GymController(MyDbContext db, EmailService emailServiceH, IConfiguration configuration, PaymentServiceH paymentService)
+        public GymController(MyDbContext db, IConfiguration configuration, PaymentServiceH paymentService)
         {
             _db = db;
-            _emailServiceH = emailServiceH;
             _configuration = configuration;
             _paymentService = paymentService;
         }
