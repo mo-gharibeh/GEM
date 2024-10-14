@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PaypalComponent } from './paypal.component';
+import { PaypalComponent } from './PaypalComponent';
 
 describe('PaypalComponent', () => {
   let component: PaypalComponent;
