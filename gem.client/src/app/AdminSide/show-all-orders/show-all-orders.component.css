@@ -1,9 +1,9 @@
 .container {
-  max-width: 80%; /* Control the width of the container */
+  max-width: 80%; /* Control the width of the container /
 }
 
 h2 {
-  color: #000000; /* Light text color */
+  color: #000000; / Light text color */
   font-weight: bold;
 }
 
@@ -11,8 +11,8 @@ h2 {
   border-radius: 10px;
   overflow: hidden;
 }
+
 .container.mt-4 {
   margin-left: 0 !important;
   max-width: 100%;
 }
-
