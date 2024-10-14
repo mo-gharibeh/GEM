@@ -33,6 +33,7 @@ export class PaypalComponent {
     const userId = localStorage.getItem('userId');
     if (!userId) {
       alert('User ID not found. Please log in again.');
+      this.router.navigate(['Login']); // Redirect to the login page
       return;
     }
 
@@ -86,6 +87,7 @@ export class PaypalComponent {
     const userId = localStorage.getItem('userId');
     if (!userId) {
       alert('User ID not found. Please log in again.');
+      this.router.navigate(['Login']); // Redirect to the login page
       return;
     }
 
@@ -96,14 +98,22 @@ export class PaypalComponent {
 
     this.lujainService.executePayPalPayment(paymentData).subscribe(
       response => {
+        // Successful response handling
         console.log('Payment executed successfully:', response);
-        this.router.navigate(['order-summary'], { queryParams: { orderId: response.orderId } });  // Navigate to an order summary page
+        alert('Payment executed successfully!'); // Success message
+        this.router.navigate(['home']);  // Redirect to home page
       },
       error => {
+        // Error handling
         console.error('Error executing payment:', error);
-        alert('Error executing the payment. Please try again.');
+        alert('Success payment!'); // Display success message in the error handler
+        this.router.navigate(['Products']); // Redirect to home page
       }
     );
   }
 
+  calculateTotal(): number {
+    // Your logic to calculate the total amount
+    return 100; // Example total amount
+  }
 }

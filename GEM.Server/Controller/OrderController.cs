@@ -5,13 +5,13 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using PayPal.Api;
+
 namespace GEM.Server.Controller
 {
     [Route("api/[controller]")]
     [ApiController]
     public class OrderController : ControllerBase
     {
-
         private readonly MyDbContext _db;
         private readonly PayPalPaymentService _payPalPaymentService;
 
@@ -53,6 +53,10 @@ namespace GEM.Server.Controller
 
                 // Create a new order with the calculated total amount
                 var order = CreateNewOrder(userId, totalAmount);
+
+                // Clear the cart after the order is successfully created
+                ClearCart(cart.CartId);
+
                 return Ok(new { message = "Order created successfully.", orderId = order.OrderId });
             }
             catch (Exception ex)
@@ -103,7 +107,6 @@ namespace GEM.Server.Controller
             return Ok(new { approvalUrl, totalAmount });
         }
 
-
         // Execute PayPal payment
         [HttpPost("ExecutePayPalPayment/{userId}")]
         public IActionResult ExecutePayPalPayment(int userId, [FromBody] PayPalExecutionDTO executionInfo)
@@ -141,7 +144,18 @@ namespace GEM.Server.Controller
             var newOrder = CreateNewOrder(userId, totalAmount);
             AddPaymentRecord(newOrder.OrderId, totalAmount, "PayPal");
 
+            // Clear the cart after successful payment execution
+            ClearCart(_db.Carts.FirstOrDefault(c => c.UserId == userId).CartId);
+
             return Ok(new { message = "Payment successful.", orderId = newOrder.OrderId });
+        }
+
+        // Clear the cart
+        private void ClearCart(int cartId)
+        {
+            var cartItems = _db.CartItems.Where(ci => ci.CartId == cartId).ToList();
+            _db.CartItems.RemoveRange(cartItems);
+            _db.SaveChanges();
         }
 
         // Reusable private method for creating an order
@@ -180,9 +194,6 @@ namespace GEM.Server.Controller
                 }
             }
 
-            _db.SaveChanges();
-
-            _db.CartItems.RemoveRange(cartItems);
             _db.SaveChanges();
 
             return newOrder;

@@ -13,13 +13,16 @@ export class NavbarComponent {
   constructor(private _serm: MurlService, private _router: Router) { }  // Added import statement for SharedService
 
   email: any;
+  userId: any ; 
   ngOnInit() {
     this._serm.emailAddress.subscribe(data => this.email = data)
+    this.userId = localStorage.getItem("userId");
   }
 
 
 logout() {
   this._serm.email.next('');
+  localStorage.clear();
   this._router.navigate(['/Login'])
 }
 
