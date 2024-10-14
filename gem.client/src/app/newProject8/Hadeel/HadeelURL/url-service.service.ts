@@ -55,6 +55,35 @@ export class UrlServiceService {
   remove(id: any): Observable<any> {
     return this.http.delete<any>(`${this.staticData}/Gym/DeleteGym?id=${id}`)
   }
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  ////paypal///////////////////////////////////////////////////
+  // Create PayPal payment and get approval URL
+  payForClass(classId: number, classTimeId: number): Observable<string> {
+    debugger
+    const userId = Number(localStorage.getItem('userId'));  // Get the user ID from local storage
+    const paymentInfo = {
+      returnUrl: `${window.location.origin}/payment-success`,  // Success URL after payment
+      cancelUrl: `${window.location.origin}/payment-cancel`    // Cancel URL if the payment fails
+    };
+    debugger
+    return this.http.post<string>(`${this.staticData}/Payment/CheckoutWithPayPal/${userId}/${classId}/${classTimeId}`, paymentInfo);
+  }
+
+  // Execute PayPal payment after approval
+  executePayPalPayment(paymentId: string, payerId: string, classId: number, classTimeId: number): Observable<any> {
+    debugger
+    const userId = Number(localStorage.getItem('userId'));  // Get the user ID from local storage
+    debugger
+    const paymentExecution = {
+      paymentId,
+      payerId,
+      userId,
+      classId,
+      classTimeId
+    };
+    debugger
+    return this.http.post<any>(`${this.staticData}/Payment/ExecutePayPalPayment`, paymentExecution);
+  }
 }
   
 

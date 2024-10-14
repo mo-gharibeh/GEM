@@ -23,5 +23,7 @@ public partial class Enrolled
 
     public virtual ClassTime? ClassTime { get; set; }
 
+    public virtual ICollection<PaymentRama> PaymentRamas { get; set; } = new List<PaymentRama>();
+
     public virtual User? User { get; set; }
 }
