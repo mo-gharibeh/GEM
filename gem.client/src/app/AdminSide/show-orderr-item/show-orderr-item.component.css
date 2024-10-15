@@ -40,3 +40,8 @@
     flex-basis: 100%; /* One card per row on mobile screens */
   }
 }
+
+.container.mt-4 {
+  margin-left: 0 !important;
+  max-width: 90%;
+}
