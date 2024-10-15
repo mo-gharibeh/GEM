@@ -17,17 +17,29 @@ export class ShowAllOrdersComponent implements OnInit {
 
   // Fetch all orders
   GetOrders() {
-    this._ser.getOrder().subscribe((data) => {
-      this.Array = data;
-      console.log(this.Array, "Orders Array");
-    });
+    this._ser.getOrder().subscribe(
+      (data) => {
+        this.Array = data;
+        console.log(this.Array, "Orders Array");
+      },
+      (error) => {
+        console.error('Error fetching orders:', error);
+      }
+    );
   }
 
-  // Set the status and trigger update when dropdown item is changed
-  setStatus(orderId: number, newStatus: string) {
+  onStatusChange(orderId: number, event: Event) {
+    const selectElement = event.target as HTMLSelectElement;
+    const newStatus = selectElement.value;
+
     console.log("Order ID:", orderId, "New Status:", newStatus);
 
     if (orderId && newStatus) {
+      const orderToUpdate = this.Array.find((item: any) => item.orderId === orderId);
+      if (orderToUpdate) {
+        orderToUpdate.shippingStatus = newStatus;
+      }
+
       this.updateOrderStatus(orderId, newStatus);
     } else {
       console.error('Invalid orderId or status!');
