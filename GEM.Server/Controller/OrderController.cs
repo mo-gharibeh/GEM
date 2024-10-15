@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using PayPal.Api;
+using System.Text.Json;
 
 namespace GEM.Server.Controller
 {
@@ -216,23 +217,46 @@ namespace GEM.Server.Controller
             _db.SaveChanges();
         }
 
-        // Update the status of an existing order
+        //// Update the status of an existing order
+        //[HttpPut("UpdateOrderStatus/{orderId}")]
+        //public IActionResult UpdateOrderStatus(int orderId, [FromBody] string newStatus)
+        //{
+        //    try
+        //    {
+        //        var order = _db.Orders.FirstOrDefault(o => o.OrderId == orderId);
+        //        if (order == null)
+        //        {
+        //            return NotFound("Order not found.");
+        //        }
+
+        //        // Update the order's shipping status
+        //        order.ShippngStatus = newStatus;
+        //        _db.SaveChanges();
+
+        //        return Ok(new { message = "Order status updated successfully.", orderId = orderId, newStatus = newStatus });
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return BadRequest($"Error updating order status: {ex.Message}");
+        //    }
+        //}
         [HttpPut("UpdateOrderStatus/{orderId}")]
-        public IActionResult UpdateOrderStatus(int orderId, [FromBody] string newStatus)
+        public IActionResult UpdateOrderStatus(int orderId, [FromBody] StatusUpdateRequest request)
         {
             try
             {
+                // Find the order by the provided orderId
                 var order = _db.Orders.FirstOrDefault(o => o.OrderId == orderId);
                 if (order == null)
                 {
                     return NotFound("Order not found.");
                 }
 
-                // Update the order's shipping status
-                order.ShippngStatus = newStatus;
-                _db.SaveChanges();
+                // Update the existing ShippngStatus field with the value from the DTO
+                order.ShippngStatus = request.ShippngStatus;
+                _db.SaveChanges(); // Save changes to the database
 
-                return Ok(new { message = "Order status updated successfully.", orderId = orderId, newStatus = newStatus });
+                return Ok(new { message = "Order status updated successfully.", orderId = orderId, newStatus = request.ShippngStatus });
             }
             catch (Exception ex)
             {

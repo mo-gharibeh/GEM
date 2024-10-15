@@ -23,14 +23,12 @@
           <td>{{ item.totalAmount }}</td>
           <td>
             <!-- Dropdown for updating shipping status -->
-            <select class="form-select" [(ngModel)]="item.newStatus" (click)="setStatus(item.orderId, item.newStatus)">
+            <select class="form-select" [(ngModel)]="item.shippingStatus" (change)="setStatus(item.orderId, item.shippingStatus)">
               <option value="Pending">Pending</option>
               <option value="Shipped">Shipped</option>
               <option value="Delivered">Delivered</option>
             </select>
           </td>
-
-
           <td>{{ item.orderDate }}</td>
           <td>
             <!-- Details button -->

@@ -23,11 +23,10 @@ export class ShowAllOrdersComponent implements OnInit {
     });
   }
 
-  // Set the status and trigger update when dropdown item is clicked
+  // Set the status and trigger update when dropdown item is changed
   setStatus(orderId: number, newStatus: string) {
     console.log("Order ID:", orderId, "New Status:", newStatus);
 
-    // Check if the newStatus is valid before calling updateOrderStatus
     if (orderId && newStatus) {
       this.updateOrderStatus(orderId, newStatus);
     } else {
@@ -35,7 +34,6 @@ export class ShowAllOrdersComponent implements OnInit {
     }
   }
 
-  // Update order status when dropdown is changed
   updateOrderStatus(orderId: number, newStatus: string) {
     this._ser.updateOrderStatus(orderId, newStatus).subscribe(
       (response) => {
