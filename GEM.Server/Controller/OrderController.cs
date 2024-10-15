@@ -215,5 +215,31 @@ namespace GEM.Server.Controller
             _db.Payments.Add(payment);
             _db.SaveChanges();
         }
+
+        // Update the status of an existing order
+        [HttpPut("UpdateOrderStatus/{orderId}")]
+        public IActionResult UpdateOrderStatus(int orderId, [FromBody] string newStatus)
+        {
+            try
+            {
+                var order = _db.Orders.FirstOrDefault(o => o.OrderId == orderId);
+                if (order == null)
+                {
+                    return NotFound("Order not found.");
+                }
+
+                // Update the order's shipping status
+                order.ShippngStatus = newStatus;
+                _db.SaveChanges();
+
+                return Ok(new { message = "Order status updated successfully.", orderId = orderId, newStatus = newStatus });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Error updating order status: {ex.Message}");
+            }
+        }
+
+
     }
 }

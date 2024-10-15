@@ -54,6 +54,13 @@ export class DimaUrlServiceService {
   }
 
 
+  updateOrderStatus(orderId: number, newStatus: string): Observable<any> {
+    return this.http.put(`${this.staticData}/UpdateOrderStatus/${orderId}`, newStatus);
+  }
+
+
+
+
 
 
   getOrder(): Observable<any> {
