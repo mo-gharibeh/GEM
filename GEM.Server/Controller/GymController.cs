@@ -122,7 +122,6 @@ namespace GEM.Server.Controller
         [HttpDelete("DeleteGym")]
         public IActionResult deleteGym(int id)
         {
-
             var gym = _db.ClassAndGyms.FirstOrDefault(x => x.Id == id);
 
             if (gym == null)
@@ -130,52 +129,77 @@ namespace GEM.Server.Controller
                 return BadRequest();
             }
 
+            // Get the related ClassTime records
+            var classTimes = _db.ClassTimes.Where(ct => ct.ClassId == id).ToList();
+
+            foreach (var classTime in classTimes)
+            {
+                // Get the related Enrolled records for each ClassTime
+                var enrolleds = _db.Enrolleds.Where(e => e.ClassTimeId == classTime.Id).ToList();
+
+                // Remove related Enrolled records
+                _db.Enrolleds.RemoveRange(enrolleds);
+
+                // Get the related ClassSubscription records for each ClassTime
+                var subscriptions = _db.ClassSubscriptions.Where(cs => cs.ClassId == classTime.Id).ToList();
+
+                // Remove related ClassSubscription records
+                _db.ClassSubscriptions.RemoveRange(subscriptions);
+            }
+
+            // Remove related ClassTime records
+            _db.ClassTimes.RemoveRange(classTimes);
+
+            // Remove the ClassAndGyms record
             _db.ClassAndGyms.Remove(gym);
+
+            // Save changes to the database
             _db.SaveChanges();
+
             return Ok();
         }
 
 
 
-        //  For Email
+            //  For Email
 
-        //[HttpPost("send-reminder-emails")]
-        //public async Task<IActionResult> SendReminderEmailsAsync()
-        //{
-        //    var currentDate = DateTime.Now;
-        //    var reminderDate = currentDate.AddDays(5).Date;
+            //[HttpPost("send-reminder-emails")]
+            //public async Task<IActionResult> SendReminderEmailsAsync()
+            //{
+            //    var currentDate = DateTime.Now;
+            //    var reminderDate = currentDate.AddDays(5).Date;
 
-        //    var subscriptions = await _db.Enrolleds
-        //        .Where(sub => sub.EndDate.HasValue && sub.EndDate.Value.Date == reminderDate)
-        //        .Include(sub => sub.User)
-        //        .ToListAsync();
+            //    var subscriptions = await _db.Enrolleds
+            //        .Where(sub => sub.EndDate.HasValue && sub.EndDate.Value.Date == reminderDate)
+            //        .Include(sub => sub.User)
+            //        .ToListAsync();
 
-        //    if (!subscriptions.Any())
-        //    {
-        //        return Ok("No subscriptions ending in 5 days.");
-        //    }
+            //    if (!subscriptions.Any())
+            //    {
+            //        return Ok("No subscriptions ending in 5 days.");
+            //    }
 
-        //    foreach (var subscription in subscriptions)
-        //    {
-        //        if (subscription.User != null && !string.IsNullOrWhiteSpace(subscription.User.Email))
-        //        {
-        //            string subject = "Subscription Reminder";
-        //            string body = $"<p>Your subscription for Class Service ID {subscription.Id} will end in 5 days.</p>";
+            //    foreach (var subscription in subscriptions)
+            //    {
+            //        if (subscription.User != null && !string.IsNullOrWhiteSpace(subscription.User.Email))
+            //        {
+            //            string subject = "Subscription Reminder";
+            //            string body = $"<p>Your subscription for Class Service ID {subscription.Id} will end in 5 days.</p>";
 
-        //            await _emailServiceH.SendEmailRAsync(subscription.User.Email, subject, body);
-        //        }
-        //    }
+            //            await _emailServiceH.SendEmailRAsync(subscription.User.Email, subject, body);
+            //        }
+            //    }
 
-        //    return Ok("Reminder emails sent successfully.");
-        //}
-
-
-
-        /// For PayMent
-        /// 
+            //    return Ok("Reminder emails sent successfully.");
+            //}
 
 
-        [HttpPost]
+
+            /// For PayMent
+            /// 
+
+
+            [HttpPost]
         [Route("checkoutForSubscription")]
         public async Task<IActionResult> CheckoutForSubscription([FromBody] PaymentHadeelDto paymentRequest)
         {

@@ -21,6 +21,7 @@ export class SubscriptionGymComponent implements OnInit, OnDestroy {
 
   // Function to fetch subscriptions using the service
   getUserSubscriptions(userId: number): void {
+    debugger;
     this.subscription = this.bassamUrlService.getUserSubscriptions(userId).subscribe(
       (data) => {
         this.subscriptions = data; // Store the fetched data
