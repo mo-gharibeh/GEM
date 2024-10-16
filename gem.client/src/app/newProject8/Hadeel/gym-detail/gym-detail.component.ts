@@ -44,6 +44,8 @@ export class GymDetailComponent {
 
     if (userid === null) {
       alert("Please Login First");
+      this.router.navigate(['/Login']);
+
     } else {
 
       this.data.userId = userid;
