@@ -153,14 +153,25 @@ namespace GEM.Server.Controller
         public IActionResult DeleteById(int id)
         {
             var product = _db.Products.Find(id);
+
             if (product != null)
             {
+                var orderItems = _db.OrderItems.Where(oi => oi.ProductId == id).ToList();
+
+                if (orderItems.Any())
+                {
+                    _db.OrderItems.RemoveRange(orderItems);
+                }
+
                 _db.Products.Remove(product);
                 _db.SaveChanges();
+
                 return NoContent();
             }
+
             return NotFound();
         }
+
 
         [HttpGet("getImage/{imageName}")]
         public IActionResult getImage(string imageName)
