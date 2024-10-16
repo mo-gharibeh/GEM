@@ -1,41 +1,42 @@
 <form #updateproducts="ngForm" (ngSubmit)="UpdateProducts(updateproducts.value)" style="max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px; background-color: #f9f9f9;">
-  <!-- CSRF Token (if needed) -->
-
-
   <h2 style="text-align: center; margin-bottom: 20px;">Update Service</h2>
 
   <div class="form-container">
-    <!-- Title Field -->
+    <!-- Product Name Field -->
     <div class="form-group" style="margin-bottom: 15px;">
       <label for="Title" class="form-label" style="display: block; font-weight: bold; margin-bottom: 5px;">Product Name</label>
-      <input type="text" id="Title" name="productName" ngModel class="form-control" required="required" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
-      <span class="text-danger" id="Title-error" style="color: red; font-size: 0.875em;"></span>
+      <input type="text" id="Title" name="productName" ngModel class="form-control" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+      <span class="text-danger" id="Title-error"></span>
     </div>
 
-
-    <!-- Blog Content Field -->
+    <!-- Description Field -->
     <div class="form-group" style="margin-bottom: 15px;">
       <label for="BlogCont" class="form-label" style="display: block; font-weight: bold; margin-bottom: 5px;">Description</label>
-      <textarea id="BlogCont" name="description" ngModel class="form-control" required="required" rows="8" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;"></textarea>
-      <span class="text-danger" id="BlogCont-error" style="color: red; font-size: 0.875em;"></span>
-    </div>
-    <div class="form-group" style="margin-bottom: 15px;">
-      <label for="BlogCont" class="form-label" style="display: block; font-weight: bold; margin-bottom: 5px;">Category Id</label>
-      <input id="BlogCont" name="categoryId" ngModel class="form-control" required="required" rows="8" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;"/>
-      <span class="text-danger" id="BlogCont-error" style="color: red; font-size: 0.875em;"></span>
+      <textarea id="BlogCont" name="description" ngModel class="form-control" required rows="8" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;"></textarea>
+      <span class="text-danger" id="BlogCont-error"></span>
     </div>
 
+    <!-- Category Dropdown Field -->
     <div class="form-group" style="margin-bottom: 15px;">
-      <label for="BlogCont" class="form-label" style="display: block; font-weight: bold; margin-bottom: 5px;">Price</label>
-      <input id="BlogCont" name="price" ngModel class="form-control" required="required" rows="8" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;"/>
-      <span class="text-danger" id="BlogCont-error" style="color: red; font-size: 0.875em;"></span>
+      <label for="Category" class="form-label" style="display: block; font-weight: bold; margin-bottom: 5px;">Category</label>
+      <select id="Category" name="categoryId" ngModel class="form-control" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+        <option *ngFor="let category of categories" [value]="category.categoryId">{{ category.categoryName }}</option>
+      </select>
+      <span class="text-danger" id="Category-error"></span>
+    </div>
+
+    <!-- Price Field -->
+    <div class="form-group" style="margin-bottom: 15px;">
+      <label for="Price" class="form-label" style="display: block; font-weight: bold; margin-bottom: 5px;">Price</label>
+      <input type="text" id="Price" name="price" ngModel class="form-control" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+      <span class="text-danger" id="Price-error"></span>
     </div>
 
     <!-- Main Image Field -->
     <div class="form-group" style="margin-bottom: 15px;">
       <label for="Image" class="form-label" style="display: block; font-weight: bold; margin-bottom: 5px;">Main Image</label>
-      <input type="file" id="Image" ngModel  name="Image" (change)="changeImage($event)" class="form-control" required="required" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
-      <span class="text-danger" id="Image-error" style="color: red; font-size: 0.875em;"></span>
+      <input type="file" id="Image" (change)="changeImage($event)" class="form-control" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+      <span class="text-danger" id="Image-error"></span>
     </div>
 
     <!-- Submit Button -->
