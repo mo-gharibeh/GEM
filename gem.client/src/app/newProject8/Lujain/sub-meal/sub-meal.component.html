@@ -36,7 +36,7 @@
         <div class="blog-post modern-card">
           <div class="blog-image">
             <figure>
-              <img [src]="item.image || 'assets/images/default-blog-image.jpg'" alt="Blog Image" class="img-fluid rounded">
+              <img src="https://localhost:44340/api/MohammadController1/getImages/{{item.image}}" alt="Blog Image" class="img-fluid rounded">
             </figure>
             <a routerLink="/nutrition/{{item.subMealPlanId}}" class="read-more-link">
               <i class="fa-solid fa-angles-right"></i>
