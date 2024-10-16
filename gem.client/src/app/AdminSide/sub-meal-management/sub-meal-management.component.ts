@@ -51,6 +51,9 @@ export class SubMealManagementComponent {
     formData.append('title', this.currentSubMeal.title);
     formData.append('description', this.currentSubMeal.description);
     formData.append('preparationTime', this.currentSubMeal.preparationTime.toString());
+    formData.append('firstStepes', this.currentSubMeal.firstStepes);
+    formData.append('secondStepes', this.currentSubMeal.secondStepes);
+    formData.append('finalStepes', this.currentSubMeal.finalStepes);
     if (this.selectedFile) {
       formData.append('image', this.selectedFile);
     }
@@ -69,9 +72,11 @@ export class SubMealManagementComponent {
   }
 
   deleteSubMeal(subMealPlanId: number): void {
+    debugger
     if (confirm('Are you sure you want to delete this sub-meal?')) {
       this.subMealService.deleteSubMeal(subMealPlanId).subscribe(() => {
         this.subMeals = this.subMeals.filter(subMeal => subMeal.subMealPlanId !== subMealPlanId);
+        this.getSubMeals();
       });
     }
   }
