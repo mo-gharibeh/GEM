@@ -238,5 +238,23 @@ namespace GEM.Server.Controller
             }
         }
 
+
+
+        // For Image
+
+        [HttpGet("getImages/{image}")]
+        public IActionResult getImage(string image)
+        {
+            var pathImage = Path.Combine(Directory.GetCurrentDirectory(), "Uploads", image);
+
+            if (System.IO.File.Exists(pathImage))
+            {
+                return PhysicalFile(pathImage, "image/*");
+            }
+
+            return NotFound();
+        }
+
+
     }
 }
