@@ -52,8 +52,8 @@
         <td>{{ subscription.paymentMethod }}</td>
         <td>
           <!-- Check if the subscription is active or inactive -->
-          <span *ngIf="isActive(subscription.startDate, subscription.endDate)">Active</span>
-          <span *ngIf="!isActive(subscription.startDate, subscription.endDate)">Inactive</span>
+          <span *ngIf="isActive(subscription.startDate, subscription.endDate)">Inactive</span>
+          <span *ngIf="!isActive(subscription.startDate, subscription.endDate)">Active</span>
         </td>
       </tr>
       <tr *ngIf="subscriptions.length === 0">
