@@ -43,7 +43,7 @@
               <a class="nav-link" id="profile-tab" (click)="Orders()" role="tab" aria-controls="profile" aria-selected="false">Orders</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" id="profile-tab" routerLink="/subscription-gym" role="tab" aria-controls="profile" aria-selected="false">Subscriptions</a>
+              <a class="nav-link" id="profile-tab" routerLink="/subscription-gym/{{user.userId}}" role="tab" aria-controls="profile" aria-selected="false">Subscriptions</a>
             </li>
           </ul>
         </div>
@@ -62,7 +62,7 @@
                 <label>Name</label>
               </div>
               <div class="col-md-6">
-                <p>{{ user.firstName }} {{ user.lastName }}</p>
+                <p>{{ user.fristName }} {{ user.lastName }}</p>
               </div>
             </div>
             <div class="row">

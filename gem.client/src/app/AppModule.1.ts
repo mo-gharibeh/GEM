@@ -177,7 +177,7 @@ import { SubscriptionGymComponent } from "./newProject8/Bassam/subscription-gym/
       { path: 'Login', component: LoginComponent },
       { path: 'subscriptions', component: SubscriptionsComponent },
       { path: 'order-items-bassam/:orderId', component: OrderItemsBassamComponent }, 
-      { path: 'subscription-gym', component: SubscriptionGymComponent },
+      { path: 'subscription-gym/:id', component: SubscriptionGymComponent },
       { path: 'orders/:userId', component: OrdersComponent },
       { path: 'Register', component: RegisterComponent },
       { path: 'paypal', component: PaypalComponent },
