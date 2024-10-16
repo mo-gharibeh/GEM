@@ -50,6 +50,10 @@
         <div class="modal-body">
           <form (ngSubmit)="submitSubMealForm()">
             <div class="form-group">
+              <label for="Meal">Meal</label>
+              <select name=""></select>
+            </div>
+            <div class="form-group">
               <label for="title">Title</label>
               <input type="text" class="form-control" [(ngModel)]="currentSubMeal.title" name="title" required>
             </div>
@@ -64,9 +68,9 @@
             <div class="form-group">
               <label for="title">Steps</label>
               <input type="text" class="form-control" [(ngModel)]="currentSubMeal.firstStepes" name="firstStepes" required>
-            
+
               <input type="text" class="form-control" [(ngModel)]="currentSubMeal.secondStepes" name="secondStepes" required>
-            
+
               <input type="text" class="form-control" [(ngModel)]="currentSubMeal.finalStepes" name="finalStepes" required>
             </div>
             <div class="form-group">
