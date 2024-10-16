@@ -12,6 +12,7 @@ export class UpdateProductsComponent implements OnInit {
   imageFile: File | null = null;
   categories: any[] = []; // Array to hold category data
   selectedCategoryId: number | null = null; // Selected category ID
+  productData: any = {}; // Object to hold the product data
 
   constructor(
     private _ser: DimaUrlServiceService,
@@ -22,6 +23,7 @@ export class UpdateProductsComponent implements OnInit {
   ngOnInit() {
     this.param = this._active.snapshot.paramMap.get('id');
     this.loadCategories(); // Load categories when component initializes
+    this.loadProductData(); // Load the product data for editing
   }
 
   // Method to load categories from the service
@@ -32,6 +34,18 @@ export class UpdateProductsComponent implements OnInit {
       },
       (error) => {
         console.error('Error fetching categories:', error);
+      }
+    );
+  }
+
+  // Load the product data based on the ID from the route
+  loadProductData() {
+    this._ser.getProductById(this.param).subscribe(
+      (response: any) => {
+        this.productData = response;
+      },
+      (error) => {
+        console.error('Error fetching product data:', error);
       }
     );
   }

@@ -5,21 +5,21 @@
     <!-- Product Name Field -->
     <div class="form-group" style="margin-bottom: 15px;">
       <label for="Title" class="form-label" style="display: block; font-weight: bold; margin-bottom: 5px;">Product Name</label>
-      <input type="text" id="Title" name="productName" ngModel class="form-control" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+      <input type="text" id="Title" name="productName" ngModel class="form-control" [ngModel]="productData.productName" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
       <span class="text-danger" id="Title-error"></span>
     </div>
 
     <!-- Description Field -->
     <div class="form-group" style="margin-bottom: 15px;">
       <label for="BlogCont" class="form-label" style="display: block; font-weight: bold; margin-bottom: 5px;">Description</label>
-      <textarea id="BlogCont" name="description" ngModel class="form-control" required rows="8" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;"></textarea>
+      <textarea id="BlogCont" name="description" ngModel class="form-control" [ngModel]="productData.description" required rows="8" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;"></textarea>
       <span class="text-danger" id="BlogCont-error"></span>
     </div>
 
     <!-- Category Dropdown Field -->
     <div class="form-group" style="margin-bottom: 15px;">
       <label for="Category" class="form-label" style="display: block; font-weight: bold; margin-bottom: 5px;">Category</label>
-      <select id="Category" name="categoryId" ngModel class="form-control" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+      <select id="Category" name="categoryId" ngModel class="form-control" [ngModel]="productData.categoryId" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
         <option *ngFor="let category of categories" [value]="category.categoryId">{{ category.categoryName }}</option>
       </select>
       <span class="text-danger" id="Category-error"></span>
@@ -28,7 +28,7 @@
     <!-- Price Field -->
     <div class="form-group" style="margin-bottom: 15px;">
       <label for="Price" class="form-label" style="display: block; font-weight: bold; margin-bottom: 5px;">Price</label>
-      <input type="text" id="Price" name="price" ngModel class="form-control" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+      <input type="text" id="Price" name="price" ngModel class="form-control" [ngModel]="productData.price" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
       <span class="text-danger" id="Price-error"></span>
     </div>
 
