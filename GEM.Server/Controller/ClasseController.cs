@@ -249,7 +249,7 @@ namespace GEM.Server.Controller
 
             if (System.IO.File.Exists(pathImage))
             {
-                return PhysicalFile(pathImage, "image/jpeg");
+                return PhysicalFile(pathImage, "image/*");
             }
 
             return NotFound();
