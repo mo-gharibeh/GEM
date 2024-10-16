@@ -32,7 +32,7 @@ export class LoginComponent {
       this._serm['email'].next(data.email);
 
       if (data.email == "admin@gmail.com") {
-        this._router.navigate(['/AdminDashBoard']);
+        this._router.navigate(['/AdminDashBoard/ClassGym']);
         alert("Welcome Admin");
       } else if (localStorage.getItem("cartItems")) {
         this._router.navigate(['/Cart'])
