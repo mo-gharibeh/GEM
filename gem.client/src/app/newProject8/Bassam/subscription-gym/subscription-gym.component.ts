@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BassamUrlService } from '../BassamUrl/bassam-url.service';
-import { Subscription } from 'rxjs'; // Import Subscription for managing observables
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-subscription-gym',
@@ -9,19 +9,27 @@ import { Subscription } from 'rxjs'; // Import Subscription for managing observa
   styleUrls: ['./subscription-gym.component.css'], // Fix the styleUrls array
 })
 export class SubscriptionGymComponent implements OnInit, OnDestroy {
-  userId: number = 1; // Static user ID (can be changed dynamically)
+  userId: number = 1; // Default user ID, can be changed dynamically
   subscriptions: any[] = []; // Array to store subscriptions
   private subscription: Subscription | null = null; // Initialize to null
 
-  constructor(private route: ActivatedRoute, private bassamUrlService: BassamUrlService) { }
+  constructor(
+    private route: ActivatedRoute,
+    private bassamUrlService: BassamUrlService
+  ) { }
 
   ngOnInit(): void {
-    this.getUserSubscriptions(this.userId); // Call the function on component load
+    // Get the user ID from localStorage (ensure you stored it as a string)
+    const storedUserId = localStorage.getItem('userId');
+    if (storedUserId) {
+      this.userId = +storedUserId; // Convert to number if found
+    }
+
+    this.getUserSubscriptions(this.userId); // Fetch the user's subscriptions
   }
 
   // Function to fetch subscriptions using the service
   getUserSubscriptions(userId: number): void {
-    debugger;
     this.subscription = this.bassamUrlService.getUserSubscriptions(userId).subscribe(
       (data) => {
         this.subscriptions = data; // Store the fetched data
@@ -34,15 +42,13 @@ export class SubscriptionGymComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     if (this.subscription) {
-      this.subscription.unsubscribe(); // Ensure to unsubscribe on component destruction
+      this.subscription.unsubscribe(); // Unsubscribe on component destruction
     }
-
   }
 
   // Method to check if a subscription is active
   isActive(startDate: Date | null, endDate: Date | null): boolean {
     const now = new Date();
-    return startDate ? (startDate <= now && (!endDate || endDate >= now)) : false;
+    return startDate ? startDate <= now && (!endDate || endDate >= now) : false;
   }
-
 }

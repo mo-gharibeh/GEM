@@ -41,7 +41,7 @@
         <th>Start Date</th>
         <th>End Date</th>
         <th>Payment Method</th>
-        <th>Status</th>
+        <!--<th>Status</th>-->
       </tr>
     </thead>
     <tbody>
@@ -50,11 +50,11 @@
         <td>{{ subscription.startDate | date:'shortDate' }}</td>
         <td>{{ subscription.endDate | date:'shortDate' }}</td>
         <td>{{ subscription.paymentMethod }}</td>
-        <td>
+        <!--<td>-->
           <!-- Check if the subscription is active or inactive -->
-          <span *ngIf="isActive(subscription.startDate, subscription.endDate)">Inactive</span>
+          <!--<span *ngIf="isActive(subscription.startDate, subscription.endDate)">Inactive</span>
           <span *ngIf="!isActive(subscription.startDate, subscription.endDate)">Active</span>
-        </td>
+        </td>-->
       </tr>
       <tr *ngIf="subscriptions.length === 0">
         <td colspan="5" class="text-center">No subscriptions found.</td>
