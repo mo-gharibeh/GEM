@@ -51,7 +51,11 @@
           <form (ngSubmit)="submitSubMealForm()">
             <div class="form-group">
               <label for="Meal">Meal</label>
-              <select name=""></select>
+              <select name="mealPlanId">
+                <option >Sellect Meal</option>
+                <option name="mealPlanId" value="1">Food</option>
+                <option name="mealPlanId" value="2">Sweet</option>
+              </select>
             </div>
             <div class="form-group">
               <label for="title">Title</label>
