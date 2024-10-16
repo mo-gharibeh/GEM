@@ -9,58 +9,51 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class GymDetailComponent {
 
-  parameter: any
-  array: any
-  totalAmount:any
+  parameter: any;
+  array: any;
+  totalAmount: any;
+
+  DetailsArray: any;
 
   ngOnInit() {
     this.parameter = this._rout.snapshot.paramMap.get("id");
-    this.getDetails(this.parameter)
+    this.getDetails(this.parameter);
   }
 
   constructor(private _ser: UrlServiceService, private _rout: ActivatedRoute, private router: Router) { }
 
-  DetailsArray: any
-
   getDetails(id: any) {
     this._ser.getGymDetails(id).subscribe((data) => {
-      debugger
-      this.DetailsArray = data
+      this.DetailsArray = data;
       this.totalAmount = this.DetailsArray.price;
-
-      console.log(this.DetailsArray)
-    })
+      console.log(this.DetailsArray);
+    });
   }
 
-
+  // Initialize the data object with default values
   data = {
-    "userId": 1,
+    "userId": "",
     "classSubId": 1,
     "paymentMethod": "Paypal"
-  }
-
+  };
 
   AddUserSubScribtion(id: number) {
-    
-    debugger
-    // هون لازم اشيك اذا اليوزر داخل و لا لا لحتى اذا كان داخل اسمحله يعمل سبسكرايب اذا لا بعطي الليرت
+
+
     const userid = localStorage.getItem('userId');
 
-    if (userid == null) {
-      alert("Please Login To First")
-    }
-    else {
-      this.data.classSubId = id
+    if (userid === null) {
+      alert("Please Login First");
+    } else {
+
+      this.data.userId = userid;
+      this.data.classSubId = id;
+
       this._ser.addUSerSubScription(this.data).subscribe(() => {
         localStorage.setItem('totalAmount', this.totalAmount.toString());
 
-        if (true) {
-          this.router.navigate(['/payment'], {
-          });
-        }
-      })
+        this.router.navigate(['/payment']);
+      });
     }
   }
 }
-
-
