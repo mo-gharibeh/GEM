@@ -7,7 +7,7 @@
     <table class="table table-light table-hover table-bordered">
       <thead class="thead-dark">
         <tr>
-          <th scope="col">ID</th>
+          <!--<th scope="col">ID</th>-->
           <th scope="col">Title</th>
           <th scope="col">Image</th>
           <th scope="col">Description</th>
@@ -18,7 +18,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let subMeal of subMeals; let i = index">
-          <th scope="row">{{ subMeal.subMealPlanId }}</th>
+          <!--<th scope="row">{{ subMeal.subMealPlanId }}</th>-->
           <td>{{ subMeal.title }}</td>
           <td>
             <img [src]="'https://localhost:7031/api/MohammadController1/getImages/' + subMeal.image"
