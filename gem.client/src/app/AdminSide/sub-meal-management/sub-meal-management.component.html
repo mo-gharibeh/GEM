@@ -12,6 +12,7 @@
           <th scope="col">Image</th>
           <th scope="col">Description</th>
           <th scope="col">Preparation Time</th>
+          <th scope="col">Steps</th>
           <th scope="col">Actions</th>
         </tr>
       </thead>
@@ -20,14 +21,15 @@
           <th scope="row">{{ subMeal.subMealPlanId }}</th>
           <td>{{ subMeal.title }}</td>
           <td>
-            <img [src]="'https://localhost:7031/api/MohammadController1/getImages/' + subMeal.image" 
-                 alt="Sub-Meal Image" 
-                 width="100" 
-                 height="100" 
+            <img [src]="'https://localhost:7031/api/MohammadController1/getImages/' + subMeal.image"
+                 alt="Sub-Meal Image"
+                 width="100"
+                 height="100"
                  class="rounded">
           </td>
           <td>{{ subMeal.description }}</td>
           <td>{{ subMeal.preparationTime }} mins</td>
+          <td>1. {{ subMeal.firstStepes }}, 2. {{ subMeal.secondStepes }}, 3. {{ subMeal.finalStepes }} </td>
           <td>
             <button class="btn btn-outline-primary btn-sm" (click)="openEditSubMealModal(subMeal)">Edit</button>
             <button class="btn btn-outline-danger btn-sm" (click)="deleteSubMeal(subMeal.subMealPlanId)">Delete</button>
@@ -58,6 +60,14 @@
             <div class="form-group">
               <label for="preparationTime">Preparation Time (mins)</label>
               <input type="number" class="form-control" [(ngModel)]="currentSubMeal.preparationTime" name="preparationTime" required>
+            </div>
+            <div class="form-group">
+              <label for="title">Steps</label>
+              <input type="text" class="form-control" [(ngModel)]="currentSubMeal.firstStepes" name="firstStepes" required>
+            
+              <input type="text" class="form-control" [(ngModel)]="currentSubMeal.secondStepes" name="secondStepes" required>
+            
+              <input type="text" class="form-control" [(ngModel)]="currentSubMeal.finalStepes" name="finalStepes" required>
             </div>
             <div class="form-group">
               <label for="image">Image</label>

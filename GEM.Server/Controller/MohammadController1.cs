@@ -121,6 +121,9 @@ namespace GEM.Server.Controller
             return Ok(topProducts);
         }
 
+
+
+
         [HttpPost("SubmitTestimonial")]
         public IActionResult SubmitTestimonial([FromBody] TestimonialDto testimonialDto)
         {
@@ -227,6 +230,81 @@ namespace GEM.Server.Controller
 
             return Ok(subMealPlan);
         }
+        // adding subMealPlan
+        [HttpPost("add-sub-meal")]
+        public IActionResult AddSubMeal([FromForm] addSubMealDto subMealDto)
+        {
+            if (subMealDto == null || subMealDto.MealPlanId == null)
+            {
+                return BadRequest(new { message = "Invalid input data." });
+            }
+
+            // Create a new SubMealPlan entity
+            var newSubMeal = new SubMealPlan
+            {
+                SubMealPlanId = subMealDto.SubMealPlanId,
+                Title = subMealDto.Title,
+                Description = subMealDto.Description,
+                PreparationTime = subMealDto.PreparationTime,
+                Instructions = subMealDto.Instructions,
+                FirstStepes = subMealDto.FirstStepes,
+                SecondStepes = subMealDto.SecondStepes,
+                FinalStepes = subMealDto.FinalStepes,
+                MealPlanId = subMealDto.MealPlanId.Value
+            };
+
+            // Handle file upload for Image
+            var folder = Path.Combine(Directory.GetCurrentDirectory(), "Uploads");
+            if (!Directory.Exists(folder))
+            {
+                Directory.CreateDirectory(folder);
+            }
+            var fileImage = Path.Combine(folder, subMealDto.Image.FileName);
+            using (var stream = new FileStream(fileImage, FileMode.Create))
+            {
+                subMealDto.Image.CopyToAsync(stream);
+
+            }
+
+            // Add the new SubMealPlan to the database
+            _db.SubMealPlans.Add(newSubMeal);
+            _db.SaveChanges();
+
+            return Ok(new { message = "SubMealPlan added successfully.", SubMealPlanId = newSubMeal.SubMealPlanId });
+        }
+
+        // adding nutrition 
+        [HttpPost("add-nutrition")]
+        public IActionResult AddNutrition([FromForm] AddNutritionDto nutritionDto)
+        {
+            if (nutritionDto == null || nutritionDto.SubMealPlanId == null)
+            {
+                return BadRequest(new { message = "Invalid input data." });
+            }
+
+            // Create a new NutritionFact entity
+            var newNutrition = new NutritionFact
+            {
+                SubMealPlans = nutritionDto.SubMealPlanId.Value,
+                Calories = nutritionDto.Calories,
+                TotalFat = nutritionDto.TotalFat,
+                SaturatedFat = nutritionDto.SaturatedFat,
+                Cholesterol = nutritionDto.Cholesterol,
+                Sodium = nutritionDto.Sodium,
+                Carbohydrates = nutritionDto.Carbohydrates,
+                DietaryFiber = nutritionDto.DietaryFiber
+            };
+
+            // Add the new NutritionFact to the database
+            _db.NutritionFacts.Add(newNutrition);
+            _db.SaveChanges();
+
+            return Ok(new { message = "Nutrition added successfully.", NutritionID = newNutrition.NutritionId });
+        }
+
+
+
+
 
         // For Image
 

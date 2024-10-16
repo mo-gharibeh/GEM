@@ -34,6 +34,13 @@ export class LoginComponent {
       if (data.email == "admin@gmail.com") {
         this._router.navigate(['/AdminDashBoard']);
         alert("Welcome Admin");
+      } else if (localStorage.getItem("cartItems")) {
+        this._router.navigate(['/Cart'])
+      }
+      else {
+        this._router.navigate(['/Gyms'])
+      
+
       }
       //} else {
       //  this._router.navigate(['/home']);
@@ -58,12 +65,15 @@ export class LoginComponent {
 
     //  (error) => { alert(error.error) }
     //)
-    if (localStorage.getItem("cartItems")) {
-      this._router.navigate(['/Cart'])
-    }
-    else {
-      this._router.navigate(['/Gyms'])
-    }
+
+
+
+    //if (localStorage.getItem("cartItems")) {
+    //  this._router.navigate(['/Cart'])
+    //}
+    //else {
+    //  this._router.navigate(['/Gyms'])
+    //}
   }
 
 }
