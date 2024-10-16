@@ -52,8 +52,12 @@ export class DimaUrlServiceService {
     return this.http.post<any>(`${this.staticData}/Products/addProduct`, data);
 
   }
+ 
 
 
+  getProductById(id: any) {
+  return this.http.get(`${this.staticData}/Products/GetProductbyId/${id}`);
+  }
   
   updateOrderStatus(orderId: number, newStatus: string): Observable<any> {
     // Create the body that matches the StatusUpdateRequest DTO
