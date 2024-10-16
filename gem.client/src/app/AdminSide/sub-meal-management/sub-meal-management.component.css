@@ -5,3 +5,13 @@
 .container.mt-4 {
   margin-left: 0 !important;
 }
+
+button.btn.btn-success.btn-sm {
+  margin: 31px;
+  font-size: 24px;
+}
+
+.container.mt-4 {
+  margin-left: 0 !important;
+  max-width: 90%;
+}

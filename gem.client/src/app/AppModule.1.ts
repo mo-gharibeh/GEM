@@ -210,6 +210,7 @@ import { SubscriptionGymComponent } from "./newProject8/Bassam/subscription-gym/
           },
           { path: 'ShowClass', component: GetAllClassesComponent },
           { path: "ShowGym", component: ShowGymComponent },
+          { path: "addClass", component: AddClassComponent }
           
        
 

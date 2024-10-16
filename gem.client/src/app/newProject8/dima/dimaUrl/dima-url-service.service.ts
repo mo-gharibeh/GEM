@@ -54,6 +54,16 @@ export class DimaUrlServiceService {
   }
 
 
+  
+  updateOrderStatus(orderId: number, newStatus: string): Observable<any> {
+    // Create the body that matches the StatusUpdateRequest DTO
+    const body = { ShippngStatus: newStatus };
+    return this.http.put(`${this.staticData}/Order/UpdateOrderStatus/${orderId}`, body, {
+      headers: { 'Content-Type': 'application/json' }
+    });
+  }
+
+
 
 
   getOrder(): Observable<any> {

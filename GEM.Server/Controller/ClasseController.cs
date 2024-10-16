@@ -194,7 +194,6 @@ namespace GEM.Server.Controller
         [HttpDelete("DeleteClass")]
         public IActionResult deleteClass(int id)
         {
-
             var classe = _db.ClassAndGyms.FirstOrDefault(x => x.Id == id);
 
             if (classe == null)
@@ -202,9 +201,42 @@ namespace GEM.Server.Controller
                 return BadRequest();
             }
 
+            // Get the related ClassTime records
+            var classTimes = _db.ClassTimes.Where(ct => ct.ClassId == id).ToList();
+
+            foreach (var classTime in classTimes)
+            {
+                // Get the related Enrolled records for each ClassTime
+                var enrolleds = _db.Enrolleds.Where(e => e.ClassTimeId == classTime.Id).ToList();
+
+                // Remove related Enrolled records
+                _db.Enrolleds.RemoveRange(enrolleds);
+
+                // Get the related ClassSubscription records for each ClassTime
+                var subscriptions = _db.ClassSubscriptions.Where(cs => cs.ClassId == classTime.Id).ToList();
+
+                // Remove related ClassSubscription records
+                _db.ClassSubscriptions.RemoveRange(subscriptions);
+            }
+
+            // Remove related ClassTime records
+            _db.ClassTimes.RemoveRange(classTimes);
+
+            // Now remove the ClassAndGyms record
             _db.ClassAndGyms.Remove(classe);
-            _db.SaveChanges();
-            return Ok();
+
+            // Save changes to the database
+            try
+            {
+                _db.SaveChanges();
+                return Ok();
+            }
+            catch (DbUpdateException ex)
+            {
+                // Log the error (ex)
+                return StatusCode(500, "Internal server error: " + ex.Message);
+            }
         }
+
     }
 }

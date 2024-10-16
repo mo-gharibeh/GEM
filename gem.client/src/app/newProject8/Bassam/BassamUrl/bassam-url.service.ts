@@ -29,8 +29,8 @@ export class BassamUrlService {
   getOrderItems(orderId: number): Observable<any> {
     return this.http.get<any>(`${this.baseUrl}/UsersBassam/GetorderItemByOrderId/${orderId}`);
   }
-
   getUserSubscriptions(userId: number): Observable<any[]> {
+  debugger;
     return this.http.get<any[]>(`${this.baseUrl}/UsersBassam/getUserSubscriptions/${userId}`);
   }
 }

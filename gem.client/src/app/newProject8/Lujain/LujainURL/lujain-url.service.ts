@@ -176,6 +176,8 @@ export class LujainURLService {
     localStorage.setItem('cartItems', JSON.stringify(this.cartItem));
   }
 
+
+
 }
 
 
