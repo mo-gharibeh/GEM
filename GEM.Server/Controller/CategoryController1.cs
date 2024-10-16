@@ -71,7 +71,6 @@ namespace GEM.Server.Controller
                 return BadRequest();
             }
 
-            // Get all products under the category
             var deleteProducts = _db.Products.Where(p => p.CategoryId == id).ToList();
 
             if (!deleteProducts.Any())
@@ -79,18 +78,14 @@ namespace GEM.Server.Controller
                 return NotFound();
             }
 
-            // Get all OrderItems related to the products in this category
             var productIds = deleteProducts.Select(p => p.ProductId).ToList();
             var deleteOrderItems = _db.OrderItems.Where(oi => productIds.Contains(oi.ProductId.Value)).ToList();
 
-            // Delete OrderItems
             _db.OrderItems.RemoveRange(deleteOrderItems);
 
-            // Delete Products
             _db.Products.RemoveRange(deleteProducts);
             _db.SaveChanges();
 
-            // Delete the Category itself
             var deleteCategory = _db.Categories.FirstOrDefault(c => c.CategoryId == id);
             if (deleteCategory != null)
             {
