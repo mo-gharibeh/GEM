@@ -13,13 +13,11 @@ namespace GEM.Server.Controller
     public class GymController : ControllerBase
     {
         private readonly MyDbContext _db;
-        private readonly EmailService _emailServiceH;
         private readonly IConfiguration _configuration; // Add this line
         private readonly PaymentServiceH _paymentService;
-        public GymController(MyDbContext db, EmailService emailServiceH, IConfiguration configuration, PaymentServiceH paymentService)
+        public GymController(MyDbContext db, IConfiguration configuration, PaymentServiceH paymentService)
         {
             _db = db;
-            _emailServiceH = emailServiceH;
             _configuration = configuration;
             _paymentService = paymentService;
         }
@@ -77,37 +75,46 @@ namespace GEM.Server.Controller
 
 
 
-
-        // For Admin Side To Edit Gym
         [HttpPut("EditGym")]
-        public IActionResult editGym(int id, [FromForm] GymDTO gymDTO)
+        public IActionResult EditGym(int id, [FromForm] GymDTO gymDTO)
         {
-            var gym = _db.ClassAndGyms.FirstOrDefault(x => x.Id == id);
-            var folder = Path.Combine(Directory.GetCurrentDirectory(), "Uploads");
+            // Check if the gym with the provided id exists
+            var gym = _db.ClassAndGyms.Where(x => x.Id == id).FirstOrDefault();
 
-            if (!Directory.Exists(folder))
+            if (gym == null)
             {
-
-                Directory.CreateDirectory(folder);
+                return NotFound(new { message = "Gym not found" });
             }
 
-            var fileImage = Path.Combine(folder, gymDTO.Image.FileName);
-
-            using (var stream = new FileStream(fileImage, FileMode.Create))
+            // Handle the case when gymDTO.Image is null
+            if (gymDTO.Image != null)
             {
+                var folder = Path.Combine(Directory.GetCurrentDirectory(), "Uploads");
+                if (!Directory.Exists(folder))
+                {
+                    Directory.CreateDirectory(folder);
+                }
 
-                gymDTO.Image.CopyToAsync(stream);
+                var fileImage = Path.Combine(folder, gymDTO.Image.FileName);
+                using (var stream = new FileStream(fileImage, FileMode.Create))
+                {
+                    gymDTO.Image.CopyTo(stream);
+                }
 
+                // Only update the image if a new image is provided
+                gym.Image = gymDTO.Image.FileName;
             }
 
-            gym.Name = gymDTO.Name;
-            gym.Description = gymDTO.Description;
-            gym.Image = gymDTO.Image.FileName;
-            gym.Price = gymDTO.Price;
+            // Update the rest of the gym details
+            gym.Name = gymDTO.Name ?? gym.Name;
+            gym.Description = gymDTO.Description ?? gym.Description;
+            gym.Price = gymDTO.Price ?? gym.Price;
 
+            // Save changes to the database
             _db.ClassAndGyms.Update(gym);
             _db.SaveChanges();
-            return Ok();
+
+            return Ok(new { message = "Gym updated successfully" });
         }
 
 
@@ -115,7 +122,6 @@ namespace GEM.Server.Controller
         [HttpDelete("DeleteGym")]
         public IActionResult deleteGym(int id)
         {
-
             var gym = _db.ClassAndGyms.FirstOrDefault(x => x.Id == id);
 
             if (gym == null)
@@ -123,44 +129,51 @@ namespace GEM.Server.Controller
                 return BadRequest();
             }
 
+            // Get the related ClassTime records
+            var classTimes = _db.ClassTimes.Where(ct => ct.ClassId == id).ToList();
+
+            foreach (var classTime in classTimes)
+            {
+                // Get the related Enrolled records for each ClassTime
+                var enrolleds = _db.Enrolleds.Where(e => e.ClassTimeId == classTime.Id).ToList();
+
+                // Remove related Enrolled records
+                _db.Enrolleds.RemoveRange(enrolleds);
+
+                // Get the related ClassSubscription records for each ClassTime
+                var subscriptions = _db.ClassSubscriptions.Where(cs => cs.ClassId == classTime.Id).ToList();
+
+                // Remove related ClassSubscription records
+                _db.ClassSubscriptions.RemoveRange(subscriptions);
+            }
+
+            // Remove related ClassTime records
+            _db.ClassTimes.RemoveRange(classTimes);
+
+            // Remove the ClassAndGyms record
             _db.ClassAndGyms.Remove(gym);
+
+            // Save changes to the database
             _db.SaveChanges();
+
             return Ok();
         }
 
 
+        // For Image
 
-        //  For Email
+        [HttpGet("getImages/{image}")]
+        public IActionResult getImage(string image)
+        {
+            var pathImage = Path.Combine(Directory.GetCurrentDirectory(), "Uploads", image);
 
-        //[HttpPost("send-reminder-emails")]
-        //public async Task<IActionResult> SendReminderEmailsAsync()
-        //{
-        //    var currentDate = DateTime.Now;
-        //    var reminderDate = currentDate.AddDays(5).Date;
+            if (System.IO.File.Exists(pathImage))
+            {
+                return PhysicalFile(pathImage, "image/*");
+            }
 
-        //    var subscriptions = await _db.Enrolleds
-        //        .Where(sub => sub.EndDate.HasValue && sub.EndDate.Value.Date == reminderDate)
-        //        .Include(sub => sub.User)
-        //        .ToListAsync();
-
-        //    if (!subscriptions.Any())
-        //    {
-        //        return Ok("No subscriptions ending in 5 days.");
-        //    }
-
-        //    foreach (var subscription in subscriptions)
-        //    {
-        //        if (subscription.User != null && !string.IsNullOrWhiteSpace(subscription.User.Email))
-        //        {
-        //            string subject = "Subscription Reminder";
-        //            string body = $"<p>Your subscription for Class Service ID {subscription.Id} will end in 5 days.</p>";
-
-        //            await _emailServiceH.SendEmailRAsync(subscription.User.Email, subject, body);
-        //        }
-        //    }
-
-        //    return Ok("Reminder emails sent successfully.");
-        //}
+            return NotFound();
+        }
 
 
 

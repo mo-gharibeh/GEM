@@ -1,0 +1,64 @@
+<!-- Banner Style One Start -->
+<section class="banner-style-one">
+  <div class="parallax" style="background-image: url(assets/images/pattren-3.png);"></div>
+  <div class="container">
+    <div class="row">
+      <div class="banner-details text-center">
+        <h2>Subscriptions</h2>
+        <p>Our values have vaulted us to the top of our industry.</p>
+      </div>
+    </div>
+  </div>
+  <div class="breadcrums">
+    <div class="container">
+      <div class="row">
+        <ul class="breadcrumb-list">
+          <li>
+            <a href="index.html">
+              <i class="fa-solid fa-house"></i> Home
+            </a>
+          </li>
+          <li class="current">Profile</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+<div class="container mt-5">
+  <h2 class="mb-4 text-center">User Subscriptions</h2>
+  <table class="table table-bordered table-hover">
+    <thead class="thead-dark">
+      <tr>
+        <th>Class/Gym Name</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Payment Method</th>
+        <!--<th>Status</th>-->
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let subscription of subscriptions">
+        <td>{{ subscription.className }}</td>
+        <td>{{ subscription.startDate | date:'shortDate' }}</td>
+        <td>{{ subscription.endDate | date:'shortDate' }}</td>
+        <td>{{ subscription.paymentMethod }}</td>
+        <!--<td>-->
+          <!-- Check if the subscription is active or inactive -->
+          <!--<span *ngIf="isActive(subscription.startDate, subscription.endDate)">Inactive</span>
+          <span *ngIf="!isActive(subscription.startDate, subscription.endDate)">Active</span>
+        </td>-->
+      </tr>
+      <tr *ngIf="subscriptions.length === 0">
+        <td colspan="5" class="text-center">No subscriptions found.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

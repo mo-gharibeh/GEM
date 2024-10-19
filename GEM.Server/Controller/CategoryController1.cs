@@ -71,13 +71,20 @@ namespace GEM.Server.Controller
                 return BadRequest();
             }
 
-            var deleteproduct = _db.Products.Where(l => l.CategoryId == id).ToList();
+            var deleteProducts = _db.Products.Where(p => p.CategoryId == id).ToList();
 
+            if (!deleteProducts.Any())
+            {
+                return NotFound();
+            }
 
-            _db.Products.RemoveRange(deleteproduct);
+            var productIds = deleteProducts.Select(p => p.ProductId).ToList();
+            var deleteOrderItems = _db.OrderItems.Where(oi => productIds.Contains(oi.ProductId.Value)).ToList();
+
+            _db.OrderItems.RemoveRange(deleteOrderItems);
+
+            _db.Products.RemoveRange(deleteProducts);
             _db.SaveChanges();
-
-
 
             var deleteCategory = _db.Categories.FirstOrDefault(c => c.CategoryId == id);
             if (deleteCategory != null)
@@ -85,10 +92,11 @@ namespace GEM.Server.Controller
                 _db.Categories.Remove(deleteCategory);
                 _db.SaveChanges();
                 return NoContent();
-
             }
+
             return NotFound();
         }
+
 
 
 

@@ -17,7 +17,20 @@ export class BassamUrlService {
   updateUserProfile(userId: number, formData: FormData): Observable<any> {
     return this.http.put<any>(`${this.baseUrl}/UsersBassam/edit-profile/${userId}`, formData);
   }
-  //getImage(image: string): Observable<Blob> {
-  //  return this.http.get(`${this.baseUrl}/getImages/${image}`, { responseType: 'blob' });
-  //}
+
+  getImage(image: string): Observable<Blob> {
+    return this.http.get(`${this.baseUrl}/getImages/${image}`, { responseType: 'blob' });
+  }
+
+  getOrders(userId: number): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/UsersBassam/getOrder?userId=${userId}`);
+  }
+
+  getOrderItems(orderId: number): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/UsersBassam/GetorderItemByOrderId/${orderId}`);
+  }
+  getUserSubscriptions(userId: number): Observable<any[]> {
+  debugger;
+    return this.http.get<any[]>(`${this.baseUrl}/UsersBassam/getUserSubscriptions/${userId}`);
+  }
 }

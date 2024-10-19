@@ -139,6 +139,7 @@ namespace GEM.Server.Controller
             product.Description = update.Description;
             product.Image = update.Image.FileName;
             product.Price = update.Price;
+            product.CategoryId = update.CategoryId;
             _db.Products.Update(product);
             _db.SaveChanges();
 
@@ -153,14 +154,25 @@ namespace GEM.Server.Controller
         public IActionResult DeleteById(int id)
         {
             var product = _db.Products.Find(id);
+
             if (product != null)
             {
+                var orderItems = _db.OrderItems.Where(oi => oi.ProductId == id).ToList();
+
+                if (orderItems.Any())
+                {
+                    _db.OrderItems.RemoveRange(orderItems);
+                }
+
                 _db.Products.Remove(product);
                 _db.SaveChanges();
+
                 return NoContent();
             }
+
             return NotFound();
         }
+
 
         [HttpGet("getImage/{imageName}")]
         public IActionResult getImage(string imageName)

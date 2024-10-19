@@ -2,6 +2,8 @@
 {
     public class addSubMealDto
     {
+        public int SubMealPlanId { get; set; }
+
         public string? Title { get; set; }
 
         public IFormFile? Image { get; set; }

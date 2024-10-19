@@ -9,5 +9,6 @@
         public int? ClassTimeId { get; set; }
 
         public string? PaymentMethod { get; set; }
+        public decimal? TotalAmount { get; set; }
     }
 }

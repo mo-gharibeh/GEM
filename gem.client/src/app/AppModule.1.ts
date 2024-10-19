@@ -40,7 +40,6 @@ import { ContactAdminComponent } from "./AdminSide/contact-admin/contact-admin.c
 import { ReplycontactComponent } from "./AdminSide/replycontact/replycontact.component";
 import { AddGymComponent } from "./AdminSide/add-gym/add-gym.component";
 import { UpdateGymComponent } from "./AdminSide/update-gym/update-gym.component";
-import { PaymentComponent } from "./newProject8/Hadeel/payment-cridet-card/payment-cridet-card.component";
 import { OrdersComponent } from "./newProject8/Bassam/orders/orders.component";
 import { SubscriptionsComponent } from "./newProject8/Bassam/subscriptions/subscriptions.component";
 import { MealManagementComponent } from "./AdminSide/meal-management/meal-management.component";
@@ -52,6 +51,10 @@ import { GetAllUsersComponent } from "./AdminSide/get-all-users/get-all-users.co
 import { ShowGymComponent } from "./AdminSide/show-gym/show-gym.component";
 import { GetAllClassesComponent } from "./AdminSide/get-all-classes/get-all-classes.component";
 import { AddClassComponent } from "./AdminSide/add-class/add-class.component";
+import { UpdateClassComponent } from "./AdminSide/update-class/update-class.component";
+import { PaymentComponent } from "./newProject8/Hadeel/payment/payment.component";
+import { OrderItemsBassamComponent } from "./newProject8/Bassam/order-items-bassam/order-items-bassam.component";
+import { SubscriptionGymComponent } from "./newProject8/Bassam/subscription-gym/subscription-gym.component";
 
 
 
@@ -80,7 +83,6 @@ import { AddClassComponent } from "./AdminSide/add-class/add-class.component";
     ClassDetailsComponent,
     LoginComponent,
     RegisterComponent,
-    PaypalComponent,
     ShowGymComponent,
     ClassAndGymComponent,
     GetAllClassesComponent,
@@ -89,7 +91,6 @@ import { AddClassComponent } from "./AdminSide/add-class/add-class.component";
     AddGymComponent,
     UpdateGymComponent,
     AdminDashboardComponent,
-    PaymentComponent,
     AdminDashboardComponent,
     RegisterComponent,
     AdminDashboardComponent,
@@ -99,15 +100,16 @@ import { AddClassComponent } from "./AdminSide/add-class/add-class.component";
     GetProductsComponent,
     UpdateProductsComponent,
     AddProductsComponent,
-    PaypalComponent,
+
     NutritionComponent,
     ContactAdminComponent,
     NutritionComponent,
     NutritionComponent,
     NutritionComponent,
     ContactAdminComponent,
-
-
+    UpdateClassComponent,
+    OrderItemsBassamComponent,
+    SubscriptionGymComponent,
     RegisterComponent,
     EditProfileComponent,
     MealManagementComponent,
@@ -118,7 +120,8 @@ import { AddClassComponent } from "./AdminSide/add-class/add-class.component";
     ShowOrderrItemComponent,
     EditProfileComponent,
     GetAllUsersComponent,
-    ReplycontactComponent
+    ReplycontactComponent,
+    OrdersComponent
   ],
 
   imports: [
@@ -143,8 +146,9 @@ import { AddClassComponent } from "./AdminSide/add-class/add-class.component";
 
       { path: 'GymDetails/:id', component: GymDetailComponent },
       { path: 'classDetails/:id', component: ClassDetailsComponent },
-
-
+      { path: 'payment', component: PaymentComponent }
+      
+      ,
       { path: 'Class', component: ClasseComponent },
 
       { path: 'ClassDetails/:id', component: ClassDetailsComponent },
@@ -155,7 +159,6 @@ import { AddClassComponent } from "./AdminSide/add-class/add-class.component";
       { path: 'Profile', component: ProfileComponent },
       { path: 'edit-profile/:id', component: EditProfileComponent },
 
-      { path: 'PayHAdeel', component: PaymentComponent },
 
       { path: 'Cart', component: CartComponent },
 
@@ -172,7 +175,10 @@ import { AddClassComponent } from "./AdminSide/add-class/add-class.component";
       { path: 'bmi', component: BmiCalculatorComponent },
 
       { path: 'Login', component: LoginComponent },
-
+      { path: 'subscriptions', component: SubscriptionsComponent },
+      { path: 'order-items-bassam/:orderId', component: OrderItemsBassamComponent }, 
+      { path: 'subscription-gym/:id', component: SubscriptionGymComponent },
+      { path: 'orders/:userId', component: OrdersComponent },
       { path: 'Register', component: RegisterComponent },
       { path: 'paypal', component: PaypalComponent },
       { path: 'Register', component: RegisterComponent },
@@ -180,7 +186,7 @@ import { AddClassComponent } from "./AdminSide/add-class/add-class.component";
       { path: 'subscriptions', component: SubscriptionsComponent },
       {
         path: 'AdminDashBoard', component: AdminDashboardComponent, children: [
-          { path: "addGym", component: ClassAndGymComponent },
+          { path: "addGym", component: AddGymComponent },
           { path: "GetCategories", component: GetallCategoryComponent },
           { path: "UpdateCategory/:id", component: UpdateCategoryComponent },
           { path: "GetOrders", component: ShowAllOrdersComponent },
@@ -190,12 +196,22 @@ import { AddClassComponent } from "./AdminSide/add-class/add-class.component";
           { path: "UpdateProducts/:id", component: UpdateProductsComponent },
           { path: "AddProducts", component: AddProductsComponent },
           { path: "Contact", component: ContactAdminComponent },
+          { path: 'UpdateGym/:id', component: UpdateGymComponent },
+
+          { path: "UpdateClass/:id", component: UpdateClassComponent },
           //{ path: "ReplyContact", component: ReplycontactComponent },
           { path: "ReplyContact/:id", component: ReplycontactComponent },
           { path: "mealManagement", component: MealManagementComponent },
           { path: "subMealManagement", component: SubMealManagementComponent },
           { path: "testiManagement", component: TestimonialManagrmrntComponent },
-          { path : "AllUsers", component: GetAllUsersComponent}
+          { path: "AllUsers", component: GetAllUsersComponent },
+          {
+            path: "ClassGym", component: ClassAndGymComponent
+          },
+          { path: 'ShowClass', component: GetAllClassesComponent },
+          { path: "ShowGym", component: ShowGymComponent },
+          { path: "addClass", component: AddClassComponent }
+          
        
 
         ]

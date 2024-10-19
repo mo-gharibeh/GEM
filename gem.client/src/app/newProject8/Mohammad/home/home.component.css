@@ -1,4 +1,4 @@
-/* Modal background */
+/* Modal background /
 .modal {
   display: flex;
   justify-content: center;
@@ -12,7 +12,7 @@
   z-index: 1000;
 }
 
-/* Modal content */
+/ Modal content /
 .modal-content {
   background-color: #fff;
   padding: 20px;
@@ -24,7 +24,7 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Close button */
+/ Close button /
 .close-button {
   position: absolute;
   top: 10px;
@@ -33,7 +33,7 @@
   cursor: pointer;
 }
 
-/* Textarea styling */
+/ Textarea styling /
 textarea {
   width: 100%;
   padding: 10px;
@@ -42,7 +42,7 @@ textarea {
   resize: none;
 }
 
-/* Submit button */
+/ Submit button */
 .submit-button {
   background-color: #28a745;
   color: #fff;

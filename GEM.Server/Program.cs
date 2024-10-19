@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using GEM.Server.DTOs;
 using GEM.Server.Service;
 using System.Net;
+using GEM.Server.Controller;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,8 +17,11 @@ builder.Services.AddSwaggerGen();
 // Configure database context with SQL Server
 builder.Services.AddDbContext<MyDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("YourConnectionString")));
+builder.Services.AddScoped<EmailHadeelController>();
 
 // Configure CORS
+builder.Services.AddScoped<EmailHadeelController>();
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("Development", builder =>
@@ -27,7 +31,8 @@ builder.Services.AddCors(options =>
                .AllowAnyOrigin();
     });
 });
-
+builder.Services.AddTransient<EmailServiceH>();
+builder.Services.AddHostedService<EmailReminderService>();
 // Register email service and payment service
 builder.Services.AddScoped<IEmailService, GEM.Server.yousefDTO.EmailService>();
 builder.Services.AddScoped<PaymentServiceH>();

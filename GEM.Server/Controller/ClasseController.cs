@@ -152,33 +152,37 @@ namespace GEM.Server.Controller
         }
 
 
-        // For Admin Side To Edit Gym
         [HttpPut("EditClass")]
         public IActionResult editClass(int id, [FromForm] ClasseDTO classedto)
         {
-            var classe = _db.ClassAndGyms.FirstOrDefault(x => x.Id == id);
-            var folder = Path.Combine(Directory.GetCurrentDirectory(), "Uploads");
+            var classe = _db.ClassAndGyms.Where(x => x.Id == id).FirstOrDefault();
 
-            if (!Directory.Exists(folder))
+            if (classedto.Image != null)
             {
+                var folder = Path.Combine(Directory.GetCurrentDirectory(), "Uploads");
 
-                Directory.CreateDirectory(folder);
+                if (!Directory.Exists(folder))
+                {
+
+                    Directory.CreateDirectory(folder);
+                }
+
+                var fileImage = Path.Combine(folder, classedto.Image.FileName);
+
+                using (var stream = new FileStream(fileImage, FileMode.Create))
+                {
+
+                    classedto.Image.CopyToAsync(stream);
+
+                }
+                classe.Image = classedto.Image.FileName;
+
             }
 
-            var fileImage = Path.Combine(folder, classedto.Image.FileName);
-
-            using (var stream = new FileStream(fileImage, FileMode.Create))
-            {
-
-                classedto.Image.CopyToAsync(stream);
-
-            }
-
-            classe.Name = classedto.Name;
-            classe.Description = classedto.Description;
-            classe.Image = classedto.Image.FileName;
-            classe.Price = classedto.Price;
-            classe.Trainer = classedto.Trainer;
+            classe.Name = classedto.Name ?? classe.Name;
+            classe.Description = classedto.Description ?? classe.Description;
+            classe.Price = classedto.Price ?? classe.Price;
+            classe.Trainer = classedto.Trainer ?? classe.Trainer;
 
             _db.ClassAndGyms.Update(classe);
             _db.SaveChanges();
@@ -190,7 +194,6 @@ namespace GEM.Server.Controller
         [HttpDelete("DeleteClass")]
         public IActionResult deleteClass(int id)
         {
-
             var classe = _db.ClassAndGyms.FirstOrDefault(x => x.Id == id);
 
             if (classe == null)
@@ -198,9 +201,60 @@ namespace GEM.Server.Controller
                 return BadRequest();
             }
 
+            // Get the related ClassTime records
+            var classTimes = _db.ClassTimes.Where(ct => ct.ClassId == id).ToList();
+
+            foreach (var classTime in classTimes)
+            {
+                // Get the related Enrolled records for each ClassTime
+                var enrolleds = _db.Enrolleds.Where(e => e.ClassTimeId == classTime.Id).ToList();
+
+                // Remove related Enrolled records
+                _db.Enrolleds.RemoveRange(enrolleds);
+
+                // Get the related ClassSubscription records for each ClassTime
+                var subscriptions = _db.ClassSubscriptions.Where(cs => cs.ClassId == classTime.Id).ToList();
+
+                // Remove related ClassSubscription records
+                _db.ClassSubscriptions.RemoveRange(subscriptions);
+            }
+
+            // Remove related ClassTime records
+            _db.ClassTimes.RemoveRange(classTimes);
+
+            // Now remove the ClassAndGyms record
             _db.ClassAndGyms.Remove(classe);
-            _db.SaveChanges();
-            return Ok();
+
+            // Save changes to the database
+            try
+            {
+                _db.SaveChanges();
+                return Ok();
+            }
+            catch (DbUpdateException ex)
+            {
+                // Log the error (ex)
+                return StatusCode(500, "Internal server error: " + ex.Message);
+            }
         }
+
+
+
+        // For Image
+
+        [HttpGet("getImages/{image}")]
+        public IActionResult getImage(string image)
+        {
+            var pathImage = Path.Combine(Directory.GetCurrentDirectory(), "Uploads", image);
+
+            if (System.IO.File.Exists(pathImage))
+            {
+                return PhysicalFile(pathImage, "image/*");
+            }
+
+            return NotFound();
+        }
+
+
     }
 }

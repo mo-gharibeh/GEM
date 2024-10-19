@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { UrlServiceService } from '../HadeelURL/url-service.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-gym-detail',
@@ -9,51 +9,53 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class GymDetailComponent {
 
-  parameter: any
-  array: any
+  parameter: any;
+  array: any;
+  totalAmount: any;
+
+  DetailsArray: any;
 
   ngOnInit() {
     this.parameter = this._rout.snapshot.paramMap.get("id");
-    this.getDetails(this.parameter)
+    this.getDetails(this.parameter);
   }
 
-  constructor(private _ser: UrlServiceService, private _rout: ActivatedRoute) { }
-
-  DetailsArray: any
+  constructor(private _ser: UrlServiceService, private _rout: ActivatedRoute, private router: Router) { }
 
   getDetails(id: any) {
     this._ser.getGymDetails(id).subscribe((data) => {
-      debugger
-      this.DetailsArray = data
-      console.log(this.DetailsArray)
-    })
+      this.DetailsArray = data;
+      this.totalAmount = this.DetailsArray.price;
+      console.log(this.DetailsArray);
+    });
   }
 
-
+  // Initialize the data object with default values
   data = {
-    "userId": 1,
+    "userId": "",
     "classSubId": 1,
     "paymentMethod": "Paypal"
-  }
-
+  };
 
   AddUserSubScribtion(id: number) {
-    debugger
-    // هون لازم اشيك اذا اليوزر داخل و لا لا لحتى اذا كان داخل اسمحله يعمل سبسكرايب اذا لا بعطي الليرت
+
+
     const userid = localStorage.getItem('userId');
 
-    if (userid == null) {
-      alert("Please Login To First")
-    }
-    else {
-      this.data.classSubId = id
+    if (userid === null) {
+      alert("Please Login First");
+      this.router.navigate(['/Login']);
+
+    } else {
+
+      this.data.userId = userid;
+      this.data.classSubId = id;
+
       this._ser.addUSerSubScription(this.data).subscribe(() => {
-        if (true) {
-          alert("Accept Successfully")
-        }
-      })
+        localStorage.setItem('totalAmount', this.totalAmount.toString());
+
+        this.router.navigate(['/payment']);
+      });
     }
   }
 }
-
-

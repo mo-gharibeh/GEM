@@ -1,0 +1,104 @@
+<br />
+<br />
+<br />
+<br />
+
+<!-- Gym List Table -->
+<section class="gap blog-style-one team-detail detail-page">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="row">
+          <!--< class="col-lg-4">-->
+          <!-- Gym Display Card -->
+
+
+
+
+          <section class="gap detail-page">
+            <div class="container">
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="pr-dat">
+                    <div class="heading-style-2">
+                      <h2>{{ClassDetails.name}}</h2>
+                    </div>
+                    <p>{{ClassDetails.description}}</p>
+
+                    <!-- Join Button -->
+                    <div class="subscription-section">
+                      <p><strong>Price:</strong> {{ClassDetails.price}} JOD</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Instructor Section -->
+          <section class="gap no-top team-style-one">
+            <div class="container">
+              <div class="heading">
+                <h2>Class INSTRUCTOR</h2>
+              </div>
+              <div class="team-data">
+                <h3>{{ClassDetails.trainer}}</h3>
+                <p>CROSSFIT COACH</p>
+              </div>
+              <div class="t-tel">
+                <p>The class subscription:</p>
+                <span><b>JOD:</b>{{ClassDetails.price}}</span>
+              </div>
+            </div>
+          </section>
+
+
+          <form #updateServiceForm="ngForm" (ngSubmit)="updateClassAdmin(updateServiceForm.value)">
+            <div class="form-group">
+              <label>Class Name:</label>
+              <input type="text" class="form-control" name="Name" ngModel>
+            </div>
+            <div class="form-group">
+              <label>Trainer Name:</label>
+              <input type="text" class="form-control" name="Trainer" ngModel>
+            </div>
+            <div class="form-group">
+              <label>Class Description:</label>
+              <input type="text" class="form-control" name="Description" ngModel>
+            </div>
+            <div class="form-group">
+              <label>Class Price:</label>
+              <input type="text" class="form-control" name="Price" ngModel>
+            </div>
+
+            <!-- Class Start Time -->
+            <div class="form-group">
+              <label>Start Time:</label>
+              <input type="datetime-local" class="form-control" name="dTO.StartTime" ngModel>
+            </div>
+
+            <!-- Class End Time -->
+            <div class="form-group">
+              <label>End Time:</label>
+              <input type="datetime-local" class="form-control" name="dTO.EndTime" ngModel>
+            </div>
+
+            <div class="form-group">
+              <label>Class Image:</label>
+              <input type="file" class="form-control" (change)="changeImage($event)">
+            </div>
+
+            <br />
+            <div class="d-flex justify-content-between">
+              <button type="submit" class="btn btn-success">Save Changes</button>
+              <button type="button" (click)="cancelEdit()" class="btn btn-secondary">Cancel</button>
+            </div>
+          </form>
+
+          <!-- Gym Edit Card (Initially Hidden) -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--</div>-->
+</section>

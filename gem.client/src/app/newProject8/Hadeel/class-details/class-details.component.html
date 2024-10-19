@@ -43,19 +43,22 @@
           <h3>Class Timing</h3>
           <ul>
             <!-- Display available times for this class -->
-            <li *ngFor="let time of classTimes">
-              <label>
-                <input type="radio" name="selectedTime" [(ngModel)]="selectedTime" [value]="time.id">
+            <select (change)="onClassTimeChange($event)">
+              <option *ngFor="let time of classTimes" [value]="time.id">
                 {{ formatDate(time.startTime) }} - {{ formatDate(time.endTime) }}
-              </label>
-            </li>
+              </option>
+            </select>
+
           </ul>
 
-          <!-- Join Button -->
           <div class="subscription-section">
             <p><strong>Price:</strong> {{ClassDetails.price}} JOD</p>
-            <button href="payment.html" class="theme-btn" (click)="joinClass()">Join Now</button>
+            <button (click)="joinClass()" class="theme-btn">
+              Enroll in Class
+            </button>
           </div>
+
+          
         </div>
       </div>
     </div>

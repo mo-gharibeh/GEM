@@ -1,0 +1,26 @@
+.table {
+  background-color: #f8f9fa; /* Light background color */
+}
+
+  .table th {
+    background-color: #343a40; /* Dark header */
+    color: white; /* White text for header */
+    font-weight: bold;
+  }
+
+  .table td {
+    vertical-align: middle; /* Center content vertically */
+  }
+
+.table-hover tbody tr:hover {
+  background-color: #f1f1f1; /* Light grey background on hover */
+}
+
+.table-bordered {
+  border: 1px solid #dee2e6; /* Light border around table */
+}
+
+  .table-bordered th,
+  .table-bordered td {
+    border: 1px solid #dee2e6; /* Light border for cells */
+  }

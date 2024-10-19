@@ -12,7 +12,7 @@ export class LoginComponent {
 
   email: any;
   ngOnInit() {
-    
+
     this._serm['email'].next('');
   }
 
@@ -30,10 +30,17 @@ export class LoginComponent {
     this._ser.loginUser(form).subscribe((response) => {
       localStorage.setItem('userId', response.userId);
       this._serm['email'].next(data.email);
-      
+
       if (data.email == "admin@gmail.com") {
-        this._router.navigate(['/AdminDashBoard']);
+        this._router.navigate(['/AdminDashBoard/ClassGym']);
         alert("Welcome Admin");
+      } else if (localStorage.getItem("cartItems")) {
+        this._router.navigate(['/Cart'])
+      }
+      else {
+        this._router.navigate(['/Gyms'])
+      
+
       }
       //} else {
       //  this._router.navigate(['/home']);
@@ -42,10 +49,10 @@ export class LoginComponent {
       //}
       //const userId = response.userId;
       //localStorage.setItem('userId', userId);
-      },
-        (error) => {
-          alert(error.error);
-        });
+    },
+      (error) => {
+        alert(error.error);
+      });
     //  this._ser['email'].next(response.email);
     //  if (response.email == 'admin@gmail.com') {
 
@@ -58,12 +65,15 @@ export class LoginComponent {
 
     //  (error) => { alert(error.error) }
     //)
-    if (localStorage.getItem("cartItems")) {
-      this._router.navigate(['/Cart'])
-    }
-    else {
-      this._router.navigate(['/Gyms'])
-    }
+
+
+
+    //if (localStorage.getItem("cartItems")) {
+    //  this._router.navigate(['/Cart'])
+    //}
+    //else {
+    //  this._router.navigate(['/Gyms'])
+    //}
   }
 
 }

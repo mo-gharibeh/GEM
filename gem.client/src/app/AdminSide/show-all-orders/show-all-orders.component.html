@@ -1,38 +1,42 @@
 <main>
   <!-- Bootstrap container to center and structure content -->
   <div class="container mt-4" style="margin-left:260px">
-    <!-- Optional heading for the section -->
     <h2 class="text-center mb-4">All Orders</h2>
-
- 
 
     <!-- Styled Bootstrap table -->
     <table class="table table-light table-hover table-bordered">
       <thead>
         <tr>
-          <th scope="col">id</th>
-          <th scope="col">UserId</th>
-          <th scope="col">TotalAmount</th>
-          <th scope="col">ShippngStatus</th>
-          <th scope="col">OrderDate</th>
+          <th scope="col">ID</th>
+          <th scope="col">User ID</th>
+          <th scope="col">Total Amount</th>
+          <th scope="col">Shipping Status</th>
+          <th scope="col">Order Date</th>
           <th scope="col">Action</th>
         </tr>
       </thead>
       <tbody>
         <!-- Angular *ngFor directive to iterate over the array -->
         <tr *ngFor="let item of Array; let i = index">
-          <!-- Display row number dynamically using index -->
-          <th scope="row">{{item.orderId}}</th>
+          <th scope="row">{{ item.orderId }}</th>
           <td>{{ item.userId }}</td>
-          <td>{{item.totalAmount}}</td>
-          <td>{{ item.shippngStatus }}</td>
-          <td>{{ item.orderDate }} </td>
+          <td>{{ item.totalAmount }}</td>
+         
           <td>
-            <!-- Bootstrap buttons for Edit and Delete -->
+            <select class="form-select" (change)="onStatusChange(item.orderId, $event)">
+              <option value="Pending" [selected]="item.shippngStatus == 'Pending'">Pending</option>
+              <option value="Shipped" [selected]="item.shippngStatus == 'Shipped'">Shipped</option>
+              <option value="Delivered" [selected]="item.shippngStatus == 'Delivered'">Delivered</option>
+            </select>
+          </td>
+
+
+          <td>{{ item.orderDate }}</td>
+          <td>
+            <!-- Details button -->
             <button class="btn btn-outline-primary btn-sm" [routerLink]="['/AdminDashBoard/GetOrdersItem', item.orderId]">
               Details
             </button>
-          
           </td>
         </tr>
       </tbody>

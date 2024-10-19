@@ -11,8 +11,20 @@ h2 {
   border-radius: 10px;
   overflow: hidden;
 }
+
 .container.mt-4 {
   margin-left: 0 !important;
-  max-width: 100%;
+  max-width: 90%;
 }
 
+.table-bordered > :not(caption) > * > * {
+  border-width: 0 1px;
+  width: 200px;
+  word-wrap: break-word;
+  white-space: normal;
+}
+
+button.btn.btn-success.btn-sm {
+  margin: 31px;
+  font-size: 24px;
+}

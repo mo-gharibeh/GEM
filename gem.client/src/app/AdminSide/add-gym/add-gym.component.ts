@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrl: './add-gym.component.css'
 })
 export class AddGymComponent {
-  
+
   imageFile: any
   changeImage(event: any) {
     debugger

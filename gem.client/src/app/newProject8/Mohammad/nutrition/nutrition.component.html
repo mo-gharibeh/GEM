@@ -36,7 +36,9 @@
         <div class="blog-post modern-card">
           <div class="blog-image">
             <figure>
-              <img [src]="nutritionArray?.image || 'assets/images/blog-style-two-1.jpg'"
+              <!--<img src="https://localhost:44340/api/MohammadController1/getImages/{{nutritionArray.image}}"
+       alt="{{ nutritionArray.title }}" class="img-fluid rounded">-->
+              <img src="{{nutritionArray.image}}"
                    alt="{{ nutritionArray.title }}" class="img-fluid rounded">
             </figure>
           </div>

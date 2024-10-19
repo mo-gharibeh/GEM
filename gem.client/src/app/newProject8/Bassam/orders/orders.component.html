@@ -24,3 +24,65 @@
     </div>
   </div>
 </section>
+
+
+
+<body class="hm-gradient">
+
+  <main>
+
+    <!--MDB Tables-->
+    <div class="container mt-4">
+
+      <div class="card mb-4">
+        <div class="card-body">
+          <!-- Grid row -->
+          <div class="row">
+            <!-- Grid column -->
+            <div class="col-md-12">
+              <h2 class="pt-3 pb-4 text-center font-bold font-up deep-purple-text">My orders</h2>
+            </div>
+            <!-- Grid column -->
+          </div>
+          <!-- Grid row -->
+          <!-- Table -->
+          <table class="table table-striped">
+            <!-- Table head -->
+            <thead>
+              <tr>
+                <th>Total Amount</th>
+                <th>Shipping Status</th>
+                <th>Order Date</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <!-- Table head -->
+            <!-- Table body -->
+            <tbody>
+              <tr *ngFor="let order of orders">
+                <td>{{ order.totalAmount }}</td>
+                <td>{{ order.shippngStatus }}</td>
+                <td>{{ order.orderDate }}</td>
+                <td>
+                  <!-- Pass the order's ID to the function -->
+                  <button *ngIf="order.orderId" class="btn btn-info btn-sm" (click)="viewOrderItems(order.orderId)">
+                    View
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+
+            <!-- Table body -->
+          </table>
+
+        </div>
+      </div>
+
+      <hr class="my-4">
+
+    </div>
+    <!--MDB Tables-->
+
+  </main>
+
+</body>

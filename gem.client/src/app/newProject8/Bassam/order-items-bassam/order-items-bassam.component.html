@@ -1,0 +1,76 @@
+<!-- Banner Style One Start -->
+<section class="banner-style-one">
+  <div class="parallax" style="background-image: url(assets/images/pattren-3.png);"></div>
+  <div class="container">
+    <div class="row">
+      <div class="banner-details text-center">
+        <h2>Order Details</h2>
+        <p>Our values have vaulted us to the top of our industry.</p>
+      </div>
+    </div>
+  </div>
+  <div class="breadcrums">
+    <div class="container">
+      <div class="row">
+        <ul class="breadcrumb-list">
+          <li>
+            <a href="index.html">
+              <i class="fa-solid fa-house"></i> Home
+            </a>
+          </li>
+          <li class="current">Profile</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+<body class="hm-gradient">
+  <main>
+    <!-- Bootstrap container for the table -->
+    <div class="container mt-4">
+      <!-- Card containing the table -->
+      <div class="card mb-4">
+        <div class="card-body">
+          <!-- Grid row for the title -->
+          <div class="row">
+            <!-- Centered column for the title -->
+            <div class="col-md-12">
+              <h2 class="pt-3 pb-4 text-center font-bold font-up deep-purple-text">Order Details</h2>
+            </div>
+          </div>
+
+          <!-- Bootstrap striped table -->
+          <table class="table table-striped table-hover table-bordered">
+            <!-- Table head -->
+            <thead>
+              <tr>
+                <th scope="col">Product Name</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Total Amount</th>
+              </tr>
+            </thead>
+            <!-- Table body -->
+            <tbody>
+              <tr *ngFor="let item of orderItems">
+                <!-- Order ID -->
+                <td>{{ item.productName }}</td>   <!-- Product ID -->
+                <td>{{ item.quantity }}</td>    <!-- Quantity -->
+                <td>{{ item.totalAmount }}</td> <!-- Total Amount -->
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>

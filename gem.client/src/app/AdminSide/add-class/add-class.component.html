@@ -10,7 +10,7 @@
 <p>Add Class</p>
 <form #newServiceForm="ngForm" (ngSubmit)="AddNewService(newServiceForm.value)">
   <div class="form-group">
-    <label>Gym Name:</label>
+    <label>Class Name:</label>
     <input type="text" class="form-control" name="Name" ngModel required>
   </div>
   <div class="form-group">
@@ -18,11 +18,11 @@
     <input type="text" class="form-control" name="Trainer" ngModel required>
   </div>
   <div class="form-group">
-    <label>Gym Description:</label>
+    <label>Class Description:</label>
     <input type="text" class="form-control" name="Description" ngModel required>
   </div>
   <div class="form-group">
-    <label>Gym Price:</label>
+    <label>Class Price:</label>
     <input type="text" class="form-control" name="Price" ngModel required>
   </div>
 
@@ -39,7 +39,7 @@
   </div>
 
   <div class="form-group">
-    <label>Gym Image:</label>
+    <label>Class Image:</label>
     <input type="file" class="form-control" (change)="changeImage($event)" required>
   </div>
 

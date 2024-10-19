@@ -18,14 +18,14 @@ namespace GEM.Server.Controller
         }
 
 
-        
+
         [HttpGet("GetOrders")]
         public IActionResult GetAllOrders()
         {
 
             var orders = _db.Orders.ToList();
 
-            
+
             return Ok(orders);
         }
 
@@ -33,11 +33,34 @@ namespace GEM.Server.Controller
         [HttpGet("GetorderItemByOrderId/{Id}")]
         public IActionResult GetOrderItems(int Id)
         {
-            var orderItems = _db.OrderItems
-                .Where(oi => oi.OrderId == Id)
-                .ToList();
+            //var orderItems = _db.OrderItems
+            //    .Where(oi => oi.OrderId == Id)
+            //    .ToList();
 
-            
+
+            //if (orderItems == null || !orderItems.Any())
+            //{
+            //    return NotFound($"No order items found for OrderId {Id}");
+            //}
+
+            //return Ok(orderItems);
+
+            var orderItems = _db.OrderItems.Join(_db.Products,
+               order => order.ProductId,
+               products => products.ProductId,
+               (order, products) => new
+               {
+                   id = order.OrderId,
+                   OrderItemId = order.OrderItemId,
+                   Quantity = order.Quantity,
+                   TotalAmount = order.TotalAmount,
+                   ProductName = products.ProductName,
+                   Image = products.Image,
+               })
+               .Where(oi => oi.id == Id)
+               .ToList();
+
+
             if (orderItems == null || !orderItems.Any())
             {
                 return NotFound($"No order items found for OrderId {Id}");

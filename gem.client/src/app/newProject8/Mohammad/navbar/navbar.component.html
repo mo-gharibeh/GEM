@@ -31,7 +31,7 @@
             <div class="col-lg-12">
               <div class="d-flex-all justify-content-between">
                 <div class="header-logo">
-                  <a href="index.html">
+                  <a routerLink="/home">
                     <figure>
                       <img src="assets/images/logo.png" alt="logoo">
                     </figure>
@@ -40,23 +40,19 @@
                 <div class="nav-bar">
                   <ul>
                     <li>
-                      <a href="#">Home</a>
+                      <a routerLink="/home">Home</a>
 
                     </li>
 
                     <li>
                       <a routerLink="/About">About</a>
                       <!--<li class="menu-item-has-children">
-      <a href="javascript:void(0)">About</a>
-      <ul class="sub-menu">
-        <li><a href="about.html">About</a></li>
-        <li><a href="features-and-benefits.html">features & benefits</a></li>
-      </ul>
-    </li>-->
-                    <li>
-                      <a routerLink="/About">About</a>
-
-                    </li>
+                        <a href="javascript:void(0)">About</a>
+                        <ul class="sub-menu">
+                          <li><a href="about.html">About</a></li>
+                          <li><a href="features-and-benefits.html">features & benefits</a></li>
+                        </ul>
+                      </li>-->
 
                     <li>
                       <a routerLink="/Products">Shop</a>
@@ -68,45 +64,41 @@
                     <li>
                       <a routerLink="/Class">Class</a>
                     </li>
-                    <li>
-                      <a routerLink="/AdminDashBoard">Admin</a>
-                    </li>
+
                     <li>
                       <a routerLink="/Contact">Contact</a>
                     </li>
-                    <li>
-                      <a routerLink="/paypal">paypal</a>
-                    </li>
+
 
                     <!--<li class="menu-item-has-children">
-    <a href="JavaScript:void(0)">Gyms</a>
-    <ul class="sub-menu">
-      <li class="menu-item-has-children">
-        <a href="javascript:void(0)">Services</a>
-        <ul class="sub-menu">
-          <li><a href="services.html">services</a></li>
-          <li><a href="service-detail.html">Service Detail</a></li>
-        </ul>
-      </li>
-      <li class="menu-item-has-children">
-        <a href="javascript:void(0)">Classes</a>
-        <ul class="sub-menu">
-          <li><a href="our-classes.html">our classes</a></li>
-          <li><a href="our-classes-2.html">our classes 2</a></li>
-          <li><a href="class-details.html">class details</a></li>
-          <li><a href="classes-schedule.html">classes schedule</a></li>
-        </ul>
-      </li>
-      <li class="menu-item-has-children">
-        <a href="javascript:void(0)">Team</a>
-        <ul class="sub-menu">
-          <li><a href="our-team.html">Our Team</a></li>
-          <li><a href="team-detail.html">Team Detail</a></li>
-        </ul>
-      </li>
-      <li><a href="login.html">Login</a></li>
-    </ul>
-  </li>-->
+                      <a href="JavaScript:void(0)">Gyms</a>
+                      <ul class="sub-menu">
+                        <li class="menu-item-has-children">
+                          <a href="javascript:void(0)">Services</a>
+                          <ul class="sub-menu">
+                            <li><a href="services.html">services</a></li>
+                            <li><a href="service-detail.html">Service Detail</a></li>
+                          </ul>
+                        </li>
+                        <li class="menu-item-has-children">
+                          <a href="javascript:void(0)">Classes</a>
+                          <ul class="sub-menu">
+                            <li><a href="our-classes.html">our classes</a></li>
+                            <li><a href="our-classes-2.html">our classes 2</a></li>
+                            <li><a href="class-details.html">class details</a></li>
+                            <li><a href="classes-schedule.html">classes schedule</a></li>
+                          </ul>
+                        </li>
+                        <li class="menu-item-has-children">
+                          <a href="javascript:void(0)">Team</a>
+                          <ul class="sub-menu">
+                            <li><a href="our-team.html">Our Team</a></li>
+                            <li><a href="team-detail.html">Team Detail</a></li>
+                          </ul>
+                        </li>
+                        <li><a href="login.html">Login</a></li>
+                      </ul>
+                    </li>-->
 
                     <li class="menu-item-has-children">
                       <a href="javascript:void(0)">Nutrition</a>
@@ -119,13 +111,13 @@
                       </ul>
                     </li>
                     <li>
-                      <a routerLink="/Profile">Profile</a>
+                      <a routerLink="/Profile" *ngIf="email != ''">Profile</a>
                     </li>
                     <li>
-                      <a routerLink="/Login" *ngIf="userId == null">Login</a>
+                      <a routerLink="/Login" *ngIf="email == ''">Login</a>
                     </li>
                     <li>
-                      <a (click)="logout()" *ngIf="userId != null">Logout</a>
+                      <a (click)="logout()" *ngIf="email != ''">Logout</a>
                     </li>
                     <li>
                       <a routerLink="/Cart" class="cart-icon">
@@ -153,7 +145,6 @@
                     <!--<a href="#" class="theme-btn">
                       Appointment
                     </a>-->
-
                     <!-- Cart Icon -->
 
                   </div>
@@ -226,20 +217,18 @@
           <li>
             <a href="contact.html">Contact</a>
           </li>
+
           <li>
-            <a routerLink="/paypal">paypal</a>
-          </li>
-          <li>
-            <a routerLink="/Profile">Profile</a>
+            <a routerLink="/Profile" *ngIf="email != ''">Profile</a>
           </li>
           <li>
             <a routerLink="/Login" *ngIf="email == ''">Login</a>
           </li>
           <li>
-            <a (click)="logout()" *ngIf="email != ''" >Logout</a>
+            <a (click)="logout()" *ngIf="email != ''">Logout</a>
           </li>
           <li>
-           
+
             <a routerLink="/Cart" class="cart-icon">
               <i class="fa-solid fa-cart-shopping"></i>
             </a>
@@ -265,4 +254,3 @@
     </div>
   </div>
 </header>
-

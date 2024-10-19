@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BassamUrlService } from '../BassamUrl/bassam-url.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
@@ -20,7 +20,8 @@ export class EditProfileComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private bassamUrlService: BassamUrlService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -93,6 +94,9 @@ export class EditProfileComponent implements OnInit {
     if (this.userId !== undefined) {
       this.bassamUrlService.updateUserProfile(this.userId, formData).subscribe(
         () => {
+          alert('Profile updated successfully');
+          this.router.navigate(['/Profile']);
+
           console.log('Profile updated successfully');
         },
         (error: HttpErrorResponse) => {

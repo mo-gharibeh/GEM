@@ -26,7 +26,7 @@ export class RegisterComponent {
     }
     this._ser.addUserRegistration(form).subscribe(() => {
       alert("user added successfully")
-      this._router.navigate(['/login']);
+      this._router.navigate(['/Login']);
     },
       (error) => {
         alert(error.error)
