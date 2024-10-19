@@ -139,6 +139,7 @@ namespace GEM.Server.Controller
             product.Description = update.Description;
             product.Image = update.Image.FileName;
             product.Price = update.Price;
+            product.CategoryId = update.CategoryId;
             _db.Products.Update(product);
             _db.SaveChanges();
 

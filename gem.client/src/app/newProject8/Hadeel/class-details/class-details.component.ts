@@ -77,7 +77,7 @@ export class ClassDetailsComponent implements OnInit {
 
     this.userId = Number(localStorage.getItem('userId'));
     if (!this.userId) {
-      this.router.navigate(['/login'], { queryParams: { returnUrl: this.router.url } });
+      this.router.navigate(['/Login'], { queryParams: { returnUrl: this.router.url } });
       return;
     }
 
